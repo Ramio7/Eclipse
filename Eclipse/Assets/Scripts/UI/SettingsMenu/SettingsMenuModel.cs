@@ -8,6 +8,10 @@ public class SettingsMenuModel : BaseModel
 
     private string _settingsFilePath = Application.dataPath + "/Resources/settings.json";
 
+    private bool _settingsIsChanged = false;
+
+    public bool SettingsIsChanged { get => _settingsIsChanged; private set => _settingsIsChanged = value; }
+
     public SettingsMenuModel(SettingsMenuScriptableObject defaults) : base()
     {
         if (!CheckSettingsFile())
@@ -38,8 +42,8 @@ public class SettingsMenuModel : BaseModel
     private bool CreateSettingsFile()
     {
         var file = File.Create(_settingsFilePath);
-        SaveSettings();
         file.Close();
+        SaveSettings();
         return File.Exists(_settingsFilePath);
     }
 
@@ -47,6 +51,7 @@ public class SettingsMenuModel : BaseModel
     {
         var settingsToJson = new JsonData<GameSettings>();
         settingsToJson.Save(_gameSettings, _settingsFilePath);
+        SettingsIsChanged = false;
         return _gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath));
     }
 
@@ -57,13 +62,53 @@ public class SettingsMenuModel : BaseModel
         return settingsToJson.Load(_settingsFilePath).IsEqual(_gameSettings);
     }
 
-    public void ChangeSoundVolume(float volume) => _gameSettings.SoundVolume = volume;
-    public void ChangeMusicVolume(float volume) => _gameSettings.MusicVolume = volume;
-    public void ChangeBrightnessVolume(float volume) => _gameSettings.BrightnessVolume = volume;
-    public void ChangeEffectVolume(float volume) => _gameSettings.EffectVolume = volume;
-    public void ChangeVoiceVolume(float volume) => _gameSettings.VoiceVolume = volume;
-    public void ChangeContrastRatio(float volume) => _gameSettings.ContrastRatio = volume;
-    public void ChangeSubtitlesOnOff(bool isOn) => _gameSettings.IsSubtitlesOn = isOn;
+    public void ChangeSoundVolume(float volume)
+    {
+        _gameSettings.SoundVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeMusicVolume(float volume)
+    {
+        _gameSettings.MusicVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeBrightnessVolume(float volume)
+    {
+        _gameSettings.BrightnessVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeEffectVolume(float volume)
+    {
+        _gameSettings.EffectVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeVoiceVolume(float volume)
+    {
+        _gameSettings.VoiceVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeContrastRatio(float volume)
+    {
+        _gameSettings.ContrastRatio = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeMasterSoundVolume(float volume)
+    {
+        _gameSettings.MasterVolume = volume;
+        SettingsIsChanged = true;
+    }
+
+    public void ChangeSubtitlesOnOff(bool isOn)
+    {
+        _gameSettings.IsSubtitlesOn = isOn;
+        SettingsIsChanged = true;
+    }
 
     public struct GameSettings : IDisposable
     {

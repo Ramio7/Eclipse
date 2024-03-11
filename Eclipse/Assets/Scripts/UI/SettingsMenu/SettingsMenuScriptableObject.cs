@@ -10,7 +10,7 @@ public class SettingsMenuScriptableObject : BaseScriptableObject
     [SerializeField, Range(0f, 100f)] private float _effectVolume;
     [SerializeField, Range(0f, 100f)] private float _voiceVolume;
     [SerializeField, Range(0f, 100f)] private float _contrastRatio;
-    [SerializeField, Range(0f, 100f)] private bool _IsSubtitlesOn;
+    [SerializeField] private bool _IsSubtitlesOn;
 
     public float DefaultSoundVolume { get => _defaultSoundVolume; }
     public float DefaultMusicVolume { get => _defaultMusicVolume; }
