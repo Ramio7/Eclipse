@@ -1,7 +1,13 @@
+using UnityEngine;
+using UnityEngine.Rendering;
+
 public class SettingsMenuController : BaseController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
+
+    private Volume _imageVolume;
+    private AudioSource _audioSource;
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
@@ -14,6 +20,7 @@ public class SettingsMenuController : BaseController
     {
         base.Init();
 
+        FindGlobalVolumeAndAudioSource();
         InitButtons();
     }
 
@@ -27,6 +34,16 @@ public class SettingsMenuController : BaseController
 
         _view = null;
         _model = null;
+        _audioSource = null;
+        _imageVolume = null;
+    }
+
+    private void FindGlobalVolumeAndAudioSource()
+    {
+        var tempGO = GameObject.Find("Global Volume");
+        Object.DontDestroyOnLoad(tempGO);
+        _imageVolume = tempGO.GetComponent<Volume>();
+        _audioSource = tempGO.GetComponent<AudioSource>();
     }
 
     private void InitButtons()
