@@ -13,8 +13,11 @@ public class EntryPointView : MonoBehaviour, IView
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
 
+    public static EntryPointView Instance;
+
     private void OnEnable()
     {
+        Instance = this;
         DontDestroyOnLoad(this);
         _controller = new(this, _entryPointData);
     }
