@@ -6,7 +6,7 @@ public class SettingsMenuController : BaseController
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
 
-    private Volume _imageVolume;
+    private Volume _graphicsVolume;
     private AudioSource _audioSource;
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
@@ -35,15 +35,13 @@ public class SettingsMenuController : BaseController
         _view = null;
         _model = null;
         _audioSource = null;
-        _imageVolume = null;
+        _graphicsVolume = null;
     }
 
     private void FindGlobalVolumeAndAudioSource()
     {
-        var tempGO = GameObject.Find("Global Volume");
-        Object.DontDestroyOnLoad(tempGO);
-        _imageVolume = tempGO.GetComponent<Volume>();
-        _audioSource = tempGO.GetComponent<AudioSource>();
+        _graphicsVolume = EntryPointView.Instance.gameObject.GetComponent<Volume>();
+        _audioSource = EntryPointView.Instance.gameObject.GetComponent<AudioSource>();
     }
 
     private void InitButtons()
