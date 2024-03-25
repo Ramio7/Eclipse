@@ -6,7 +6,7 @@ public class SettingsMenuModel : BaseModel
 {
     private GameSettings _gameSettings = new();
 
-    private string _settingsFilePath = Application.dataPath + "/Resources/settings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
     private bool _settingsIsChanged = false;
 

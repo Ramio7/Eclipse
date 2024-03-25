@@ -44,10 +44,8 @@ public class SettingsMenuController : BaseController
         _audioSource = EntryPointView.Instance.gameObject.GetComponent<AudioSource>();
     }
 
-    private void InitButtons()
+    private void InitButtons() //Take reactive values from old projects and form onValueChanged for Save Settings button
     {
-        _view.SaveSettingsButton.interactable = _model.SettingsIsChanged;
-
         _view.BrightnessVolumeSlider.onValueChanged.AddListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.AddListener(_model.ChangeContrastRatio);
         _view.EffectVolumeSlider.onValueChanged.AddListener(_model.ChangeEffectVolume);
