@@ -1,15 +1,22 @@
 using System;
 using UnityEngine.Events;
 
-public class ReactiveProperty<T>
+public class ReactiveProperty<T> : IDisposable
 {
     private T _value;
 
-    public UnityEvent<T> OnValueChanged;
+    public UnityEvent<T> OnValueChanged = new();
 
     public ReactiveProperty(T value)
     {
         _value = value;
+    }
+
+    public void Dispose()
+    {
+        _value = default;
+        OnValueChanged.RemoveAllListeners();
+        OnValueChanged = null;
     }
 
     public T GetValue() => _value;

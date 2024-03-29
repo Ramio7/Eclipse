@@ -1,27 +1,21 @@
-using System;
 using System.IO;
 using UnityEngine;
 
 public class SettingsMenuModel : BaseModel
 {
-    private GameSettings _gameSettings = new();
+    private GameSettings _gameSettings;
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
     public ReactiveProperty<bool> SettingsIsChanged = new(false);
+    public GameSettings GameSettings { get => _gameSettings; set => _gameSettings = value; }
 
     public SettingsMenuModel(SettingsMenuScriptableObject defaults) : base()
     {
         if (!CheckSettingsFile())
         {
-            _gameSettings.MasterVolume = defaults.MasterVolume;
-            _gameSettings.SoundVolume = defaults.DefaultSoundVolume;
-            _gameSettings.MusicVolume = defaults.DefaultMusicVolume;
-            _gameSettings.BrightnessVolume = defaults.DefaultBrightnessVolume;
-            _gameSettings.EffectVolume = defaults.DefaultEffectVolume;
-            _gameSettings.VoiceVolume = defaults.DefaultVoiceVolume;
-            _gameSettings.ContrastRatio = defaults.DefaultContrastRatio;
-            _gameSettings.IsSubtitlesOn = defaults.DefaultIsSubtitlesOn;
+            _gameSettings = new(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
+                defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
             Debug.Log(CreateSettingsFile());
         }
         else
@@ -32,7 +26,10 @@ public class SettingsMenuModel : BaseModel
 
     public override void Dispose()
     {
-        _gameSettings.Dispose();
+        SettingsIsChanged.Dispose();
+        GameSettings.Dispose();
+
+        _settingsFilePath = null;
     }
 
     private bool CheckSettingsFile() => File.Exists(_settingsFilePath);
@@ -45,18 +42,20 @@ public class SettingsMenuModel : BaseModel
         return File.Exists(_settingsFilePath);
     }
 
-    public bool SaveSettings()
+    public void SaveSettings()
     {
         var settingsToJson = new JsonData<GameSettings>();
         settingsToJson.Save(_gameSettings, _settingsFilePath);
         SettingsIsChanged.SetValue(false);
-        return _gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath));
+        Debug.Log(_gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath)));
     }
 
     private bool LoadSettings()
     {
         var settingsToJson = new JsonData<GameSettings>();
-        _gameSettings = settingsToJson.Load(_settingsFilePath);
+        var tempgameSettings = settingsToJson.Load(_settingsFilePath);
+        _gameSettings = new(tempgameSettings.MasterVolume, tempgameSettings.SoundVolume, tempgameSettings.MusicVolume, tempgameSettings.BrightnessVolume,
+            tempgameSettings.EffectVolume, tempgameSettings.VoiceVolume, tempgameSettings.ContrastRatio, tempgameSettings.IsSubtitlesOn);
         return settingsToJson.Load(_settingsFilePath).IsEqual(_gameSettings);
     }
 
@@ -106,38 +105,6 @@ public class SettingsMenuModel : BaseModel
     {
         _gameSettings.IsSubtitlesOn = isOn;
         SettingsIsChanged.SetValue(true);
-    }
-
-    public struct GameSettings : IDisposable
-    {
-        public float MasterVolume;
-        public float SoundVolume;
-        public float MusicVolume;
-        public float BrightnessVolume;
-        public float EffectVolume;
-        public float VoiceVolume;
-        public float ContrastRatio; 
-        public bool IsSubtitlesOn;
-
-        public bool IsEqual(GameSettings other)
-        {
-            return other.MasterVolume == MasterVolume && other.SoundVolume == SoundVolume 
-                && other.MusicVolume == MusicVolume && other.BrightnessVolume == BrightnessVolume
-                && other.EffectVolume == EffectVolume && other.VoiceVolume == VoiceVolume 
-                && other.ContrastRatio == ContrastRatio && other.IsSubtitlesOn == IsSubtitlesOn;
-        }
-
-        public void Dispose()
-        {
-            MasterVolume = 0f;
-            SoundVolume = 0;
-            MusicVolume = 0;
-            BrightnessVolume = 0;
-            EffectVolume = 0;
-            VoiceVolume = 0;
-            ContrastRatio = 0;
-            IsSubtitlesOn = false;
-        }
     }
 }
     

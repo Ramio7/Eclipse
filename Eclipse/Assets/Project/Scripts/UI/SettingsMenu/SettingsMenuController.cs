@@ -2,11 +2,14 @@ public class SettingsMenuController : BaseController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
+    private SettingsService _settingsService;
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
         _view = view;
         _model = new(settingsDefaults);
+        _settingsService = new(_model.GameSettings);
+
         Init();
     }
 
@@ -24,9 +27,11 @@ public class SettingsMenuController : BaseController
         DeinitButtons();
 
         _model.Dispose();
+        _settingsService.Dispose();
 
         _view = null;
         _model = null;
+        _settingsService = null;
     }
 
     private void InitButtons()
@@ -41,6 +46,8 @@ public class SettingsMenuController : BaseController
         _view.SoundVolumeSlider.onValueChanged.AddListener(_model.ChangeMusicVolume);
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
+
+        _view.SaveSettingsButton.onClick.AddListener(_model.SaveSettings);
     }
 
     private void DeinitButtons()
@@ -55,7 +62,21 @@ public class SettingsMenuController : BaseController
         _view.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
+
+        _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
+    }
+
+    private void InitActions()
+    {
+        _model.SettingsIsChanged.OnValueChanged.AddListener(_settingsService.AutoUpdateSettings);
+    }
+
+    private void DeInitActions()
+    {
+
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;
+
+    
 }
