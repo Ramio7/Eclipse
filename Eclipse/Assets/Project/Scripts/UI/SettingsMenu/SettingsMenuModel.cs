@@ -8,9 +8,7 @@ public class SettingsMenuModel : BaseModel
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
-    private bool _settingsIsChanged = false;
-
-    public bool SettingsIsChanged { get => _settingsIsChanged; private set => _settingsIsChanged = value; }
+    public ReactiveProperty<bool> SettingsIsChanged = new(false);
 
     public SettingsMenuModel(SettingsMenuScriptableObject defaults) : base()
     {
@@ -51,7 +49,7 @@ public class SettingsMenuModel : BaseModel
     {
         var settingsToJson = new JsonData<GameSettings>();
         settingsToJson.Save(_gameSettings, _settingsFilePath);
-        SettingsIsChanged = false;
+        SettingsIsChanged.SetValue(false);
         return _gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath));
     }
 
@@ -65,49 +63,49 @@ public class SettingsMenuModel : BaseModel
     public void ChangeSoundVolume(float volume)
     {
         _gameSettings.SoundVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeMusicVolume(float volume)
     {
         _gameSettings.MusicVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeBrightnessVolume(float volume)
     {
         _gameSettings.BrightnessVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeEffectVolume(float volume)
     {
         _gameSettings.EffectVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeVoiceVolume(float volume)
     {
         _gameSettings.VoiceVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeContrastRatio(float volume)
     {
         _gameSettings.ContrastRatio = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeMasterSoundVolume(float volume)
     {
         _gameSettings.MasterVolume = volume;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public void ChangeSubtitlesOnOff(bool isOn)
     {
         _gameSettings.IsSubtitlesOn = isOn;
-        SettingsIsChanged = true;
+        SettingsIsChanged.SetValue(true);
     }
 
     public struct GameSettings : IDisposable

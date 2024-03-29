@@ -1,13 +1,7 @@
-using UnityEngine;
-using UnityEngine.Rendering;
-
 public class SettingsMenuController : BaseController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
-
-    private Volume _graphicsVolume;
-    private AudioSource _audioSource;
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
@@ -20,7 +14,6 @@ public class SettingsMenuController : BaseController
     {
         base.Init();
 
-        FindGlobalVolumeAndAudioSource();
         InitButtons();
     }
 
@@ -34,18 +27,12 @@ public class SettingsMenuController : BaseController
 
         _view = null;
         _model = null;
-        _audioSource = null;
-        _graphicsVolume = null;
     }
 
-    private void FindGlobalVolumeAndAudioSource()
+    private void InitButtons()
     {
-        _graphicsVolume = EntryPointView.Instance.gameObject.GetComponent<Volume>();
-        _audioSource = EntryPointView.Instance.gameObject.GetComponent<AudioSource>();
-    }
+        _model.SettingsIsChanged.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
 
-    private void InitButtons() //Take reactive values from old projects and form onValueChanged for Save Settings button
-    {
         _view.BrightnessVolumeSlider.onValueChanged.AddListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.AddListener(_model.ChangeContrastRatio);
         _view.EffectVolumeSlider.onValueChanged.AddListener(_model.ChangeEffectVolume);
@@ -58,6 +45,8 @@ public class SettingsMenuController : BaseController
 
     private void DeinitButtons()
     {
+        _model.SettingsIsChanged.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
+
         _view.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
         _view.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
@@ -67,4 +56,6 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
     }
+
+    private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;
 }
