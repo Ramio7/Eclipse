@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound volume
+  m_text: Master volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3881,7 +3881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settingsDefaults: {fileID: 11400000, guid: 4abf081b4f3185740a3fc1516fe5d12e, type: 2}
   _saveSettingsButton: {fileID: 2879663636825065583}
-  _masterSoundVolumeSlider: {fileID: 7467263873437560342}
+  _masterVolumeSlider: {fileID: 7467263873437560342}
   _soundVolumeSlider: {fileID: 3408243664640665131}
   _musicVolumeSlider: {fileID: 691546893138462020}
   _effectVolumeSlider: {fileID: 7786644465082171633}

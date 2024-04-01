@@ -293,7 +293,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 2
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -771,13 +771,12 @@ AudioSource:
   m_GameObject: {fileID: 556665664}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 69301e9f5b34d9e45a9dc0edf63facc4,
-    type: 2}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: be9595e3020544c4d900a85058c02ce6, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 5e1a9f876d3dafd47bc6b3dde25135fa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1125,7 +1124,7 @@ TerrainCollider:
   m_GameObject: {fileID: 1291200236}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 1ca7825fe7d05924da0b0a18b6b97e65, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 077fba93e4a27a247ad767dfe1bce4d3, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1291200238
 Terrain:

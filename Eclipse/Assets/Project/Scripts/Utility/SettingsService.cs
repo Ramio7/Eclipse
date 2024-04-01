@@ -6,13 +6,14 @@ public class SettingsService : IDisposable
 {
     private Volume _graphicsVolume;
     private AudioSource _audioSource;
-    private GameSettings _gameSettings; //need to make it refferal
+    private SettingsMenuModel _model;
 
-    public GameSettings GameSettings { get => _gameSettings; set => _gameSettings = value; }
+    private bool _isOnAutoUpdate;
 
-    public SettingsService(GameSettings gameSettings)
+    public SettingsService(ref SettingsMenuModel model)
     {
-        _gameSettings = gameSettings;
+        _model = model;
+
         FindGlobalVolumeAndAudioSource();
     }
 
@@ -31,9 +32,11 @@ public class SettingsService : IDisposable
     public void AutoUpdateSettings(bool settingsIsChanged)
     {
         if (!settingsIsChanged) return;
-        else
-        {
+        else if (!_isOnAutoUpdate) EntryPointView.OnUpdate += UpdateSettings;
+    }
 
-        }
+    private void UpdateSettings()
+    {
+        _audioSource.volume = _model.GameSettings.MasterVolume;
     }
 }

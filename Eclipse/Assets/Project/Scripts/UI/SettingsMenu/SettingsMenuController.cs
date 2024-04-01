@@ -8,7 +8,7 @@ public class SettingsMenuController : BaseController
     {
         _view = view;
         _model = new(settingsDefaults);
-        _settingsService = new(_model.GameSettings);
+        _settingsService = new(ref _model);
 
         Init();
     }
@@ -17,7 +17,9 @@ public class SettingsMenuController : BaseController
     {
         base.Init();
 
+        SetButtonsVolumes();
         InitButtons();
+        InitActions();
     }
 
     public override void Dispose()
@@ -25,6 +27,7 @@ public class SettingsMenuController : BaseController
         base.Dispose();
 
         DeinitButtons();
+        DeInitActions();
 
         _model.Dispose();
         _settingsService.Dispose();
@@ -34,6 +37,19 @@ public class SettingsMenuController : BaseController
         _settingsService = null;
     }
 
+
+    private void SetButtonsVolumes()
+    {
+        _view.BrightnessVolumeSlider.SetValueWithoutNotify(_model.GameSettings.BrightnessVolume);
+        _view.ContrastRatioSlider.SetValueWithoutNotify(_model.GameSettings.ContrastRatio);
+        _view.EffectVolumeSlider.SetValueWithoutNotify(_model.GameSettings.EffectVolume);
+        _view.MasterVolumeSlider.SetValueWithoutNotify(_model.GameSettings.MasterVolume);
+        _view.MusicVolumeSlider.SetValueWithoutNotify(_model.GameSettings.MusicVolume);
+        _view.SoundVolumeSlider.SetValueWithoutNotify(_model.GameSettings.SoundVolume);
+        _view.VoiceVolumeSlider.SetValueWithoutNotify(_model.GameSettings.VoiceVolume);
+        _view.SubtitlesToogle.isOn = _model.GameSettings.IsSubtitlesOn;
+    }
+
     private void InitButtons()
     {
         _model.SettingsIsChanged.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
@@ -41,7 +57,7 @@ public class SettingsMenuController : BaseController
         _view.BrightnessVolumeSlider.onValueChanged.AddListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.AddListener(_model.ChangeContrastRatio);
         _view.EffectVolumeSlider.onValueChanged.AddListener(_model.ChangeEffectVolume);
-        _view.MasterSoundVolumeSlider.onValueChanged.AddListener(_model.ChangeMasterSoundVolume);
+        _view.MasterVolumeSlider.onValueChanged.AddListener(_model.ChangeMasterVolume);
         _view.MusicVolumeSlider.onValueChanged.AddListener(_model.ChangeMusicVolume);
         _view.SoundVolumeSlider.onValueChanged.AddListener(_model.ChangeMusicVolume);
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
@@ -57,7 +73,7 @@ public class SettingsMenuController : BaseController
         _view.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
         _view.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
-        _view.MasterSoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterSoundVolume);
+        _view.MasterVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterVolume);
         _view.MusicVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
         _view.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
@@ -73,7 +89,7 @@ public class SettingsMenuController : BaseController
 
     private void DeInitActions()
     {
-
+        _model.SettingsIsChanged.OnValueChanged.RemoveListener(_settingsService.AutoUpdateSettings);
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;

@@ -9,7 +9,7 @@ public class SettingsMenuView : MonoBehaviour, IView
 
     [SerializeField] private Button _saveSettingsButton;
 
-    [SerializeField] private Slider _masterSoundVolumeSlider;
+    [SerializeField] private Slider _masterVolumeSlider;
     [SerializeField] private Slider _soundVolumeSlider;
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _effectVolumeSlider;
@@ -22,7 +22,7 @@ public class SettingsMenuView : MonoBehaviour, IView
 
     public List<Action> Actions => throw new NotImplementedException();
 
-    public Slider MasterSoundVolumeSlider { get => _masterSoundVolumeSlider; set => _masterSoundVolumeSlider = value; }
+    public Slider MasterVolumeSlider { get => _masterVolumeSlider; set => _masterVolumeSlider = value; }
     public Slider SoundVolumeSlider { get => _soundVolumeSlider; set => _soundVolumeSlider = value; }
     public Slider MusicVolumeSlider { get => _musicVolumeSlider; set => _musicVolumeSlider = value; }
     public Slider EffectVolumeSlider { get => _effectVolumeSlider; set => _effectVolumeSlider = value; }

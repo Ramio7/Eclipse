@@ -95,7 +95,7 @@ public class SettingsMenuModel : BaseModel
         SettingsIsChanged.SetValue(true);
     }
 
-    public void ChangeMasterSoundVolume(float volume)
+    public void ChangeMasterVolume(float volume)
     {
         _gameSettings.MasterVolume = volume;
         SettingsIsChanged.SetValue(true);
