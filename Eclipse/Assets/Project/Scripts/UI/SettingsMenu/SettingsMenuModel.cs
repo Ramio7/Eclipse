@@ -7,7 +7,7 @@ public class SettingsMenuModel : BaseModel
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
-    public ReactiveProperty<bool> SettingsIsChanged = new(false);
+    public ReactiveProperty<bool> SettingsIsSaved = new(false);
     public GameSettings GameSettings { get => _gameSettings; set => _gameSettings = value; }
 
     public SettingsMenuModel(SettingsMenuScriptableObject defaults) : base()
@@ -16,17 +16,18 @@ public class SettingsMenuModel : BaseModel
         {
             _gameSettings = new(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
                 defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
-            Debug.Log(CreateSettingsFile());
+            Debug.Log($"Settings file status is {CreateSettingsFile()}");
+            SaveSettings();
         }
         else
         {
-            LoadSettings();
+            Debug.Log($"Settings file is loaded: {LoadSettings()}");
         }
     }
 
     public override void Dispose()
     {
-        SettingsIsChanged.Dispose();
+        SettingsIsSaved.Dispose();
         GameSettings.Dispose();
 
         _settingsFilePath = null;
@@ -38,73 +39,70 @@ public class SettingsMenuModel : BaseModel
     {
         var file = File.Create(_settingsFilePath);
         file.Close();
-        SaveSettings();
         return File.Exists(_settingsFilePath);
     }
 
     public void SaveSettings()
     {
-        var settingsToJson = new JsonData<GameSettings>();
-        settingsToJson.Save(_gameSettings, _settingsFilePath);
-        SettingsIsChanged.SetValue(false);
-        Debug.Log(_gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath)));
+        JsonData<GameSettings>.Save(_gameSettings, _settingsFilePath);
+        SettingsIsSaved.SetValue(true);
+        //Debug.Log($"Settings file is updated: {_gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath))}");
     }
 
     private bool LoadSettings()
     {
-        var settingsToJson = new JsonData<GameSettings>();
-        var tempgameSettings = settingsToJson.Load(_settingsFilePath);
+        var tempgameSettings = JsonData<GameSettings>.Load(_settingsFilePath);
         _gameSettings = new(tempgameSettings.MasterVolume, tempgameSettings.SoundVolume, tempgameSettings.MusicVolume, tempgameSettings.BrightnessVolume,
             tempgameSettings.EffectVolume, tempgameSettings.VoiceVolume, tempgameSettings.ContrastRatio, tempgameSettings.IsSubtitlesOn);
-        return settingsToJson.Load(_settingsFilePath).IsEqual(_gameSettings);
+        return tempgameSettings.IsEqual(_gameSettings);
     }
 
     public void ChangeSoundVolume(float volume)
     {
         _gameSettings.SoundVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeMusicVolume(float volume)
     {
         _gameSettings.MusicVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeBrightnessVolume(float volume)
     {
         _gameSettings.BrightnessVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeEffectVolume(float volume)
     {
         _gameSettings.EffectVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeVoiceVolume(float volume)
     {
         _gameSettings.VoiceVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeContrastRatio(float volume)
     {
         _gameSettings.ContrastRatio = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeMasterVolume(float volume)
     {
         _gameSettings.MasterVolume = volume;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeSubtitlesOnOff(bool isOn)
     {
         _gameSettings.IsSubtitlesOn = isOn;
-        SettingsIsChanged.SetValue(true);
+        SettingsIsSaved.SetValue(false);
     }
 }
     

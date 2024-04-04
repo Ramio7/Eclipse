@@ -52,7 +52,7 @@ public class SettingsMenuController : BaseController
 
     private void InitButtons()
     {
-        _model.SettingsIsChanged.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
+        _model.SettingsIsSaved.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
 
         _view.BrightnessVolumeSlider.onValueChanged.AddListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.AddListener(_model.ChangeContrastRatio);
@@ -68,7 +68,7 @@ public class SettingsMenuController : BaseController
 
     private void DeinitButtons()
     {
-        _model.SettingsIsChanged.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
+        _model.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
 
         _view.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
         _view.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
@@ -84,12 +84,12 @@ public class SettingsMenuController : BaseController
 
     private void InitActions()
     {
-        _model.SettingsIsChanged.OnValueChanged.AddListener(_settingsService.AutoUpdateSettings);
+        _model.SettingsIsSaved.OnValueChanged.AddListener(_settingsService.AutoUpdateSettings);
     }
 
     private void DeInitActions()
     {
-        _model.SettingsIsChanged.OnValueChanged.RemoveListener(_settingsService.AutoUpdateSettings);
+        _model.SettingsIsSaved.OnValueChanged.RemoveListener(_settingsService.AutoUpdateSettings);
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;
