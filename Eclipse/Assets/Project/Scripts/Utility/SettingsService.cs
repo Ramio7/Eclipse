@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
 public class SettingsService : IDisposable
 {
-    private Volume _graphicsVolume;
-    private AudioSource _mainAudioSource;
-    private AudioSource _musicAudioSource;
-    private AudioSource _voiceAudioSource;
-    private List<AudioSource> _soundAudioSources;
-    private List<AudioSource> _effectAudioSources;
+    private VolumeProfile _graphicsVolume;
+    private AudioMixer _mixer;
     private SettingsMenuModel _model;
 
     private bool _isOnAutoUpdate = false;
@@ -18,19 +13,21 @@ public class SettingsService : IDisposable
     public SettingsService(ref SettingsMenuModel model)
     {
         _model = model;
-        FindGlobalVolumeAndAudioSource();
+        
+        FindGraphicsVolumeAndAudioMixer();
     }
 
     public void Dispose()
     {
-        _mainAudioSource = null;
         _graphicsVolume = null;
+        _mixer = null;
+        _model = null;
     }
 
-    private void FindGlobalVolumeAndAudioSource()
+    private void FindGraphicsVolumeAndAudioMixer()
     {
-        _graphicsVolume = EntryPointView.Instance.gameObject.GetComponent<Volume>();
-        _mainAudioSource = EntryPointView.Instance.gameObject.GetComponent<AudioSource>();
+        _graphicsVolume = EntryPointView.Instance.VolumeProfile;
+        _mixer = EntryPointView.Instance.AudioMixer;
     }
 
     public void AutoUpdateSettings(bool settingsIsSaved)
@@ -49,6 +46,21 @@ public class SettingsService : IDisposable
 
     private void UpdateSettings()
     {
-        _mainAudioSource.volume = _model.GameSettings.MasterVolume;
+        UpdateAudioMixer();
+        UpdateVolumeProfile();
+    }
+
+    private void UpdateAudioMixer()
+    {
+        _mixer.SetFloat("MasterVolume", _model.GameSettings.MasterVolume);
+        _mixer.SetFloat("MusicVolume", _model.GameSettings.MusicVolume);
+        _mixer.SetFloat("VoiceVolume", _model.GameSettings.VoiceVolume);
+        _mixer.SetFloat("SoundVolume", _model.GameSettings.SoundVolume);
+        _mixer.SetFloat("EffectVolume", _model.GameSettings.EffectVolume);
+    }
+
+    private void UpdateVolumeProfile()
+    {
+
     }
 }

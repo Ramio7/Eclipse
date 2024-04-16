@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct GameSettings : IGameSettings
 {
     [Range(0f, 1f)] private float _masterVolume;
