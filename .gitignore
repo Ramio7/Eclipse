@@ -62,10 +62,11 @@ sysinfo.txt
 crashlytics-build.properties
 
 
-Eclipse/Library/
 
 Eclipse/UserSettings/
 
 Eclipse/Logs/
 
 Eclipse/Temp/
+
+Eclipse/Library/PackageCache/com.unity.burst@1.8.4/
