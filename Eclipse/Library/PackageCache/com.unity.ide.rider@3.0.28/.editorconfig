@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 root = true
 
 [*]
 indent_style = space
 indent_size = 2
+=======
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
 end_of_line = lf

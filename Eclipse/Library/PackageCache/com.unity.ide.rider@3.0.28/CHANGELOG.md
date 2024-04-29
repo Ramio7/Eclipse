@@ -3,7 +3,11 @@
 
 ## [3.0.28] - 2024-02-20
 
+<<<<<<< HEAD
 - fix RIDER-103933 "PlayerSettings.suppressCommonWarnings" is not supported in Unity 2019.4.40f
+=======
+- fix RIDER-103933 "PlayerSettings.suppressCommonWarnings" is not supported in Unity 2019.4.40f
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
 - fix https://github.com/JetBrains/resharper-unity/issues/2431 and [RIDER-104221](https://youtrack.jetbrains.com/issue/RIDER-104221)
 
 
