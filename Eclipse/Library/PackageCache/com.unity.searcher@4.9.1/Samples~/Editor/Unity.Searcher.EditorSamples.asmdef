@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "Unity.Searcher.EditorSamples",
     "references": [
@@ -11,17 +10,3 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false
 }
-=======
-{
-    "name": "Unity.Searcher.EditorSamples",
-    "references": [
-        "Unity.Searcher.Editor",
-        "Unity.Searcher.ScriptsSamples"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false
-}
->>>>>>> origin/Fanrika_LevelDesing_Graphics

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "Unity.Searcher.ScriptsSamples",
     "references": [],
@@ -6,12 +5,3 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false
 }
-=======
-{
-    "name": "Unity.Searcher.ScriptsSamples",
-    "references": [],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false
-}
->>>>>>> origin/Fanrika_LevelDesing_Graphics

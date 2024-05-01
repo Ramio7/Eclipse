@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.TestTools.TestRunner.GUI;
@@ -9,16 +8,4 @@ namespace TestRunner.Callbacks
     {
         public List<TestRunnerResult> CachedResults = new List<TestRunnerResult>();
     }
-=======
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.TestTools.TestRunner.GUI;
-
-namespace TestRunner.Callbacks
-{
-    internal class WindowResultUpdaterDataHolder : ScriptableSingleton<WindowResultUpdaterDataHolder>
-    {
-        public List<TestRunnerResult> CachedResults = new List<TestRunnerResult>();
-    }
->>>>>>> origin/Fanrika_LevelDesing_Graphics
 }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "name": "Unity.Searcher.Editor",
     "references": [],
@@ -7,13 +6,3 @@
     ],
     "excludePlatforms": []
 }
-=======
-{
-    "name": "Unity.Searcher.Editor",
-    "references": [],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": []
-}
->>>>>>> origin/Fanrika_LevelDesing_Graphics

@@ -410,7 +410,6 @@
 "Assets/Project/Scripts/Utility/Crypto.cs"
 "Assets/Project/Scripts/Utility/JsonData.cs"
 "Assets/Project/Scripts/Utility/ReactiveProperty.cs"
-"Assets/Project/Scripts/Utility/SettingsService.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 
