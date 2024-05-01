@@ -10,8 +10,6 @@ public class GameView : MonoBehaviour, IView
 
     public Canvas GameLoaderCanvas {  get; private set; }
 
-    public List<Action> Actions => throw new NotImplementedException();
-
     private void OnEnable()
     {
         _controller = new(this, _gameScriptableObject);

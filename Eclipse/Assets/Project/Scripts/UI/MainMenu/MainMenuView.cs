@@ -28,8 +28,6 @@ public class MainMenuView : MonoBehaviour, IView
 
     private MainMenuController _controller;
 
-    public List<Action> Actions => throw new NotImplementedException();
-
     public Button ContinueGameButton { get => _continueGameButton; }
     public Button StartGameButton { get => _startGameButton; }
     public Button SettingsButton { get => _settingsButton; }

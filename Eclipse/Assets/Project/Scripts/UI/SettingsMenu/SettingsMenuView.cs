@@ -20,8 +20,6 @@ public class SettingsMenuView : MonoBehaviour, IView
 
     private SettingsMenuController _controller;
 
-    public List<Action> Actions => throw new NotImplementedException();
-
     public Slider MasterVolumeSlider { get => _masterVolumeSlider; set => _masterVolumeSlider = value; }
     public Slider SoundVolumeSlider { get => _soundVolumeSlider; set => _soundVolumeSlider = value; }
     public Slider MusicVolumeSlider { get => _musicVolumeSlider; set => _musicVolumeSlider = value; }

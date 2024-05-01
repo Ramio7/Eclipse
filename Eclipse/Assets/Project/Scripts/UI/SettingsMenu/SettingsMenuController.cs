@@ -2,13 +2,11 @@ public class SettingsMenuController : BaseController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
-    private SettingsService _settingsService;
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
         _view = view;
         _model = new(settingsDefaults);
-        _settingsService = new(ref _model);
 
         Init();
     }
@@ -30,11 +28,9 @@ public class SettingsMenuController : BaseController
         DeInitActions();
 
         _model.Dispose();
-        _settingsService.Dispose();
 
         _view = null;
         _model = null;
-        _settingsService = null;
     }
 
 
@@ -84,12 +80,12 @@ public class SettingsMenuController : BaseController
 
     private void InitActions()
     {
-        _model.SettingsIsSaved.OnValueChanged.AddListener(_settingsService.AutoUpdateSettings);
+        _model.SettingsIsSaved.OnValueChanged.AddListener(_model.AutoUpdateSettings);
     }
 
     private void DeInitActions()
     {
-        _model.SettingsIsSaved.OnValueChanged.RemoveListener(_settingsService.AutoUpdateSettings);
+        _model.SettingsIsSaved.OnValueChanged.RemoveListener(_model.AutoUpdateSettings);
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;

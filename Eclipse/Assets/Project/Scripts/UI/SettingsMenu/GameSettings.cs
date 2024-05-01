@@ -22,7 +22,7 @@ public struct GameSettings : IGameSettings
     public float ContrastRatio { get => _contrastRatio; set => _contrastRatio = value   ; }
     public bool IsSubtitlesOn { get => _isSubtitlesOn; set => _isSubtitlesOn = value; }
 
-    public GameSettings(float masterVolume, float soundVolume, float musicVolume, float brightnessVolume,
+    public void Set(float masterVolume, float soundVolume, float musicVolume, float brightnessVolume,
         float effectVolume, float voiceVolume, float contrastRatio, bool isSubtitlesOn)
     {
         _masterVolume = masterVolume;
@@ -33,6 +33,18 @@ public struct GameSettings : IGameSettings
         _voiceVolume = voiceVolume;
         _contrastRatio = contrastRatio;
         _isSubtitlesOn = isSubtitlesOn;
+    }
+
+    public void Set(GameSettings gameSettings)
+    {
+        _masterVolume = gameSettings.MasterVolume;
+        _soundVolume = gameSettings.SoundVolume;
+        _musicVolume = gameSettings.MusicVolume;
+        _brightnessVolume = gameSettings.BrightnessVolume;
+        _effectVolume = gameSettings.EffectVolume;
+        _voiceVolume = gameSettings.VoiceVolume;
+        _contrastRatio = gameSettings.ContrastRatio;
+        _isSubtitlesOn = gameSettings.IsSubtitlesOn;
     }
 
     public void Dispose()
