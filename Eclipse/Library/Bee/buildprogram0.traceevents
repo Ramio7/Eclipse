@@ -1,6 +1,24 @@
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "netcorerun.dll" } },
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-1" } },
 { "pid": 35942, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+{ "pid": 35942, "tid": 1, "ts": 1712221020459910, "dur": 681468, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221020460808, "dur": 85627, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221021033573, "dur": 2639, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221021036214, "dur": 105143, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221021036695, "dur": 68075, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221021145272, "dur": 857, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1712221021144527, "dur": 1622, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 { "pid": 35942, "tid": 1, "ts": 1714577594890487, "dur": 854689, "ph": "X", "name": "BuildProgram", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1714577594891588, "dur": 140506, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1714577595610724, "dur": 5191, "ph": "X", "name": "OutputData.Write", "args": {} },
@@ -8,3 +26,11 @@
 { "pid": 35942, "tid": 1, "ts": 1714577595616836, "dur": 83956, "ph": "X", "name": "JsonToString", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1714577595753663, "dur": 1491, "ph": "X", "name": "", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1714577595752851, "dur": 2322, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes

@@ -1,3 +1,16 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
 <UXML xmlns:ui="UnityEngine.UIElements">
   <ui:VisualElement name="itemMainVisualContainer">
     <Style path="Searcher"/>
@@ -10,3 +23,29 @@
     <ui:VisualElement name="labelsContainer"/>
   </ui:VisualElement>
 </UXML>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+<UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement name="itemMainVisualContainer">
+    <Style path="Searcher"/>
+    <ui:VisualElement name="itemIndent"/>
+    <ui:VisualElement name="itemChildExpander">
+      <ui:VisualElement name="expanderIcon"/>
+    </ui:VisualElement>
+    <ui:Toggle name="itemToggle"/>
+    <ui:VisualElement name="itemIconVisualElement"/>
+    <ui:VisualElement name="labelsContainer"/>
+  </ui:VisualElement>
+</UXML>
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes

@@ -1,3 +1,16 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
 fileFormatVersion: 2
 guid: 793d6318ba59ca94381b936836fe697d
 ScriptedImporter:
@@ -9,3 +22,28 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+fileFormatVersion: 2
+guid: 793d6318ba59ca94381b936836fe697d
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: tree
+    11400002: inlineStyle
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes

@@ -5,6 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       ticks: 638477278672339256
     m_Hash: 1077020761
   m_LockFileStatus:
@@ -13,8 +23,27 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< Updated upstream
       ticks: 638477278672369278
     m_Hash: 4020553086
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+      ticks: 638477278672369278
+    m_Hash: 4020553086
+=======
+      ticks: 638475873893733487
+    m_Hash: 783969954
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+      ticks: 638477278672369278
+    m_Hash: 4020553086
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -334,12 +363,45 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 3.6.12
     nextVersion: 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+m_ProjectPath: E:/project/Eclipse/Eclipse/Packages
+m_EditorVersion: 2021.3.27f1 (ca3ffb99bcc6)
+m_ResolvedPackages:
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 - packageId: com.unity.collab-proxy@2.0.7
   testable: 0
   isDirectDependency: 1
   version: 2.0.7
   source: 1
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -725,6 +787,19 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.2.5
     nextVersion: 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
 - packageId: com.unity.purchasing@4.8.0
   testable: 0
   isDirectDependency: 1
@@ -889,12 +964,42 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 4.8.0
     nextVersion: 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 - packageId: com.unity.render-pipelines.universal@12.1.12
   testable: 0
   isDirectDependency: 1
   version: 12.1.12
   source: 2
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.render-pipelines.universal
   name: com.unity.render-pipelines.universal
   displayName: Universal RP
@@ -1338,7 +1443,23 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.6.5
   source: 1
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -1574,7 +1695,23 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.8.0
   source: 1
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -1626,7 +1763,20 @@ m_ResolvedPackages:
     - 1.9.0
     - 1.9.1
     - 1.9.2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - 1.9.4
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+    - 1.9.4
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     verified: 1.8.0
   dependencies:
   - name: com.unity.ugui
@@ -1664,6 +1814,19 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.8.0
     nextVersion: 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
 - packageId: com.unity.xr.legacyinputhelpers@2.1.10
   testable: 0
   isDirectDependency: 1
@@ -1760,6 +1923,20 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 2.1.10
     nextVersion: 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 - packageId: com.unity.modules.ai@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3478,7 +3655,23 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.0
   source: 2
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.modules.uielementsnative
   name: com.unity.modules.uielementsnative
   displayName: UIElements Native
@@ -3673,7 +3866,23 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.8.4
   source: 1
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.burst
   name: com.unity.burst
   displayName: Burst
@@ -3840,7 +4049,20 @@ m_ResolvedPackages:
     - 1.8.11
     - 1.8.12
     - 1.8.13
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - 1.8.14
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+    - 1.8.14
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     verified: 1.6.6
   dependencies:
   - name: com.unity.mathematics
@@ -3875,7 +4097,23 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 12.1.12
   source: 2
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.render-pipelines.core
   name: com.unity.render-pipelines.core
   displayName: Core RP Library
@@ -4043,7 +4281,23 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 12.1.12
   source: 2
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.shadergraph
   name: com.unity.shadergraph
   displayName: Shader Graph
@@ -4205,6 +4459,19 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 12.1.12
     nextVersion: 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+>>>>>>> Stashed changes
 - packageId: com.unity.services.core@1.9.0
   testable: 0
   isDirectDependency: 0
@@ -4266,7 +4533,20 @@ m_ResolvedPackages:
     - 1.12.1
     - 1.12.2
     - 1.12.4
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - 1.12.5
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+    - 1.12.5
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     verified: 1.9.0
   dependencies:
   - name: com.unity.modules.unitywebrequest
@@ -4304,12 +4584,42 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.9.0
     nextVersion: 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 - packageId: com.unity.searcher@4.9.1
   testable: 0
   isDirectDependency: 0
   version: 4.9.1
   source: 1
+<<<<<<< Updated upstream
   resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
+=======
+  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   assetPath: Packages/com.unity.searcher
   name: com.unity.searcher
   displayName: Searcher
@@ -4371,6 +4681,16 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 4.9.1
     nextVersion: 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 - packageId: com.unity.nuget.newtonsoft-json@3.2.1
   testable: 0
   isDirectDependency: 0
@@ -4443,3 +4763,17 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 3.2.1
     nextVersion: 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Fanrika_LevelDesing_Graphics
+=======
+>>>>>>> parent of a8418e20 (Unity version update)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
