@@ -5,51 +5,22 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-      ticks: 638477278672339256
-    m_Hash: 1077020761
+      ticks: 638502173211596854
+    m_Hash: 3909529375
   m_LockFileStatus:
     m_FilePath: H:/Repos/Eclipse/Eclipse/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-<<<<<<< Updated upstream
-      ticks: 638477278672369278
-    m_Hash: 4020553086
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      ticks: 638477278672369278
-    m_Hash: 4020553086
-=======
-      ticks: 638475873893733487
-    m_Hash: 783969954
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-      ticks: 638477278672369278
-    m_Hash: 4020553086
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+      ticks: 638502173312441315
+    m_Hash: 3000449523
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: H:/Repos/Eclipse/Eclipse/Packages
-m_EditorVersion: 2021.3.27f1 (ca3ffb99bcc6)
+m_EditorVersion: 2022.3.26f1 (ec6cd8118806)
 m_ResolvedPackages:
 - packageId: com.unity.2d.sprite@1.0.0
   testable: 0
@@ -75,7 +46,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -103,6 +75,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.2d.tilemap@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -127,9 +104,26 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
-  dependencies: []
-  resolvedDependencies: []
+    recommended: 1.0.0
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.tilemap
+    version: 1.0.0
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.tilemap
+    version: 1.0.0
+  - name: com.unity.modules.physics2d
+    version: 1.0.0
+  - name: com.unity.modules.uielements
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   keywords:
   - 2d
   - Tilemap
@@ -154,6 +148,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ads@4.4.2
   testable: 0
   isDirectDependency: 1
@@ -230,7 +229,8 @@ m_ResolvedPackages:
     - 4.4.2
     compatible:
     - 4.4.2
-    verified: 4.4.2
+    recommended: 4.4.2
+    deprecated: []
   dependencies:
   - name: com.unity.ugui
     version: 1.0.0
@@ -252,7 +252,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638161229410000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ads@4.4/manual/index.html
@@ -265,12 +265,88 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 4.4.2
     nextVersion: 
-- packageId: com.unity.analytics@3.6.12
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.ai.navigation@1.1.5
   testable: 0
   isDirectDependency: 1
-  version: 3.6.12
+  version: 1.1.5
   source: 1
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.analytics@3.6.12
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.ai.navigation@1.1.5
+  assetPath: Packages/com.unity.ai.navigation
+  name: com.unity.ai.navigation
+  displayName: AI Navigation
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: High-level NavMesh components for building and using NavMeshes at
+    runtime and at edit time.
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 1.0.0-exp.1
+    - 1.0.0-exp.2
+    - 1.0.0-exp.3
+    - 1.0.0-exp.4
+    - 1.1.0-pre.1
+    - 1.1.0-pre.2
+    - 1.1.1
+    - 1.1.3
+    - 1.1.4
+    - 1.1.5
+    - 2.0.0-pre.3
+    - 2.0.0-pre.4
+    - 2.0.0
+    compatible:
+    - 1.1.5
+    recommended: 1.1.5
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638319373850000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.ai.navigation@1.1/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.ai.navigation.git
+    revision: a905e1ab41c8afae1a75688ceb3b4dfa1686ea75
+    path: 
+  unityLifecycle:
+    version: 1.1.5
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.analytics@3.8.1
+  testable: 0
+  isDirectDependency: 1
+  version: 3.8.1
+  source: 1
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.analytics@3.8.1
   assetPath: Packages/com.unity.analytics
   name: com.unity.analytics
   displayName: Analytics Library
@@ -325,19 +401,32 @@ m_ResolvedPackages:
     - 3.7.1
     - 3.8.1
     compatible:
-    - 3.6.12
-    - 3.7.1
     - 3.8.1
-    verified: 3.6.12
+    recommended: 3.8.1
+    deprecated: []
   dependencies:
+  - name: com.unity.services.analytics
+    version: 1.0.4
   - name: com.unity.ugui
     version: 1.0.0
   resolvedDependencies:
+  - name: com.unity.services.analytics
+    version: 5.0.0
   - name: com.unity.ugui
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.services.core
+    version: 1.12.5
+  - name: com.unity.modules.unitywebrequest
+    version: 1.0.0
+  - name: com.unity.nuget.newtonsoft-json
+    version: 3.2.1
+  - name: com.unity.modules.androidjni
     version: 1.0.0
   keywords:
   - analytics
@@ -352,56 +441,28 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637692274360000000
+  datePublishedTicks: 637789683740000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.analytics.git
-    revision: 16fe75b69f168b066926595ade9b0473c3b32c5f
+    revision: 5ed31de2d0dd150fe8c907e98fc467da73b4b978
     path: 
   unityLifecycle:
-    version: 3.6.12
+    version: 3.8.1
     nextVersion: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
-m_ProjectPath: E:/project/Eclipse/Eclipse/Packages
-m_EditorVersion: 2021.3.27f1 (ca3ffb99bcc6)
-m_ResolvedPackages:
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-- packageId: com.unity.collab-proxy@2.0.7
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.collab-proxy@2.3.1
   testable: 0
   isDirectDependency: 1
-  version: 2.0.7
+  version: 2.3.1
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.0.7
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.collab-proxy@2.3.1
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -413,7 +474,7 @@ m_ResolvedPackages:
   type: assets
   description: The package gives you the ability to use Unity Version Control in
     the Unity editor. To use Unity Version Control, a subscription is required. Learn
-    more about how you can get started for free by visiting plasticscm.com.
+    more about how you can get started for free by visiting https://unity.com/solutions/version-control
   status: 0
   errors: []
   versions:
@@ -490,16 +551,9 @@ m_ResolvedPackages:
     - 2.2.0
     - 2.3.1
     compatible:
-    - 2.0.4
-    - 2.0.5
-    - 2.0.7
-    - 2.1.0-preview.3
-    - 2.1.0-preview.5
-    - 2.1.0-preview.6
-    - 2.1.0
-    - 2.2.0
     - 2.3.1
-    verified: 2.0.7
+    recommended: 2.3.1
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -525,19 +579,24 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638264754080000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.0/manual/index.html
+  datePublishedTicks: 638448201880000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.3/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: 13a0e74f47307a1b20a57747cea59891ce36a647
+    revision: 613362ccb4468f55ee42e0a35809fb9a61f3f8f1
     path: 
   unityLifecycle:
-    version: 2.0.4
+    version: 2.3.1
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ide.rider@3.0.28
   testable: 0
   isDirectDependency: 1
@@ -603,14 +662,9 @@ m_ResolvedPackages:
     - 3.0.27
     - 3.0.28
     compatible:
-    - 3.0.21
-    - 3.0.22
-    - 3.0.24
-    - 3.0.25
-    - 3.0.26
-    - 3.0.27
     - 3.0.28
-    verified: 3.0.28
+    recommended: 3.0.28
+    deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -626,7 +680,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638447139880000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
@@ -637,8 +691,13 @@ m_ResolvedPackages:
     revision: f4880c72477e9bbd7321c0dbda4428fa10d916df
     path: 
   unityLifecycle:
-    version: 3.0.21
+    version: 3.0.28
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ide.visualstudio@2.0.22
   testable: 0
   isDirectDependency: 1
@@ -686,11 +745,9 @@ m_ResolvedPackages:
     - 2.0.21
     - 2.0.22
     compatible:
-    - 2.0.18
-    - 2.0.20
-    - 2.0.21
     - 2.0.22
-    verified: 2.0.22
+    recommended: 2.0.22
+    deprecated: []
   dependencies:
   - name: com.unity.test-framework
     version: 1.1.9
@@ -712,7 +769,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638326061910000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
@@ -723,8 +780,13 @@ m_ResolvedPackages:
     revision: 700b44077345e97d37d464ff25507638983aed64
     path: 
   unityLifecycle:
-    version: 2.0.18
+    version: 2.0.22
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ide.vscode@1.2.5
   testable: 0
   isDirectDependency: 1
@@ -762,7 +824,8 @@ m_ResolvedPackages:
     - 1.2.5
     compatible:
     - 1.2.5
-    verified: 1.2.5
+    recommended: 1.2.5
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -787,25 +850,17 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.2.5
     nextVersion: 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
-- packageId: com.unity.purchasing@4.8.0
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.purchasing@4.11.0
   testable: 0
   isDirectDependency: 1
-  version: 4.8.0
+  version: 4.11.0
   source: 1
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.purchasing@4.8.0
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.purchasing@4.11.0
   assetPath: Packages/com.unity.purchasing
   name: com.unity.purchasing
   displayName: In App Purchasing
@@ -814,7 +869,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: "IMPORTANT UPGRADE NOTES:\n\nIf updating from Unity IAP (com.unity.purchasing
     + the Asset Store plugin) versions 2.x to version 3.x, complete the following
     actions in order to resolve compilation errors:\n 1. Move IAPProductCatalog.json
@@ -900,17 +955,11 @@ m_ResolvedPackages:
     - 4.10.0
     - 4.11.0
     compatible:
-    - 4.8.0
-    - 4.9.2
-    - 4.9.3
-    - 4.9.4
-    - 4.10.0
     - 4.11.0
-    verified: 4.8.0
+    recommended: 4.11.0
+    deprecated: []
   dependencies:
   - name: com.unity.ugui
-    version: 1.0.0
-  - name: com.unity.modules.unityanalytics
     version: 1.0.0
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -919,7 +968,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.androidjni
     version: 1.0.0
   - name: com.unity.services.core
-    version: 1.8.1
+    version: 1.8.2
   resolvedDependencies:
   - name: com.unity.ugui
     version: 1.0.0
@@ -927,8 +976,6 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
-  - name: com.unity.modules.unityanalytics
-    version: 1.0.0
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
@@ -936,7 +983,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.androidjni
     version: 1.0.0
   - name: com.unity.services.core
-    version: 1.9.0
+    version: 1.12.5
   - name: com.unity.nuget.newtonsoft-json
     version: 3.2.1
   keywords:
@@ -953,53 +1000,28 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638170648480000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.purchasing@4.8/manual/index.html
+  datePublishedTicks: 638457672620000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.purchasing@4.11/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.purchasing.git
-    revision: 764a3bd5b373bbdb7bbd3a87a2b260204d2b1365
+    revision: d048512094268963253b336dd8eba44548759d38
     path: 
   unityLifecycle:
-    version: 4.8.0
+    version: 4.11.0
     nextVersion: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-- packageId: com.unity.render-pipelines.universal@12.1.12
+    recommendedVersion: 4.11.0
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.render-pipelines.universal@14.0.11
   testable: 0
   isDirectDependency: 1
-  version: 12.1.12
+  version: 14.0.11
   source: 2
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@12.1.12
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal@14.0.11
   assetPath: Packages/com.unity.render-pipelines.universal
   name: com.unity.render-pipelines.universal
   displayName: Universal RP
@@ -1062,26 +1084,31 @@ m_ResolvedPackages:
     - 10.9.0
     - 10.10.0
     - 10.10.1
-    - 12.1.12
+    - 14.0.11
     compatible:
-    - 12.1.12
-    verified: 12.1.12
+    - 14.0.11
+    recommended: 14.0.11
+    deprecated: []
   dependencies:
   - name: com.unity.mathematics
     version: 1.2.1
   - name: com.unity.burst
-    version: 1.8.4
+    version: 1.8.9
   - name: com.unity.render-pipelines.core
-    version: 12.1.12
+    version: 14.0.11
   - name: com.unity.shadergraph
-    version: 12.1.12
+    version: 14.0.11
+  - name: com.unity.render-pipelines.universal-config
+    version: 14.0.9
   resolvedDependencies:
   - name: com.unity.mathematics
     version: 1.2.6
   - name: com.unity.burst
-    version: 1.8.4
+    version: 1.8.13
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.render-pipelines.core
-    version: 12.1.12
+    version: 14.0.11
   - name: com.unity.ugui
     version: 1.0.0
   - name: com.unity.modules.ui
@@ -1090,12 +1117,14 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.physics
     version: 1.0.0
-  - name: com.unity.modules.jsonserialize
+  - name: com.unity.modules.terrain
     version: 1.0.0
   - name: com.unity.shadergraph
-    version: 12.1.12
+    version: 14.0.11
   - name: com.unity.searcher
-    version: 4.9.1
+    version: 4.9.2
+  - name: com.unity.render-pipelines.universal-config
+    version: 14.0.10
   keywords:
   - graphics
   - performance
@@ -1122,8 +1151,13 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 12.1.12
+    version: 14.0.11
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.test-framework@1.1.33
   testable: 0
   isDirectDependency: 1
@@ -1216,7 +1250,8 @@ m_ResolvedPackages:
     - 2.0.1-exp.2
     - 2.0.1-pre.12
     - 2.0.1-pre.18
-    verified: 1.1.33
+    recommended: 1.1.33
+    deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -1242,7 +1277,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637938212700000000
   documentationUrl: 
@@ -1255,6 +1290,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.1.33
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.textmeshpro@3.0.8
   testable: 0
   isDirectDependency: 1
@@ -1400,7 +1440,10 @@ m_ResolvedPackages:
     - 3.2.0-pre.7
     - 3.2.0-pre.8
     - 3.2.0-pre.9
-    verified: 3.0.8
+    - 4.0.0-pre.1
+    - 4.0.0-pre.2
+    recommended: 3.0.8
+    deprecated: []
   dependencies:
   - name: com.unity.ugui
     version: 1.0.0
@@ -1425,7 +1468,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638433339070000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html
@@ -1438,28 +1481,17 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 3.0.6
     nextVersion: 
-- packageId: com.unity.timeline@1.6.5
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.timeline@1.7.6
   testable: 0
   isDirectDependency: 1
-  version: 1.6.5
+  version: 1.7.6
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.6.5
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.timeline@1.7.6
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -1468,7 +1500,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Use Unity Timeline to create cinematic content, game-play sequences,
     audio sequences, and complex particle effects.
   status: 0
@@ -1561,15 +1593,6 @@ m_ResolvedPackages:
     - 1.8.5
     - 1.8.6
     compatible:
-    - 1.6.5
-    - 1.7.0-pre.1
-    - 1.7.0-pre.2
-    - 1.7.0
-    - 1.7.1
-    - 1.7.2
-    - 1.7.3
-    - 1.7.4
-    - 1.7.5
     - 1.7.6
     - 1.8.0
     - 1.8.1
@@ -1578,7 +1601,8 @@ m_ResolvedPackages:
     - 1.8.4
     - 1.8.5
     - 1.8.6
-    verified: 1.6.5
+    recommended: 1.7.6
+    deprecated: []
   dependencies:
   - name: com.unity.modules.director
     version: 1.0.0
@@ -1611,19 +1635,24 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638182037450000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.6/manual/index.html
+  datePublishedTicks: 638326112840000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.7/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-    revision: 4ed67a7e62ce940db3d44dc5eca8fade1c664aed
+    revision: 02f49ada64a9f88044207cf42ba407dc634ef8e6
     path: 
   unityLifecycle:
-    version: 1.6.5
+    version: 1.7.6
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ugui@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -1653,7 +1682,8 @@ m_ResolvedPackages:
     - 3.0.0-exp.4
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.ui
     version: 1.0.0
@@ -1690,28 +1720,17 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
-- packageId: com.unity.visualscripting@1.8.0
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.visualscripting@1.9.4
   testable: 0
   isDirectDependency: 1
-  version: 1.8.0
+  version: 1.9.4
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.8.0
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.visualscripting@1.9.4
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -1759,25 +1778,10 @@ m_ResolvedPackages:
     - 1.9.2
     - 1.9.4
     compatible:
-    - 1.8.0
-    - 1.9.0
-    - 1.9.1
-    - 1.9.2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     - 1.9.4
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
-    - 1.9.4
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    verified: 1.8.0
+    recommended: 1.9.4
+    deprecated:
+    - 1.8.0-pre.1
   dependencies:
   - name: com.unity.ugui
     version: 1.0.0
@@ -1803,30 +1807,22 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638060044680000000
+  datePublishedTicks: 638488567680000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.visualscripting.git
-    revision: 0de66378b19e990494d98f39ecc2b6aa5ac65351
+    revision: 41aac2b7038c2b1259c546329890d3736ce2394e
     path: 
   unityLifecycle:
-    version: 1.8.0
+    version: 1.9.4
     nextVersion: 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.xr.legacyinputhelpers@2.1.10
   testable: 0
   isDirectDependency: 1
@@ -1879,7 +1875,8 @@ m_ResolvedPackages:
     - 2.1.10
     compatible:
     - 2.1.10
-    verified: 2.1.10
+    recommended: 2.1.10
+    deprecated: []
   dependencies:
   - name: com.unity.modules.vr
     version: 1.0.0
@@ -1910,7 +1907,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637958908030000000
   documentationUrl: 
@@ -1923,20 +1920,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 2.1.10
     nextVersion: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.ai@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -1961,7 +1949,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -1986,6 +1975,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.androidjni@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2009,7 +2003,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2034,6 +2029,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.animation@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2058,7 +2058,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2083,6 +2084,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.assetbundle@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2107,7 +2113,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2132,6 +2139,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.audio@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2156,7 +2168,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2181,6 +2194,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.cloth@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2205,7 +2223,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.physics
     version: 1.0.0
@@ -2234,6 +2253,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.director@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2258,7 +2282,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.audio
     version: 1.0.0
@@ -2291,6 +2316,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.imageconversion@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2316,7 +2346,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2341,6 +2372,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.imgui@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2365,7 +2401,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2390,6 +2427,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.jsonserialize@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2414,7 +2456,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2439,6 +2482,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.particlesystem@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2463,7 +2511,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2488,6 +2537,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.physics@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2512,7 +2566,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2537,6 +2592,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.physics2d@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2561,7 +2621,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2586,6 +2647,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.screencapture@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2610,7 +2676,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.imageconversion
     version: 1.0.0
@@ -2639,6 +2706,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.terrain@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2663,7 +2735,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2688,6 +2761,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.terrainphysics@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2712,7 +2790,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.physics
     version: 1.0.0
@@ -2745,6 +2824,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.tilemap@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2768,7 +2852,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.physics2d
     version: 1.0.0
@@ -2797,6 +2882,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.ui@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2821,7 +2911,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2846,6 +2937,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.uielements@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2870,7 +2966,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.ui
     version: 1.0.0
@@ -2878,16 +2975,12 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
-  - name: com.unity.modules.uielementsnative
-    version: 1.0.0
   resolvedDependencies:
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
-    version: 1.0.0
-  - name: com.unity.modules.uielementsnative
     version: 1.0.0
   keywords: []
   registry:
@@ -2911,6 +3004,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.umbra@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2935,7 +3033,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -2960,6 +3059,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unityanalytics@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -2984,7 +3088,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -3017,6 +3122,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unitywebrequest@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3041,7 +3151,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -3066,6 +3177,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unitywebrequestassetbundle@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3090,7 +3206,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.assetbundle
     version: 1.0.0
@@ -3123,6 +3240,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unitywebrequestaudio@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3147,7 +3269,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -3180,6 +3303,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unitywebrequesttexture@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3204,7 +3332,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -3237,6 +3366,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.unitywebrequestwww@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3261,7 +3395,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -3310,6 +3445,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.vehicles@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3334,7 +3474,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.physics
     version: 1.0.0
@@ -3363,6 +3504,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.video@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3387,7 +3533,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.audio
     version: 1.0.0
@@ -3424,6 +3571,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.vr@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3448,7 +3600,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
@@ -3487,6 +3640,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.wind@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3511,7 +3669,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -3536,6 +3695,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.xr@1.0.0
   testable: 0
   isDirectDependency: 1
@@ -3560,7 +3724,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.physics
     version: 1.0.0
@@ -3597,6 +3762,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.0
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.subsystems@1.0.0
   testable: 0
   isDirectDependency: 0
@@ -3621,7 +3791,8 @@ m_ResolvedPackages:
     - 1.0.0
     compatible:
     - 1.0.0
-    verified: 1.0.0
+    recommended: 1.0.0
+    deprecated: []
   dependencies:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
@@ -3650,82 +3821,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 
     nextVersion: 
-- packageId: com.unity.modules.uielementsnative@1.0.0
-  testable: 0
-  isDirectDependency: 0
-  version: 1.0.0
-  source: 2
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-  assetPath: Packages/com.unity.modules.uielementsnative
-  name: com.unity.modules.uielementsnative
-  displayName: UIElements Native
-  author:
-    name: 
-    email: 
-    url: 
-  category: 
-  type: module
-  description: 
-  status: 0
-  errors: []
-  versions:
-    all:
-    - 1.0.0
-    compatible:
-    - 1.0.0
-    verified: 1.0.0
-  dependencies:
-  - name: com.unity.modules.ui
-    version: 1.0.0
-  - name: com.unity.modules.imgui
-    version: 1.0.0
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
-  resolvedDependencies:
-  - name: com.unity.modules.ui
-    version: 1.0.0
-  - name: com.unity.modules.imgui
-    version: 1.0.0
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
-  keywords: []
-  registry:
-    id: main
-    name: 
-    url: https://packages.unity.com
-    scopes: []
-    isDefault: 1
-    capabilities: 7
-    configSource: 0
-  hideInEditor: 1
-  isAssetStorePackage: 0
-  datePublishedTicks: 0
-  documentationUrl: 
-  hasRepository: 0
-  repository:
-    type: 
-    url: 
-    revision: 
-    path: 
-  unityLifecycle:
-    version: 
-    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.ext.nunit@1.0.6
   testable: 0
   isDirectDependency: 0
@@ -3763,7 +3863,8 @@ m_ResolvedPackages:
     - 2.0.3
     - 2.0.4
     - 2.0.5
-    verified: 1.0.6
+    recommended: 1.0.6
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -3778,7 +3879,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637429759280000000
   documentationUrl: 
@@ -3791,6 +3892,11 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.6
     nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.mathematics@1.2.6
   testable: 0
   isDirectDependency: 0
@@ -3835,7 +3941,8 @@ m_ResolvedPackages:
     - 1.2.6
     - 1.3.1
     - 1.3.2
-    verified: 1.2.6
+    recommended: 1.2.6
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -3848,7 +3955,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637841876140000000
   documentationUrl: 
@@ -3861,28 +3968,17 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.2.6
     nextVersion: 
-- packageId: com.unity.burst@1.8.4
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.burst@1.8.13
   testable: 0
   isDirectDependency: 0
-  version: 1.8.4
+  version: 1.8.13
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.4
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.burst@1.8.13
   assetPath: Packages/com.unity.burst
   name: com.unity.burst
   displayName: Burst
@@ -3891,7 +3987,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Burst is a compiler that translates from IL/.NET bytecode to highly
     optimized native code using LLVM.
   status: 0
@@ -4028,48 +4124,20 @@ m_ResolvedPackages:
     - 1.8.13
     - 1.8.14
     compatible:
-    - 1.6.6
-    - 1.7.0-pre.1
-    - 1.7.0
-    - 1.7.1
-    - 1.7.2
-    - 1.7.3
-    - 1.7.4
-    - 1.8.0-pre.1
-    - 1.8.0-pre.2
-    - 1.8.0
-    - 1.8.1
-    - 1.8.2
-    - 1.8.3
-    - 1.8.4
-    - 1.8.7
-    - 1.8.8
-    - 1.8.9
-    - 1.8.10
-    - 1.8.11
-    - 1.8.12
     - 1.8.13
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     - 1.8.14
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
-    - 1.8.14
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    verified: 1.6.6
+    recommended: 1.8.14
+    deprecated: []
   dependencies:
   - name: com.unity.mathematics
     version: 1.2.1
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   resolvedDependencies:
   - name: com.unity.mathematics
     version: 1.2.6
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   keywords: []
   registry:
     id: main
@@ -4079,41 +4147,30 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638150963640000000
+  datePublishedTicks: 638459163600000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: git@github.cds.internal.unity3d.com:unity/burst
-    revision: b05f7d57a035997c1abc0c742e812dadd107d467
+    revision: 018c84715a0efcfda7f76841a1b0b0366e55f407
     path: 
   unityLifecycle:
-    version: 1.6.6
+    version: 1.8.13
     nextVersion: 
-- packageId: com.unity.render-pipelines.core@12.1.12
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.render-pipelines.core@14.0.11
   testable: 0
   isDirectDependency: 0
-  version: 12.1.12
+  version: 14.0.11
   source: 2
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@12.1.12
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.core@14.0.11
   assetPath: Packages/com.unity.render-pipelines.core
   name: com.unity.render-pipelines.core
   displayName: Core RP Library
@@ -4232,14 +4289,17 @@ m_ResolvedPackages:
     - 10.9.0
     - 10.10.0
     - 10.10.1
-    - 12.1.12
+    - 14.0.11
     compatible:
-    - 12.1.12
-    verified: 12.1.12
+    - 14.0.11
+    recommended: 14.0.11
+    deprecated: []
   dependencies:
   - name: com.unity.ugui
     version: 1.0.0
   - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
@@ -4251,6 +4311,8 @@ m_ResolvedPackages:
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
@@ -4274,30 +4336,19 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 12.1.12
+    version: 14.0.11
     nextVersion: 
-- packageId: com.unity.shadergraph@12.1.12
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.shadergraph@14.0.11
   testable: 0
   isDirectDependency: 0
-  version: 12.1.12
+  version: 14.0.11
   source: 2
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@12.1.12
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.shadergraph@14.0.11
   assetPath: Packages/com.unity.shadergraph
   name: com.unity.shadergraph
   displayName: Shader Graph
@@ -4413,18 +4464,19 @@ m_ResolvedPackages:
     - 10.9.0
     - 10.10.0
     - 10.10.1
-    - 12.1.12
+    - 14.0.11
     compatible:
-    - 12.1.12
-    verified: 12.1.12
+    - 14.0.11
+    recommended: 14.0.11
+    deprecated: []
   dependencies:
   - name: com.unity.render-pipelines.core
-    version: 12.1.12
+    version: 14.0.11
   - name: com.unity.searcher
-    version: 4.9.1
+    version: 4.9.2
   resolvedDependencies:
   - name: com.unity.render-pipelines.core
-    version: 12.1.12
+    version: 14.0.11
   - name: com.unity.ugui
     version: 1.0.0
   - name: com.unity.modules.ui
@@ -4433,10 +4485,12 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.physics
     version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.searcher
-    version: 4.9.1
+    version: 4.9.2
   keywords: []
   registry:
     id: main
@@ -4457,27 +4511,89 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 12.1.12
+    version: 14.0.11
     nextVersion: 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-=======
->>>>>>> parent of a8418e20 (Unity version update)
->>>>>>> Stashed changes
-- packageId: com.unity.services.core@1.9.0
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.render-pipelines.universal-config@14.0.10
   testable: 0
   isDirectDependency: 0
-  version: 1.9.0
+  version: 14.0.10
+  source: 2
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.render-pipelines.universal-config@14.0.10
+  assetPath: Packages/com.unity.render-pipelines.universal-config
+  name: com.unity.render-pipelines.universal-config
+  displayName: Universal RP Config
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Configuration files for the Universal Render Pipeline.
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 14.0.10
+    compatible:
+    - 14.0.10
+    recommended: 14.0.10
+    deprecated: []
+  dependencies:
+  - name: com.unity.render-pipelines.core
+    version: 14.0.10
+  resolvedDependencies:
+  - name: com.unity.render-pipelines.core
+    version: 14.0.11
+  - name: com.unity.ugui
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 14.0.10
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.services.core@1.12.5
+  testable: 0
+  isDirectDependency: 0
+  version: 1.12.5
   source: 1
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.services.core@1.9.0
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.services.core@1.12.5
   assetPath: Packages/com.unity.services.core
   name: com.unity.services.core
   displayName: Services Core
@@ -4486,7 +4602,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: 'This package defines common components used by multiple Game Service
     packages.
 
@@ -4526,28 +4642,9 @@ m_ResolvedPackages:
     - 1.12.4
     - 1.12.5
     compatible:
-    - 1.9.0
-    - 1.10.1
-    - 1.11.0
-    - 1.12.0
-    - 1.12.1
-    - 1.12.2
-    - 1.12.4
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     - 1.12.5
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
-    - 1.12.5
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    verified: 1.9.0
+    recommended: 1.12.5
+    deprecated: []
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0
@@ -4571,55 +4668,138 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638199321780000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.services.core@1.9/manual/index.html
+  datePublishedTicks: 638481576230000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.services.core@1.12/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/operate-services-sdk.git
-    revision: 74c057b799d7949f52649be6b1e69b7e251beda1
+    revision: 85f4cc67cb1ec043a92990cbe34002037e9948e4
     path: 
   unityLifecycle:
-    version: 1.9.0
+    version: 1.12.5
     nextVersion: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-- packageId: com.unity.searcher@4.9.1
+    recommendedVersion: 1.12.4
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.services.analytics@5.0.0
   testable: 0
   isDirectDependency: 0
-  version: 4.9.1
+  version: 5.0.0
   source: 1
-<<<<<<< Updated upstream
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
-=======
-  resolvedPath: E:\project\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
-  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.1
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.services.analytics@5.0.0
+  assetPath: Packages/com.unity.services.analytics
+  name: com.unity.services.analytics
+  displayName: Analytics
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: The Unity Analytics package automatically collects core events and
+    user properties when someone uses your game or application, and enables you to
+    track specific in-game actions your user performs by defining custom events.
+    The data collected from this package is surfaced in the Unity dashboard where
+    you can use it to gather user insights, segment your player base and make informed
+    decisions around the optimization of your game.
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 1.0.3
+    - 1.0.4
+    - 1.0.5
+    - 2.0.7-pre.4
+    - 2.0.7-pre.6
+    - 2.0.7-pre.7
+    - 3.0.0-pre.2
+    - 3.0.0-pre.3
+    - 3.0.0-pre.4
+    - 4.0.0-pre.2
+    - 4.0.0-pre.3
+    - 4.0.0
+    - 4.0.1
+    - 4.1.0
+    - 4.2.0
+    - 4.3.0
+    - 4.4.0
+    - 4.4.1
+    - 4.4.2
+    - 5.0.0
+    - 5.0.1
+    - 5.0.2
+    - 5.1.0
+    - 5.1.1
+    compatible:
+    - 5.0.0
+    - 5.0.1
+    - 5.0.2
+    - 5.1.0
+    - 5.1.1
+    recommended: 5.1.1
+    deprecated: []
+  dependencies:
+  - name: com.unity.ugui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.services.core
+    version: 1.10.1
+  resolvedDependencies:
+  - name: com.unity.ugui
+    version: 1.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.services.core
+    version: 1.12.5
+  - name: com.unity.modules.unitywebrequest
+    version: 1.0.0
+  - name: com.unity.nuget.newtonsoft-json
+    version: 3.2.1
+  - name: com.unity.modules.androidjni
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638241542710000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.services.analytics@5.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/operate-services-sdk.git
+    revision: ddbf624326f641d0f31cf253700cd808033ec74f
+    path: 
+  unityLifecycle:
+    version: 5.0.0
+    nextVersion: 
+    recommendedVersion: 5.1.0
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.searcher@4.9.2
+  testable: 0
+  isDirectDependency: 0
+  version: 4.9.2
+  source: 1
+  resolvedPath: H:\Repos\Eclipse\Eclipse\Library\PackageCache\com.unity.searcher@4.9.2
   assetPath: Packages/com.unity.searcher
   name: com.unity.searcher
   displayName: Searcher
@@ -4652,9 +4832,9 @@ m_ResolvedPackages:
     - 4.9.1
     - 4.9.2
     compatible:
-    - 4.9.1
     - 4.9.2
-    verified: 4.9.2
+    recommended: 4.9.2
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -4670,27 +4850,22 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637695653650000000
+  datePublishedTicks: 637831252240000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.searcher.git
-    revision: 9e68a2a9ba29bd6783bc91d15ff82bbd459f2163
+    revision: 7f9f75b04e97cf09c8ddc3968d059e74d6a2460a
     path: 
   unityLifecycle:
-    version: 4.9.1
+    version: 4.9.2
     nextVersion: 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.nuget.newtonsoft-json@3.2.1
   testable: 0
   isDirectDependency: 0
@@ -4738,7 +4913,8 @@ m_ResolvedPackages:
     - 3.2.1
     compatible:
     - 3.2.1
-    verified: 3.2.1
+    recommended: 3.2.1
+    deprecated: []
   dependencies: []
   resolvedDependencies: []
   keywords: []
@@ -4763,17 +4939,8 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 3.2.1
     nextVersion: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-=======
->>>>>>> origin/Fanrika_LevelDesing_Graphics
-=======
->>>>>>> parent of a8418e20 (Unity version update)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
