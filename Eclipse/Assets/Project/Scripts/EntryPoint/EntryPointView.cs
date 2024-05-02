@@ -11,8 +11,8 @@ public class EntryPointView : MonoBehaviour, IView
 
     private EntryPointController _controller;
 
-    public AudioMixer AudioMixer { get => _audioMixer; private set => _audioMixer = value; }
-    public VolumeProfile VolumeProfile { get => _volumeProfile; private set => _volumeProfile = value; }
+    public AudioMixer AudioMixer { get => _audioMixer; }
+    public VolumeProfile VolumeProfile { get => _volumeProfile; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;

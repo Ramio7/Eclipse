@@ -6,7 +6,7 @@ public class EntryPointModel : BaseModel
     public GameObject SettingsMenuView { get; private set; }
     public GameObject GameView { get; private set; }
 
-    public EntryPointModel(EntryPointScriptableObject modelData) : base()
+    public EntryPointModel(IScriptableObject modelData) : base()
     {
         Init(modelData);
     }

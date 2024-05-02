@@ -1,25 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuModel : BaseModel
+public class MainMenuModel : BaseModel, IUIModel
 {
-    private Canvas _activeCanvas;
+    private Canvas _menuCanvas;
 
-    public MainMenuModel(MainMenuScriptableObject data, Canvas startCanvas) : base()
+    public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base()
     {
-        _activeCanvas = startCanvas;
+        _menuCanvas = menuCanvas;
     }
 
     public override void Dispose()
     {
-        _activeCanvas = null;
+        _menuCanvas = null;
     }
 
     public void ChangeCanvas(Canvas canvasToActivate)
     {
-        _activeCanvas.gameObject.SetActive(false);
-        _activeCanvas = canvasToActivate;
-        canvasToActivate.gameObject.SetActive(true);
+        _menuCanvas.enabled = false;
+        canvasToActivate.enabled = true;
     }
 
     public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)

@@ -6,7 +6,7 @@ public class SettingsMenuController : BaseController
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
         _view = view;
-        _model = new(settingsDefaults);
+        _model = new(settingsDefaults, _view.SettingsCanvas);
 
         Init();
     }
@@ -36,6 +36,8 @@ public class SettingsMenuController : BaseController
 
     private void SetButtonsVolumes()
     {
+        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
+
         _view.BrightnessVolumeSlider.SetValueWithoutNotify(_model.GameSettings.BrightnessVolume);
         _view.ContrastRatioSlider.SetValueWithoutNotify(_model.GameSettings.ContrastRatio);
         _view.EffectVolumeSlider.SetValueWithoutNotify(_model.GameSettings.EffectVolume);
@@ -59,6 +61,7 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.AddListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.AddListener(_model.SaveSettings);
     }
 
@@ -75,20 +78,19 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
     }
 
     private void InitActions()
     {
-        _model.SettingsIsSaved.OnValueChanged.AddListener(_model.AutoUpdateSettings);
     }
 
     private void DeInitActions()
     {
-        _model.SettingsIsSaved.OnValueChanged.RemoveListener(_model.AutoUpdateSettings);
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;
 
-    
+    private void ActivateMainMenu() => _model.ChangeCanvas(MainMenuView.Instance.MainMenuCanvas);
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameView : MonoBehaviour, IView
@@ -12,6 +10,8 @@ public class GameView : MonoBehaviour, IView
 
     private void OnEnable()
     {
+        DontDestroyOnLoad(this);
+
         _controller = new(this, _gameScriptableObject);
     }
 }
