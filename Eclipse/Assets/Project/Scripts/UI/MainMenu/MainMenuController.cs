@@ -5,10 +5,11 @@ public class MainMenuController : BaseController
     private new MainMenuModel _model;
     private new MainMenuView _view;
 
-    public MainMenuController(MainMenuView view, MainMenuScriptableObject modelData) : base(view)
+    public MainMenuController(IView view, IScriptableObject modelData) : base(view)
     {
-        _view = view;
-        _model = new MainMenuModel(modelData, _view.MainMenuCanvas);
+        var tempModelData = modelData as MainMenuScriptableObject; 
+        _view = view as MainMenuView;
+        _model = new MainMenuModel(tempModelData, _view.MainMenuCanvas);
         Init();
     }
 
@@ -36,7 +37,7 @@ public class MainMenuController : BaseController
         _view.StartGameButton.onClick.AddListener(GameController.Instance.StartGame);
 
         _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
-        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
+
 #if UNITY_EDITOR
         _view.ExitGameButton.onClick.AddListener(Debug.Break);
 #else
@@ -44,9 +45,8 @@ public class MainMenuController : BaseController
 #endif
     }
 
-    private void SetStartGameActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
+    private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
     private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
 
-    private void ActivateSettingsMenu() => _model.ChangeCanvas(_view.SettingsCanvas);
-    private void ActivateMainMenu() => _model.ChangeCanvas(_view.MainMenuCanvas);
+    private void ActivateSettingsMenu() => _model.ChangeCanvas(SettingsMenuView.Instance.SettingsCanvas);
 }

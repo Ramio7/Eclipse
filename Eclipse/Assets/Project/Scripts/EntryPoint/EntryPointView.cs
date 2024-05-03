@@ -1,14 +1,18 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 public class EntryPointView : MonoBehaviour, IView
 {
     [SerializeField] private EntryPointScriptableObject _entryPointData;
+    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private Volume _volumeProfile;
 
     private EntryPointController _controller;
 
-    public List<Action> Actions => throw new NotImplementedException();
+    public AudioMixer AudioMixer { get => _audioMixer; }
+    public Volume VolumeProfile { get => _volumeProfile; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
@@ -17,9 +21,12 @@ public class EntryPointView : MonoBehaviour, IView
 
     private void OnEnable()
     {
-        Instance = this;
-        DontDestroyOnLoad(this);
-        _controller = new(this, _entryPointData);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+            _controller = new(this, _entryPointData);
+        }
     }
 
     private void Update()

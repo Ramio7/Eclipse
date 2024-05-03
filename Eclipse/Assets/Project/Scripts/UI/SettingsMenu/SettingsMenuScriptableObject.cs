@@ -3,13 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/" + nameof(SettingsMenuScriptableObject), fileName = nameof(SettingsMenuScriptableObject))]
 public class SettingsMenuScriptableObject : BaseScriptableObject
 {
-    [SerializeField, Range(0f, 100f)] private float _masterVolume;
-    [SerializeField, Range(0f, 100f)] private float _defaultSoundVolume;
-    [SerializeField, Range(0f, 100f)] private float _defaultMusicVolume;
-    [SerializeField, Range(0f, 100f)] private float _defaultBrightnessVolume;
-    [SerializeField, Range(0f, 100f)] private float _effectVolume;
-    [SerializeField, Range(0f, 100f)] private float _voiceVolume;
-    [SerializeField, Range(0f, 100f)] private float _contrastRatio;
+    [SerializeField, Range(0.001f, 1f)] private float _masterVolume;
+    [SerializeField, Range(0.001f, 1f)] private float _defaultSoundVolume;
+    [SerializeField, Range(0.001f, 1f)] private float _defaultMusicVolume;
+    [SerializeField, Range(0.001f, 1f)] private float _effectVolume;
+    [SerializeField, Range(0.001f, 1f)] private float _voiceVolume;
+    [SerializeField, Range(-100f, 100f)] private float _contrastRatio;
+    [SerializeField, Range(-5f, 5f)] private float _defaultBrightnessVolume;
     [SerializeField] private bool _IsSubtitlesOn;
 
     public float DefaultSoundVolume { get => _defaultSoundVolume; }

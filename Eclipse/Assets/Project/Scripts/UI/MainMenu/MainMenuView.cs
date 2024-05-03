@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,36 +13,33 @@ public class MainMenuView : MonoBehaviour, IView
     [SerializeField] private Button _exitGameButton;
     #endregion
 
-    [Header("Settings menu buttons")]
-    #region Settings menu buttons
-    [SerializeField] private Button _backToMainMenuButton;
-    #endregion
-
     [Header("Canvas")]
     #region Canvas
     [SerializeField] private Canvas _mainMenuCanvas;
-    [SerializeField] private Canvas _settingsCanvas;
     #endregion
 
     private MainMenuController _controller;
-
-    public List<Action> Actions => throw new NotImplementedException();
 
     public Button ContinueGameButton { get => _continueGameButton; }
     public Button StartGameButton { get => _startGameButton; }
     public Button SettingsButton { get => _settingsButton; }
     public Button ExitGameButton { get => _exitGameButton; }
     public Canvas MainMenuCanvas { get => _mainMenuCanvas; }
-    public Canvas SettingsCanvas { get => _settingsCanvas; }
-    public Button BackToMainMenuButton { get => _backToMainMenuButton; }
+
+    public static MainMenuView Instance;
 
     private void OnEnable()
     {
+        Instance = this;
+        DontDestroyOnLoad(this);
+
         _controller = new(this, _mainMenuData);
     }
 
     private void OnDestroy()
     {
+        Instance = null;
+
         _controller.Dispose();
 
         _controller = null;
