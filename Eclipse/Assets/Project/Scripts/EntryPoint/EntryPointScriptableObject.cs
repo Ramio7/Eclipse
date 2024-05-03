@@ -4,8 +4,10 @@ using UnityEngine;
 public class EntryPointScriptableObject : BaseScriptableObject
 {
     [SerializeField] private GameObject _mainMenuPrefab;
+    [SerializeField] private GameObject _settingsMenuPrefab;
     [SerializeField] private GameObject _gamePrefab;
 
     public GameObject MainMenuPrefab { get => _mainMenuPrefab; }
+    public GameObject SettingsMenuPrefab { get => _settingsMenuPrefab; }
     public GameObject GamePrefab { get => _gamePrefab; }
 }

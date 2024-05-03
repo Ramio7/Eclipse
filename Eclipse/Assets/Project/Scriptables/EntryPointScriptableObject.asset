@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: EntryPointScriptableObject
   m_EditorClassIdentifier: 
   _mainMenuPrefab: {fileID: 5358910893446441642, guid: d67b9158898272b4aa13c49f3ff55ff7, type: 3}
+  _settingsMenuPrefab: {fileID: 4762567282571392034, guid: 66dccbf1268e6134983fa420c4c1c38a, type: 3}
   _gamePrefab: {fileID: 1366708013284481401, guid: f5d9a5da9a2fe2945b321f27a558edc1, type: 3}

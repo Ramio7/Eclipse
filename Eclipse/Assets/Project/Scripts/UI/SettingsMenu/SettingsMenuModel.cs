@@ -1,40 +1,65 @@
-using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
-public class SettingsMenuModel : BaseModel
+public class SettingsMenuModel : BaseModel, IUIModel
 {
-    private GameSettings _gameSettings = new();
+    private Canvas _menuCanvas;
 
-    private string _settingsFilePath = Application.dataPath + "/Resources/settings.json";
+    private GameSettings _savedSettings = new();
+    private GameSettings _tempSettings = new();
 
-    private bool _settingsIsChanged = false;
+    private Volume _graphicsVolume;
+    private AudioMixer _mixer;    
 
-    public bool SettingsIsChanged { get => _settingsIsChanged; private set => _settingsIsChanged = value; }
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
-    public SettingsMenuModel(SettingsMenuScriptableObject defaults) : base()
+    public ReactiveProperty<bool> SettingsIsSaved = new(true);
+
+    public GameSettings GameSettings { get => _savedSettings; }
+
+    public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
     {
-        if (!CheckSettingsFile())
-        {
-            _gameSettings.MasterVolume = defaults.MasterVolume;
-            _gameSettings.SoundVolume = defaults.DefaultSoundVolume;
-            _gameSettings.MusicVolume = defaults.DefaultMusicVolume;
-            _gameSettings.BrightnessVolume = defaults.DefaultBrightnessVolume;
-            _gameSettings.EffectVolume = defaults.DefaultEffectVolume;
-            _gameSettings.VoiceVolume = defaults.DefaultVoiceVolume;
-            _gameSettings.ContrastRatio = defaults.DefaultContrastRatio;
-            _gameSettings.IsSubtitlesOn = defaults.DefaultIsSubtitlesOn;
-            Debug.Log(CreateSettingsFile());
-        }
-        else
-        {
-            LoadSettings();
-        }
+        _menuCanvas = settingsMenuCanvas;
+        var defaults = defaultSettings as SettingsMenuScriptableObject;
+        GetGraphicsConponentAndAudioMixer();
+        InitGameSettings(defaults);
     }
 
     public override void Dispose()
     {
-        _gameSettings.Dispose();
+        DiscardSettings();
+        SettingsIsSaved.Dispose();
+        GameSettings.Dispose();
+
+        _mixer = null;
+        _graphicsVolume = null;
+        _settingsFilePath = null;
+    }
+
+    private void GetGraphicsConponentAndAudioMixer()
+    {
+        _mixer = EntryPointView.Instance.AudioMixer;
+        _graphicsVolume = EntryPointView.Instance.VolumeProfile;
+    }
+
+    private void InitGameSettings(SettingsMenuScriptableObject defaults)
+    {
+        if (!CheckSettingsFile())
+        {
+            _savedSettings.Set(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
+                defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
+            _tempSettings.Set(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
+                defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
+            Debug.Log($"Settings file status is {CreateSettingsFile()}");
+            SaveSettings();
+        }
+        else
+        {
+            Debug.Log($"Settings file is loaded: {LoadSettings()}");
+        }
     }
 
     private bool CheckSettingsFile() => File.Exists(_settingsFilePath);
@@ -43,103 +68,104 @@ public class SettingsMenuModel : BaseModel
     {
         var file = File.Create(_settingsFilePath);
         file.Close();
-        SaveSettings();
         return File.Exists(_settingsFilePath);
     }
 
-    public bool SaveSettings()
+    public void SaveSettings()
     {
-        var settingsToJson = new JsonData<GameSettings>();
-        settingsToJson.Save(_gameSettings, _settingsFilePath);
-        SettingsIsChanged = false;
-        return _gameSettings.IsEqual(settingsToJson.Load(_settingsFilePath));
+        JsonData<GameSettings>.Save(_tempSettings, _settingsFilePath);
+        _savedSettings.Set(_tempSettings);
+        SettingsIsSaved.SetValue(true);
     }
 
     private bool LoadSettings()
     {
-        var settingsToJson = new JsonData<GameSettings>();
-        _gameSettings = settingsToJson.Load(_settingsFilePath);
-        return settingsToJson.Load(_settingsFilePath).IsEqual(_gameSettings);
+        var tempgameSettings = JsonData<GameSettings>.Load(_settingsFilePath);
+        _savedSettings.Set(tempgameSettings.MasterVolume, tempgameSettings.SoundVolume, tempgameSettings.MusicVolume, tempgameSettings.BrightnessVolume,
+            tempgameSettings.EffectVolume, tempgameSettings.VoiceVolume, tempgameSettings.ContrastRatio, tempgameSettings.IsSubtitlesOn);
+        return tempgameSettings.IsEqual(_savedSettings);
+    }
+
+    public void DiscardSettings()
+    {
+        _mixer.SetFloat("SoundVolume", Mathf.Log10(GameSettings.SoundVolume) * 20);
+        _mixer.SetFloat("MusicVolume", Mathf.Log10(GameSettings.MusicVolume) * 20);
+        _mixer.SetFloat("EffectVolume", Mathf.Log10(GameSettings.EffectVolume) * 20);
+        _mixer.SetFloat("VoiceVolume", Mathf.Log10(GameSettings.VoiceVolume) * 20);
+        _mixer.SetFloat("MasterVolume", Mathf.Log10(GameSettings.MasterVolume) * 20);
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        {
+            colorAdj.postExposure.Override(GameSettings.BrightnessVolume);
+            colorAdj.contrast.Override(GameSettings.ContrastRatio);
+        }
+        else Debug.LogWarning("No color adjustments component found");
+        _tempSettings.Set(GameSettings);
+        SettingsIsSaved.SetValue(true);
     }
 
     public void ChangeSoundVolume(float volume)
     {
-        _gameSettings.SoundVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.SoundVolume = volume;
+        _mixer.SetFloat("SoundVolume", Mathf.Log10(_tempSettings.SoundVolume) * 20);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeMusicVolume(float volume)
     {
-        _gameSettings.MusicVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.MusicVolume = volume;
+        _mixer.SetFloat("MusicVolume", Mathf.Log10(_tempSettings.MusicVolume) * 20);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeBrightnessVolume(float volume)
     {
-        _gameSettings.BrightnessVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.BrightnessVolume = volume;
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+            colorAdj.postExposure.Override(volume);
+        else Debug.LogWarning("No color adjustments component found");
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeEffectVolume(float volume)
     {
-        _gameSettings.EffectVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.EffectVolume = volume;
+        _mixer.SetFloat("EffectVolume", Mathf.Log10(_tempSettings.EffectVolume) * 20);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeVoiceVolume(float volume)
     {
-        _gameSettings.VoiceVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.VoiceVolume = volume;
+        _mixer.SetFloat("VoiceVolume", Mathf.Log10(_tempSettings.VoiceVolume) * 20);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeContrastRatio(float volume)
     {
-        _gameSettings.ContrastRatio = volume;
-        SettingsIsChanged = true;
+        _tempSettings.ContrastRatio = volume;
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj)) 
+            colorAdj.contrast.Override(volume);
+        else Debug.LogWarning("No color adjustments component found");
+        SettingsIsSaved.SetValue(false);
     }
 
-    public void ChangeMasterSoundVolume(float volume)
+    public void ChangeMasterVolume(float volume)
     {
-        _gameSettings.MasterVolume = volume;
-        SettingsIsChanged = true;
+        _tempSettings.MasterVolume = volume;
+        _mixer.SetFloat("MasterVolume", Mathf.Log10(_tempSettings.MasterVolume) * 20);
+        SettingsIsSaved.SetValue(false);
     }
 
     public void ChangeSubtitlesOnOff(bool isOn)
     {
-        _gameSettings.IsSubtitlesOn = isOn;
-        SettingsIsChanged = true;
+        _tempSettings.IsSubtitlesOn = isOn;
+        SettingsIsSaved.SetValue(false);
     }
 
-    public struct GameSettings : IDisposable
+    public void ChangeCanvas(Canvas canvasToActivate)
     {
-        public float MasterVolume;
-        public float SoundVolume;
-        public float MusicVolume;
-        public float BrightnessVolume;
-        public float EffectVolume;
-        public float VoiceVolume;
-        public float ContrastRatio; 
-        public bool IsSubtitlesOn;
-
-        public bool IsEqual(GameSettings other)
-        {
-            return other.MasterVolume == MasterVolume && other.SoundVolume == SoundVolume 
-                && other.MusicVolume == MusicVolume && other.BrightnessVolume == BrightnessVolume
-                && other.EffectVolume == EffectVolume && other.VoiceVolume == VoiceVolume 
-                && other.ContrastRatio == ContrastRatio && other.IsSubtitlesOn == IsSubtitlesOn;
-        }
-
-        public void Dispose()
-        {
-            MasterVolume = 0f;
-            SoundVolume = 0;
-            MusicVolume = 0;
-            BrightnessVolume = 0;
-            EffectVolume = 0;
-            VoiceVolume = 0;
-            ContrastRatio = 0;
-            IsSubtitlesOn = false;
-        }
+        _menuCanvas.enabled = false;
+        canvasToActivate.enabled = true;
     }
 }
     

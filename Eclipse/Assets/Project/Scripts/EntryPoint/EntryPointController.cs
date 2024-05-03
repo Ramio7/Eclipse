@@ -1,12 +1,11 @@
-using UnityEngine;
-
 public class EntryPointController : BaseController
 {
     private new EntryPointModel _model;
 
-    public EntryPointController(EntryPointView view, EntryPointScriptableObject modelData) : base(view)
+    public EntryPointController(IView view, IScriptableObject modelData) : base(view)
     {
-        _model = new EntryPointModel(modelData);
+        var tempModelData = modelData as EntryPointScriptableObject;
+        _model = new EntryPointModel(tempModelData);
         Init();
     }
 
@@ -14,10 +13,12 @@ public class EntryPointController : BaseController
     {
         base.Init();
 
-        InstantiateGame(_model.GameView);
-        InstantiateMainMenu(_model.MainMenuView);
+        InstantiateGame();
+        InstantiateMainMenu();
+        InstantiateSettingsMenu();
     }
 
-    private void InstantiateMainMenu(GameObject mainMenuPrefab) => InstantiateChildObject(mainMenuPrefab);
-    private void InstantiateGame(GameObject gamePrefab) => InstantiateChildObject(gamePrefab);
+    private void InstantiateGame() => InstantiateChildObject(_model.GameView);
+    private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView);
+    private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView);
 }

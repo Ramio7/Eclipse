@@ -7,6 +7,8 @@ public class GameController : BaseController
 
     public GameController(IView view, GameScriptableObject modelData) : base(view)
     {
+        Instance = this;
+
         Init();
     }
 
