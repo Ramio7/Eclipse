@@ -57,7 +57,7 @@ public class SettingsMenuController : BaseController
         _view.EffectVolumeSlider.onValueChanged.AddListener(_model.ChangeEffectVolume);
         _view.MasterVolumeSlider.onValueChanged.AddListener(_model.ChangeMasterVolume);
         _view.MusicVolumeSlider.onValueChanged.AddListener(_model.ChangeMusicVolume);
-        _view.SoundVolumeSlider.onValueChanged.AddListener(_model.ChangeMusicVolume);
+        _view.SoundVolumeSlider.onValueChanged.AddListener(_model.ChangeSoundVolume);
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
 
@@ -84,13 +84,15 @@ public class SettingsMenuController : BaseController
 
     private void InitActions()
     {
+        _model.SettingsIsSaved.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
     }
 
     private void DeInitActions()
     {
+        _model.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
     }
 
-    private void ChangeSaveSettingsButtonInteractibilyty(bool isInteractable) => _view.SaveSettingsButton.interactable = isInteractable;
+    private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved) => _view.SaveSettingsButton.interactable = !settingsIsSaved;
 
     private void ActivateMainMenu() => _model.ChangeCanvas(MainMenuView.Instance.MainMenuCanvas);
 }

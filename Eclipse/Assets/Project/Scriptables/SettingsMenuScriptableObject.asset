@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888857beb8071af4e937741e70409813, type: 3}
   m_Name: SettingsMenuScriptableObject
   m_EditorClassIdentifier: 
-  _masterVolume: 0.5
-  _defaultSoundVolume: 0.5
-  _defaultMusicVolume: 0.5
-  _effectVolume: 0.5
-  _voiceVolume: 0.5
-  _contrastRatio: 0.5
-  _defaultBrightnessVolume: 0.5
+  _masterVolume: 1
+  _defaultSoundVolume: 1
+  _defaultMusicVolume: 1
+  _effectVolume: 1
+  _voiceVolume: 1
+  _contrastRatio: 0
+  _defaultBrightnessVolume: 0
   _IsSubtitlesOn: 0

@@ -7,12 +7,12 @@ public class EntryPointView : MonoBehaviour, IView
 {
     [SerializeField] private EntryPointScriptableObject _entryPointData;
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private VolumeProfile _volumeProfile;
+    [SerializeField] private Volume _volumeProfile;
 
     private EntryPointController _controller;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
-    public VolumeProfile VolumeProfile { get => _volumeProfile; }
+    public Volume VolumeProfile { get => _volumeProfile; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
@@ -21,9 +21,12 @@ public class EntryPointView : MonoBehaviour, IView
 
     private void OnEnable()
     {
-        Instance = this;
-        DontDestroyOnLoad(this);
-        _controller = new(this, _entryPointData);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+            _controller = new(this, _entryPointData);
+        }
     }
 
     private void Update()

@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entryPointData: {fileID: 11400000, guid: ac354ac2bebd2e14f872663e68cde123, type: 2}
   _audioMixer: {fileID: 24100000, guid: be9595e3020544c4d900a85058c02ce6, type: 2}
-  _volumeProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  _volumeProfile: {fileID: 1287533333}
 --- !u!4 &941883473
 Transform:
   m_ObjectHideFlags: 0
@@ -2174,7 +2174,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -4671,7 +4671,7 @@ Transform:
   m_GameObject: {fileID: 7009433524004654210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 127.41, y: 4.05, z: 20.45}
+  m_LocalPosition: {x: 125.61, y: 4.05, z: 20.45}
   m_LocalScale: {x: 5.0073447, y: 5.0073447, z: 5.0073447}
   m_ConstrainProportionsScale: 0
   m_Children:

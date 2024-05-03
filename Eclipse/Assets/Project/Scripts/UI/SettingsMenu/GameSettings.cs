@@ -1,16 +1,15 @@
 using System;
-using UnityEngine;
 
 [Serializable]
 public struct GameSettings : IDisposable
 {
-    [Range(0f, 1f)] public float MasterVolume;
-    [Range(0f, 1f)] public float SoundVolume;
-    [Range(0f, 1f)] public float MusicVolume;
-    [Range(0f, 1f)] public float EffectVolume;
-    [Range(0f, 1f)] public float VoiceVolume;
-    [Range(0f, 1f)] public float ContrastRatio;
-    [Range(0f, 1f)] public float BrightnessVolume;
+    public float MasterVolume;
+    public float SoundVolume;
+    public float MusicVolume;
+    public float EffectVolume;
+    public float VoiceVolume;
+    public float ContrastRatio;
+    public float BrightnessVolume;
     public bool IsSubtitlesOn;
 
     public void Set(float masterVolume, float soundVolume, float musicVolume, float brightnessVolume,

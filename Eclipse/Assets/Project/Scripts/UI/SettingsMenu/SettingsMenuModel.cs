@@ -1,8 +1,8 @@
-using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsMenuModel : BaseModel, IUIModel
 {
@@ -11,12 +11,12 @@ public class SettingsMenuModel : BaseModel, IUIModel
     private GameSettings _savedSettings = new();
     private GameSettings _tempSettings = new();
 
-    private VolumeProfile _graphicsVolume;
-    private AudioMixer _mixer;
+    private Volume _graphicsVolume;
+    private AudioMixer _mixer;    
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
 
-    public ReactiveProperty<bool> SettingsIsSaved = new(false);
+    public ReactiveProperty<bool> SettingsIsSaved = new(true);
 
     public GameSettings GameSettings { get => _savedSettings; }
 
@@ -24,23 +24,25 @@ public class SettingsMenuModel : BaseModel, IUIModel
     {
         _menuCanvas = settingsMenuCanvas;
         var defaults = defaultSettings as SettingsMenuScriptableObject;
-        GetGraphicsVolumeAndAudioMixer();
+        GetGraphicsConponentAndAudioMixer();
         InitGameSettings(defaults);
     }
 
     public override void Dispose()
     {
+        DiscardSettings();
         SettingsIsSaved.Dispose();
         GameSettings.Dispose();
 
+        _mixer = null;
+        _graphicsVolume = null;
         _settingsFilePath = null;
     }
 
-    private void GetGraphicsVolumeAndAudioMixer()
+    private void GetGraphicsConponentAndAudioMixer()
     {
-        _graphicsVolume = EntryPointView.Instance.VolumeProfile;
-        _graphicsVolume.components.ForEach(component => { Debug.Log(component.name); });
         _mixer = EntryPointView.Instance.AudioMixer;
+        _graphicsVolume = EntryPointView.Instance.VolumeProfile;
     }
 
     private void InitGameSettings(SettingsMenuScriptableObject defaults)
@@ -72,8 +74,8 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void SaveSettings()
     {
         JsonData<GameSettings>.Save(_tempSettings, _settingsFilePath);
-        SettingsIsSaved.SetValue(true);
         _savedSettings.Set(_tempSettings);
+        SettingsIsSaved.SetValue(true);
     }
 
     private bool LoadSettings()
@@ -91,7 +93,14 @@ public class SettingsMenuModel : BaseModel, IUIModel
         _mixer.SetFloat("EffectVolume", Mathf.Log10(GameSettings.EffectVolume) * 20);
         _mixer.SetFloat("VoiceVolume", Mathf.Log10(GameSettings.VoiceVolume) * 20);
         _mixer.SetFloat("MasterVolume", Mathf.Log10(GameSettings.MasterVolume) * 20);
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        {
+            colorAdj.postExposure.Override(GameSettings.BrightnessVolume);
+            colorAdj.contrast.Override(GameSettings.ContrastRatio);
+        }
+        else Debug.LogWarning("No color adjustments component found");
         _tempSettings.Set(GameSettings);
+        SettingsIsSaved.SetValue(true);
     }
 
     public void ChangeSoundVolume(float volume)
@@ -111,6 +120,9 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeBrightnessVolume(float volume)
     {
         _tempSettings.BrightnessVolume = volume;
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+            colorAdj.postExposure.Override(volume);
+        else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);
     }
 
@@ -131,6 +143,9 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeContrastRatio(float volume)
     {
         _tempSettings.ContrastRatio = volume;
+        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj)) 
+            colorAdj.contrast.Override(volume);
+        else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);
     }
 
