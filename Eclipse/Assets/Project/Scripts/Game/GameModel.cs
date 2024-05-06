@@ -3,16 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameModel : BaseModel
 {
-    private Canvas _activeCanvas;
+    private GameState _gameState = GameState.Game;
 
-    public GameModel() : base()
+    public GameModel(IScriptableObject gameData, Canvas gameUi) : base()
     {
+        CanvasSelector.AddCanvas(_gameState, gameUi);
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
     }
 
     public void LoadGameScene() => SceneManager.LoadSceneAsync(1);
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        if (_activeCanvas != null) _activeCanvas.enabled = false;
-        _activeCanvas = canvasToActivate;
-    }
 }

@@ -3,22 +3,16 @@ using UnityEngine.UI;
 
 public class MainMenuModel : BaseModel, IUIModel
 {
-    private Canvas _menuCanvas;
+    private GameState _gameState = GameState.MainMenu;
 
     public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base()
     {
-        _menuCanvas = menuCanvas;
+        CanvasSelector.AddCanvas(_gameState, menuCanvas);
     }
 
     public override void Dispose()
     {
-        _menuCanvas = null;
-    }
-
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        _menuCanvas.enabled = false;
-        canvasToActivate.enabled = true;
+        base.Dispose();
     }
 
     public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)

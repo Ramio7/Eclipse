@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class SettingsMenuModel : BaseModel, IUIModel
 {
-    private Canvas _menuCanvas;
+    private GameState _gameState = GameState.SettingsMenu;
 
     private GameSettings _savedSettings = new();
     private GameSettings _tempSettings = new();
@@ -22,7 +22,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
     {
-        _menuCanvas = settingsMenuCanvas;
+        CanvasSelector.AddCanvas(_gameState, settingsMenuCanvas);
         var defaults = defaultSettings as SettingsMenuScriptableObject;
         GetGraphicsConponentAndAudioMixer();
         InitGameSettings(defaults);
@@ -30,13 +30,17 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public override void Dispose()
     {
+        base.Dispose();
+
         DiscardSettings();
         SettingsIsSaved.Dispose();
         GameSettings.Dispose();
+        _tempSettings.Dispose();
 
         _mixer = null;
         _graphicsVolume = null;
         _settingsFilePath = null;
+        SettingsIsSaved = null;
     }
 
     private void GetGraphicsConponentAndAudioMixer()
@@ -160,12 +164,6 @@ public class SettingsMenuModel : BaseModel, IUIModel
     {
         _tempSettings.IsSubtitlesOn = isOn;
         SettingsIsSaved.SetValue(false);
-    }
-
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        _menuCanvas.enabled = false;
-        canvasToActivate.enabled = true;
     }
 }
     

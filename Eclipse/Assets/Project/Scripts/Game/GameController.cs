@@ -31,7 +31,6 @@ public class GameController : BaseController
     public void StartGame()
     {
         _model.LoadGameScene();
-        _model.ChangeCanvas(_view.GameLoaderCanvas);
     }
 
     public void ContinueGame()

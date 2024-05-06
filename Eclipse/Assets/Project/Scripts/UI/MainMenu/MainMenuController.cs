@@ -28,13 +28,17 @@ public class MainMenuController : BaseController
 
         _model = null;
         _view = null;
+
+        UnsubscribeButtons();
     }
 
     private void SubscribeButtons()
     {
         _view.ContinueGameButton.onClick.AddListener(GameController.Instance.ContinueGame);
+        _view.ContinueGameButton.onClick.AddListener(ActivateGameMenu);
 
         _view.StartGameButton.onClick.AddListener(GameController.Instance.StartGame);
+        _view.StartGameButton.onClick.AddListener(ActivateGameMenu);
 
         _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
 
@@ -45,8 +49,26 @@ public class MainMenuController : BaseController
 #endif
     }
 
+    private void UnsubscribeButtons()
+    {
+        _view.ContinueGameButton.onClick.RemoveListener(GameController.Instance.ContinueGame);
+        _view.ContinueGameButton.onClick.RemoveListener(ActivateGameMenu);
+
+        _view.StartGameButton.onClick.RemoveListener(GameController.Instance.StartGame);
+        _view.StartGameButton.onClick.RemoveListener(ActivateGameMenu);
+
+        _view.SettingsButton.onClick.RemoveListener(ActivateSettingsMenu);
+
+#if UNITY_EDITOR
+        _view.ExitGameButton.onClick.RemoveListener(Debug.Break);
+#else
+        _view.ExitGameButton.onClick.RemoveListener(Application.Quit);
+#endif
+    }
+
     private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
     private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
 
-    private void ActivateSettingsMenu() => _model.ChangeCanvas(SettingsMenuView.Instance.SettingsCanvas);
+    private void ActivateSettingsMenu() => CanvasSelector.SwitchCanvas(GameState.SettingsMenu);
+    private void ActivateGameMenu() => CanvasSelector.SwitchCanvas(GameState.Game);
 }

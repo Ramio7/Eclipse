@@ -14,4 +14,11 @@ public class GameView : MonoBehaviour, IView
 
         _controller = new(this, _gameScriptableObject);
     }
+
+    public void OnDestroy()
+    {
+        _controller.Dispose();
+
+        _controller = null;
+    }
 }
