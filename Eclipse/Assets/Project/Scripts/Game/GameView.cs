@@ -6,13 +6,18 @@ public class GameView : MonoBehaviour, IView
 
     private GameController _controller;
 
-    public Canvas GameLoaderCanvas {  get; private set; }
+    public static GameView Instance;
 
     private void OnEnable()
     {
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
 
-        _controller = new(this, _gameScriptableObject);
+            DontDestroyOnLoad(this);
+
+            _controller = new(this, _gameScriptableObject);
+        }
     }
 
     public void OnDestroy()

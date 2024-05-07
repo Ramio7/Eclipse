@@ -5,25 +5,25 @@ public class GameController : BaseController
 
     public static GameController Instance;
 
-    public GameController(IView view, GameScriptableObject modelData) : base(view)
+    public GameController(IView view, IScriptableObject modelData) : base(view)
     {
         Instance = this;
+
+        _view = view as GameView;
+        _model = new(modelData);
 
         Init();
     }
 
     public override void Init()
     {
-        base.Init();
-
-        Instance = this;
+        InstantiateChildObject(_model.OverlayView.gameObject);
     }
 
     public override void Dispose()
     {
-        base.Dispose();
-
         _model?.Dispose();
+
         _model = null;
         _view = null;
     }
@@ -35,5 +35,6 @@ public class GameController : BaseController
 
     public void ContinueGame()
     {
+
     }
 }
