@@ -13,8 +13,6 @@ public class SettingsMenuController : BaseController
 
     public override void Init()
     {
-        base.Init();
-
         SetButtonsVolumes();
         InitButtons();
         InitActions();
@@ -22,8 +20,6 @@ public class SettingsMenuController : BaseController
 
     public override void Dispose()
     {
-        base.Dispose();
-
         DeinitButtons();
         DeInitActions();
 

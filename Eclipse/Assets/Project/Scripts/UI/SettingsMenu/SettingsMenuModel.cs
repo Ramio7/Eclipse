@@ -30,8 +30,6 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public override void Dispose()
     {
-        base.Dispose();
-
         DiscardSettings();
         SettingsIsSaved.Dispose();
         GameSettings.Dispose();

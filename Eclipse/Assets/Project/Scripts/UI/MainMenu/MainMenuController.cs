@@ -15,15 +15,11 @@ public class MainMenuController : BaseController
 
     public override void Init()
     {
-        base.Init();
-
         SubscribeButtons();
     }
 
     public override void Dispose()
     {
-        base.Dispose();
-
         _model.Dispose();
 
         _model = null;

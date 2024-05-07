@@ -20,20 +20,26 @@ public class MainMenuView : MonoBehaviour, IView
 
     private MainMenuController _controller;
 
+    #region Properties
     public Button ContinueGameButton { get => _continueGameButton; }
     public Button StartGameButton { get => _startGameButton; }
     public Button SettingsButton { get => _settingsButton; }
     public Button ExitGameButton { get => _exitGameButton; }
     public Canvas MainMenuCanvas { get => _mainMenuCanvas; }
+    #endregion
 
     public static MainMenuView Instance;
 
     private void OnEnable()
     {
-        Instance = this;
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
 
-        _controller = new(this, _mainMenuData);
+            DontDestroyOnLoad(this);
+
+            _controller = new(this, _mainMenuData);
+        }
     }
 
     private void OnDestroy()

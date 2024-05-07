@@ -6,13 +6,12 @@ public class EntryPointController : BaseController
     {
         var tempModelData = modelData as EntryPointScriptableObject;
         _model = new EntryPointModel(tempModelData);
+
         Init();
     }
 
     public override void Init()
     {
-        base.Init();
-
         InstantiateGame();
         InstantiateMainMenu();
         InstantiateSettingsMenu();

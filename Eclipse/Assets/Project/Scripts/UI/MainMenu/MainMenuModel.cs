@@ -12,7 +12,7 @@ public class MainMenuModel : BaseModel, IUIModel
 
     public override void Dispose()
     {
-        base.Dispose();
+        
     }
 
     public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)

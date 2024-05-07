@@ -21,8 +21,6 @@ public class EntryPointModel : BaseModel
 
     public override void Dispose()
     {
-        base.Dispose();
-
         MainMenuView = null;
         SettingsMenuView = null;
         GameView = null;
