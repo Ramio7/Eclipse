@@ -12,6 +12,7 @@ public class CanvasSelector: IDisposable
         _canvasDictionary.Add(GameState.MainMenu, null);
         _canvasDictionary.Add(GameState.SettingsMenu, null);
         _canvasDictionary.Add(GameState.Game, null);
+        _canvasDictionary.Add(GameState.KeyBindMenu, null);
     }
 
     public void Dispose()

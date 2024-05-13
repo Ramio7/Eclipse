@@ -50,11 +50,6 @@ public class EntryPointView : MonoBehaviour, IView
 
     private void OnDestroy()
     {
-        DisposeController();
-    }
-
-    private void DisposeController()
-    {
         _controller.Dispose();
         _controller = null;
     }

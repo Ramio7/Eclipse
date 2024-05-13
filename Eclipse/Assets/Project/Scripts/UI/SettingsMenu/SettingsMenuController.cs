@@ -32,7 +32,6 @@ public class SettingsMenuController : BaseController
 
     private void SetButtonsVolumes()
     {
-        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
 
         _view.BrightnessVolumeSlider.SetValueWithoutNotify(_model.GameSettings.BrightnessVolume);
         _view.ContrastRatioSlider.SetValueWithoutNotify(_model.GameSettings.ContrastRatio);
@@ -57,6 +56,8 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
+        _view.KeyBindSettingsButton.onClick.AddListener(ActivateKeyBindSettingsMenu);
         _view.BackToMainMenuButton.onClick.AddListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.AddListener(_model.SaveSettings);
     }
@@ -74,6 +75,8 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.RemoveListener(ActivateMainMenu);
+        _view.KeyBindSettingsButton.onClick.RemoveListener(ActivateKeyBindSettingsMenu);
         _view.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
     }
@@ -91,4 +94,5 @@ public class SettingsMenuController : BaseController
     private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved) => _view.SaveSettingsButton.interactable = !settingsIsSaved;
 
     private void ActivateMainMenu() => CanvasSelector.SwitchCanvas(GameState.MainMenu);
+    private void ActivateKeyBindSettingsMenu() => CanvasSelector.SwitchCanvas(GameState.KeyBindMenu);
 }

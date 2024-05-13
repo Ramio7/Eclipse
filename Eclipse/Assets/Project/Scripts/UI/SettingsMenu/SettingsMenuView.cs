@@ -9,6 +9,7 @@ public class SettingsMenuView : MonoBehaviour, IView
     #region Buttons
     [SerializeField] private Button _saveSettingsButton;
     [SerializeField] private Button _backToMainMenuButton;
+    [SerializeField] private Button _keyBindSettingsButton;
     #endregion
 
     [Header("Sliders")]
@@ -42,6 +43,7 @@ public class SettingsMenuView : MonoBehaviour, IView
     public Button SaveSettingsButton { get => _saveSettingsButton; set => _saveSettingsButton = value; }
     public Canvas SettingsCanvas { get => _settingsCanvas; }
     public Button BackToMainMenuButton { get => _backToMainMenuButton; }
+    public Button KeyBindSettingsButton { get => _keyBindSettingsButton; }
     #endregion
 
     public static SettingsMenuView Instance;
