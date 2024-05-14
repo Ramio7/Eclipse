@@ -1821,7 +1821,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4762567282571392034}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1892,6 +1892,7 @@ MonoBehaviour:
   _settingsDefaults: {fileID: 11400000, guid: 4abf081b4f3185740a3fc1516fe5d12e, type: 2}
   _saveSettingsButton: {fileID: 9198233566894608014}
   _backToMainMenuButton: {fileID: 5905984337493945565}
+  _keyBindSettingsButton: {fileID: 882218946977595555}
   _masterVolumeSlider: {fileID: 4607501887965030647}
   _soundVolumeSlider: {fileID: 8582926227048980682}
   _musicVolumeSlider: {fileID: 5893224407342089125}

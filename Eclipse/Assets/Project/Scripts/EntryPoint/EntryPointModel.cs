@@ -5,6 +5,7 @@ public class EntryPointModel : BaseModel
     public GameObject MainMenuView { get; private set; }
     public GameObject SettingsMenuView { get; private set; }
     public GameObject GameView { get; private set; }
+    public GameObject KeyBindSettingsMenuView { get; private set; }
 
     public EntryPointModel(IScriptableObject modelData) : base()
     {
@@ -17,6 +18,7 @@ public class EntryPointModel : BaseModel
         MainMenuView = tempData.MainMenuPrefab;
         SettingsMenuView = tempData.SettingsMenuPrefab;
         GameView = tempData.GamePrefab;
+        KeyBindSettingsMenuView = tempData.KeyBindSettingsMenuPrefab;
     }
 
     public override void Dispose()
@@ -24,5 +26,6 @@ public class EntryPointModel : BaseModel
         MainMenuView = null;
         SettingsMenuView = null;
         GameView = null;
+        KeyBindSettingsMenuView = null;
     }
 }

@@ -11,6 +11,8 @@ public class KeyBindSettingsScriptableObject : BaseScriptableObject
     [SerializeField] private KeyCode _secondAbilityKey;
     [SerializeField] private KeyCode _thirdAbilityKey;
     [SerializeField] private KeyCode _fourthAbilityKey;
+    [SerializeField] private KeyCode _useTalkKey;
+    [SerializeField] private KeyCode _someAbilityKey;
 
     public KeyCode JumpKey { get => _jumpKey; }
     public KeyCode ShiftKey { get => _shiftKey; }
@@ -20,4 +22,6 @@ public class KeyBindSettingsScriptableObject : BaseScriptableObject
     public KeyCode SecondAbilityKey { get => _secondAbilityKey; }
     public KeyCode ThirdAbilityKey { get => _thirdAbilityKey; }
     public KeyCode FourthAbilityKey { get => _fourthAbilityKey; }
+    public KeyCode UseTalkKey { get => _useTalkKey; }
+    public KeyCode SomeAbilityKey { get => _someAbilityKey; }
 }

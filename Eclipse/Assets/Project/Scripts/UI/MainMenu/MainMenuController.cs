@@ -20,12 +20,12 @@ public class MainMenuController : BaseController
 
     public override void Dispose()
     {
+        UnsubscribeButtons();
+
         _model.Dispose();
 
         _model = null;
         _view = null;
-
-        UnsubscribeButtons();
     }
 
     private void SubscribeButtons()

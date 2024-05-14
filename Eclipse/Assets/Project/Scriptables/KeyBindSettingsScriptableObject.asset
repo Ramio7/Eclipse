@@ -16,7 +16,9 @@ MonoBehaviour:
   _shiftKey: 304
   _crouchKey: 306
   _slideKey: 306
-  _firstAbilityKey: 257
-  _secondAbilityKey: 0
-  _thirdAbilityKey: 0
-  _fourthAbilityKey: 0
+  _firstAbilityKey: 113
+  _secondAbilityKey: 101
+  _thirdAbilityKey: 114
+  _fourthAbilityKey: 308
+  _useTalkKey: 102
+  _someAbilityKey: 116

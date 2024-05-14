@@ -18,6 +18,11 @@ public class GameModel : BaseModel
         _overlayView = tempGameData.OverlayView;
     }
 
+    protected override void Init(IScriptableObject modelData)
+    {
+        
+    }
+
     public override void Dispose()
     {
         

@@ -14,7 +14,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     private Volume _graphicsVolume;
     private AudioMixer _mixer;    
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/SoundAndVideoSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
 
@@ -23,8 +23,13 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
     {
         CanvasSelector.AddCanvas(_gameState, settingsMenuCanvas);
-        var defaults = defaultSettings as SettingsMenuScriptableObject;
         GetGraphicsConponentAndAudioMixer();
+        Init(defaultSettings);
+    }
+
+    protected override void Init(IScriptableObject modelData)
+    {
+        var defaults = modelData as SettingsMenuScriptableObject;
         InitGameSettings(defaults);
     }
 

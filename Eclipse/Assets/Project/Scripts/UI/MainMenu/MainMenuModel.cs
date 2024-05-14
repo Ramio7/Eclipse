@@ -10,6 +10,11 @@ public class MainMenuModel : BaseModel, IUIModel
         CanvasSelector.AddCanvas(_gameState, menuCanvas);
     }
 
+    protected override void Init(IScriptableObject modelData)
+    {
+
+    }
+
     public override void Dispose()
     {
         
