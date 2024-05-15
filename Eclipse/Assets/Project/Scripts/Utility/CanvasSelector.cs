@@ -34,6 +34,7 @@ public class CanvasSelector: IDisposable
 
     public static void SwitchCanvas(GameState state)
     {
+        if (_activeCanvas == null) _activeCanvas = _canvasDictionary[GameState.MainMenu];
         _activeCanvas.enabled = false;
         _activeCanvas = _canvasDictionary[state];
         _activeCanvas.enabled = true;

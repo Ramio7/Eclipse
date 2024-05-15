@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +36,11 @@ public class KeyBindSettingsView : MonoBehaviour, IView
     public Button SecondAbilityButton { get => _secondAbilityButton; }
     public Button ThirdAbilityButton { get => _thirdAbilityButton; }
     public Button FourthAbilityButton { get => _fourthAbilityButton; }
+    public Button UseTalkButton { get => _useTalkButton; }
+    public Button SomeAbilityButton { get => _someAbilityButton; }
     public Canvas Canvas { get => _canvas; }
+
+    public List<Button> AbilitiesButtons;
 
     public static KeyBindSettingsView Instance;
 
@@ -46,6 +51,8 @@ public class KeyBindSettingsView : MonoBehaviour, IView
             Instance = this;
 
             DontDestroyOnLoad(this);
+
+            AbilitiesButtons = new() { JumpButton, CrouchButton, ShiftButton, SlideButton, FirstAbilityButton, SecondAbilityButton, ThirdAbilityButton, FourthAbilityButton, UseTalkButton, SomeAbilityButton };
 
             _controller = new(this, _keyBindSettingsDefaults);
         }

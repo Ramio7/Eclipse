@@ -95,7 +95,6 @@ public struct KeyBindSettings
                     break;
             }
             Keys.Add(fieldName, fieldValue);
-            Debug.Log(Keys[fieldName]);
         }
     }
 
@@ -125,8 +124,53 @@ public struct KeyBindSettings
     public void SetField(string keyName, KeyCode keyCode)
     {
         Keys[keyName] = keyCode;
-        var key = GetKeyField(keyName);
-        key.SetValue(key, keyCode);
+
+        var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.Public);
+        for (var i = 0; i < fields.Length - 1; i++)
+        {
+            var field = fields[i];
+            var fieldName = field.Name;
+            if (fieldName == keyName)
+            {
+                switch (i)
+                {
+                    case 0:
+                        JumpKey = keyCode;
+                        break;
+                    case 1:
+                        ShiftKey = keyCode;
+                        break;
+                    case 2:
+                        CrouchKey = keyCode;
+                        break;
+                    case 3:
+                        SlideKey = keyCode;
+                        break;
+                    case 4:
+                        FirstAbilityKey = keyCode;
+                        break;
+                    case 5:
+                        SecondAbilityKey = keyCode;
+                        break;
+                    case 6:
+                        ThirdAbilityKey = keyCode;
+                        break;
+                    case 7:
+                        FourthAbilityKey = keyCode;
+                        break;
+                    case 8:
+                        UseTalkKey = keyCode;
+                        break;
+                    case 9:
+                        SomeAbilityKey = keyCode;
+                        break;
+                    default:
+                        Debug.LogWarning("Unsuspected value");
+                        break;
+                }
+                return;
+            }
+        }
     }
 
     public FieldInfo GetKeyField(string keyName) => GetType().GetField(keyName);

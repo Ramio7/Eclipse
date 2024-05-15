@@ -16,6 +16,7 @@ public class EntryPointView : MonoBehaviour, IView
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
+    public static event Action OnGuiUpdate;
 
     public static EntryPointView Instance;
 
@@ -46,6 +47,11 @@ public class EntryPointView : MonoBehaviour, IView
     private void FixedUpdate() 
     {
         OnFixedUpdate?.Invoke();
+    }
+
+    private void OnGUI()
+    {
+        OnGuiUpdate?.Invoke();
     }
 
     private void OnDestroy()

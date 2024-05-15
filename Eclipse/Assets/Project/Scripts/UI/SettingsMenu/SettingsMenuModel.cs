@@ -60,12 +60,12 @@ public class SettingsMenuModel : BaseModel, IUIModel
                 defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
             _tempSettings.Set(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
                 defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
-            Debug.Log($"Settings file status is {CreateSettingsFile()}");
+            CreateSettingsFile();
             SaveSettings();
         }
         else
         {
-            Debug.Log($"Settings file is loaded: {LoadSettings()}");
+            LoadSettings();
         }
     }
 

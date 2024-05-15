@@ -5,7 +5,7 @@ public class SettingsMenuView : MonoBehaviour, IView
 {
     [SerializeField] private SettingsMenuScriptableObject _settingsDefaults;
 
-    [Header("Buttons")]
+    [Header("AbilitiesButtons")]
     #region Buttons
     [SerializeField] private Button _saveSettingsButton;
     [SerializeField] private Button _backToMainMenuButton;
