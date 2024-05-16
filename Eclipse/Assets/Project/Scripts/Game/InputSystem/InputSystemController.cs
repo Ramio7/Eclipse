@@ -1,7 +1,58 @@
-public class InputSystemController : IController
+using UnityEngine;
+
+public class InputSystemController : BaseController
 {
-    public void Dispose()
+    private new InputSystemView _view;
+    private new InputSystemModel _model;
+
+    private KeyboardKeyBindSettings _keyBindSettings = new();
+
+    public KeyboardKeyBindSettings KeyBindSettings { get => _keyBindSettings; set => _keyBindSettings = value; }
+
+    public InputSystemController(IView view, KeyboardKeyBindSettings keyBindSettings) : base(view)
     {
-        
+        _view = view as InputSystemView;
+        _keyBindSettings.Set(keyBindSettings);
+    }
+
+    public override void Init()
+    {
+        StartInputTracking();
+    }
+
+    public override void Dispose()
+    {
+        StopInputTracking();
+
+        _model.Dispose();
+        _keyBindSettings.Dispose();
+
+        _model = null;
+        _view = null;
+    }
+
+    private void StartInputTracking()
+    {
+        EntryPointView.OnUpdate += TrackUserAbilitiesInput;
+        EntryPointView.OnUpdate += TrackUserBaseInput;
+    }
+
+    private void StopInputTracking()
+    {
+        EntryPointView.OnUpdate -= TrackUserAbilitiesInput;
+        EntryPointView.OnUpdate -= TrackUserBaseInput;
+    }
+
+    private void TrackUserAbilitiesInput()
+    {
+        foreach (var key in _keyBindSettings.Keys.Values)
+        {
+            if (Input.GetKeyUp(key)) _model.KeysMethodsPairs[key].Method.Invoke();
+        }
+    }
+
+    private void TrackUserBaseInput()
+    {
+        ;
     }
 }
