@@ -3,31 +3,31 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBindSettingsModel : IModel
+public class KeyboardKeyBindSettingsModel : IModel
 {
     private GameState _gameState = GameState.KeyBindMenu;
 
-    private KeyBindSettings _savedSettings = new();
-    private KeyBindSettings _tempSettings = new();
+    private KeyboardKeyBindSettings _savedSettings = new();
+    private KeyboardKeyBindSettings _tempSettings = new();
 
     private KeyCode _keyCodeFromInput;
     private Button _selectedButton;
     private event System.Action<KeyCode, Button> _onInput;
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyboardKeyBindSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
 
-    public KeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas)
+    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas)
     {
         CanvasSelector.AddCanvas(_gameState, keyBindSettingsMenuCanvas);
-        var defaults = defaultSettings as KeyBindSettingsScriptableObject;
+        var defaults = defaultSettings as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);
     }
 
-    public KeyBindSettings KeyBindSettings { get => _savedSettings; }
+    public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
-    private void InitKeyBindSettings(KeyBindSettingsScriptableObject defaults)
+    private void InitKeyBindSettings(KeyboardKeyBindSettingsScriptableObject defaults)
     {
         if (!CheckSettingsFile())
         {
@@ -55,14 +55,14 @@ public class KeyBindSettingsModel : IModel
 
     public void SaveSettings()
     {
-        JsonData<KeyBindSettings>.Save(_tempSettings, _settingsFilePath);
+        JsonData<KeyboardKeyBindSettings>.Save(_tempSettings, _settingsFilePath);
         _savedSettings.Set(_tempSettings);
         SettingsIsSaved.SetValue(true);
     }
 
     private bool LoadSettings()
     {
-        var tempKeyBindSettings = JsonData<KeyBindSettings>.Load(_settingsFilePath);
+        var tempKeyBindSettings = JsonData<KeyboardKeyBindSettings>.Load(_settingsFilePath);
         _savedSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
             tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
             tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.SomeAbilityKey);

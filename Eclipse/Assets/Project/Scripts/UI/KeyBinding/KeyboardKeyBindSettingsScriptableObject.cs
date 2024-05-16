@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/" + nameof(KeyBindSettingsScriptableObject), fileName = nameof(KeyBindSettingsScriptableObject))]
-public class KeyBindSettingsScriptableObject : BaseScriptableObject
+[CreateAssetMenu(menuName = "ScriptableObjects/" + nameof(KeyboardKeyBindSettingsScriptableObject), fileName = nameof(KeyboardKeyBindSettingsScriptableObject))]
+public class KeyboardKeyBindSettingsScriptableObject : BaseScriptableObject
 {
     [SerializeField] private KeyCode _jumpKey;
     [SerializeField] private KeyCode _shiftKey;

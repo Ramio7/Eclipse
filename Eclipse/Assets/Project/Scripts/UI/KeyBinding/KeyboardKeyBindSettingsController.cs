@@ -3,15 +3,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class KeyBindSettingsController : BaseController
+public class KeyboardKeyBindSettingsController : BaseController
 {
-    private new KeyBindSettingsModel _model;
-    private new KeyBindSettingsView _view;
+    private new KeyboardKeyBindSettingsModel _model;
+    private new KeyboardKeyBindSettingsView _view;
 
-    public KeyBindSettingsController(KeyBindSettingsView view, KeyBindSettingsScriptableObject defaults) : base(view)
+    private InputSystemController _inputSystemController;
+
+    public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view, KeyboardKeyBindSettingsScriptableObject defaults) : base(view)
     {
         _view = view;
         _model = new(defaults, _view.Canvas);
+        _inputSystemController = new(null, _model.KeyBindSettings);
 
         Init();
         ResetButtonNames();
@@ -41,6 +44,7 @@ public class KeyBindSettingsController : BaseController
 
         _view.BackToMainMenuButton.onClick.AddListener(ActivateSettingsMenu);
         _view.BackToMainMenuButton.onClick.AddListener(_model.SaveSettings);
+        _view.BackToMainMenuButton.onClick.AddListener(UpdateKeyBindings);
         _view.BackWithoutSavingButton.onClick.AddListener(ActivateSettingsMenu);
         _view.BackWithoutSavingButton.onClick.AddListener(ResetButtonNames);
         _view.BackWithoutSavingButton.onClick.AddListener(_model.DiscardSettings);
@@ -55,6 +59,7 @@ public class KeyBindSettingsController : BaseController
 
         _view.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
         _view.BackToMainMenuButton.onClick.RemoveListener(_model.SaveSettings);
+        _view.BackToMainMenuButton.onClick.RemoveListener(UpdateKeyBindings);
         _view.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
         _view.BackWithoutSavingButton.onClick.RemoveListener(ResetButtonNames);
         _view.BackWithoutSavingButton.onClick.RemoveListener(_model.DiscardSettings);
@@ -112,5 +117,10 @@ public class KeyBindSettingsController : BaseController
                         break;
                 }
         }
+    }
+
+    private void UpdateKeyBindings()
+    {
+        _inputSystemController.KeyBindSettings.Set(_model.KeyBindSettings);
     }
 }

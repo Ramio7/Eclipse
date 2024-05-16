@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBindSettingsView : MonoBehaviour, IView
+public class KeyboardKeyBindSettingsView : MonoBehaviour, IView
 {
-    [SerializeField] private KeyBindSettingsScriptableObject _keyBindSettingsDefaults;
+    [SerializeField] private KeyboardKeyBindSettingsScriptableObject _keyBindSettingsDefaults;
     [SerializeField] private Canvas _canvas;
 
-    private KeyBindSettingsController _controller;
+    private KeyboardKeyBindSettingsController _controller;
 
     [Header("Canvas buttons")]
     [SerializeField] private Button _backToMainMenuButton;
@@ -42,7 +42,7 @@ public class KeyBindSettingsView : MonoBehaviour, IView
 
     public List<Button> AbilitiesButtons;
 
-    public static KeyBindSettingsView Instance;
+    public static KeyboardKeyBindSettingsView Instance;
 
     private void OnEnable()
     {

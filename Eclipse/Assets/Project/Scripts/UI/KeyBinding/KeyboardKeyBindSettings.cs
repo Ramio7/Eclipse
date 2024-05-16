@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public struct KeyBindSettings
+public struct KeyboardKeyBindSettings
 {
     public KeyCode JumpKey;
     public KeyCode ShiftKey;
@@ -33,7 +33,7 @@ public struct KeyBindSettings
         FillKeyList();
     }
 
-    public void Set(KeyBindSettings settings)
+    public void Set(KeyboardKeyBindSettings settings)
     {
         JumpKey = settings.JumpKey;
         ShiftKey = settings.ShiftKey;
@@ -112,7 +112,7 @@ public struct KeyBindSettings
         SomeAbilityKey = KeyCode.None;
     }
 
-    public readonly bool IsEqual(KeyBindSettings other)
+    public readonly bool IsEqual(KeyboardKeyBindSettings other)
     {
         return other.JumpKey == JumpKey && other.ShiftKey == ShiftKey
             && other.CrouchKey == CrouchKey && other.SlideKey == SlideKey
