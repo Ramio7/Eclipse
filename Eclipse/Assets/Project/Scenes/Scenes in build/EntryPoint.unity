@@ -1719,6 +1719,7 @@ MonoBehaviour:
   _entryPointData: {fileID: 11400000, guid: ac354ac2bebd2e14f872663e68cde123, type: 2}
   _audioMixer: {fileID: 24100000, guid: be9595e3020544c4d900a85058c02ce6, type: 2}
   _volumeProfile: {fileID: 1287533333}
+  _mainScreenCharacter: {fileID: 6401771898343626239}
 --- !u!4 &941883473
 Transform:
   m_ObjectHideFlags: 0
@@ -4526,6 +4527,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+--- !u!114 &6401771898343626239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 962816328390406015, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+  m_PrefabInstance: {fileID: 6401771898343626238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e842feeb68bc64aa6580a0da073f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &8001602531210296386
 MeshFilter:
   m_ObjectHideFlags: 0
