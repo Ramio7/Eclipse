@@ -17,6 +17,7 @@ public class KeyboardKeyBindSettingsModel : IModel
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyboardKeyBindSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
+    public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
     public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas)
     {
@@ -24,8 +25,6 @@ public class KeyboardKeyBindSettingsModel : IModel
         var defaults = defaultSettings as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);
     }
-
-    public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
     private void InitKeyBindSettings(KeyboardKeyBindSettingsScriptableObject defaults)
     {
@@ -74,6 +73,7 @@ public class KeyboardKeyBindSettingsModel : IModel
 
     public void Dispose()
     {
+        CanvasSelector.RemoveCanvas(_gameState);
         DiscardSettings();
         SettingsIsSaved.Dispose();
         KeyBindSettings.Dispose();

@@ -5,9 +5,12 @@ public class InputSystemController : BaseController
     private new InputSystemView _view;
     private new InputSystemModel _model;
 
+    private ICharacter _character;
+
     private KeyboardKeyBindSettings _keyBindSettings = new();
 
     public KeyboardKeyBindSettings KeyBindSettings { get => _keyBindSettings; set => _keyBindSettings = value; }
+    public ICharacter Character { get => _character; set => _character = value; }
 
     public InputSystemController(IView view, KeyboardKeyBindSettings keyBindSettings) : base(view)
     {
@@ -53,6 +56,6 @@ public class InputSystemController : BaseController
 
     private void TrackUserBaseInput()
     {
-        ;
+        if (Input.GetAxis("Horizontal") != 0) _character.Rigidbody.AddForce(new(Input.GetAxis("Horizontal"), 0, 0));
     }
 }

@@ -15,6 +15,7 @@ public class KeyboardKeyBindSettingsController : BaseController
         _view = view;
         _model = new(defaults, _view.Canvas);
         _inputSystemController = new(null, _model.KeyBindSettings);
+        SetCharacter(EntryPointView.Instance.MainScreenCharacter);
 
         Init();
         ResetButtonNames();
@@ -72,7 +73,7 @@ public class KeyboardKeyBindSettingsController : BaseController
         else throw new System.Exception("No button component on selected object");
     }
 
-    private void ActivateSettingsMenu() => CanvasSelector.SwitchCanvas(GameState.SettingsMenu);
+    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
 
     private void ResetButtonNames()
     {
@@ -123,4 +124,6 @@ public class KeyboardKeyBindSettingsController : BaseController
     {
         _inputSystemController.KeyBindSettings.Set(_model.KeyBindSettings);
     }
+
+    public void SetCharacter(ICharacter character) => _inputSystemController.Character = character;
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ public class InputSystemModel : BaseModel
         
     }
 
-    private void BindKeysAndMethods(KeyboardKeyBindSettings keyBindSettings)
+    private void BindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
     {
         //_KeysMethodsPairs.Add(keyBindSettings.JumpKey, JumpMethod);
     }
