@@ -35,6 +35,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public override void Dispose()
     {
+        CanvasSelector.RemoveCanvas(_gameState);
         DiscardSettings();
         SettingsIsSaved.Dispose();
         GameSettings.Dispose();

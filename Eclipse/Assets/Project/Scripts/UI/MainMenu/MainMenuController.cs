@@ -65,6 +65,6 @@ public class MainMenuController : BaseController
     private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
     private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
 
-    private void ActivateSettingsMenu() => CanvasSelector.SwitchCanvas(GameState.SettingsMenu);
-    private void ActivateGameMenu() => CanvasSelector.SwitchCanvas(GameState.Game);
+    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    private void ActivateGameMenu() => GameStateMashine.Instance.ChangeGameState(GameState.Village); //временно, доработать по завершению системы сохранений
 }

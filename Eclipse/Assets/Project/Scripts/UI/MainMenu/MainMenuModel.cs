@@ -17,7 +17,7 @@ public class MainMenuModel : BaseModel, IUIModel
 
     public override void Dispose()
     {
-        
+        CanvasSelector.RemoveCanvas(_gameState);
     }
 
     public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)

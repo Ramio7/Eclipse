@@ -9,10 +9,22 @@ public class CanvasSelector: IDisposable
 
     public CanvasSelector()
     {
-        _canvasDictionary.Add(GameState.MainMenu, null);
-        _canvasDictionary.Add(GameState.SettingsMenu, null);
-        _canvasDictionary.Add(GameState.Game, null);
-        _canvasDictionary.Add(GameState.KeyBindMenu, null);
+        InitCanvas(GameState.MainMenu);
+        InitCanvas(GameState.SettingsMenu);
+        InitCanvas(GameState.KeyBindMenu);
+        InitCanvas(GameState.Village);
+        InitCanvas(GameState.SacredForest);
+        InitCanvas(GameState.DarkForest);
+        InitCanvas(GameState.BearsBreechField);
+        InitCanvas(GameState.SpruceForest);
+        InitCanvas(GameState.SnowyMountains);
+        GameStateMashine.Instance.OnGameStateChanged += SwitchCanvas;
+        GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
+    }
+
+    private static void InitCanvas(GameState gameState)
+    {
+        _canvasDictionary.Add(gameState, null);
     }
 
     public void Dispose()
@@ -20,6 +32,8 @@ public class CanvasSelector: IDisposable
         _canvasDictionary.Clear();
 
         _canvasDictionary = null;
+
+        GameStateMashine.Instance.OnGameStateChanged -= SwitchCanvas;
     }
 
     public static void AddCanvas(GameState state, Canvas canvas)
@@ -32,9 +46,8 @@ public class CanvasSelector: IDisposable
         _canvasDictionary.Remove(state);
     }
 
-    public static void SwitchCanvas(GameState state)
+    private void SwitchCanvas(GameState state)
     {
-        if (_activeCanvas == null) _activeCanvas = _canvasDictionary[GameState.MainMenu];
         _activeCanvas.enabled = false;
         _activeCanvas = _canvasDictionary[state];
         _activeCanvas.enabled = true;

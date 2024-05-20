@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameModel : BaseModel
 {
-    private GameState _gameState = GameState.Game;
-
     private GameObject _girlPrefab;
     private GameOverlayView _overlayView;
 
@@ -31,6 +29,6 @@ public class GameModel : BaseModel
     public void LoadGameScene()
     {
         SceneManager.LoadSceneAsync((int)GameScens.Village);
-        CanvasSelector.SwitchCanvas(_gameState);
+        GameStateMashine.Instance.ChangeGameState(GameState.Village);
     }
 }

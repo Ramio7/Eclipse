@@ -93,6 +93,6 @@ public class SettingsMenuController : BaseController
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved) => _view.SaveSettingsButton.interactable = !settingsIsSaved;
 
-    private void ActivateMainMenu() => CanvasSelector.SwitchCanvas(GameState.MainMenu);
-    private void ActivateKeyBindSettingsMenu() => CanvasSelector.SwitchCanvas(GameState.KeyBindMenu);
+    private void ActivateMainMenu() => GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
+    private void ActivateKeyBindSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.KeyBindMenu);
 }
