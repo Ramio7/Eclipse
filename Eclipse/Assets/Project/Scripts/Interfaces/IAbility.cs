@@ -1,6 +1,6 @@
 using System;
 
-public interface IAbility
+public interface IAbility : IDisposable
 {
     Action Method { get; }
 

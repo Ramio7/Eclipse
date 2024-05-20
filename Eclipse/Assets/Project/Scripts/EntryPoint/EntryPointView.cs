@@ -8,11 +8,15 @@ public class EntryPointView : MonoBehaviour, IView
     [SerializeField] private EntryPointScriptableObject _entryPointData;
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private Volume _volumeProfile;
+    [SerializeField] private BaseCharacter _mainScreenCharacter;
 
     private EntryPointController _controller;
+    private CanvasSelector _canvasSelector;
+    private GameStateMashine _gameStateMashine;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public Volume VolumeProfile { get => _volumeProfile; }
+    public BaseCharacter MainScreenCharacter { get => _mainScreenCharacter; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
@@ -26,6 +30,8 @@ public class EntryPointView : MonoBehaviour, IView
         {
             Instance = this;
             DontDestroyOnLoad(this);
+            _gameStateMashine = new();
+            _canvasSelector = new();
             _controller = new(this, _entryPointData);
         }
     }
@@ -56,7 +62,12 @@ public class EntryPointView : MonoBehaviour, IView
 
     private void OnDestroy()
     {
+        _gameStateMashine.Dispose();
+        _canvasSelector.Dispose();
         _controller.Dispose();
+
+        _gameStateMashine = null;
+        _canvasSelector = null;
         _controller = null;
     }
 }
