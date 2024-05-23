@@ -13,6 +13,7 @@ public class EntryPointView : MonoBehaviour, IView
     private EntryPointController _controller;
     private CanvasSelector _canvasSelector;
     private GameStateMashine _gameStateMashine;
+    private AbilitiesAllocator _abilitiesAllocator;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public Volume VolumeProfile { get => _volumeProfile; }
@@ -24,15 +25,18 @@ public class EntryPointView : MonoBehaviour, IView
 
     public static EntryPointView Instance;
 
-    private void OnEnable()
+    private void Start()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this);
+            _controller = new(this, _entryPointData);
             _gameStateMashine = new();
             _canvasSelector = new();
-            _controller = new(this, _entryPointData);
+            CanvasSelector.Instance.SwitchCanvas(GameState.MainMenu);
+            _abilitiesAllocator = new();
+            AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
         }
     }
 

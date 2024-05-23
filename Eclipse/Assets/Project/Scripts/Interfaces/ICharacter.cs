@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICharacter
 {
-    public Rigidbody Rigidbody { get; }
-    public Collider Collider { get; }
+    Rigidbody2D Rigidbody { get; }
+    Collider2D Collider { get; }
+    CharacterState State { get; }
+    List<IAbility> Abilities { get; }
 }

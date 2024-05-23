@@ -15,6 +15,22 @@ public struct CharacterState : IDisposable
     public ReactiveProperty<bool> IsTalking;
     public ReactiveProperty<bool> UsingSomething;
 
+    public CharacterState(ICharacter character)
+    {
+        IsIdle = new(true);
+        IsInTheAir = new(false);
+        IsRunning = new(false);
+        IsMoving = new(false);
+        IsCrouching = new(false);
+        IsSliding = new(false);
+        UsingFirstAbility = new(false);
+        UsingSecondAbility = new(false);
+        UsingThirdAbility = new(false);
+        UsingFourthAbility = new(false);
+        IsTalking = new(false);
+        UsingSomething = new(false);
+    }
+
     public CharacterState(bool isIdle, bool isInTheAir, bool isRunning, bool isMoving, bool isCrouching, bool isSliding, 
         bool usingFirstAbility, bool usingSecondAbility, bool usingThirdAbility, bool usingFourthAbility, bool isTalking, 
         bool usingSomething)
@@ -55,6 +71,8 @@ public struct CharacterState : IDisposable
     {
         IsIdle.Dispose();
         IsMoving.Dispose();
+        IsRunning.Dispose();
+        IsInTheAir.Dispose();
         IsCrouching.Dispose();
         IsSliding.Dispose();
         UsingFirstAbility.Dispose();
@@ -66,6 +84,8 @@ public struct CharacterState : IDisposable
 
         IsIdle = null;
         IsMoving = null;
+        IsRunning = null;
+        IsInTheAir = null;
         IsCrouching = null;
         IsSliding = null;
         UsingFirstAbility = null;
@@ -76,9 +96,47 @@ public struct CharacterState : IDisposable
         UsingSomething = null;
     }
 
-    public void SetIdle(bool isIdle) => IsIdle.SetValue(isIdle);
-    public void SetMoving(bool isMoving) => IsMoving.SetValue(isMoving);
-    public void SetCrouching(bool isCrouching) => IsCrouching.SetValue(isCrouching);
+    public void SetIdle(bool isIdle)
+    {
+        IsIdle.SetValue(isIdle);
+        IsMoving.SetValue(false);
+        IsRunning.SetValue(false);
+        IsCrouching.SetValue(false);
+        IsSliding.SetValue(false);
+    }
+
+    public void SetInAir(bool isInAir)
+    {
+        IsInTheAir.SetValue(isInAir);
+        IsRunning.SetValue(false);
+        IsCrouching.SetValue(false);
+        IsSliding.SetValue(false);
+    }
+
+    public void SetMoving(bool isMoving)
+    {
+        IsMoving.SetValue(isMoving);
+        IsRunning.SetValue(false);
+        IsSliding.SetValue(false);
+    }
+
+    public void SetIsRunning(bool isRunning)
+    {
+        IsRunning.SetValue(isRunning);
+        IsCrouching.SetValue(false);
+        IsSliding.SetValue(false);
+        IsMoving.SetValue(false);
+        IsInTheAir.SetValue(false);
+    }
+
+    public void SetCrouching(bool isCrouching)
+    {
+        IsCrouching.SetValue(isCrouching);
+        IsRunning.SetValue(false);
+        IsSliding.SetValue(false);
+        IsInTheAir.SetValue(false);
+    }
+
     public void SetSliding(bool isSliding) => IsSliding.SetValue(isSliding);
     public void SetFirstIsActive(bool isFirstAbilityActive) => UsingFirstAbility.SetValue(isFirstAbilityActive);
     public void SetSecondIsActive(bool isSecondAbilityActive) => UsingSecondAbility.SetValue(isSecondAbilityActive);

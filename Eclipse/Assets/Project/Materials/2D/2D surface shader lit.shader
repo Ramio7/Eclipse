@@ -1,12 +1,9 @@
-﻿Shader "Polybrush/Simple Texture Blend"
+Shader "Custom/2D surface shader lit"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Texture1 ("Texture 1 (RGB)", 2D) = "white" {}
-        _Texture2 ("Texture 2 (RGB)", 2D) = "white" {}
-        _Texture3 ("Texture 3 (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
     }
@@ -23,14 +20,10 @@
         #pragma target 3.0
 
         sampler2D _MainTex;
-        sampler2D _Texture1;
-        sampler2D _Texture2;
-        sampler2D _Texture3;
 
         struct Input
         {
             float2 uv_MainTex;
-            float4 color : COLOR;
         };
 
         half _Glossiness;
@@ -46,17 +39,13 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            fixed4 a = tex2D(_MainTex, IN.uv_MainTex);
-            fixed4 b = tex2D(_Texture1, IN.uv_MainTex);
-            fixed4 c = tex2D(_Texture2, IN.uv_MainTex);
-            fixed4 d = tex2D(_Texture3, IN.uv_MainTex);
-
-            fixed4 color = lerp(lerp(lerp(lerp(0, d, IN.color.a), c, IN.color.b), b, IN.color.g), a, IN.color.r);
-
-            o.Albedo = color.rgb * _Color;
+            // Albedo comes from a texture tinted by color
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            o.Albedo = c.rgb;
+            // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = color.a;
+            o.Alpha = c.a;
         }
         ENDCG
     }

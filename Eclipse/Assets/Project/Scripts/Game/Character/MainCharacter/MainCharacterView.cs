@@ -1,18 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class MainCharacterView : MonoBehaviour
+public class MainCharacterView : BaseCharacter
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        JumpAbility jumpAbility = new();
+        CrouchAbility crouchAbility = new();
+        _abilities = new List<IAbility>() { jumpAbility, crouchAbility };
     }
 }

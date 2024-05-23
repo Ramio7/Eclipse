@@ -8,7 +8,7 @@ public abstract class BaseAbility : IAbility
 
     public virtual void InternalMethod() { }
 
-    public BaseAbility(ICharacter character)
+    public void Init(ICharacter character)
     {
         Method = InternalMethod;
         _character = character;

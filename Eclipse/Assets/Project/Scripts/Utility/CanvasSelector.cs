@@ -7,24 +7,25 @@ public class CanvasSelector: IDisposable
     private static Dictionary<GameState, Canvas> _canvasDictionary = new();
     private static Canvas _activeCanvas;
 
+    public static CanvasSelector Instance;
+
     public CanvasSelector()
     {
-        InitCanvas(GameState.MainMenu);
-        InitCanvas(GameState.SettingsMenu);
-        InitCanvas(GameState.KeyBindMenu);
-        InitCanvas(GameState.Village);
-        InitCanvas(GameState.SacredForest);
-        InitCanvas(GameState.DarkForest);
-        InitCanvas(GameState.BearsBreechField);
-        InitCanvas(GameState.SpruceForest);
-        InitCanvas(GameState.SnowyMountains);
-        GameStateMashine.Instance.OnGameStateChanged += SwitchCanvas;
-        GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
-    }
+        if (Instance == null)
+        {
+            Instance = this;
 
-    private static void InitCanvas(GameState gameState)
-    {
-        _canvasDictionary.Add(gameState, null);
+            InitCanvas(GameState.MainMenu);
+            InitCanvas(GameState.SettingsMenu);
+            InitCanvas(GameState.KeyBindMenu);
+            InitCanvas(GameState.Village);
+            InitCanvas(GameState.SacredForest);
+            InitCanvas(GameState.DarkForest);
+            InitCanvas(GameState.BearsBreechField);
+            InitCanvas(GameState.SpruceForest);
+            InitCanvas(GameState.SnowyMountains);
+            GameStateMashine.Instance.OnGameStateChanged += SwitchCanvas;
+        }
     }
 
     public void Dispose()
@@ -34,6 +35,12 @@ public class CanvasSelector: IDisposable
         _canvasDictionary = null;
 
         GameStateMashine.Instance.OnGameStateChanged -= SwitchCanvas;
+    }
+
+    private void InitCanvas(GameState gameState)
+    {
+        if (_canvasDictionary.ContainsKey(gameState)) return;
+        _canvasDictionary.Add(gameState, null);
     }
 
     public static void AddCanvas(GameState state, Canvas canvas)
@@ -46,8 +53,12 @@ public class CanvasSelector: IDisposable
         _canvasDictionary.Remove(state);
     }
 
-    private void SwitchCanvas(GameState state)
+    public void SwitchCanvas(GameState state)
     {
+        if (_activeCanvas == null)
+        {
+            _activeCanvas = _canvasDictionary[GameState.MainMenu];
+        }
         _activeCanvas.enabled = false;
         _activeCanvas = _canvasDictionary[state];
         _activeCanvas.enabled = true;
