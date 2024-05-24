@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638518663367235277
-    m_Hash: 1020209587
+      ticks: 638520778110886739
+    m_Hash: 615194667
   m_LockFileStatus:
     m_FilePath: H:/Repos/Eclipse/Eclipse/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638518663367285340
-    m_Hash: 3856089825
+      ticks: 638520778110896747
+    m_Hash: 2271215724
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -6974,6 +6974,7 @@ m_ResolvedPackages:
     - 10.0.3
     - 10.1.0
     - 10.1.1
+    - 10.1.2
     compatible:
     - 9.1.0
     - 9.1.1
@@ -7404,6 +7405,7 @@ m_ResolvedPackages:
     - 10.0.2
     - 10.0.3
     - 10.0.4
+    - 10.0.5
     compatible:
     - 9.0.2
     - 9.0.3
@@ -8239,6 +8241,7 @@ m_ResolvedPackages:
     - 9.0.2
     - 9.0.3
     - 9.0.4
+    - 9.0.5
     compatible:
     - 8.0.2
     recommended: 8.0.2

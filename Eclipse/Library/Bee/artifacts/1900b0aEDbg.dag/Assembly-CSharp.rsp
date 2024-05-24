@@ -461,10 +461,7 @@
 "Assets/Project/Scripts/EntryPoint/EntryPointModel.cs"
 "Assets/Project/Scripts/EntryPoint/EntryPointScriptableObject.cs"
 "Assets/Project/Scripts/EntryPoint/EntryPointView.cs"
-<<<<<<< Updated upstream
-=======
 "Assets/Project/Scripts/Game/Abilities/AbilitiesAllocator.cs"
->>>>>>> Stashed changes
 "Assets/Project/Scripts/Game/Abilities/CrouchAbility.cs"
 "Assets/Project/Scripts/Game/Abilities/JumpAbility.cs"
 "Assets/Project/Scripts/Game/Character/CharacterState.cs"

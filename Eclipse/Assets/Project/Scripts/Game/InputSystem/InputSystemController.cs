@@ -63,7 +63,13 @@ public class InputSystemController : BaseController
 
     private void TrackUserBaseInput()
     {
-        if (Input.GetAxis("Horizontal") != 0) _character.GetValue().Rigidbody.AddForce(new(Input.GetAxis("Horizontal"), 0));
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            var rigidbody = _character.GetValue().Rigidbody;
+            rigidbody.AddForce(new(Input.GetAxis("Horizontal"), 0));
+            rigidbody.velocity = new(0, rigidbody.velocity.y);
+        }
+            
         if (Input.GetKeyUp(KeyCode.Escape) && (GameStateMashine.Current != GameState.SettingsMenu 
             || GameStateMashine.Current != GameState.KeyBindMenu 
             || GameStateMashine.Current != GameState.MainMenu)) 
