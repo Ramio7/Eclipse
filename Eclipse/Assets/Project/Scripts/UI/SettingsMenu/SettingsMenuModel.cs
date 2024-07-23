@@ -11,7 +11,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     private GameSettings _savedSettings = new();
     private GameSettings _tempSettings = new();
 
-    private Volume _graphicsVolume;
+    private VolumeProfile _graphicsVolume;
     private AudioMixer _mixer;    
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/SoundAndVideoSettings.json";
@@ -101,7 +101,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
         _mixer.SetFloat("EffectVolume", Mathf.Log10(GameSettings.EffectVolume) * 20);
         _mixer.SetFloat("VoiceVolume", Mathf.Log10(GameSettings.VoiceVolume) * 20);
         _mixer.SetFloat("MasterVolume", Mathf.Log10(GameSettings.MasterVolume) * 20);
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj))
         {
             colorAdj.postExposure.Override(GameSettings.BrightnessVolume);
             colorAdj.contrast.Override(GameSettings.ContrastRatio);
@@ -128,7 +128,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeBrightnessVolume(float volume)
     {
         _tempSettings.BrightnessVolume = volume;
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj))
             colorAdj.postExposure.Override(volume);
         else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);
@@ -151,7 +151,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeContrastRatio(float volume)
     {
         _tempSettings.ContrastRatio = volume;
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj)) 
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj)) 
             colorAdj.contrast.Override(volume);
         else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);

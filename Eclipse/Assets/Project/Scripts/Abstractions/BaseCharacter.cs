@@ -17,7 +17,7 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter
     {
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _state = new(this);
+        _state = new();
     }
 
     private void OnDestroy()

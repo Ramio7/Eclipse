@@ -16,6 +16,7 @@ public class EntryPointController : BaseController
         InstantiateMainMenu();
         InstantiateSettingsMenu();
         InstantiateKeyBindSettingsMenu();
+        InitInputSystem();
     }
 
     public override void Dispose()
@@ -28,5 +29,6 @@ public class EntryPointController : BaseController
     private void InstantiateGame() => InstantiateChildObject(_model.GameView);
     private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView);
     private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView);
-    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject((_model.KeyBindSettingsMenuView));
+    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView);
+    private void InitInputSystem() => ;
 }

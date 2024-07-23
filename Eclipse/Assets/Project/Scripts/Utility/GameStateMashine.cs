@@ -1,6 +1,6 @@
 using System;
 
-public class GameStateMashine : IInitiable, IDisposable
+public class GameStateMashine : IDisposable
 {
     public static GameState Current;
 

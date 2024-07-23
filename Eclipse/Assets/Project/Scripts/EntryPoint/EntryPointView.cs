@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
 public class EntryPointView : MonoBehaviour, IView
 {
     [SerializeField] private EntryPointScriptableObject _entryPointData;
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private Volume _volumeProfile;
+    [SerializeField] private VolumeProfile _volumeProfile;
     [SerializeField] private BaseCharacter _mainScreenCharacter;
 
     private EntryPointController _controller;
@@ -16,7 +15,7 @@ public class EntryPointView : MonoBehaviour, IView
     private AbilitiesAllocator _abilitiesAllocator;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
-    public Volume VolumeProfile { get => _volumeProfile; }
+    public VolumeProfile VolumeProfile { get => _volumeProfile; }
     public BaseCharacter MainScreenCharacter { get => _mainScreenCharacter; }
 
     public static event Action OnUpdate;

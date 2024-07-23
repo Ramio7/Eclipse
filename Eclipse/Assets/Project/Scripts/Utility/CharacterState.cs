@@ -15,22 +15,6 @@ public struct CharacterState : IDisposable
     public ReactiveProperty<bool> IsTalking;
     public ReactiveProperty<bool> UsingSomething;
 
-    public CharacterState(ICharacter character)
-    {
-        IsIdle = new(true);
-        IsInTheAir = new(false);
-        IsRunning = new(false);
-        IsMoving = new(false);
-        IsCrouching = new(false);
-        IsSliding = new(false);
-        UsingFirstAbility = new(false);
-        UsingSecondAbility = new(false);
-        UsingThirdAbility = new(false);
-        UsingFourthAbility = new(false);
-        IsTalking = new(false);
-        UsingSomething = new(false);
-    }
-
     public CharacterState(bool isIdle, bool isInTheAir, bool isRunning, bool isMoving, bool isCrouching, bool isSliding, 
         bool usingFirstAbility, bool usingSecondAbility, bool usingThirdAbility, bool usingFourthAbility, bool isTalking, 
         bool usingSomething)
