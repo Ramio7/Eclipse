@@ -12,6 +12,7 @@ public class EntryPointController : BaseController
 
     public override void Init()
     {
+        base.Init();
         InstantiateGame();
         InstantiateMainMenu();
         InstantiateSettingsMenu();
@@ -30,5 +31,8 @@ public class EntryPointController : BaseController
     private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView);
     private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView);
     private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView);
-    private void InitInputSystem() => ;
+    private void InitInputSystem()
+    {
+        ;
+    }
 }

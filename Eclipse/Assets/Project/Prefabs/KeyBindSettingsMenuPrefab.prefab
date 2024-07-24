@@ -3483,9 +3483,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2662565254619740965}
-  - component: {fileID: 2311617489000076186}
+  - component: {fileID: 5428961170233336627}
   m_Layer: 0
-  m_Name: KeyBindSettingsMenu
+  m_Name: KeyBindSettingsMenuPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3507,7 +3507,7 @@ Transform:
   - {fileID: 716390888117217716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2311617489000076186
+--- !u!114 &5428961170233336627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

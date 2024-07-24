@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f20bd7fb0c6cbe4eaf053a3b98f1ca2, type: 3}
   m_Name: GameScriptableObject
   m_EditorClassIdentifier: 
-  _girlPrefab: {fileID: 8931782712784839577, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-  _overlayView: {fileID: -6144935263461390818, guid: 509e9961190d75f43bd019748e8cba97, type: 3}
+  _girlPrefab: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+  _overlayView: {fileID: 1685010736074803773, guid: 06e06c7c2d6446a47a99cf376c28b5eb, type: 3}

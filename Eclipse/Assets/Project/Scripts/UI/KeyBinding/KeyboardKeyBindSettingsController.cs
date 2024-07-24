@@ -8,14 +8,10 @@ public class KeyboardKeyBindSettingsController : BaseController
     private new KeyboardKeyBindSettingsModel _model;
     private new KeyboardKeyBindSettingsView _view;
 
-    private InputSystemController _inputSystemController;
-
     public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view, KeyboardKeyBindSettingsScriptableObject defaults) : base(view)
     {
         _view = view;
         _model = new(defaults, _view.Canvas);
-        _inputSystemController = new(null, _model.KeyBindSettings);
-        SetCharacter(EntryPointView.Instance.MainScreenCharacter);
 
         Init();
         ResetButtonNames();
@@ -122,8 +118,8 @@ public class KeyboardKeyBindSettingsController : BaseController
 
     private void UpdateKeyBindings()
     {
-        _inputSystemController.KeyBindSettings.Set(_model.KeyBindSettings);
+        
     }
 
-    public void SetCharacter(ICharacter character) => _inputSystemController.Character = character;
+    public void SetCharacter(ICharacter character) { }
 }

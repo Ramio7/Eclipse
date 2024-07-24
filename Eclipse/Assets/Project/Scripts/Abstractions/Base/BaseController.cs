@@ -10,9 +10,9 @@ public abstract class BaseController : IController
         _view = view;
     }
 
-    public abstract void Init();
-
-    protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
+    public virtual void Init() => ControllerList.RegisterController(this);
 
     public abstract void Dispose();
+
+    protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
 }
