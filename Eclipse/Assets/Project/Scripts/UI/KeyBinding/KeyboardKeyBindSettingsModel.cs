@@ -21,6 +21,8 @@ public class KeyboardKeyBindSettingsModel : IModel
 
     public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas)
     {
+        ModelList.RegisterModel(this);
+
         CanvasSelector.AddCanvas(_gameState, keyBindSettingsMenuCanvas);
         var defaults = defaultSettings as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);

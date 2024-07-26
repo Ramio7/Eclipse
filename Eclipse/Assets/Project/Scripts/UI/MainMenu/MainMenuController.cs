@@ -7,6 +7,8 @@ public class MainMenuController : BaseController
 
     public MainMenuController(IView view, IScriptableObject modelData) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         var tempModelData = modelData as MainMenuScriptableObject; 
         _view = view as MainMenuView;
         _model = new MainMenuModel(tempModelData, _view.MainMenuCanvas);

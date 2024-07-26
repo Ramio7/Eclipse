@@ -5,6 +5,8 @@ public class SettingsMenuController : BaseController
 
     public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         _view = view;
         _model = new(settingsDefaults, _view.SettingsCanvas);
 

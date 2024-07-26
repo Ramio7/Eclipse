@@ -7,6 +7,8 @@ public class MainMenuModel : BaseModel, IUIModel
 
     public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base()
     {
+        ModelList.RegisterModel(this);
+
         CanvasSelector.AddCanvas(_gameState, menuCanvas);
     }
 

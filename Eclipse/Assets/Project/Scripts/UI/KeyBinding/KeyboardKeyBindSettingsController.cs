@@ -10,6 +10,8 @@ public class KeyboardKeyBindSettingsController : BaseController
 
     public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view, KeyboardKeyBindSettingsScriptableObject defaults) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         _view = view;
         _model = new(defaults, _view.Canvas);
 
@@ -118,8 +120,13 @@ public class KeyboardKeyBindSettingsController : BaseController
 
     private void UpdateKeyBindings()
     {
-        
+        ModelList.FindModel(out InputSystemModel model);
+        model.RebindKeysAndAbilities(_model.KeyBindSettings);
     }
 
-    public void SetCharacter(ICharacter character) { }
+    public void SetCharacter(ICharacter character)
+    {
+        ControllerList.FindController(out InputSystemController controller);
+        controller.Character = character;
+    }
 }

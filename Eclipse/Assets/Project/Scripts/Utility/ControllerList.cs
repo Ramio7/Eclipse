@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public static class ControllerList
@@ -6,7 +7,13 @@ public static class ControllerList
 
     public static void RegisterController(IController controller) => _controllers.Add(controller);
 
-    public static IController FindController(IController controller) => _controllers.Find(matchingController => matchingController.GetType().Name == controller.GetType().Name);
+    public static void FindController<T>(out T controller)
+    {
+        var controllerType = typeof(T);
+        controller = (T)_controllers.Find(matchingController => matchingController.GetType() == controllerType);
+        if (controller != null) return;
+        else throw new Exception("Controller type not found");
+    }
 
     public static void DisposeAllControllers()
     {

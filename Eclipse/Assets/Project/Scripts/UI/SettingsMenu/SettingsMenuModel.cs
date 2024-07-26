@@ -22,6 +22,8 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
     {
+        ModelList.RegisterModel(this);
+
         CanvasSelector.AddCanvas(_gameState, settingsMenuCanvas);
         GetGraphicsConponentAndAudioMixer();
         Init(defaultSettings);
