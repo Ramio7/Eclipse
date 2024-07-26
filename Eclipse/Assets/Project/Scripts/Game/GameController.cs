@@ -7,6 +7,8 @@ public class GameController : BaseController
 
     public GameController(IView view, IScriptableObject modelData) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         Instance = this;
 
         _view = view as GameView;

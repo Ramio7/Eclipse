@@ -11,6 +11,8 @@ public class GameModel : BaseModel
 
     public GameModel(IScriptableObject gameData) : base()
     {
+        ModelList.RegisterModel(this);
+
         var tempGameData = gameData as GameScriptableObject;
         _girlPrefab = tempGameData.GirlPrefab;
         _overlayView = tempGameData.OverlayView;

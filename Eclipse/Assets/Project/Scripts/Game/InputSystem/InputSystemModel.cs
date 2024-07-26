@@ -10,6 +10,8 @@ public class InputSystemModel : BaseModel
 
     public InputSystemModel(IScriptableObject modelData, KeyboardKeyBindSettings keyboardKeyBindSettings)
     {
+        ModelList.RegisterModel(this);
+
         _character = EntryPointView.Instance.MainScreenCharacter;
         BindKeysAndAbilities(keyboardKeyBindSettings);
     }

@@ -4,6 +4,8 @@ public class EntryPointController : BaseController
 
     public EntryPointController(IView view, IScriptableObject modelData) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         var tempModelData = modelData as EntryPointScriptableObject;
         _model = new EntryPointModel(tempModelData);
 
@@ -33,6 +35,7 @@ public class EntryPointController : BaseController
     private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView);
     private void InitInputSystem()
     {
-        ;
+        ModelList.FindModel(out KeyboardKeyBindSettingsModel model);
+        var inputSystemController = new InputSystemController(null, model.KeyBindSettings);
     }
 }

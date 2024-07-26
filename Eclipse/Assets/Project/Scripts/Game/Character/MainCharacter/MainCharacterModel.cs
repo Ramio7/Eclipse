@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MainCharacterModel : MonoBehaviour
+public class MainCharacterModel : IModel
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Dispose()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        throw new System.NotImplementedException();
     }
 }

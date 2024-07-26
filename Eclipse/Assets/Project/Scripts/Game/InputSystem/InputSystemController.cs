@@ -15,6 +15,8 @@ public class InputSystemController : BaseController
 
     public InputSystemController(IView view, KeyboardKeyBindSettings keyBindSettings) : base(view)
     {
+        ControllerList.RegisterController(this);
+
         _view = view as InputSystemView;
         _keyBindSettings.Set(keyBindSettings);
         Init();
@@ -55,6 +57,7 @@ public class InputSystemController : BaseController
 
     private void TrackUserAbilitiesInput()
     {
+        if (GameStateMashine.Current == GameState.KeyBindMenu || GameStateMashine.Current == GameState.MainMenu || GameStateMashine.Current == GameState.SettingsMenu) return;
         foreach (var key in _keyBindSettings.Keys.Values)
         {
             if (Input.GetKeyUp(key)) _model.KeysMethodsPairs[key].Method.Invoke();

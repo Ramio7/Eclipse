@@ -9,6 +9,8 @@ public class EntryPointModel : BaseModel
 
     public EntryPointModel(IScriptableObject modelData) : base()
     {
+        ModelList.RegisterModel(this);
+
         Init(modelData);
     }
 
