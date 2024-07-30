@@ -11,16 +11,17 @@ public class GameController : BaseGameObjectController
     public override void Init(IScriptableObject data, IView view)
     {
         base.Init();
+
         _view = view as GameView;
         _model = new(data as GameScriptableObject);
+
         InstantiateChildObject(_model.OverlayView.gameObject);
     }
 
     public override void Dispose()
     {
-        _model?.Dispose();
+        base.Dispose();
 
-        _model = null;
         _view = null;
     }
 
@@ -31,6 +32,6 @@ public class GameController : BaseGameObjectController
 
     public void ContinueGame()
     {
-
+        _model.LoadGameScene();
     }
 }
