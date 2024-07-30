@@ -3075,33 +3075,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2100376055715390294, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.64
+    - target: {fileID: 2964551508237127135, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+      propertyPath: m_SpriteHash
+      value: 888095966
       objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
+    - target: {fileID: 6535688184204858420, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+      propertyPath: m_Mass
+      value: 5.4538555
       objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: orthographic
+    - target: {fileID: 6535688184204858420, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+      propertyPath: m_UseAutoMass
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: orthographic size
-      value: 5.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078401719221653375, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
       propertyPath: m_Name
@@ -3110,76 +3094,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1578611185}
-    - targetCorrespondingSourceObject: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1578611187}
-    - targetCorrespondingSourceObject: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1578611186}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
---- !u!1 &1578611184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
+--- !u!114 &1578611185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2520534616424559351, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
   m_PrefabInstance: {fileID: 1578611183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1578611185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578611184}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7532d320fa17f9445b1c129cc04b54af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1578611186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578611184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Library:
-  - m_Name: devochka shablon
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: Idle
-      m_Hash: 0
-      m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  - m_Name: Step
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: Entry
-      m_Hash: 0
-      m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 2c09f5e1981cfd643b6284e2f1b81360, type: 3}
---- !u!114 &1578611187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578611184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
-  m_SpriteKey: 0
-  m_SpriteHash: 888095966
 --- !u!1 &1589627731
 GameObject:
   m_ObjectHideFlags: 0
