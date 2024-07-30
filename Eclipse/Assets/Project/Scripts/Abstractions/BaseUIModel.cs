@@ -11,5 +11,8 @@ public abstract class BaseUIModel : BaseModel, IUIModel
         _canvas = canvas;
     }
 
-    protected abstract void Init(IScriptableObject modelData, Canvas canvas);
+    protected virtual void Init(IScriptableObject modelData, Canvas canvas)
+    {
+        base.Init(modelData);
+    }
 }

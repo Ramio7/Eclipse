@@ -10,7 +10,11 @@ public abstract class BaseController : IController
 
     public virtual void Init() => ControllerList.RegisterController(this);
 
-    public abstract void Dispose();
+    public virtual void Dispose()
+    {
+        _model?.Dispose();
+        _model = null;
+    }
 
     protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
 }

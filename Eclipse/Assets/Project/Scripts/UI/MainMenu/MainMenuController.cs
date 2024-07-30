@@ -28,9 +28,7 @@ public class MainMenuController : BaseGameObjectController
     {
         UnsubscribeButtons();
 
-        _model.Dispose();
-
-        _model = null;
+        base.Dispose();
         _view = null;
     }
 

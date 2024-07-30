@@ -26,6 +26,9 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter
 
     private void OnDestroy()
     {
+        _rigidbody = null;
+        _collider = null;
+        _spriteResolver = null;
         _state.Dispose();
     }
 }

@@ -33,10 +33,8 @@ public class InputSystemController : BaseController
         StopInputTracking();
         _character.OnValueChanged.RemoveListener(_model.SwitchCharacter);
 
-        _model.Dispose();
+        base.Dispose();
         _keyBindSettings.Dispose();
-
-        _model = null;
     }
 
     private void StartInputTracking()

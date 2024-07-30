@@ -7,6 +7,6 @@ public class MainCharacterController : BaseGameObjectController
 
     public override void Dispose()
     {
-        throw new System.NotImplementedException();
+        base.Dispose();
     }
 }

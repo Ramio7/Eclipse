@@ -22,9 +22,7 @@ public class EntryPointController : BaseGameObjectController
 
     public override void Dispose()
     {
-        _model.Dispose();
-
-        _model = null;
+        base.Dispose();
     }
 
     private void InstantiateGame() => InstantiateChildObject(_model.GameView);

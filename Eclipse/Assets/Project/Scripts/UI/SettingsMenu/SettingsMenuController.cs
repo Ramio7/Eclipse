@@ -25,10 +25,8 @@ public class SettingsMenuController : BaseGameObjectController
         DeinitButtons();
         DeInitActions();
 
-        _model.Dispose();
-
+        base.Dispose();
         _view = null;
-        _model = null;
     }
 
 

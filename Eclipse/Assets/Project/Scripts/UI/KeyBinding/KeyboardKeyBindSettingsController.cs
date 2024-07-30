@@ -28,10 +28,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
     {
         UnsubscribeButtons();
 
-        _model.Dispose();
-
+        base.Dispose();
         _view = null;
-        _model = null;
     }
 
     private void SubscribeButtons()
