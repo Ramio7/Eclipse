@@ -2,12 +2,10 @@ using UnityEngine;
 
 public abstract class BaseController : IController
 {
-    protected IView _view;
     protected IModel _model;
 
-    public BaseController(IView view)
+    public BaseController()
     {
-        _view = view;
     }
 
     public virtual void Init() => ControllerList.RegisterController(this);

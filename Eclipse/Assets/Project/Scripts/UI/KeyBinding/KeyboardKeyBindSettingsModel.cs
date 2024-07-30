@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsModel : IModel
+public class KeyboardKeyBindSettingsModel : BaseUIModel
 {
     private GameState _gameState = GameState.KeyBindMenu;
 
@@ -19,13 +19,34 @@ public class KeyboardKeyBindSettingsModel : IModel
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
     public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
-    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas)
+    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas) : base(defaultSettings, keyBindSettingsMenuCanvas)
+    {
+        Init(defaultSettings, keyBindSettingsMenuCanvas);
+    }
+
+    protected override void Init(IScriptableObject modelData)
+    {
+        throw new System.Exception("Wrong Init method used");
+    }
+
+    protected override void Init(IScriptableObject modelData, Canvas canvas)
     {
         ModelList.RegisterModel(this);
 
-        CanvasSelector.AddCanvas(_gameState, keyBindSettingsMenuCanvas);
-        var defaults = defaultSettings as KeyboardKeyBindSettingsScriptableObject;
+        CanvasSelector.AddCanvas(_gameState, canvas);
+        var defaults = modelData as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);
+    }
+
+    public override void Dispose()
+    {
+        CanvasSelector.RemoveCanvas(_gameState);
+        DiscardSettings();
+        SettingsIsSaved.Dispose();
+        KeyBindSettings.Dispose();
+        _tempSettings.Dispose();
+
+        SettingsIsSaved = null;
     }
 
     private void InitKeyBindSettings(KeyboardKeyBindSettingsScriptableObject defaults)
@@ -71,17 +92,6 @@ public class KeyboardKeyBindSettingsModel : IModel
             tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
             tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.SomeAbilityKey);
         return tempKeyBindSettings.IsEqual(_savedSettings);
-    }
-
-    public void Dispose()
-    {
-        CanvasSelector.RemoveCanvas(_gameState);
-        DiscardSettings();
-        SettingsIsSaved.Dispose();
-        KeyBindSettings.Dispose();
-        _tempSettings.Dispose();
-
-        SettingsIsSaved = null;
     }
 
     public void DiscardSettings()

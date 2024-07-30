@@ -3,25 +3,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsController : BaseController
+public class KeyboardKeyBindSettingsController : BaseGameObjectController
 {
     private new KeyboardKeyBindSettingsModel _model;
     private new KeyboardKeyBindSettingsView _view;
 
-    public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view, KeyboardKeyBindSettingsScriptableObject defaults) : base(view)
+    public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsScriptableObject defaults, KeyboardKeyBindSettingsView view) : base(defaults, view)
     {
-        ControllerList.RegisterController(this);
-
-        _view = view;
-        _model = new(defaults, _view.Canvas);
-
-        Init();
-        ResetButtonNames();
+        Init(defaults, view);
     }
 
-    public override void Init()
+    public override void Init(IScriptableObject data, IView view)
     {
+        base.Init();
+
+        _view = view as KeyboardKeyBindSettingsView;
+        _model = new(data as KeyboardKeyBindSettingsScriptableObject, _view.Canvas);
+
         SubscribeButtons();
+        ResetButtonNames();
     }
 
     public override void Dispose()

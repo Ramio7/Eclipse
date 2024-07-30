@@ -38,7 +38,7 @@ public class MainMenuView : MonoBehaviour, IView
 
             DontDestroyOnLoad(this);
 
-            _controller = new(this, _mainMenuData);
+            _controller = new(_mainMenuData, this);
         }
     }
 

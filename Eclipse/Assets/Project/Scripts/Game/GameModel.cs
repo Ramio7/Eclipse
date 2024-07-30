@@ -9,18 +9,17 @@ public class GameModel : BaseModel
     public GameObject GirlPrefab { get => _girlPrefab; }
     public GameOverlayView OverlayView { get => _overlayView; }
 
-    public GameModel(IScriptableObject gameData) : base()
+    public GameModel(IScriptableObject gameData) : base(gameData)
     {
-        ModelList.RegisterModel(this);
-
-        var tempGameData = gameData as GameScriptableObject;
-        _girlPrefab = tempGameData.GirlPrefab;
-        _overlayView = tempGameData.OverlayView;
+        Init(gameData);
     }
 
     protected override void Init(IScriptableObject modelData)
     {
-        
+        base.Init(modelData);
+        var tempGameData = modelData as GameScriptableObject;
+        _girlPrefab = tempGameData.GirlPrefab;
+        _overlayView = tempGameData.OverlayView;
     }
 
     public override void Dispose()

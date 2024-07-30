@@ -1,10 +1,15 @@
 public abstract class BaseModel : IModel
 {
-    public BaseModel()
+    public BaseModel(IScriptableObject data)
     {
     }
 
-    protected abstract void Init(IScriptableObject modelData);
+    protected virtual void Init(IScriptableObject modelData)
+    {
+        ModelList.RegisterModel(this);
+    }
 
-    public abstract void Dispose();
+    public virtual void Dispose()
+    {
+    }
 }

@@ -54,7 +54,7 @@ public class KeyboardKeyBindSettingsView : MonoBehaviour, IView
 
             AbilitiesButtons = new() { JumpButton, CrouchButton, ShiftButton, SlideButton, FirstAbilityButton, SecondAbilityButton, ThirdAbilityButton, FourthAbilityButton, UseTalkButton, SomeAbilityButton };
 
-            _controller = new(this, _keyBindSettingsDefaults);
+            _controller = new(_keyBindSettingsDefaults, this);
         }
     }
 

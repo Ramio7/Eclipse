@@ -1,20 +1,20 @@
-public class SettingsMenuController : BaseController
+public class SettingsMenuController : BaseGameObjectController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
 
-    public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
+    public SettingsMenuController(SettingsMenuScriptableObject settingsDefaults, SettingsMenuView view) : base(settingsDefaults, view)
     {
-        ControllerList.RegisterController(this);
-
-        _view = view;
-        _model = new(settingsDefaults, _view.SettingsCanvas);
-
-        Init();
+        Init(settingsDefaults, view);
     }
 
-    public override void Init()
+    public override void Init(IScriptableObject data, IView view)
     {
+        base.Init();
+
+        _view = view as SettingsMenuView;
+        _model = new(data as SettingsMenuScriptableObject, _view.SettingsCanvas);
+
         SetButtonsVolumes();
         InitButtons();
         InitActions();

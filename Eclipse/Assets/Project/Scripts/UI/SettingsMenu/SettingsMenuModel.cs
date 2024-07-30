@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class SettingsMenuModel : BaseModel, IUIModel
+public class SettingsMenuModel : BaseUIModel
 {
     private GameState _gameState = GameState.SettingsMenu;
 
@@ -20,17 +20,22 @@ public class SettingsMenuModel : BaseModel, IUIModel
 
     public GameSettings GameSettings { get => _savedSettings; }
 
-    public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
+    public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base(defaultSettings, settingsMenuCanvas)
     {
-        ModelList.RegisterModel(this);
-
-        CanvasSelector.AddCanvas(_gameState, settingsMenuCanvas);
-        GetGraphicsConponentAndAudioMixer();
-        Init(defaultSettings);
+        Init(defaultSettings, settingsMenuCanvas);
     }
 
     protected override void Init(IScriptableObject modelData)
     {
+        throw new System.Exception("Wrong Init method used");
+    }
+
+    protected override void Init(IScriptableObject modelData, Canvas canvas)
+    {
+        ModelList.RegisterModel(this);
+
+        CanvasSelector.AddCanvas(_gameState, canvas);
+        GetGraphicsConponentAndAudioMixer();
         var defaults = modelData as SettingsMenuScriptableObject;
         InitGameSettings(defaults);
     }

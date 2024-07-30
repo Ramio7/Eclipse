@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public struct KeyboardKeyBindSettings
+public struct KeyboardKeyBindSettings : IStruct
 {
     public KeyCode JumpKey;
     public KeyCode ShiftKey;

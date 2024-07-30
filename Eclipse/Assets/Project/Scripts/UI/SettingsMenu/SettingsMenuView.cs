@@ -56,7 +56,7 @@ public class SettingsMenuView : MonoBehaviour, IView
 
             DontDestroyOnLoad(this);
 
-            _controller = new(this, _settingsDefaults);
+            _controller = new(_settingsDefaults, this);
         }
     }
 

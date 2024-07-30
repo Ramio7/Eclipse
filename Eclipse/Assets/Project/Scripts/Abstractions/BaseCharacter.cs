@@ -7,8 +7,8 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter
 {
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
-    private CharacterState _state;
-    protected List<IAbility> _abilities;
+    private CharacterState _state = new();
+    protected List<IAbility> _abilities = new();
     protected SpriteResolver _spriteResolver;
 
     public Rigidbody2D Rigidbody { get => _rigidbody; private set => _rigidbody = value; }
@@ -22,8 +22,6 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteResolver = GetComponent<SpriteResolver>();
-        _state = new();
-        _abilities = new();
     }
 
     private void OnDestroy()

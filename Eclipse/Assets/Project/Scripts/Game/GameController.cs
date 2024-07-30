@@ -1,24 +1,18 @@
-public class GameController : BaseController
+public class GameController : BaseGameObjectController
 {
     private new GameModel _model;
     private new GameView _view;
 
-    public static GameController Instance;
-
-    public GameController(IView view, IScriptableObject modelData) : base(view)
+    public GameController(GameScriptableObject modelData, GameView view) : base(modelData, view)
     {
-        ControllerList.RegisterController(this);
-
-        Instance = this;
-
-        _view = view as GameView;
-        _model = new(modelData);
-
-        Init();
+        Init(modelData, view);
     }
 
-    public override void Init()
+    public override void Init(IScriptableObject data, IView view)
     {
+        base.Init();
+        _view = view as GameView;
+        _model = new(data as GameScriptableObject);
         InstantiateChildObject(_model.OverlayView.gameObject);
     }
 

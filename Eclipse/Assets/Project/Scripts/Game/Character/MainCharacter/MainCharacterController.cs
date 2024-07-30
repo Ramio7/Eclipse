@@ -1,6 +1,11 @@
-public class MainCharacterController : IController
+public class MainCharacterController : BaseGameObjectController
 {
-    public void Dispose()
+    public MainCharacterController(IScriptableObject scriptableObject, IView view) : base(scriptableObject, view)
+    {
+        base.Init();
+    }
+
+    public override void Dispose()
     {
         throw new System.NotImplementedException();
     }

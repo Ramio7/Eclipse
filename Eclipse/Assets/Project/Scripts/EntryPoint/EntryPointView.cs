@@ -31,7 +31,7 @@ public class EntryPointView : MonoBehaviour, IView
         {
             Instance = this;
             DontDestroyOnLoad(this);
-            _controller = new(this, _entryPointData);
+            _controller = new(_entryPointData, this);
             _gameStateMashine = new();
             _canvasSelector = new();
             CanvasSelector.Instance.SwitchCanvas(GameState.MainMenu);

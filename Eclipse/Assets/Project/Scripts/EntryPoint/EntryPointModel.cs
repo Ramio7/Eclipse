@@ -7,15 +7,14 @@ public class EntryPointModel : BaseModel
     public GameObject GameView { get; private set; }
     public GameObject KeyBindSettingsMenuView { get; private set; }
 
-    public EntryPointModel(IScriptableObject modelData) : base()
+    public EntryPointModel(IScriptableObject modelData) : base(modelData)
     {
-        ModelList.RegisterModel(this);
-
         Init(modelData);
     }
 
     protected override void Init(IScriptableObject modelData)
     {
+        base.Init(modelData);
         var tempData = modelData as EntryPointScriptableObject;
         MainMenuView = tempData.MainMenuPrefab;
         SettingsMenuView = tempData.SettingsMenuPrefab;

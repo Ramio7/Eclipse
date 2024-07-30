@@ -16,7 +16,7 @@ public class GameView : MonoBehaviour, IView
 
             DontDestroyOnLoad(this);
 
-            _controller = new(this, _gameScriptableObject);
+            _controller = new(_gameScriptableObject, this);
         }
     }
 

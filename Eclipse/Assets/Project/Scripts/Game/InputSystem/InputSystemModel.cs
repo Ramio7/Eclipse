@@ -1,24 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputSystemModel : BaseModel
+public class InputSystemModel : BaseStructOrientedModel
 {
     private ICharacter _character;
     private Dictionary<KeyCode, IAbility> _keysMethodsPairs = new();
 
     public Dictionary<KeyCode, IAbility> KeysMethodsPairs { get => _keysMethodsPairs; }
 
-    public InputSystemModel(IScriptableObject modelData, KeyboardKeyBindSettings keyboardKeyBindSettings)
+    public InputSystemModel(IScriptableObject modelData, IStruct keyboardKeyBindSettings) : base(modelData, keyboardKeyBindSettings)
     {
-        ModelList.RegisterModel(this);
-
-        _character = EntryPointView.Instance.MainScreenCharacter;
-        BindKeysAndAbilities(keyboardKeyBindSettings);
+        Init(modelData, keyboardKeyBindSettings);
     }
 
-    protected override void Init(IScriptableObject modelData)
+    protected override void Init(IScriptableObject modelData, IStruct @struct)
     {
-        
+        base.Init(modelData);
+        _character = EntryPointView.Instance.MainScreenCharacter;
+        BindKeysAndAbilities((KeyboardKeyBindSettings)@struct);
     }
 
     public override void Dispose()

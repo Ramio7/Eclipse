@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class InputSystemController : BaseController
 {
-    private new InputSystemView _view;
     private new InputSystemModel _model;
 
     private ReactiveProperty<ICharacter> _character = new(EntryPointView.Instance.MainScreenCharacter);
@@ -13,17 +12,15 @@ public class InputSystemController : BaseController
     public KeyboardKeyBindSettings KeyBindSettings { get => _keyBindSettings; set => _keyBindSettings = value; }
     public ICharacter Character { get => _character.GetValue(); set => _character.SetValue(value); }
 
-    public InputSystemController(IView view, KeyboardKeyBindSettings keyBindSettings) : base(view)
+    public InputSystemController(KeyboardKeyBindSettings keyBindSettings) : base()
     {
-        ControllerList.RegisterController(this);
-
-        _view = view as InputSystemView;
         _keyBindSettings.Set(keyBindSettings);
         Init();
     }
 
     public async override void Init()
     {
+        base.Init();
         var tempTask = AwaitForCharacterInitiationAsync();
         await Task.Run(() => tempTask);
         _model = new(null, _keyBindSettings);
@@ -40,7 +37,6 @@ public class InputSystemController : BaseController
         _keyBindSettings.Dispose();
 
         _model = null;
-        _view = null;
     }
 
     private void StartInputTracking()

@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverlayModel : MonoBehaviour
+public class GameOverlayModel : BaseUIModel
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameOverlayModel(IScriptableObject gameData, Canvas canvas) : base(gameData, canvas)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Init(IScriptableObject modelData, Canvas canvas)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    protected override void Init(IScriptableObject modelData)
+    {
+        throw new System.NotImplementedException();
     }
 }
