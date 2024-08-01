@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameView : MonoBehaviour, IView
+public class GameView : BaseView
 {
     [SerializeField] private GameScriptableObject _gameScriptableObject;
 

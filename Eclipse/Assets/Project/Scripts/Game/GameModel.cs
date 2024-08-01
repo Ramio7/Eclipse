@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameModel : BaseModel
 {
@@ -25,11 +24,5 @@ public class GameModel : BaseModel
     public override void Dispose()
     {
         
-    }
-
-    public void LoadGameScene()
-    {
-        SceneManager.LoadSceneAsync((int)GameScens.Village);
-        GameStateMashine.Instance.ChangeGameState(GameState.Village);
     }
 }

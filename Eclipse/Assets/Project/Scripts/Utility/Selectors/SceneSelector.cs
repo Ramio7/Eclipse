@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneSelector : MonoBehaviour
+public static class SceneSelector
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Scene ActiveScene { get; private set; }
+
+    public static void SetMainMenuScene()
     {
-        
+        LoadScene((int)GameScens.MainMenu);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void SetGameScene()
     {
-        
+        LoadScene((int)GameScens.Game);
+    }
+
+    private static void LoadScene(int sceneId)
+    {
+        SceneManager.LoadScene(sceneId);
+        ActiveScene = SceneManager.GetActiveScene();
     }
 }

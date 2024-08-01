@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
-public class EntryPointView : MonoBehaviour, IView
+public class EntryPointView : BaseView, IView
 {
     [SerializeField] private EntryPointScriptableObject _entryPointData;
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private VolumeProfile _volumeProfile;
-    [SerializeField] private BaseCharacter _mainScreenCharacter;
+    [SerializeField] private MainCharacterView _mainScreenCharacter;
 
     private EntryPointController _controller;
     private CanvasSelector _canvasSelector;
@@ -17,7 +17,7 @@ public class EntryPointView : MonoBehaviour, IView
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public VolumeProfile VolumeProfile { get => _volumeProfile; }
-    public BaseCharacter MainScreenCharacter { get => _mainScreenCharacter; }
+    public MainCharacterView MainScreenCharacter { get => _mainScreenCharacter; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
@@ -30,12 +30,16 @@ public class EntryPointView : MonoBehaviour, IView
         if (Instance == null)
         {
             Instance = this;
+
             DontDestroyOnLoad(this);
+
             _controller = new(_entryPointData, this);
+
             _gameStateMashine = new();
             _canvasSelector = new();
-            CanvasSelector.Instance.SwitchCanvas(GameState.MainMenu);
             _abilitiesAllocator = new();
+
+            _canvasSelector.SwitchCanvas(GameState.MainMenu);
             AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
         }
     }

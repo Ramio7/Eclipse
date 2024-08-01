@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuView : MonoBehaviour, IView
+public class MainMenuView : BaseUIView, IView
 {
     [SerializeField] private MainMenuScriptableObject _mainMenuData;
 
@@ -13,11 +13,6 @@ public class MainMenuView : MonoBehaviour, IView
     [SerializeField] private Button _exitGameButton;
     #endregion
 
-    [Header("Canvas")]
-    #region Canvas
-    [SerializeField] private Canvas _mainMenuCanvas;
-    #endregion
-
     private MainMenuController _controller;
 
     #region Properties
@@ -25,12 +20,11 @@ public class MainMenuView : MonoBehaviour, IView
     public Button StartGameButton { get => _startGameButton; }
     public Button SettingsButton { get => _settingsButton; }
     public Button ExitGameButton { get => _exitGameButton; }
-    public Canvas MainMenuCanvas { get => _mainMenuCanvas; }
     #endregion
 
     public static MainMenuView Instance;
 
-    private void OnEnable()
+    private void Awake()
     {
         if (Instance == null)
         {

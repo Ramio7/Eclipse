@@ -15,7 +15,7 @@ public class GameController : BaseGameObjectController
         _view = view as GameView;
         _model = new(data as GameScriptableObject);
 
-        InstantiateChildObject(_model.OverlayView.gameObject);
+        InstantiateChildObject(_model.OverlayView.gameObject, _view.gameObject);
     }
 
     public override void Dispose()
@@ -23,15 +23,5 @@ public class GameController : BaseGameObjectController
         base.Dispose();
 
         _view = null;
-    }
-
-    public void StartGame()
-    {
-        _model.LoadGameScene();
-    }
-
-    public void ContinueGame()
-    {
-        _model.LoadGameScene();
     }
 }

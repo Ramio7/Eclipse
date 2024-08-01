@@ -17,4 +17,5 @@ public abstract class BaseController : IController
     }
 
     protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
+    protected void InstantiateChildObject(GameObject childObject, GameObject parent) => Object.Instantiate(childObject, parent.transform);
 }

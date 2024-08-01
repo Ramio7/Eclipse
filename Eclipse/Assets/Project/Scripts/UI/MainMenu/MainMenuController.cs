@@ -5,8 +5,6 @@ public class MainMenuController : BaseGameObjectController
     private new MainMenuModel _model;
     private new MainMenuView _view;
 
-    private GameController _gameController;
-
     public MainMenuController(MainMenuScriptableObject modelData, MainMenuView view) : base(modelData, view)
     {
         Init(modelData, view);
@@ -16,12 +14,11 @@ public class MainMenuController : BaseGameObjectController
     {
         base.Init();
 
-        ControllerList.FindController(out GameController gameController);
-        _gameController = gameController;
         _view = view as MainMenuView;
-        _model = new MainMenuModel(modelData as MainMenuScriptableObject, _view.MainMenuCanvas);
+        _model = new MainMenuModel(modelData as MainMenuScriptableObject, _view.Canvas);
 
         SubscribeButtons();
+        SetButtonInGame();
     }
 
     public override void Dispose()
@@ -34,11 +31,11 @@ public class MainMenuController : BaseGameObjectController
 
     private void SubscribeButtons()
     {
-        _view.ContinueGameButton.onClick.AddListener(_gameController.ContinueGame);
-        _view.ContinueGameButton.onClick.AddListener(ActivateGameMenu);
+        _view.ContinueGameButton.onClick.AddListener(ToGame);
 
-        _view.StartGameButton.onClick.AddListener(_gameController.StartGame);
-        _view.StartGameButton.onClick.AddListener(ActivateGameMenu);
+        _view.StartGameButton.onClick.AddListener(SceneSelector.SetGameScene);
+
+        _view.StartGameButton.onClick.AddListener(ToGame);
 
         _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
 
@@ -51,11 +48,11 @@ public class MainMenuController : BaseGameObjectController
 
     private void UnsubscribeButtons()
     {
-        _view.ContinueGameButton.onClick.RemoveListener(_gameController.ContinueGame);
-        _view.ContinueGameButton.onClick.RemoveListener(ActivateGameMenu);
+        _view.ContinueGameButton.onClick.RemoveListener(ToGame);
 
-        _view.StartGameButton.onClick.RemoveListener(_gameController.StartGame);
-        _view.StartGameButton.onClick.RemoveListener(ActivateGameMenu);
+        _view.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
+
+        _view.StartGameButton.onClick.RemoveListener(ToGame);
 
         _view.SettingsButton.onClick.RemoveListener(ActivateSettingsMenu);
 
@@ -66,9 +63,14 @@ public class MainMenuController : BaseGameObjectController
 #endif
     }
 
+    private void SetButtonInGame()
+    {
+        if (SceneSelector.ActiveScene.buildIndex < (int)GameScens.Game) SetStartGameButtonActive();
+        else SetContinueGameButtonActive();
+    }
     private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
     private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
 
     private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
-    private void ActivateGameMenu() => GameStateMashine.Instance.ChangeGameState(GameState.Village); //временно, доработать по завершению системы сохранений
+    private void ToGame() => GameStateMashine.Instance.ChangeGameState(GameState.Game);
 }

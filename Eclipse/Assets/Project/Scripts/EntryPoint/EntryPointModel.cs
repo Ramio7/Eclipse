@@ -1,11 +1,8 @@
-using UnityEngine;
-
 public class EntryPointModel : BaseModel
 {
-    public GameObject MainMenuView { get; private set; }
-    public GameObject SettingsMenuView { get; private set; }
-    public GameObject GameView { get; private set; }
-    public GameObject KeyBindSettingsMenuView { get; private set; }
+    public MainMenuView MainMenuView { get; private set; }
+    public SettingsMenuView SettingsMenuView { get; private set; }
+    public KeyboardKeyBindSettingsView KeyBindSettingsMenuView { get; private set; }
 
     public EntryPointModel(IScriptableObject modelData) : base(modelData)
     {
@@ -18,7 +15,6 @@ public class EntryPointModel : BaseModel
         var tempData = modelData as EntryPointScriptableObject;
         MainMenuView = tempData.MainMenuPrefab;
         SettingsMenuView = tempData.SettingsMenuPrefab;
-        GameView = tempData.GamePrefab;
         KeyBindSettingsMenuView = tempData.KeyBindSettingsMenuPrefab;
     }
 
@@ -26,7 +22,6 @@ public class EntryPointModel : BaseModel
     {
         MainMenuView = null;
         SettingsMenuView = null;
-        GameView = null;
         KeyBindSettingsMenuView = null;
     }
 }

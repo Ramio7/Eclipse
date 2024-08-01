@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsView : MonoBehaviour, IView
+public class KeyboardKeyBindSettingsView : BaseUIView, IUIView
 {
     [SerializeField] private KeyboardKeyBindSettingsScriptableObject _keyBindSettingsDefaults;
-    [SerializeField] private Canvas _canvas;
 
     private KeyboardKeyBindSettingsController _controller;
 
-    [Header("Canvas buttons")]
+    [Header("Switch screen buttons")]
     [SerializeField] private Button _backToMainMenuButton;
     [SerializeField] private Button _backWithoutSavingButton;
 
@@ -38,13 +37,12 @@ public class KeyboardKeyBindSettingsView : MonoBehaviour, IView
     public Button FourthAbilityButton { get => _fourthAbilityButton; }
     public Button UseTalkButton { get => _useTalkButton; }
     public Button SomeAbilityButton { get => _someAbilityButton; }
-    public Canvas Canvas { get => _canvas; }
 
     public List<Button> AbilitiesButtons;
 
     public static KeyboardKeyBindSettingsView Instance;
 
-    private void OnEnable()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -52,7 +50,8 @@ public class KeyboardKeyBindSettingsView : MonoBehaviour, IView
 
             DontDestroyOnLoad(this);
 
-            AbilitiesButtons = new() { JumpButton, CrouchButton, ShiftButton, SlideButton, FirstAbilityButton, SecondAbilityButton, ThirdAbilityButton, FourthAbilityButton, UseTalkButton, SomeAbilityButton };
+            AbilitiesButtons = new() { JumpButton, CrouchButton, ShiftButton, SlideButton, FirstAbilityButton, SecondAbilityButton,
+                ThirdAbilityButton, FourthAbilityButton,UseTalkButton, SomeAbilityButton };
 
             _controller = new(_keyBindSettingsDefaults, this);
         }

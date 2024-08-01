@@ -9,22 +9,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Scenes in build/EntryPoint.unity
     guid: dc393e72bf8c8b346b19bad31977ad04
   - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/Village.unity
-    guid: 45c6ce77fdbafa0428b5c10be7f94078
-  - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/SacredForest.unity
-    guid: d49419a8c47f90d4e93c142670f66627
-  - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/DarkForest.unity
-    guid: b82f8ebaedac88e46a7d582c1044d318
-  - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/BearsBreechField.unity
-    guid: 61227f87d5e90844ba17732916df1118
-  - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/SpruceForest.unity
-    guid: f7081043d9ea86047ae8f6158b0356b7
-  - enabled: 1
-    path: Assets/Project/Scenes/Scenes in build/SnowyMountains.unity
-    guid: 275dbba1ddcc87b41ab5da4279041a70
+    path: Assets/Project/Scenes/Scenes in build/Game.unity
+    guid: 7aa8da712c3d0cd40acc7c22d5da46be
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4ab2c24ec6de5964d8dd746a58df6944, type: 2}

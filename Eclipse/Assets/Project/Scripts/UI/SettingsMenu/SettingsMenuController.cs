@@ -13,7 +13,7 @@ public class SettingsMenuController : BaseGameObjectController
         base.Init();
 
         _view = view as SettingsMenuView;
-        _model = new(data as SettingsMenuScriptableObject, _view.SettingsCanvas);
+        _model = new(data as SettingsMenuScriptableObject, _view.Canvas);
 
         SetButtonsVolumes();
         InitButtons();

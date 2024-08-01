@@ -639,6 +639,7 @@ GameObject:
   - component: {fileID: 6997006620648353588}
   - component: {fileID: 1221106246666328992}
   - component: {fileID: 5928050090143620053}
+  - component: {fileID: 7116918068319906549}
   m_Layer: 5
   m_Name: CharacterIcon
   m_TagString: Untagged
@@ -703,6 +704,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7116918068319906549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691130331050559790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26760b41de64c641b26654eb46b96b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterIcon: {fileID: 0}
+  _hpSlider: {fileID: 0}
+  _mpSlider: {fileID: 0}
+  _characterName: {fileID: 0}
 --- !u!1 &821479664013921399
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +731,7 @@ GameObject:
   - component: {fileID: 6464996920813565098}
   - component: {fileID: 8328224322876609428}
   - component: {fileID: 987452585109484700}
+  - component: {fileID: 7653663190081188412}
   m_Layer: 5
   m_Name: LocationPanel
   m_TagString: Untagged
@@ -779,6 +797,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7653663190081188412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821479664013921399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7c8d7532ac52546a397487b8b8d524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _locationName: {fileID: 182064958857566575}
 --- !u!1 &1182450454024923307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,6 +2590,7 @@ GameObject:
   - component: {fileID: 7177095338558614308}
   - component: {fileID: 4470370067630970923}
   - component: {fileID: 6662698880025713438}
+  - component: {fileID: 7272165416069636125}
   m_Layer: 5
   m_Name: QuestsPanel
   m_TagString: Untagged
@@ -2679,6 +2711,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7272165416069636125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741905228269345518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9de71b44ac82624c9c9c999bb2fba5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects: []
 --- !u!1 &3749914442662519070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3124,7 @@ GameObject:
   - component: {fileID: 8530269109688207712}
   - component: {fileID: 7539411452623500467}
   - component: {fileID: 4770084703474704995}
+  - component: {fileID: 5855411165364743601}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -3177,6 +3223,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5855411165364743601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4049464075301062532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473e64703f408754e84311021aa4d5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects: []
 --- !u!1 &4205597565239091951
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,6 +4125,8 @@ GameObject:
   - component: {fileID: 5271921009441334416}
   - component: {fileID: 3257571885219429421}
   - component: {fileID: 5503932445811967901}
+  - component: {fileID: 5496148808028589709}
+  - component: {fileID: 171726781731968369}
   m_Layer: 5
   m_Name: CharacterPanel
   m_TagString: Untagged
@@ -4134,6 +4195,45 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5496148808028589709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373226612701250777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26760b41de64c641b26654eb46b96b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterIcon: {fileID: 5928050090143620053}
+  _hpSlider: {fileID: 586259048498545883}
+  _mpSlider: {fileID: 28648726216911419}
+  _characterName: {fileID: 8313815757735757745}
+--- !u!223 &171726781731968369
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373226612701250777}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &5623956678068780631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5463,37 +5563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverlayDefaults: {fileID: 11400000, guid: a6c1e0f8258ad584abb7af3e177c40a9, type: 2}
-  _canvas: {fileID: 8971580693422503383}
-  _characterIcon: {fileID: 0}
-  _characterName: {fileID: 0}
-  _hitPoints: {fileID: 0}
-  _manaPoints: {fileID: 0}
-  _firstAbilityButton: {fileID: 0}
-  _secondAbilityButton: {fileID: 0}
-  _thirdAbilityButton: {fileID: 0}
-  _fourthAbilityButton: {fileID: 0}
-  _firstPocket: {fileID: 0}
-  _secondPocket: {fileID: 0}
-  _thirdPocket: {fileID: 0}
-  _fourthPocket: {fileID: 0}
-  _fifthPocket: {fileID: 0}
-  _sixthPocket: {fileID: 0}
-  _seventhPocket: {fileID: 0}
-  _eightPocket: {fileID: 0}
-  _firstQuestPanel: {fileID: 0}
-  _secondQuestPanel: {fileID: 0}
-  _thirdQuestPanel: {fileID: 0}
-  _fourthQuestPanel: {fileID: 0}
-  _fifthQuestPanel: {fileID: 0}
-  _sixthQuestPanel: {fileID: 0}
-  _seventhQuestPanel: {fileID: 0}
-  _firstQuestInfo: {fileID: 0}
-  _secondQuestInfo: {fileID: 0}
-  _thirdQuestInfo: {fileID: 0}
-  _fourthQuestInfo: {fileID: 0}
-  _fifthQuestInfo: {fileID: 0}
-  _sixthQuestInfo: {fileID: 0}
-  _seventhQuestInfo: {fileID: 0}
 --- !u!1 &7723578972890439967
 GameObject:
   m_ObjectHideFlags: 0
@@ -6403,6 +6472,7 @@ GameObject:
   - component: {fileID: 2174618908152545879}
   - component: {fileID: 235302879917498780}
   - component: {fileID: 875242813591667226}
+  - component: {fileID: 6002446890436542202}
   m_Layer: 5
   m_Name: AbilitiesPanel
   m_TagString: Untagged
@@ -6471,6 +6541,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6002446890436542202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695790625282605164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb794f8ce388e1429e9ceb3a1b8b420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects: []
 --- !u!1 &8709564740997953026
 GameObject:
   m_ObjectHideFlags: 0

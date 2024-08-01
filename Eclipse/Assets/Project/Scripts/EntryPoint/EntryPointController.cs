@@ -1,3 +1,5 @@
+using UnityEngine.SceneManagement;
+
 public class EntryPointController : BaseGameObjectController
 {
     private new EntryPointModel _model;
@@ -9,26 +11,42 @@ public class EntryPointController : BaseGameObjectController
 
     public override void Init(IScriptableObject modelData, IView view)
     {
+        base.Init();
         _model = new EntryPointModel(modelData as EntryPointScriptableObject);
         _view = view as EntryPointView;
+        SceneManager.activeSceneChanged += InitializeMenuObjects;
 
-        base.Init();
-        InstantiateGame();
+        if (SceneManager.GetActiveScene().buildIndex == (int)GameScens.MainMenu) InitializeMenuObjects();
+    }
+
+    public override void Dispose()
+    {
+        SceneManager.activeSceneChanged -= InitializeMenuObjects;
+
+        base.Dispose();
+    }
+
+    private void InitializeMenuObjects()
+    {
         InstantiateMainMenu();
         InstantiateSettingsMenu();
         InstantiateKeyBindSettingsMenu();
         InitInputSystem();
     }
-
-    public override void Dispose()
+    private void InitializeMenuObjects(Scene loadedScene, Scene unloadedScene)
     {
-        base.Dispose();
+        if (loadedScene.buildIndex == (int)GameScens.MainMenu)
+        {
+            InstantiateMainMenu();
+            InstantiateSettingsMenu();
+            InstantiateKeyBindSettingsMenu();
+            InitInputSystem();
+        }
     }
 
-    private void InstantiateGame() => InstantiateChildObject(_model.GameView);
-    private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView);
-    private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView);
-    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView);
+    private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView.gameObject);
+    private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView.gameObject);
+    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView.gameObject);
     private void InitInputSystem()
     {
         ModelList.FindModel(out KeyboardKeyBindSettingsModel model);

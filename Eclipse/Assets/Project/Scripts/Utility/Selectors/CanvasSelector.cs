@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasSelector: IDisposable
 {
     private static Dictionary<GameState, Canvas> _canvasDictionary = new();
-    private static Canvas _activeCanvas;
+    private Canvas _activeCanvas;
 
     public static CanvasSelector Instance;
 
@@ -18,12 +19,9 @@ public class CanvasSelector: IDisposable
             InitCanvas(GameState.MainMenu);
             InitCanvas(GameState.SettingsMenu);
             InitCanvas(GameState.KeyBindMenu);
-            InitCanvas(GameState.Village);
-            InitCanvas(GameState.SacredForest);
-            InitCanvas(GameState.DarkForest);
-            InitCanvas(GameState.BearsBreechField);
-            InitCanvas(GameState.SpruceForest);
-            InitCanvas(GameState.SnowyMountains);
+            InitCanvas(GameState.Game);
+            InitCanvas(GameState.Pause);
+            InitCanvas(GameState.LoadingScreen);
             GameStateMashine.Instance.OnGameStateChanged += SwitchCanvas;
         }
     }
@@ -34,7 +32,7 @@ public class CanvasSelector: IDisposable
 
         _canvasDictionary = null;
 
-        GameStateMashine.Instance.OnGameStateChanged -= SwitchCanvas;
+        if (GameStateMashine.Instance != null) GameStateMashine.Instance.OnGameStateChanged -= SwitchCanvas;
     }
 
     private void InitCanvas(GameState gameState)
@@ -58,9 +56,13 @@ public class CanvasSelector: IDisposable
         if (_activeCanvas == null)
         {
             _activeCanvas = _canvasDictionary[GameState.MainMenu];
+            _activeCanvas.enabled = true;
+            return;
         }
         _activeCanvas.enabled = false;
         _activeCanvas = _canvasDictionary[state];
-        _activeCanvas.enabled = true;
+
+        if (_activeCanvas == _canvasDictionary[GameState.MainMenu] && SceneManager.GetActiveScene().buildIndex != (int)GameScens.MainMenu) _activeCanvas.enabled = false;
+        else _activeCanvas.enabled = true;
     }
 }
