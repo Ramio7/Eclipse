@@ -1,5 +1,3 @@
-using UnityEngine.SceneManagement;
-
 public class EntryPointController : BaseGameObjectController
 {
     private new EntryPointModel _model;
@@ -9,39 +7,19 @@ public class EntryPointController : BaseGameObjectController
         Init(modelData, view);
     }
 
-    public override void Init(IScriptableObject modelData, IView view)
+    protected override void Init(IScriptableObject modelData, IView view)
     {
-        base.Init();
         _model = new EntryPointModel(modelData as EntryPointScriptableObject);
         _view = view as EntryPointView;
-        SceneManager.activeSceneChanged += InitializeMenuObjects;
-
-        if (SceneManager.GetActiveScene().buildIndex == (int)GameScens.MainMenu) InitializeMenuObjects();
-    }
-
-    public override void Dispose()
-    {
-        SceneManager.activeSceneChanged -= InitializeMenuObjects;
-
-        base.Dispose();
-    }
-
-    private void InitializeMenuObjects()
-    {
         InstantiateMainMenu();
         InstantiateSettingsMenu();
         InstantiateKeyBindSettingsMenu();
         InitInputSystem();
     }
-    private void InitializeMenuObjects(Scene loadedScene, Scene unloadedScene)
+
+    public override void Dispose()
     {
-        if (loadedScene.buildIndex == (int)GameScens.MainMenu)
-        {
-            InstantiateMainMenu();
-            InstantiateSettingsMenu();
-            InstantiateKeyBindSettingsMenu();
-            InitInputSystem();
-        }
+        base.Dispose();
     }
 
     private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView.gameObject);

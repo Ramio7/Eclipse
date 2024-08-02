@@ -8,10 +8,8 @@ public class SettingsMenuController : BaseGameObjectController
         Init(settingsDefaults, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected override void Init(IScriptableObject data, IView view)
     {
-        base.Init();
-
         _view = view as SettingsMenuView;
         _model = new(data as SettingsMenuScriptableObject, _view.Canvas);
 

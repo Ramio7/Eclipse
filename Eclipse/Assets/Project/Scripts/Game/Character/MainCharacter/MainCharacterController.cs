@@ -1,8 +1,12 @@
 public class MainCharacterController : BaseGameObjectController
 {
-    public MainCharacterController(IScriptableObject scriptableObject, IView view) : base(scriptableObject, view)
+    public MainCharacterController(IScriptableObject scriptableObject, MainCharacterView view) : base(scriptableObject, view)
     {
-        base.Init();
+        Init(scriptableObject, view);
+    }
+
+    protected override void Init(IScriptableObject data, IView view)
+    {
     }
 
     public override void Dispose()

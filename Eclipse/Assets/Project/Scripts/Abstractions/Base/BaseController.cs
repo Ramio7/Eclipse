@@ -6,9 +6,10 @@ public abstract class BaseController : IController
 
     public BaseController()
     {
+        Init();
     }
 
-    public virtual void Init() => ControllerList.RegisterController(this);
+    protected virtual void Init() => ControllerList.RegisterController(this);
 
     public virtual void Dispose()
     {

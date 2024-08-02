@@ -8,10 +8,8 @@ public class GameOverlayController : BaseGameObjectController
         Init(data, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected override void Init(IScriptableObject data, IView view)
     {
-        base.Init();
-
         _view = view as GameOverlayView;
         _model = new(data as GameOverlayScriptableObject, _view.Canvas);
     }

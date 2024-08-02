@@ -7,7 +7,7 @@ public abstract class BaseGameObjectController : BaseController
         _view = view;
     }
 
-    public virtual void Init(IScriptableObject data, IView view)
+    protected virtual void Init(IScriptableObject data, IView view)
     {
         base.Init();
     }

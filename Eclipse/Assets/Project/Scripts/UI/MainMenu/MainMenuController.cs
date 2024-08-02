@@ -10,10 +10,8 @@ public class MainMenuController : BaseGameObjectController
         Init(modelData, view);
     }
 
-    public override void Init(IScriptableObject modelData, IView view)
+    protected override void Init(IScriptableObject modelData, IView view)
     {
-        base.Init();
-
         _view = view as MainMenuView;
         _model = new MainMenuModel(modelData as MainMenuScriptableObject, _view.Canvas);
 

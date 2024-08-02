@@ -13,10 +13,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         Init(defaults, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected override void Init(IScriptableObject data, IView view)
     {
-        base.Init();
-
         _view = view as KeyboardKeyBindSettingsView;
         _model = new(data as KeyboardKeyBindSettingsScriptableObject, _view.Canvas);
 

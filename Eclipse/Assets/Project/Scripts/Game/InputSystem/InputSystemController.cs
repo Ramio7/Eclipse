@@ -18,7 +18,7 @@ public class InputSystemController : BaseController
         Init();
     }
 
-    public async override void Init()
+    protected async override void Init()
     {
         base.Init();
         var tempTask = AwaitForCharacterInitiationAsync();
