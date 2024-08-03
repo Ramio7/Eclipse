@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Graphics/devochkaLib.spriteLib.meta
+guid: 2c09f5e1981cfd643b6284e2f1b81360
+========
 guid: d0dc9d010638f644f9f8da4150a65818
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Materials/2D/Custom 2D Lit.shadergraph.meta
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -7,4 +11,8 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+<<<<<<<< HEAD:Eclipse/Assets/Project/Graphics/devochkaLib.spriteLib.meta
+  script: {fileID: 11500000, guid: db2778f6d440c47ddacff25997d7c062, type: 3}
+========
+  script: {instanceID: 0}
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Materials/2D/Custom 2D Lit.shadergraph.meta

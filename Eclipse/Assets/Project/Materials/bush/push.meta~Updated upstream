@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Materials/bush/push.meta~Updated upstream
 guid: 8464c8d926cccf24785aca0553a9c341
+========
+guid: 38b2b640f4772fe43a82bf89b80e4933
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Graphics/SkillButtons.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

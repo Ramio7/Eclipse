@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:Eclipse/Assets/Project/Level objects/bush/kust_ashberry 2.prefab.meta~Stashed changes
 fileFormatVersion: 2
 guid: d79c7c79a590ab7428e5d4fe55c3ea46
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+========
+fileFormatVersion: 2
+guid: 9d2a2d58247953346b4eb7aff8e415fd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Prefabs/UI/SettingsMenuPrefab.prefab.meta

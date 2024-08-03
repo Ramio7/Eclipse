@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Scripts/Abstractions/UI/Base/BaseUIView.cs.meta
+guid: c58c7880b90a3264eafcd38547a322f9
+========
 guid: c1e842feeb68bc64aa6580a0da073f06
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Scripts/Abstractions/BaseCharacter.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

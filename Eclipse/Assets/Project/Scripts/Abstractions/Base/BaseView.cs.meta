@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Scripts/Abstractions/BaseStructOrientedModel.cs.meta
+guid: c1beb6ee3daf08c4b80d5b810ea0b1eb
+========
 guid: 6ae0f522d476ef947a3fb36460fbec6e
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Scripts/Abstractions/Base/BaseView.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

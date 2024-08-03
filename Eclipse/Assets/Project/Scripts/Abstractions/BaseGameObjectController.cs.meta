@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Scripts/Abstractions/UI/BaseMonoobjectsPanelView.cs.meta
+guid: a9aaa35566b48c64b9a045978390b89c
+========
 guid: dfc14ffdf4ba9a8408f95ba0789550f5
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Scripts/Abstractions/BaseGameObjectController.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

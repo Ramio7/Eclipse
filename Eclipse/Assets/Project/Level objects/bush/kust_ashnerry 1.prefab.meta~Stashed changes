@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:Eclipse/Assets/Project/Level objects/bush/kust_ashnerry 1.prefab.meta~Stashed changes
 fileFormatVersion: 2
 guid: d79a84e738c10834ca9c46240345df29
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+========
+fileFormatVersion: 2
+guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Prefabs/Characters/devocka.prefab.meta

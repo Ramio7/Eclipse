@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:Eclipse/Assets/Project/Level objects/bush/paporotnik 1 back.prefab.meta~Stashed changes
 fileFormatVersion: 2
 guid: 469b0de68f5be5c45990fa0480dd014d
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+========
+fileFormatVersion: 2
+guid: 3685863a6fcc2a6439c7ad98fe0f9871
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Prefabs/UI/KeyBindSettingsMenuPrefab.prefab.meta

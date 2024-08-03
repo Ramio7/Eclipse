@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Materials/Stone/Stone_3.mat.meta~Updated upstream
 guid: 7d72e5d43e6a09a41aac2cc295578303
+========
+guid: 5ee45ca2e58ebb242a8c53bd4235fe1a
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Materials/2D/Devochka.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

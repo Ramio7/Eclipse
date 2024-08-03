@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:Eclipse/Assets/Project/Level objects/bush/kust_ashnerry 3.prefab.meta~Stashed changes
 fileFormatVersion: 2
 guid: 4f99e3f4697cabc4d801053d31395996
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+========
+fileFormatVersion: 2
+guid: 06e06c7c2d6446a47a99cf376c28b5eb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Prefabs/UI/GameOverlayView.prefab.meta
