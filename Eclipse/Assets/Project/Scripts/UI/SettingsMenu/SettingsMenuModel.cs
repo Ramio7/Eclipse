@@ -4,39 +4,54 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class SettingsMenuModel : BaseModel, IUIModel
+public class SettingsMenuModel : BaseUIModel
 {
-    private Canvas _menuCanvas;
+    private GameState _gameState = GameState.SettingsMenu;
 
     private GameSettings _savedSettings = new();
     private GameSettings _tempSettings = new();
 
-    private Volume _graphicsVolume;
+    private VolumeProfile _graphicsVolume;
     private AudioMixer _mixer;    
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/settings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/SoundAndVideoSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
 
     public GameSettings GameSettings { get => _savedSettings; }
 
-    public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base()
+    public SettingsMenuModel(IScriptableObject defaultSettings, Canvas settingsMenuCanvas) : base(defaultSettings, settingsMenuCanvas)
     {
-        _menuCanvas = settingsMenuCanvas;
-        var defaults = defaultSettings as SettingsMenuScriptableObject;
+        Init(defaultSettings, settingsMenuCanvas);
+    }
+
+    protected override void Init(IScriptableObject modelData)
+    {
+        throw new System.Exception("Wrong Init method used");
+    }
+
+    protected override void Init(IScriptableObject modelData, Canvas canvas)
+    {
+        ModelList.RegisterModel(this);
+
+        CanvasSelector.AddCanvas(_gameState, canvas);
         GetGraphicsConponentAndAudioMixer();
+        var defaults = modelData as SettingsMenuScriptableObject;
         InitGameSettings(defaults);
     }
 
     public override void Dispose()
     {
+        CanvasSelector.RemoveCanvas(_gameState);
         DiscardSettings();
         SettingsIsSaved.Dispose();
         GameSettings.Dispose();
+        _tempSettings.Dispose();
 
         _mixer = null;
         _graphicsVolume = null;
         _settingsFilePath = null;
+        SettingsIsSaved = null;
     }
 
     private void GetGraphicsConponentAndAudioMixer()
@@ -53,12 +68,12 @@ public class SettingsMenuModel : BaseModel, IUIModel
                 defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
             _tempSettings.Set(defaults.MasterVolume, defaults.DefaultSoundVolume, defaults.DefaultMusicVolume, defaults.DefaultBrightnessVolume,
                 defaults.DefaultEffectVolume, defaults.DefaultVoiceVolume, defaults.DefaultContrastRatio, defaults.DefaultIsSubtitlesOn);
-            Debug.Log($"Settings file status is {CreateSettingsFile()}");
+            CreateSettingsFile();
             SaveSettings();
         }
         else
         {
-            Debug.Log($"Settings file is loaded: {LoadSettings()}");
+            LoadSettings();
         }
     }
 
@@ -93,7 +108,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
         _mixer.SetFloat("EffectVolume", Mathf.Log10(GameSettings.EffectVolume) * 20);
         _mixer.SetFloat("VoiceVolume", Mathf.Log10(GameSettings.VoiceVolume) * 20);
         _mixer.SetFloat("MasterVolume", Mathf.Log10(GameSettings.MasterVolume) * 20);
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj))
         {
             colorAdj.postExposure.Override(GameSettings.BrightnessVolume);
             colorAdj.contrast.Override(GameSettings.ContrastRatio);
@@ -120,7 +135,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeBrightnessVolume(float volume)
     {
         _tempSettings.BrightnessVolume = volume;
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj))
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj))
             colorAdj.postExposure.Override(volume);
         else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);
@@ -143,7 +158,7 @@ public class SettingsMenuModel : BaseModel, IUIModel
     public void ChangeContrastRatio(float volume)
     {
         _tempSettings.ContrastRatio = volume;
-        if (_graphicsVolume.sharedProfile.TryGet<ColorAdjustments>(out var colorAdj)) 
+        if (_graphicsVolume.TryGet<ColorAdjustments>(out var colorAdj)) 
             colorAdj.contrast.Override(volume);
         else Debug.LogWarning("No color adjustments component found");
         SettingsIsSaved.SetValue(false);
@@ -160,12 +175,6 @@ public class SettingsMenuModel : BaseModel, IUIModel
     {
         _tempSettings.IsSubtitlesOn = isOn;
         SettingsIsSaved.SetValue(false);
-    }
-
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        _menuCanvas.enabled = false;
-        canvasToActivate.enabled = true;
     }
 }
     

@@ -1,40 +1,25 @@
-public class GameController : BaseController
+public class GameController : BaseGameObjectController
 {
     private new GameModel _model;
     private new GameView _view;
 
-    public static GameController Instance;
-
-    public GameController(IView view, GameScriptableObject modelData) : base(view)
+    public GameController(GameScriptableObject modelData, GameView view) : base(modelData, view)
     {
-        Instance = this;
-
-        Init();
+        Init(modelData, view);
     }
 
-    public override void Init()
+    protected override void Init(IScriptableObject data, IView view)
     {
-        base.Init();
+        _view = view as GameView;
+        _model = new(data as GameScriptableObject);
 
-        Instance = this;
+        InstantiateChildObject(_model.OverlayView.gameObject, _view.gameObject);
     }
 
     public override void Dispose()
     {
         base.Dispose();
 
-        _model?.Dispose();
-        _model = null;
         _view = null;
-    }
-
-    public void StartGame()
-    {
-        _model.LoadGameScene();
-        _model.ChangeCanvas(_view.GameLoaderCanvas);
-    }
-
-    public void ContinueGame()
-    {
     }
 }

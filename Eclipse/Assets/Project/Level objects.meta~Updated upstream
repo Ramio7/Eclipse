@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Eclipse/Assets/Project/Level objects.meta~Updated upstream
 guid: a02b74dde84e577488199ad27da93a0f
+========
+guid: 38b2b640f4772fe43a82bf89b80e4933
+>>>>>>>> Ramio7_CadeDesing:Eclipse/Assets/Project/Graphics/SkillButtons.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

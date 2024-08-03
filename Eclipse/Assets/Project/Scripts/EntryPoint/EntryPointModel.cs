@@ -1,28 +1,27 @@
-using UnityEngine;
-
 public class EntryPointModel : BaseModel
 {
-    public GameObject MainMenuView { get; private set; }
-    public GameObject SettingsMenuView { get; private set; }
-    public GameObject GameView { get; private set; }
+    public MainMenuView MainMenuView { get; private set; }
+    public SettingsMenuView SettingsMenuView { get; private set; }
+    public KeyboardKeyBindSettingsView KeyBindSettingsMenuView { get; private set; }
 
-    public EntryPointModel(IScriptableObject modelData) : base()
+    public EntryPointModel(IScriptableObject modelData) : base(modelData)
     {
         Init(modelData);
     }
 
     protected override void Init(IScriptableObject modelData)
     {
+        base.Init(modelData);
         var tempData = modelData as EntryPointScriptableObject;
         MainMenuView = tempData.MainMenuPrefab;
         SettingsMenuView = tempData.SettingsMenuPrefab;
-        GameView = tempData.GamePrefab;
+        KeyBindSettingsMenuView = tempData.KeyBindSettingsMenuPrefab;
     }
 
     public override void Dispose()
     {
         MainMenuView = null;
         SettingsMenuView = null;
-        GameView = null;
+        KeyBindSettingsMenuView = null;
     }
 }

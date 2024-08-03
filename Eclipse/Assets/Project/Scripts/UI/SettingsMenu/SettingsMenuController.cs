@@ -1,19 +1,17 @@
-public class SettingsMenuController : BaseController
+public class SettingsMenuController : BaseGameObjectController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
 
-    public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
+    public SettingsMenuController(SettingsMenuScriptableObject settingsDefaults, SettingsMenuView view) : base(settingsDefaults, view)
     {
-        _view = view;
-        _model = new(settingsDefaults, _view.SettingsCanvas);
-
-        Init();
+        Init(settingsDefaults, view);
     }
 
-    public override void Init()
+    protected override void Init(IScriptableObject data, IView view)
     {
-        base.Init();
+        _view = view as SettingsMenuView;
+        _model = new(data as SettingsMenuScriptableObject, _view.Canvas);
 
         SetButtonsVolumes();
         InitButtons();
@@ -22,21 +20,16 @@ public class SettingsMenuController : BaseController
 
     public override void Dispose()
     {
-        base.Dispose();
-
         DeinitButtons();
         DeInitActions();
 
-        _model.Dispose();
-
+        base.Dispose();
         _view = null;
-        _model = null;
     }
 
 
     private void SetButtonsVolumes()
     {
-        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
 
         _view.BrightnessVolumeSlider.SetValueWithoutNotify(_model.GameSettings.BrightnessVolume);
         _view.ContrastRatioSlider.SetValueWithoutNotify(_model.GameSettings.ContrastRatio);
@@ -61,6 +54,8 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
+        _view.KeyBindSettingsButton.onClick.AddListener(ActivateKeyBindSettingsMenu);
         _view.BackToMainMenuButton.onClick.AddListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.AddListener(_model.SaveSettings);
     }
@@ -78,6 +73,8 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.RemoveListener(ActivateMainMenu);
+        _view.KeyBindSettingsButton.onClick.RemoveListener(ActivateKeyBindSettingsMenu);
         _view.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
     }
@@ -94,5 +91,6 @@ public class SettingsMenuController : BaseController
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved) => _view.SaveSettingsButton.interactable = !settingsIsSaved;
 
-    private void ActivateMainMenu() => _model.ChangeCanvas(MainMenuView.Instance.MainMenuCanvas);
+    private void ActivateMainMenu() => GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
+    private void ActivateKeyBindSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.KeyBindMenu);
 }

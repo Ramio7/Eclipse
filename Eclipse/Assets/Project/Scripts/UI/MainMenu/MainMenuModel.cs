@@ -1,24 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuModel : BaseModel, IUIModel
+public class MainMenuModel : BaseUIModel
 {
-    private Canvas _menuCanvas;
+    private GameState _gameState = GameState.MainMenu;
 
-    public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base()
+    public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base(data, menuCanvas)
     {
-        _menuCanvas = menuCanvas;
+        Init(data, menuCanvas);
+    }
+
+    protected override void Init(IScriptableObject modelData)
+    {
+        throw new System.Exception("Wrong Init method used");
+    }
+
+    protected override void Init(IScriptableObject modelData, Canvas canvas)
+    {
+        ModelList.RegisterModel(this);
+
+        CanvasSelector.AddCanvas(_gameState, canvas);
     }
 
     public override void Dispose()
     {
-        _menuCanvas = null;
-    }
-
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        _menuCanvas.enabled = false;
-        canvasToActivate.enabled = true;
+        CanvasSelector.RemoveCanvas(_gameState);
     }
 
     public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)

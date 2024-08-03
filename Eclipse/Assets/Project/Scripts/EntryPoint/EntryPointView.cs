@@ -3,29 +3,44 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
-public class EntryPointView : MonoBehaviour, IView
+public class EntryPointView : BaseView, IView
 {
     [SerializeField] private EntryPointScriptableObject _entryPointData;
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private Volume _volumeProfile;
+    [SerializeField] private VolumeProfile _volumeProfile;
+    [SerializeField] private MainCharacterView _mainScreenCharacter;
 
     private EntryPointController _controller;
+    private CanvasSelector _canvasSelector;
+    private GameStateMashine _gameStateMashine;
+    private AbilitiesAllocator _abilitiesAllocator;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
-    public Volume VolumeProfile { get => _volumeProfile; }
+    public VolumeProfile VolumeProfile { get => _volumeProfile; }
+    public MainCharacterView MainScreenCharacter { get => _mainScreenCharacter; }
 
     public static event Action OnUpdate;
     public static event Action OnFixedUpdate;
+    public static event Action OnGuiUpdate;
 
     public static EntryPointView Instance;
 
-    private void OnEnable()
+    private void Start()
     {
         if (Instance == null)
         {
             Instance = this;
+
             DontDestroyOnLoad(this);
-            _controller = new(this, _entryPointData);
+
+            _controller = new(_entryPointData, this);
+
+            _gameStateMashine = new();
+            _canvasSelector = new();
+            _abilitiesAllocator = new();
+
+            _canvasSelector.SwitchCanvas(GameState.MainMenu);
+            AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
         }
     }
 
@@ -48,14 +63,19 @@ public class EntryPointView : MonoBehaviour, IView
         OnFixedUpdate?.Invoke();
     }
 
-    private void OnDestroy()
+    private void OnGUI()
     {
-        DisposeController();
+        OnGuiUpdate?.Invoke();
     }
 
-    private void DisposeController()
+    private void OnDestroy()
     {
+        _gameStateMashine.Dispose();
+        _canvasSelector.Dispose();
         _controller.Dispose();
+
+        _gameStateMashine = null;
+        _canvasSelector = null;
         _controller = null;
     }
 }
