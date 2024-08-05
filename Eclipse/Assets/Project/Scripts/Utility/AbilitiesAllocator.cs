@@ -27,7 +27,6 @@ public class AbilitiesAllocator : IDisposable
         if (!CharactersAbilitiesDictionary.ContainsKey(character))
         {
             var abilitiesList = character.Abilities;
-            for (int i = 0; i < character.Abilities.Count; i++) character.Abilities[i].Init(character);
             CharactersAbilitiesDictionary.Add(character, abilitiesList);
         }
     }

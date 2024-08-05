@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CanvasSelector: IDisposable
 {
-    private static Dictionary<GameState, Canvas> _canvasDictionary = new();
+    private static Dictionary<GameState, IUIView> _canvasDictionary = new();
     private Canvas _activeCanvas;
 
     public static CanvasSelector Instance;
@@ -41,28 +40,15 @@ public class CanvasSelector: IDisposable
         _canvasDictionary.Add(gameState, null);
     }
 
-    public static void AddCanvas(GameState state, Canvas canvas)
+    public static void AddCanvas(GameState state, IUIView view)
     {
-        _canvasDictionary[state] = canvas;
-    }
-
-    public static void RemoveCanvas(GameState state)
-    {
-        _canvasDictionary.Remove(state);
+        _canvasDictionary[state] = view;
     }
 
     public void SwitchCanvas(GameState state)
     {
-        if (_activeCanvas == null)
-        {
-            _activeCanvas = _canvasDictionary[GameState.MainMenu];
-            _activeCanvas.enabled = true;
-            return;
-        }
-        _activeCanvas.enabled = false;
-        _activeCanvas = _canvasDictionary[state];
-
-        if (_activeCanvas == _canvasDictionary[GameState.MainMenu] && SceneManager.GetActiveScene().buildIndex != (int)GameScens.MainMenu) _activeCanvas.enabled = false;
-        else _activeCanvas.enabled = true;
+        if (_activeCanvas != null) _activeCanvas.enabled = false;
+        _activeCanvas = _canvasDictionary[state].Canvas;
+        _activeCanvas.enabled = true;
     }
 }
