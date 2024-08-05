@@ -8,6 +8,12 @@ public class GameOverlayView : BaseUIView
 
     private void Awake()
     {
+        CanvasSelector.AddCanvas(GameState.Game, this);
         _controller = new(_gameOverlayDefaults, this);
+        CanvasSelector.Instance.SwitchCanvas(GameState.Game);
+    }
+
+    private void OnDestroy()
+    {
     }
 }

@@ -51,14 +51,14 @@ public class SettingsMenuView : BaseUIView, IView
             DontDestroyOnLoad(this);
 
             _controller = new(_settingsDefaults, this);
+
+            CanvasSelector.AddCanvas(GameState.SettingsMenu, this);
         }
     }
 
     private void OnDestroy()
     {
         Instance = null;
-
-        _controller.Dispose();
 
         _controller = null;
     }

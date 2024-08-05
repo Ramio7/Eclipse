@@ -5,7 +5,7 @@ public class MainCharacterController : BaseGameObjectController
         Init(scriptableObject, view);
     }
 
-    protected override void Init(IScriptableObject data, IView view)
+    public override void Init(IScriptableObject data, IView view)
     {
     }
 

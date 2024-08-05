@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsView : BaseUIView, IUIView
+public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindPanel> //отрефакторить на новый родительский класс
 {
     [SerializeField] private KeyboardKeyBindSettingsScriptableObject _keyBindSettingsDefaults;
 
@@ -54,6 +54,8 @@ public class KeyboardKeyBindSettingsView : BaseUIView, IUIView
                 ThirdAbilityButton, FourthAbilityButton,UseTalkButton, SomeAbilityButton };
 
             _controller = new(_keyBindSettingsDefaults, this);
+
+            CanvasSelector.AddCanvas(GameState.KeyBindMenu, this);
         }
     }
 
@@ -61,7 +63,6 @@ public class KeyboardKeyBindSettingsView : BaseUIView, IUIView
     {
         Instance = null;
 
-        _controller.Dispose();
         _controller = null;
     }
 }

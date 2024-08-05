@@ -8,8 +8,8 @@ public class BaseMonoobjectsPanelView<T> : BaseUIView, IMonoobjectsPanelView<T>
 
     private void Awake()
     {
-        var tiesInPanel = GetComponentsInChildren<T>();
-        for (int i = 0; i < tiesInPanel.Length; i++) _objects.Add(tiesInPanel[i]);
+        var objectsInPanel = GetComponentsInChildren<T>();
+        for (int i = 0; i < objectsInPanel.Length; i++) _objects.Add(objectsInPanel[i]);
     }
 
     private void OnDestroy() => _objects.Clear();

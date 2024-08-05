@@ -6,7 +6,12 @@ public abstract class BaseAbility : IAbility
 
     public Action Method { get; private set; }
 
-    public virtual void InternalMethod() { }
+    protected virtual void InternalMethod() { }
+
+    public BaseAbility(ICharacter character)
+    {
+        Init(_character);
+    }
 
     public void Init(ICharacter character)
     {

@@ -10,10 +10,10 @@ public class MainMenuController : BaseGameObjectController
         Init(modelData, view);
     }
 
-    protected override void Init(IScriptableObject modelData, IView view)
+    public override void Init(IScriptableObject modelData, IView view)
     {
         _view = view as MainMenuView;
-        _model = new MainMenuModel(modelData as MainMenuScriptableObject, _view.Canvas);
+        _model = new MainMenuModel(modelData as MainMenuScriptableObject);
 
         SubscribeButtons();
         SetButtonInGame();
@@ -29,11 +29,9 @@ public class MainMenuController : BaseGameObjectController
 
     private void SubscribeButtons()
     {
-        _view.ContinueGameButton.onClick.AddListener(ToGame);
-
         _view.StartGameButton.onClick.AddListener(SceneSelector.SetGameScene);
 
-        _view.StartGameButton.onClick.AddListener(ToGame);
+        _view.StartGameButton.onClick.AddListener(ActivateLoadingScreen);
 
         _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
 
@@ -46,18 +44,16 @@ public class MainMenuController : BaseGameObjectController
 
     private void UnsubscribeButtons()
     {
-        _view.ContinueGameButton.onClick.RemoveListener(ToGame);
+        _view?.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
 
-        _view.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
+        _view?.StartGameButton.onClick.RemoveListener(ActivateLoadingScreen);
 
-        _view.StartGameButton.onClick.RemoveListener(ToGame);
-
-        _view.SettingsButton.onClick.RemoveListener(ActivateSettingsMenu);
+        _view?.SettingsButton.onClick.RemoveListener(ActivateSettingsMenu);
 
 #if UNITY_EDITOR
-        _view.ExitGameButton.onClick.RemoveListener(Debug.Break);
+        _view?.ExitGameButton.onClick.RemoveListener(Debug.Break);
 #else
-        _view.ExitGameButton.onClick.RemoveListener(Application.Quit);
+        _view?.ExitGameButton.onClick.RemoveListener(Application.Quit);
 #endif
     }
 
@@ -70,5 +66,5 @@ public class MainMenuController : BaseGameObjectController
     private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
 
     private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
-    private void ToGame() => GameStateMashine.Instance.ChangeGameState(GameState.Game);
+    private void ActivateLoadingScreen() => GameStateMashine.Instance.ChangeGameState(GameState.LoadingScreen);
 }

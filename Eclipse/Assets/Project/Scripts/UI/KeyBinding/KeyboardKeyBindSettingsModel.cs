@@ -3,10 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsModel : BaseUIModel
+public class KeyboardKeyBindSettingsModel : BaseModel
 {
-    private GameState _gameState = GameState.KeyBindMenu;
-
     private KeyboardKeyBindSettings _savedSettings = new();
     private KeyboardKeyBindSettings _tempSettings = new();
 
@@ -19,28 +17,19 @@ public class KeyboardKeyBindSettingsModel : BaseUIModel
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
     public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
-    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings, Canvas keyBindSettingsMenuCanvas) : base(defaultSettings, keyBindSettingsMenuCanvas)
+    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings) : base()
     {
-        Init(defaultSettings, keyBindSettingsMenuCanvas);
+        Init(defaultSettings);
     }
 
-    protected override void Init(IScriptableObject modelData)
+    protected void Init(IScriptableObject modelData)
     {
-        throw new System.Exception("Wrong Init method used");
-    }
-
-    protected override void Init(IScriptableObject modelData, Canvas canvas)
-    {
-        ModelList.RegisterModel(this);
-
-        CanvasSelector.AddCanvas(_gameState, canvas);
         var defaults = modelData as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);
     }
 
     public override void Dispose()
     {
-        CanvasSelector.RemoveCanvas(_gameState);
         DiscardSettings();
         SettingsIsSaved.Dispose();
         KeyBindSettings.Dispose();

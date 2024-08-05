@@ -1,40 +1,54 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class InputSystemController : BaseController
+public class InputSystemController : BaseStructOrientedController
 {
-    private new InputSystemModel _model;
-
     private ReactiveProperty<ICharacter> _character = new(EntryPointView.Instance.MainScreenCharacter);
 
     private KeyboardKeyBindSettings _keyBindSettings = new();
 
-    public KeyboardKeyBindSettings KeyBindSettings { get => _keyBindSettings; set => _keyBindSettings = value; }
     public ICharacter Character { get => _character.GetValue(); set => _character.SetValue(value); }
 
-    public InputSystemController(KeyboardKeyBindSettings keyBindSettings) : base()
+    public InputSystemController(KeyboardKeyBindSettings keyBindSettings) : base(keyBindSettings)
     {
-        _keyBindSettings.Set(keyBindSettings);
-        Init();
+        base.Init(keyBindSettings);
     }
 
-    protected async override void Init()
+    public override void Init(IStruct @struct)
     {
         base.Init();
+        _keyBindSettings.Set((KeyboardKeyBindSettings)@struct);
+        _model = new InputSystemModel(@struct);
+        StartInputTracking();
+        InitCharacter();
+    }
+    private async void InitCharacter()
+    {
         var tempTask = AwaitForCharacterInitiationAsync();
         await Task.Run(() => tempTask);
-        _model = new(null, _keyBindSettings);
-        _character.OnValueChanged.AddListener(_model.SwitchCharacter);
-        StartInputTracking();
+        var model = _model as InputSystemModel;
+        _character.OnValueChanged.AddListener(model.SwitchCharacter);
     }
 
     public override void Dispose()
     {
         StopInputTracking();
-        _character.OnValueChanged.RemoveListener(_model.SwitchCharacter);
+
+        if (_model != null)
+        {
+            var model = _model as InputSystemModel;
+            _character.OnValueChanged.RemoveListener(model.SwitchCharacter);
+        }
 
         base.Dispose();
         _keyBindSettings.Dispose();
+    }
+
+    private Task AwaitForCharacterInitiationAsync()
+    {
+        while (AbilitiesAllocator.Instance == null) return Task.Delay(100);
+        while (AbilitiesAllocator.CharactersAbilitiesDictionary.Count == 0) return Task.Delay(100);
+        return Task.CompletedTask;
     }
 
     private void StartInputTracking()
@@ -51,26 +65,20 @@ public class InputSystemController : BaseController
 
     private void TrackUserAbilitiesInput()
     {
-        if (GameStateMashine.Current == GameState.KeyBindMenu || GameStateMashine.Current == GameState.MainMenu || GameStateMashine.Current == GameState.SettingsMenu) return;
+        if (GameStateMashine.Current != GameState.Game) return;
+        var model = _model as InputSystemModel;
         foreach (var key in _keyBindSettings.Keys.Values)
         {
-            if (Input.GetKeyUp(key)) _model.KeysMethodsPairs[key].Method.Invoke();
+            if (Input.GetKeyUp(key)) model.KeysMethodsPairs[key].Method.Invoke();
         }
     }
 
     private void TrackUserBaseInput()
     {
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            var rigidbody = _character.GetValue().Rigidbody;
-            rigidbody.AddForce(new(Input.GetAxis("Horizontal"), 0));
-            rigidbody.velocity = new(0, rigidbody.velocity.y);
-        }
-            
-        if (Input.GetKeyUp(KeyCode.Escape) && (GameStateMashine.Current != GameState.SettingsMenu 
-            || GameStateMashine.Current != GameState.KeyBindMenu 
-            || GameStateMashine.Current != GameState.MainMenu)) 
-            GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+        TrackHorizontalAxisInput();
+
+        if (Input.GetKeyUp(KeyCode.Escape) && (GameStateMashine.Current != GameState.MainMenu))
+            GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
         else if (Input.GetKeyUp(KeyCode.Escape) && GameStateMashine.Current == GameState.MainMenu)
 
 #if UNITY_EDITOR
@@ -89,10 +97,13 @@ public class InputSystemController : BaseController
 
     }
 
-    private Task AwaitForCharacterInitiationAsync()
+    private void TrackHorizontalAxisInput()
     {
-        while (AbilitiesAllocator.Instance == null) return Task.Delay(100);
-        while (AbilitiesAllocator.CharactersAbilitiesDictionary.Count == 0) return Task.Delay(100);
-        return Task.CompletedTask;
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            var rigidbody = _character.GetValue().Rigidbody;
+            rigidbody.AddForce(new(Input.GetAxis("Horizontal"), 0));
+            rigidbody.velocity = new(0, rigidbody.velocity.y);
+        }
     }
 }

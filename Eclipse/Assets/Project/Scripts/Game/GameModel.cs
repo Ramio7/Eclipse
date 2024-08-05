@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameModel : BaseModel
+public class GameModel : BaseScriptableObjectOrientedModel
 {
     private GameObject _girlPrefab;
     private GameOverlayView _overlayView;
@@ -13,7 +13,7 @@ public class GameModel : BaseModel
         Init(gameData);
     }
 
-    protected override void Init(IScriptableObject modelData)
+    public override void Init(IScriptableObject modelData)
     {
         base.Init(modelData);
         var tempGameData = modelData as GameScriptableObject;
@@ -23,6 +23,6 @@ public class GameModel : BaseModel
 
     public override void Dispose()
     {
-        
+        base.Dispose();
     }
 }

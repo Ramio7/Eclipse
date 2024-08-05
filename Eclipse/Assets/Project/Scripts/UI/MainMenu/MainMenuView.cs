@@ -33,6 +33,8 @@ public class MainMenuView : BaseUIView, IView
             DontDestroyOnLoad(this);
 
             _controller = new(_mainMenuData, this);
+
+            CanvasSelector.AddCanvas(GameState.MainMenu, this);
         }
     }
 

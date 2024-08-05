@@ -1,19 +1,12 @@
-using UnityEngine;
-
-public class GameOverlayModel : BaseUIModel
+public class GameOverlayModel : BaseScriptableObjectOrientedModel
 {
-    public GameOverlayModel(IScriptableObject gameData, Canvas canvas) : base(gameData, canvas)
+    public GameOverlayModel(IScriptableObject gameData) : base(gameData)
     {
-        Init(gameData, canvas);
+        
     }
 
-    protected override void Init(IScriptableObject modelData, Canvas canvas)
+    public override void Init(IScriptableObject modelData)
     {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void Init(IScriptableObject modelData)
-    {
-        throw new System.NotImplementedException();
+        
     }
 }

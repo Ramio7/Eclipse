@@ -8,10 +8,10 @@ public class SettingsMenuController : BaseGameObjectController
         Init(settingsDefaults, view);
     }
 
-    protected override void Init(IScriptableObject data, IView view)
+    public override void Init(IScriptableObject data, IView view)
     {
         _view = view as SettingsMenuView;
-        _model = new(data as SettingsMenuScriptableObject, _view.Canvas);
+        _model = new(data as SettingsMenuScriptableObject);
 
         SetButtonsVolumes();
         InitButtons();
@@ -62,21 +62,21 @@ public class SettingsMenuController : BaseGameObjectController
 
     private void DeinitButtons()
     {
-        _model.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
+        _model?.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
 
-        _view.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
-        _view.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
-        _view.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
-        _view.MasterVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterVolume);
-        _view.MusicVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
-        _view.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
-        _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
-        _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
+        _view?.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
+        _view?.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
+        _view?.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
+        _view?.MasterVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterVolume);
+        _view?.MusicVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
+        _view?.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
+        _view?.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
+        _view?.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
 
-        _view.BackToMainMenuButton.onClick.RemoveListener(ActivateMainMenu);
-        _view.KeyBindSettingsButton.onClick.RemoveListener(ActivateKeyBindSettingsMenu);
-        _view.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
-        _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(ActivateMainMenu);
+        _view?.KeyBindSettingsButton.onClick.RemoveListener(ActivateKeyBindSettingsMenu);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
+        _view?.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
     }
 
     private void InitActions()

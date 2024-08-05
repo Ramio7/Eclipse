@@ -1,6 +1,10 @@
 public class CrouchAbility : BaseAbility
 {
-    public override void InternalMethod()
+    public CrouchAbility(ICharacter character) : base(character)
+    {
+    }
+
+    protected override void InternalMethod()
     {
         _character.State.SetCrouching(true);
     }

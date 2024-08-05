@@ -5,8 +5,8 @@ public class MainCharacterView : BaseCharacter, IMortalCharacter
 
     private void Awake()
     {
-        JumpAbility jumpAbility = new();
-        CrouchAbility crouchAbility = new();
+        JumpAbility jumpAbility = new(this);
+        CrouchAbility crouchAbility = new(this);
 
         _abilities.Add(jumpAbility);
         _abilities.Add(crouchAbility);

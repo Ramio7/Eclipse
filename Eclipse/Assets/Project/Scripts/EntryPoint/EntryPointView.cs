@@ -33,29 +33,21 @@ public class EntryPointView : BaseView, IView
 
             DontDestroyOnLoad(this);
 
+            _abilitiesAllocator = new();
+            AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
+
             _controller = new(_entryPointData, this);
 
             _gameStateMashine = new();
             _canvasSelector = new();
-            _abilitiesAllocator = new();
 
             _canvasSelector.SwitchCanvas(GameState.MainMenu);
-            AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
         }
     }
 
     private void Update()
     {
         OnUpdate?.Invoke();
-
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-#if UNITY_EDITOR
-            Debug.Break();
-#else
-            Application.Quit();
-#endif
-        }
     }
 
     private void FixedUpdate() 
@@ -72,10 +64,12 @@ public class EntryPointView : BaseView, IView
     {
         _gameStateMashine.Dispose();
         _canvasSelector.Dispose();
-        _controller.Dispose();
 
         _gameStateMashine = null;
         _canvasSelector = null;
         _controller = null;
+
+        ControllerList.DisposeAllControllers();
+        ModelList.DisposeAllModels();
     }
 }

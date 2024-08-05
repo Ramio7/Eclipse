@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LoadingScreenView : MonoBehaviour
+public class LoadingScreenView : BaseUIView
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        DontDestroyOnLoad(this);
+        CanvasSelector.AddCanvas(GameState.LoadingScreen, this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
     }
 }

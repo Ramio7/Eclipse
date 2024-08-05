@@ -13,10 +13,10 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         Init(defaults, view);
     }
 
-    protected override void Init(IScriptableObject data, IView view)
+    public override void Init(IScriptableObject data, IView view)
     {
         _view = view as KeyboardKeyBindSettingsView;
-        _model = new(data as KeyboardKeyBindSettingsScriptableObject, _view.Canvas);
+        _model = new(data as KeyboardKeyBindSettingsScriptableObject);
 
         SubscribeButtons();
         ResetButtonNames();
@@ -47,17 +47,17 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void UnsubscribeButtons()
     {
-        foreach (var button in _view.AbilitiesButtons)
+        foreach (var button in _view?.AbilitiesButtons)
         {
-            button.onClick.RemoveListener(InvokeClickedButton);
+            button?.onClick?.RemoveListener(InvokeClickedButton);
         }
 
-        _view.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
-        _view.BackToMainMenuButton.onClick.RemoveListener(_model.SaveSettings);
-        _view.BackToMainMenuButton.onClick.RemoveListener(UpdateKeyBindings);
-        _view.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
-        _view.BackWithoutSavingButton.onClick.RemoveListener(ResetButtonNames);
-        _view.BackWithoutSavingButton.onClick.RemoveListener(_model.DiscardSettings);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(_model.SaveSettings);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(UpdateKeyBindings);
+        _view?.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
+        _view?.BackWithoutSavingButton.onClick.RemoveListener(ResetButtonNames);
+        _view?.BackWithoutSavingButton.onClick.RemoveListener(_model.DiscardSettings);
     }
 
     private void InvokeClickedButton()

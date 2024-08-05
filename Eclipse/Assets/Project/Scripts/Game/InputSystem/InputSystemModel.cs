@@ -8,43 +8,40 @@ public class InputSystemModel : BaseStructOrientedModel
 
     public Dictionary<KeyCode, IAbility> KeysMethodsPairs { get => _keysMethodsPairs; }
 
-    public InputSystemModel(IScriptableObject modelData, IStruct keyboardKeyBindSettings) : base(modelData, keyboardKeyBindSettings)
+    public InputSystemModel(IStruct keyboardKeyBindSettings) : base(keyboardKeyBindSettings)
     {
-        Init(modelData, keyboardKeyBindSettings);
+        Init(keyboardKeyBindSettings);
     }
 
-    protected override void Init(IScriptableObject modelData, IStruct @struct)
+    public override void Init(IStruct @struct)
     {
-        base.Init(modelData);
         _character = EntryPointView.Instance.MainScreenCharacter;
         BindKeysAndAbilities((KeyboardKeyBindSettings)@struct);
     }
 
     public override void Dispose()
     {
+        base.Dispose();
         _character = null;
 
-        _keysMethodsPairs.Clear();
+        _keysMethodsPairs?.Clear();
         _keysMethodsPairs = null;
     }
 
     private void BindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
     {
-        var fields = keyBindSettings.GetType().GetFields();
-        var abilitiesArrayCount = AbilitiesAllocator.CharactersAbilitiesDictionary[_character].Count;
+        var abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
         var keyKodesArrayCount = keyBindSettings.Keys.Count;
 
-        for (int i = 0; i < keyKodesArrayCount; i++)
+        for (int i = 0; i < abilities.Count; i++)
         {
-            var keyName = fields[i].Name;
-            var abilityName = keyName.Replace("Key", "Ability");
-            
-            for (int j = 0; j < abilitiesArrayCount; j++)
+            var ability = abilities[i];
+
+            for (int j = 0; j < keyBindSettings.Keys.Count; j++)
             {
-                var ability = AbilitiesAllocator.CharactersAbilitiesDictionary[_character][j];
-                if (!_keysMethodsPairs.ContainsKey(keyBindSettings.Keys[keyName]) && abilityName.Equals(ability.ToString()))
-                    _keysMethodsPairs.Add(keyBindSettings.Keys[keyName], AbilitiesAllocator.CharactersAbilitiesDictionary[_character][j]);
-                if (j == AbilitiesAllocator.CharactersAbilitiesDictionary[_character].Count) return;
+                var abilityName = ability.GetType().Name;
+                var keyName = abilityName.Replace("Ability", "Key");
+                //дописать внесение способности в лист
             }
         }
     }

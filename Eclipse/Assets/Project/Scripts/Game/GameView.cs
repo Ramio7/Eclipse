@@ -22,7 +22,7 @@ public class GameView : BaseView
 
     public void OnDestroy()
     {
-        _controller.Dispose();
+        _controller?.Dispose();
 
         _controller = null;
     }

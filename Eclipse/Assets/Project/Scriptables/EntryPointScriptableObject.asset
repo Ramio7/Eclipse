@@ -15,3 +15,4 @@ MonoBehaviour:
   _mainMenuPrefab: {fileID: 362570095484229793, guid: d67b9158898272b4aa13c49f3ff55ff7, type: 3}
   _settingsMenuPrefab: {fileID: 3672510095089099167, guid: 9d2a2d58247953346b4eb7aff8e415fd, type: 3}
   _keyBindSettingsMenuPrefab: {fileID: 5428961170233336627, guid: 3685863a6fcc2a6439c7ad98fe0f9871, type: 3}
+  _loadingScreenPrefab: {fileID: 5742780270681458117, guid: 3f85915a436eca54abb97f1372d31f86, type: 3}

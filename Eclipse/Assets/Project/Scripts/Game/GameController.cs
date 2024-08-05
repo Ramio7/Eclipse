@@ -8,7 +8,7 @@ public class GameController : BaseGameObjectController
         Init(modelData, view);
     }
 
-    protected override void Init(IScriptableObject data, IView view)
+    public override void Init(IScriptableObject data, IView view)
     {
         _view = view as GameView;
         _model = new(data as GameScriptableObject);
