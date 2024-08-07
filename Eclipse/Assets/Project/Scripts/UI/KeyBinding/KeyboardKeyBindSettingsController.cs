@@ -39,7 +39,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
         _view.BackToMainMenuButton.onClick.AddListener(ActivateSettingsMenu);
         _view.BackToMainMenuButton.onClick.AddListener(_model.SaveSettings);
-        _view.BackToMainMenuButton.onClick.AddListener(UpdateKeyBindings);
+        //_view.BackToMainMenuButton.onClick.AddListener(UpdateKeyBindings);
         _view.BackWithoutSavingButton.onClick.AddListener(ActivateSettingsMenu);
         _view.BackWithoutSavingButton.onClick.AddListener(ResetButtonNames);
         _view.BackWithoutSavingButton.onClick.AddListener(_model.DiscardSettings);
@@ -54,7 +54,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
         _view?.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
         _view?.BackToMainMenuButton.onClick.RemoveListener(_model.SaveSettings);
-        _view?.BackToMainMenuButton.onClick.RemoveListener(UpdateKeyBindings);
+        //_view?.BackToMainMenuButton.onClick.RemoveListener(UpdateKeyBindings);
         _view?.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
         _view?.BackWithoutSavingButton.onClick.RemoveListener(ResetButtonNames);
         _view?.BackWithoutSavingButton.onClick.RemoveListener(_model.DiscardSettings);
@@ -114,15 +114,15 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         }
     }
 
-    private void UpdateKeyBindings()
+    /*private void UpdateKeyBindings()
     {
-        ModelList.FindModel(out InputSystemModel model);
+        ModelList.FindModel(out BaseInputSystemModel model);
         model.RebindKeysAndAbilities(_model.KeyBindSettings);
     }
 
     public void SetCharacter(ICharacter character)
     {
-        ControllerList.FindController(out InputSystemController controller);
+        ControllerList.FindController(out BaseInputSystemController controller);
         controller.Character = character;
-    }
+    }*/
 }

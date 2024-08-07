@@ -14,6 +14,7 @@ public class EntryPointView : BaseView, IView
     private CanvasSelector _canvasSelector;
     private GameStateMashine _gameStateMashine;
     private AbilitiesAllocator _abilitiesAllocator;
+    private BaseInputSystemController _inputSystemController;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public VolumeProfile VolumeProfile { get => _volumeProfile; }
@@ -37,6 +38,7 @@ public class EntryPointView : BaseView, IView
             AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
 
             _controller = new(_entryPointData, this);
+            _inputSystemController = new();
 
             _gameStateMashine = new();
             _canvasSelector = new();
@@ -64,10 +66,12 @@ public class EntryPointView : BaseView, IView
     {
         _gameStateMashine.Dispose();
         _canvasSelector.Dispose();
+        _inputSystemController.Dispose();
 
         _gameStateMashine = null;
         _canvasSelector = null;
         _controller = null;
+        _inputSystemController = null;
 
         ControllerList.DisposeAllControllers();
         ModelList.DisposeAllModels();

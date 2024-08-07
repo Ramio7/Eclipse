@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpAbility : BaseAbility
+public class JumpAbility : BaseAbilityView
 {
     private float _jumpForce = 20;
 

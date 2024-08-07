@@ -1,34 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputSystemModel : BaseStructOrientedModel
+public class BaseInputSystemModel : BaseModel
 {
-    private ICharacter _character;
-    private Dictionary<KeyCode, IAbility> _keysMethodsPairs = new();
-
-    public Dictionary<KeyCode, IAbility> KeysMethodsPairs { get => _keysMethodsPairs; }
-
-    public InputSystemModel(IStruct keyboardKeyBindSettings) : base(keyboardKeyBindSettings)
+    public BaseInputSystemModel() : base()
     {
-        Init(keyboardKeyBindSettings);
+        Init();
     }
 
-    public override void Init(IStruct @struct)
+    protected override void Init()
     {
-        _character = EntryPointView.Instance.MainScreenCharacter;
-        BindKeysAndAbilities((KeyboardKeyBindSettings)@struct);
+        base.Init();
     }
 
     public override void Dispose()
     {
         base.Dispose();
-        _character = null;
-
-        _keysMethodsPairs?.Clear();
-        _keysMethodsPairs = null;
     }
 
-    private void BindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
+    /*private void BindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
     {
         var abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
         var keyKodesArrayCount = keyBindSettings.Keys.Count;
@@ -57,5 +47,5 @@ public class InputSystemModel : BaseStructOrientedModel
         }
     }
 
-    public void SwitchCharacter(ICharacter character) => _character = character;
+    public void SwitchCharacter(ICharacter character) => _character = character;*/
 }

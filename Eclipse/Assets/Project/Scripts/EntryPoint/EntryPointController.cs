@@ -15,7 +15,6 @@ public class EntryPointController : BaseGameObjectController
         InstantiateSettingsMenu();
         InstantiateKeyBindSettingsMenu();
         InstantiateLoadingScreen();
-        InitInputSystem();
     }
 
     public override void Dispose()
@@ -27,9 +26,4 @@ public class EntryPointController : BaseGameObjectController
     private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView.gameObject);
     private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView.gameObject);
     private void InstantiateLoadingScreen() => InstantiateChildObject(_model.LoadingScreenView.gameObject);
-    private void InitInputSystem()
-    {
-        ModelList.FindModel(out KeyboardKeyBindSettingsModel model);
-        new InputSystemController(model.KeyBindSettings);
-    }
 }

@@ -1,5 +1,3 @@
-using UnityEngine.UI;
-
 public class MainMenuModel : BaseScriptableObjectOrientedModel
 {
     public MainMenuModel(MainMenuScriptableObject data) : base(data)
@@ -17,9 +15,7 @@ public class MainMenuModel : BaseScriptableObjectOrientedModel
         base.Dispose();
     }
 
-    public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)
-    {
-        buttonToActivate.gameObject.SetActive(true);
-        buttonToDisable.gameObject.SetActive(false);
-    }
+    public void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    public void ActivateLoadingScreen() => GameStateMashine.Instance.ChangeGameState(GameState.LoadingScreen);
+    public void ReturnToGame() => GameStateMashine.Instance.ChangeGameState(GameState.Game);
 }

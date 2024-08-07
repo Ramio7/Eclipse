@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuView : BaseUIView, IView
@@ -35,8 +36,10 @@ public class MainMenuView : BaseUIView, IView
             _controller = new(_mainMenuData, this);
 
             CanvasSelector.AddCanvas(GameState.MainMenu, this);
+
+            SceneManager.sceneLoaded += SetButtonInGame;
         }
-    }
+    }    
 
     private void OnDestroy()
     {
@@ -45,5 +48,19 @@ public class MainMenuView : BaseUIView, IView
         _controller.Dispose();
 
         _controller = null;
+    }
+
+    private void SetButtonInGame(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == (int)GameScens.Game) SetContinueGameButtonActive();
+        else SetStartGameButtonActive();
+    }
+
+    private void SetStartGameButtonActive() => SwitchActiveButton(StartGameButton, ContinueGameButton);
+    private void SetContinueGameButtonActive() => SwitchActiveButton(ContinueGameButton, StartGameButton);
+    private void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)
+    {
+        buttonToActivate.gameObject.SetActive(true);
+        buttonToDisable.gameObject.SetActive(false);
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine.U2D.Animation;
 [RequireComponent(typeof(SpriteLibrary), typeof(SpriteResolver))]
 public abstract class BaseCharacter : MonoBehaviour, ICharacter, IView
 {
-    private Rigidbody2D _rigidbody;
-    private Collider2D _collider;
-    private CharacterState _state = new();
+    protected Rigidbody2D _rigidbody;
+    protected Collider2D _collider;
+    protected CharacterState _state = new();
     protected List<IAbility> _abilities = new();
     protected SpriteResolver _spriteResolver;
 
@@ -21,10 +21,17 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter, IView
 
     private void Start()
     {
+        GetComponentsFromMonoBehaviour();
+    }
+
+    private void GetComponentsFromMonoBehaviour()
+    {
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteResolver = GetComponent<SpriteResolver>();
         _state = new(true);
+        var abilities = GetComponents<IAbility>();
+        foreach (var ability in abilities) _abilities.Add(ability);
     }
 
     private void OnDestroy()
@@ -33,5 +40,7 @@ public abstract class BaseCharacter : MonoBehaviour, ICharacter, IView
         _collider = null;
         _spriteResolver = null;
         _state.Dispose();
+        _abilities.Clear();
+        _abilities = null;
     }
 }

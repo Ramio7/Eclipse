@@ -16,7 +16,6 @@ public class MainMenuController : BaseGameObjectController
         _model = new MainMenuModel(modelData as MainMenuScriptableObject);
 
         SubscribeButtons();
-        SetButtonInGame();
     }
 
     public override void Dispose()
@@ -31,9 +30,11 @@ public class MainMenuController : BaseGameObjectController
     {
         _view.StartGameButton.onClick.AddListener(SceneSelector.SetGameScene);
 
-        _view.StartGameButton.onClick.AddListener(ActivateLoadingScreen);
+        _view.StartGameButton.onClick.AddListener(_model.ActivateLoadingScreen);
 
-        _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
+        _view.SettingsButton.onClick.AddListener(_model.ActivateSettingsMenu);
+
+        _view.ContinueGameButton.onClick.AddListener(_model.ReturnToGame);
 
 #if UNITY_EDITOR
         _view.ExitGameButton.onClick.AddListener(Debug.Break);
@@ -46,9 +47,11 @@ public class MainMenuController : BaseGameObjectController
     {
         _view?.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
 
-        _view?.StartGameButton.onClick.RemoveListener(ActivateLoadingScreen);
+        _view?.StartGameButton.onClick.RemoveListener(_model.ActivateLoadingScreen);
 
-        _view?.SettingsButton.onClick.RemoveListener(ActivateSettingsMenu);
+        _view?.SettingsButton.onClick.RemoveListener(_model.ActivateSettingsMenu);
+
+        _view?.ContinueGameButton.onClick.RemoveListener(_model.ReturnToGame);
 
 #if UNITY_EDITOR
         _view?.ExitGameButton.onClick.RemoveListener(Debug.Break);
@@ -56,15 +59,4 @@ public class MainMenuController : BaseGameObjectController
         _view?.ExitGameButton.onClick.RemoveListener(Application.Quit);
 #endif
     }
-
-    private void SetButtonInGame()
-    {
-        if (SceneSelector.ActiveScene.buildIndex < (int)GameScens.Game) SetStartGameButtonActive();
-        else SetContinueGameButtonActive();
-    }
-    private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
-    private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
-
-    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
-    private void ActivateLoadingScreen() => GameStateMashine.Instance.ChangeGameState(GameState.LoadingScreen);
 }
