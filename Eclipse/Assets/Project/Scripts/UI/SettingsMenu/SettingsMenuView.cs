@@ -5,7 +5,7 @@ public class SettingsMenuView : BaseUIView, IView
 {
     [SerializeField] private SettingsMenuScriptableObject _settingsDefaults;
 
-    [Header("AbilitiesButtons")]
+    [Header("Objects")]
     #region Buttons
     [SerializeField] private Button _saveSettingsButton;
     [SerializeField] private Button _backToMainMenuButton;

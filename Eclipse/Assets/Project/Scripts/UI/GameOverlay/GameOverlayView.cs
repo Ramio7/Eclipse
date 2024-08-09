@@ -15,5 +15,6 @@ public class GameOverlayView : BaseUIView
 
     private void OnDestroy()
     {
+        _controller = null;
     }
 }

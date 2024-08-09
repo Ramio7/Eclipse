@@ -1,28 +1,22 @@
 using System.IO;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsModel : BaseModel
+public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
 {
     private KeyboardKeyBindSettings _savedSettings = new();
     private KeyboardKeyBindSettings _tempSettings = new();
-
-    private KeyCode _keyCodeFromInput;
-    private Button _selectedButton;
-    private event System.Action<KeyCode, Button> _onInput;
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyboardKeyBindSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
     public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
 
-    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings) : base()
+    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings) : base(defaultSettings)
     {
         Init(defaultSettings);
     }
 
-    protected void Init(IScriptableObject modelData)
+    public override void Init(IScriptableObject modelData)
     {
         var defaults = modelData as KeyboardKeyBindSettingsScriptableObject;
         InitKeyBindSettings(defaults);
@@ -30,8 +24,9 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public override void Dispose()
     {
-        DiscardSettings();
-        SettingsIsSaved.Dispose();
+        base.Dispose();
+        if (SettingsIsSaved.GetValue() != true) DiscardSettings();
+        SettingsIsSaved?.Dispose();
         KeyBindSettings.Dispose();
         _tempSettings.Dispose();
 
@@ -89,7 +84,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         SettingsIsSaved.SetValue(true);
     }
 
-    public void InitKeyBindProcess(Button button)
+    /*public void InitKeyBindProcess(Button button)
     {
         _selectedButton = button;
 
@@ -115,5 +110,5 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         var tmp_text = button.GetComponentInChildren<TMP_Text>();
         if (tmp_text != null) tmp_text.text = keyCode.ToString();
         else throw new("No text component found");
-    }
+    }*/
 }

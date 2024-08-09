@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JumpAbility : BaseAbilityView
 {
-    private float _jumpForce = 20;
+    [SerializeField] private float _jumpForce = 20;
 
     public JumpAbility(ICharacter character) : base(character)
     {

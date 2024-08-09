@@ -16,7 +16,6 @@ public abstract class BaseController : IController
 
     public virtual void Dispose()
     {
-        _model?.Dispose();
         _model = null;
     }
 

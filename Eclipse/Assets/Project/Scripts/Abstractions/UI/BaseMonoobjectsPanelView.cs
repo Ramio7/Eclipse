@@ -4,7 +4,7 @@ using UnityEngine;
 public class BaseMonoobjectsPanelView<T> : BaseUIView, IMonoobjectsPanelView<T>
 {
     [SerializeField] private List<T> _objects = new();
-    public List<T> Objects { get => _objects; private set => _objects = value; }
+    public List<T> Objects { get => _objects; protected set => _objects = value; }
 
     private void Awake()
     {

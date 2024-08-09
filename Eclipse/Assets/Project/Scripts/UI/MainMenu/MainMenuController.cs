@@ -23,7 +23,6 @@ public class MainMenuController : BaseGameObjectController
         UnsubscribeButtons();
 
         base.Dispose();
-        _view = null;
     }
 
     private void SubscribeButtons()

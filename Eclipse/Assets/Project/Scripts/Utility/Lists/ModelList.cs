@@ -17,7 +17,7 @@ public static class ModelList
 
     public static void DisposeAllModels()
     {
-        foreach (var model in _models) model.Dispose();
+        foreach (var model in _models) model?.Dispose();
         _models.Clear();
     }
 }

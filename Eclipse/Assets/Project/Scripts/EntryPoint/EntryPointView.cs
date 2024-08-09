@@ -66,7 +66,6 @@ public class EntryPointView : BaseView, IView
     {
         _gameStateMashine.Dispose();
         _canvasSelector.Dispose();
-        _inputSystemController.Dispose();
 
         _gameStateMashine = null;
         _canvasSelector = null;

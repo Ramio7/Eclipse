@@ -45,8 +45,6 @@ public class MainMenuView : BaseUIView, IView
     {
         Instance = null;
 
-        _controller.Dispose();
-
         _controller = null;
     }
 

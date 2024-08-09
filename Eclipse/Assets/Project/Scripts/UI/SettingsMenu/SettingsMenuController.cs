@@ -24,7 +24,6 @@ public class SettingsMenuController : BaseGameObjectController
         DeInitActions();
 
         base.Dispose();
-        _view = null;
     }
 
 
