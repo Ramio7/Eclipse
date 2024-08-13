@@ -1,4 +1,4 @@
-public class SecondAbility : BaseAbilityView
+public class SecondAbility : BaseAbility
 {
     public SecondAbility(ICharacter character) : base(character)
     {

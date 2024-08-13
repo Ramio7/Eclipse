@@ -29,6 +29,11 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         view.BackToMainMenuButton.onClick.AddListener(model.SaveSettings);
         view.BackWithoutSavingButton.onClick.AddListener(ActivateSettingsMenu);
         view.BackWithoutSavingButton.onClick.AddListener(model.DiscardSettings);
+
+        foreach (var abilityPanel in view.Objects)
+        {
+            abilityPanel.OnAbilityBinded += model.SetKeyBind;
+        }
     }
 
     private void UnsubscribeButtons()
@@ -36,10 +41,19 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         var view = _view as KeyboardKeyBindSettingsView;
         var model = _model as KeyboardKeyBindSettingsModel;
 
-        view?.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
-        view?.BackToMainMenuButton.onClick.RemoveListener(model.SaveSettings);
-        view?.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
-        view?.BackWithoutSavingButton.onClick.RemoveListener(model.DiscardSettings);
+        view.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
+        view.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
+
+        if (model != null)
+        {
+            view.BackToMainMenuButton.onClick.RemoveListener(model.SaveSettings);
+            view.BackWithoutSavingButton.onClick.RemoveListener(model.DiscardSettings);
+
+            foreach (var abilityPanel in view.Objects)
+            {
+                abilityPanel.OnAbilityBinded -= model.SetKeyBind;
+            }
+        }
     }
 
     private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);

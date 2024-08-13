@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8465e57ec3e5c64088cedb44364261d, type: 3}
   m_Name: KeyBindSettingsScriptableObject
   m_EditorClassIdentifier: 
-  _jumpKey: 32
-  _shiftKey: 304
-  _crouchKey: 306
-  _slideKey: 306
-  _firstAbilityKey: 113
-  _secondAbilityKey: 101
-  _thirdAbilityKey: 114
-  _fourthAbilityKey: 308
-  _useTalkKey: 102
-  _someAbilityKey: 116
+  _jumpKey: 20000000
+  _shiftKey: 30010000
+  _crouchKey: 32010000
+  _slideKey: 3001000032010000
+  _firstAbilityKey: 20000000
+  _secondAbilityKey: 31000000
+  _thirdAbilityKey: 32000000
+  _fourthAbilityKey: 33000000
+  _useTalkKey: 65000000
+  _moveAbilityKey: 13010000

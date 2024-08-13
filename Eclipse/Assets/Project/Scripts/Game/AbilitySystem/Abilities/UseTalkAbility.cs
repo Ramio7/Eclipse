@@ -1,4 +1,4 @@
-public class UseTalkAbility : BaseAbilityView
+public class UseTalkAbility : BaseAbility
 {
     public UseTalkAbility(ICharacter character) : base(character)
     {

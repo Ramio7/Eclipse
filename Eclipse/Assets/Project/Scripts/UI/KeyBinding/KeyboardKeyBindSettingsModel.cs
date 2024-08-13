@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
 {
-    private KeyboardKeyBindSettings _savedSettings = new();
-    private KeyboardKeyBindSettings _tempSettings = new();
+    private KeyBindSettings _savedSettings = new();
+    private KeyBindSettings _tempSettings = new();
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyboardKeyBindSettings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
-    public KeyboardKeyBindSettings KeyBindSettings { get => _savedSettings; }
+    public KeyBindSettings KeyBindSettings { get => _savedSettings; private set => _savedSettings = value; }
+    public KeyBindSettings TempSettings { get => _tempSettings; private set => _tempSettings = value; }
 
     public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings) : base(defaultSettings)
     {
@@ -27,7 +28,7 @@ public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
         base.Dispose();
         if (SettingsIsSaved.GetValue() != true) DiscardSettings();
         SettingsIsSaved?.Dispose();
-        KeyBindSettings.Dispose();
+        _savedSettings.Dispose();
         _tempSettings.Dispose();
 
         SettingsIsSaved = null;
@@ -35,19 +36,25 @@ public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
 
     private void InitKeyBindSettings(KeyboardKeyBindSettingsScriptableObject defaults)
     {
-        if (!CheckSettingsFile())
+        _savedSettings.Init();
+        _tempSettings.Init();
+
+        KeyBindSettings.SetFromScriptable(defaults);
+
+        Debug.Log(KeyBindSettings.ToString());
+        /*if (!CheckSettingsFile())
         {
-            _savedSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
-                defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.SomeAbilityKey);
-            _tempSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
-                    defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.SomeAbilityKey);
+            KeyBindSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
+                defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.MoveAbilityKey);
+            TempSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
+                    defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.MoveAbilityKey);
             CreateSettingsFile();
             SaveSettings();
         }
         else
         {
             LoadSettings();
-        }
+        }*/
     }
 
     private bool CheckSettingsFile() => File.Exists(_settingsFilePath);
@@ -61,54 +68,29 @@ public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
 
     public void SaveSettings()
     {
-        JsonData<KeyboardKeyBindSettings>.Save(_tempSettings, _settingsFilePath);
-        _savedSettings.Set(_tempSettings);
-        SettingsIsSaved.SetValue(true);
+        /*JsonData<KeyBindSettings>.Save(TempSettings, _settingsFilePath);
+        KeyBindSettings.Set(TempSettings);
+        SettingsIsSaved.SetValue(true);*/
     }
 
     private bool LoadSettings()
     {
-        var tempKeyBindSettings = JsonData<KeyboardKeyBindSettings>.Load(_settingsFilePath);
-        _savedSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
+        /*var tempKeyBindSettings = JsonData<KeyBindSettings>.Load(_settingsFilePath);
+        KeyBindSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
             tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
-            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.SomeAbilityKey);
-        _tempSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
+            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.MoveAbilityKey);
+        TempSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
             tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
-            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.SomeAbilityKey);
-        return tempKeyBindSettings.IsEqual(_savedSettings);
+            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.MoveAbilityKey);
+        return tempKeyBindSettings.IsEqual(_savedSettings);*/
+        return true;
     }
 
     public void DiscardSettings()
     {
-        _tempSettings.Set(KeyBindSettings);
-        SettingsIsSaved.SetValue(true);
+        /*TempSettings.Set(KeyBindSettings);
+        SettingsIsSaved.SetValue(true);*/
     }
 
-    /*public void InitKeyBindProcess(Button button)
-    {
-        _selectedButton = button;
-
-        _onInput += SetKeyBind;
-
-        EntryPointView.OnGuiUpdate += AwaitKeyInput;
-    }
-
-    private void AwaitKeyInput()
-    {
-        if (Event.current.type != EventType.KeyUp) return;
-        else _keyCodeFromInput = Event.current.keyCode;
-
-        EntryPointView.OnGuiUpdate -= AwaitKeyInput;
-
-        _onInput?.Invoke(_keyCodeFromInput, _selectedButton);
-        _onInput -= SetKeyBind;
-    }
-
-    private void SetKeyBind(KeyCode keyCode, Button button)
-    {
-        _tempSettings.SetField(button.name.Replace("Button", "Key"), keyCode);
-        var tmp_text = button.GetComponentInChildren<TMP_Text>();
-        if (tmp_text != null) tmp_text.text = keyCode.ToString();
-        else throw new("No text component found");
-    }*/
+    public void SetKeyBind(KeyCode[] keyCode, IAbility ability) => _tempSettings.SetAbility(ability, keyCode);
 }

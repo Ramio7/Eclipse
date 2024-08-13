@@ -1,4 +1,4 @@
-public class MoveAbility : BaseAbilityView
+public class MoveAbility : BaseAbility
 {
     public MoveAbility(ICharacter character) : base(character)
     {

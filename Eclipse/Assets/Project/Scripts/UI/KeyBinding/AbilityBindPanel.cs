@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // add this behaviour instantly to parent object of UnityEngine.UI.Button
-[RequireComponent(typeof(IAbility))]
 public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 {
-    [SerializeField] private KeyCode[] _abilityKeys;
+    [SerializeField] private AbilityStruct _abilityStruct;
     private Button _abilityButton;
     private TMP_Text _abilityName;
-    private IAbility _ability;
 
     public Button AbilityButton { get => _abilityButton; private set => _abilityButton = value; }
     public TMP_Text AbilityName { get => _abilityName; set => _abilityName = value; }
-    public KeyCode[] AbilityKeys { get => _abilityKeys; set => _abilityKeys = value; }
-    public IAbility Ability { get => _ability; set => _ability = value; }
+    public KeyCode[] AbilityKeys { get => _abilityStruct.Keys; set => _abilityStruct.Keys = value; }
+    public IAbility Ability { get => _abilityStruct.Ability; set => _abilityStruct.Ability = (BaseAbility)value; }
+
+    public Action<KeyCode[], IAbility> OnAbilityBinded;
 
     private event Action<KeyCode> OnFirstKeyDown;
     private event Action<KeyCode> OnSecondKeyUp;
@@ -27,7 +27,6 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     {
         _abilityButton = GetComponentInChildren<Button>();
         _abilityName = GetComponentInChildren<TMP_Text>();
-        _ability = GetComponent<IAbility>();
 
         _abilityButton.onClick.AddListener(InitKeyBindingAsync);
 
@@ -42,9 +41,9 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 
         _abilityButton.onClick.RemoveAllListeners();
 
-        _abilityKeys = null;
+        _abilityStruct.Dispose();
+
         _abilityName = null;
-        _ability = null;
         _abilityButton = null;
     }
 
@@ -103,6 +102,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
             case 1:
                 {
                     abilityKeys[0] = _tempFirstKey;
+                    AbilityKeys = abilityKeys;
                     abilityKeysText.text = abilityKeys[0].ToString();
                     break;
                 }
@@ -110,11 +110,13 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
                 {
                     abilityKeys[0] = _tempFirstKey;
                     abilityKeys[1] = _tempSecondKey;
+                    AbilityKeys = abilityKeys;
                     abilityKeysText.text = $"{abilityKeys[0]} + {abilityKeys[1]}";
                     break;
                 }
             default:
                 throw new ArgumentException("Wrong buttons massive length");
         }
+        OnAbilityBinded?.Invoke(AbilityKeys, Ability);
     }
 }

@@ -67,7 +67,7 @@ public class BaseInputSystemController : BaseController
     {
         if (GameStateMashine.Current != GameState.Game) return;
         var model = _model as BaseInputSystemModel;
-        foreach (var key in _keyBindSettings.Keys.Values)
+        foreach (var key in _keyBindSettings.AbilityKyes.Values)
         {
             if (Input.GetKeyUp(key)) model.KeysMethodsPairs[key].Method.Invoke();
         }

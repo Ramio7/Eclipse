@@ -18,16 +18,16 @@ public class BaseInputSystemModel : BaseModel
         base.Dispose();
     }
 
-    /*private void BindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
+    /*private void BindKeysAndAbilities(KeyBindSettings keyBindSettings)
     {
         var abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
-        var keyKodesArrayCount = keyBindSettings.Keys.Count;
+        var keyKodesArrayCount = keyBindSettings.AbilityKyes.Count;
 
         for (int i = 0; i < abilities.Count; i++)
         {
             var ability = abilities[i];
 
-            for (int j = 0; j < keyBindSettings.Keys.Count; j++)
+            for (int j = 0; j < keyBindSettings.AbilityKyes.Count; j++)
             {
                 var abilityName = ability.GetType().Name;
                 var keyName = abilityName.Replace("Ability", "Key");
@@ -36,11 +36,11 @@ public class BaseInputSystemModel : BaseModel
         }
     }
 
-    public void RebindKeysAndAbilities(KeyboardKeyBindSettings keyBindSettings)
+    public void RebindKeysAndAbilities(KeyBindSettings keyBindSettings)
     {
         var fields = keyBindSettings.GetType().GetFields();
 
-        for (int i = 0; i < keyBindSettings.Keys.Count; i++)
+        for (int i = 0; i < keyBindSettings.AbilityKyes.Count; i++)
         {
             var keyName = fields[i].Name;
             var abilityName = keyName.Replace("Key", "Ability");

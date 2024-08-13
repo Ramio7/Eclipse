@@ -1,4 +1,6 @@
-public interface IStruct
+using System;
+
+public interface IStruct : IInitiable, IDisposable
 {
 
 }

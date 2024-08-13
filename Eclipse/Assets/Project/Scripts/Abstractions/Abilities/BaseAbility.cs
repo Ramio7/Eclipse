@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class BaseAbilityView : MonoBehaviour, IAbility
+public abstract class BaseAbility : MonoBehaviour, IAbility
 {
     [SerializeField] protected Sprite[] animationSprites;
     [SerializeField, Range(1,2)] protected int _keysNeeded;
@@ -13,7 +13,7 @@ public abstract class BaseAbilityView : MonoBehaviour, IAbility
 
     protected virtual void InternalMethod() { }
 
-    public BaseAbilityView(ICharacter character)
+    public BaseAbility(ICharacter character)
     {
         Init(_character);
     }

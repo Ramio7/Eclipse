@@ -16,7 +16,7 @@ public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindP
 
     public static KeyboardKeyBindSettingsView Instance;
 
-    private void Awake()
+    private void Start()
     {
         if (Instance == null)
         {

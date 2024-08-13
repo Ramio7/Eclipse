@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpAbility : BaseAbilityView
+public class JumpAbility : BaseAbility
 {
     [SerializeField] private float _jumpForce = 20;
 

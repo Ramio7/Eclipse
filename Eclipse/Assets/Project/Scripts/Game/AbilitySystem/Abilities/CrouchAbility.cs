@@ -1,4 +1,4 @@
-public class CrouchAbility : BaseAbilityView
+public class CrouchAbility : BaseAbility
 {
     public CrouchAbility(ICharacter character) : base(character)
     {
