@@ -3,13 +3,15 @@ public class GameController : BaseGameObjectController
     private new GameModel _model;
     private new GameView _view;
 
-    public GameController(GameScriptableObject modelData, GameView view) : base(modelData, view)
+    public GameController(GameScriptableObject modelData, GameView view) : base(view)
     {
         Init(modelData, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected void Init(IScriptableObject data, IView view)
     {
+        base.Init(view);
+
         _view = view as GameView;
         _model = new(data as GameScriptableObject);
 

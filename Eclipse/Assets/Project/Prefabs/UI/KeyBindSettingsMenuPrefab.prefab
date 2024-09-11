@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 5126723991155702073}
   - component: {fileID: 6631477116342934749}
   - component: {fileID: 4603410397100082266}
+  - component: {fileID: 8799375350173921652}
   m_Layer: 5
   m_Name: FirstAbilityPanel
   m_TagString: Untagged
@@ -1044,6 +1045,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8799375350173921652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642236170365963331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &710487794845163878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1070,8 @@ GameObject:
   - component: {fileID: 8126595108908398674}
   - component: {fileID: 4100039862896389838}
   - component: {fileID: 2685323421458406645}
+  - component: {fileID: 7402566826422485818}
+  - component: {fileID: 1413106295116910356}
   m_Layer: 5
   m_Name: CrouchPanel
   m_TagString: Untagged
@@ -1163,6 +1178,31 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7402566826422485818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710487794845163878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1413106295116910356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710487794845163878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d8417d918d4854dbfc914c59b726a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: 8ffaea89977756a4f905966ad8c3fd8f, type: 2}
 --- !u!1 &1144010304152349980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1216,7 @@ GameObject:
   - component: {fileID: 3921824923797363850}
   - component: {fileID: 5254926287145993070}
   - component: {fileID: 8785739691220062685}
+  - component: {fileID: 5996969188176677125}
   m_Layer: 5
   m_Name: UseTalkPanel
   m_TagString: Untagged
@@ -1282,6 +1323,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5996969188176677125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144010304152349980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1404767447193814123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1348,7 @@ GameObject:
   - component: {fileID: 7315821808705886942}
   - component: {fileID: 5205933568111520624}
   - component: {fileID: 5221299163433478196}
+  - component: {fileID: 7691725663184963417}
   m_Layer: 5
   m_Name: FourthAbilityPanel
   m_TagString: Untagged
@@ -1401,6 +1455,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7691725663184963417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404767447193814123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1449187398042932085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2896,7 @@ GameObject:
   - component: {fileID: 7493584261497398956}
   - component: {fileID: 8816327766794510078}
   - component: {fileID: 2939524891099164691}
+  - component: {fileID: 4601322669729063748}
   m_Layer: 5
   m_Name: ShiftPanel
   m_TagString: Untagged
@@ -2936,6 +3003,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4601322669729063748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240649963451699294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4538929191270080273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,7 +3284,7 @@ GameObject:
   - component: {fileID: 2298629362241803396}
   - component: {fileID: 7714732825926440063}
   - component: {fileID: 5588549495808751066}
-  - component: {fileID: 6297867159062529705}
+  - component: {fileID: 2523539685695179619}
   m_Layer: 5
   m_Name: JumpPanel
   m_TagString: Untagged
@@ -3324,10 +3403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityStruct:
-    _ability: {fileID: 0}
-    _keys: 
---- !u!114 &6297867159062529705
+--- !u!114 &2523539685695179619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3336,12 +3412,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4898522216668675690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a63e85b41793e044999767e27215128, type: 3}
+  m_Script: {fileID: 11500000, guid: bede9087ee2ed934192ce1cc4aca01c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSprites: []
-  _keysNeeded: 1
-  _jumpForce: 0
+  abilityDefaults: {fileID: 11400000, guid: 168a5b68fd5687847adcc18501c47a43, type: 2}
 --- !u!1 &5238638441760694375
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,7 +3462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objects: []
-  _keyBindSettingsDefaults: {fileID: 11400000, guid: c398ac3b08fb4f846bd1b1439e98d27e, type: 2}
   _backToMainMenuButton: {fileID: 1381572792813781849}
   _backWithoutSavingButton: {fileID: 814896441070950011}
 --- !u!1 &5469051026170278163
@@ -3525,6 +3598,7 @@ GameObject:
   - component: {fileID: 6107169680497650580}
   - component: {fileID: 1308294862452302292}
   - component: {fileID: 7699200417389466470}
+  - component: {fileID: 580127599621253564}
   m_Layer: 5
   m_Name: SlidePanel
   m_TagString: Untagged
@@ -3631,6 +3705,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &580127599621253564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489693620667501858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6059967624368040028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,6 +3864,7 @@ GameObject:
   - component: {fileID: 2348424620659380151}
   - component: {fileID: 8915555093936772147}
   - component: {fileID: 3356366522300602111}
+  - component: {fileID: 2912485168747429437}
   m_Layer: 5
   m_Name: MoveAbilityPanel
   m_TagString: Untagged
@@ -3884,6 +3971,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2912485168747429437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449430428474441274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7022223362830422229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4407,6 +4506,7 @@ GameObject:
   - component: {fileID: 8322331785569107627}
   - component: {fileID: 8265026795454408471}
   - component: {fileID: 6983331518885702300}
+  - component: {fileID: 278121558657051979}
   m_Layer: 5
   m_Name: SecondAbilityPanel
   m_TagString: Untagged
@@ -4513,6 +4613,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &278121558657051979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454971226615712071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7620107910928739401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4647,6 +4759,7 @@ GameObject:
   - component: {fileID: 7455302185572836829}
   - component: {fileID: 8910667406445396247}
   - component: {fileID: 5223049461249011150}
+  - component: {fileID: 8349211383734008641}
   m_Layer: 5
   m_Name: ThirdAbilityPanel
   m_TagString: Untagged
@@ -4753,6 +4866,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8349211383734008641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748436834697625311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8279377803680139329
 GameObject:
   m_ObjectHideFlags: 0

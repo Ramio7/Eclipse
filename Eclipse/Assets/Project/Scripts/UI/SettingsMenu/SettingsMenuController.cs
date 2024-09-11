@@ -3,13 +3,15 @@ public class SettingsMenuController : BaseGameObjectController
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
 
-    public SettingsMenuController(SettingsMenuScriptableObject settingsDefaults, SettingsMenuView view) : base(settingsDefaults, view)
+    public SettingsMenuController(SettingsMenuScriptableObject settingsDefaults, SettingsMenuView view) : base(view)
     {
         Init(settingsDefaults, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected void Init(IScriptableObject data, IView view)
     {
+        base.Init(view);
+
         _view = view as SettingsMenuView;
         _model = new(data as SettingsMenuScriptableObject);
 

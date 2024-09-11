@@ -2,15 +2,18 @@ public class EntryPointController : BaseGameObjectController
 {
     private new EntryPointModel _model;
 
-    public EntryPointController(EntryPointScriptableObject modelData, EntryPointView view) : base(modelData, view)
+    public EntryPointController(EntryPointScriptableObject modelData, EntryPointView view) : base(view)
     {
         Init(modelData, view);
     }
 
-    public override void Init(IScriptableObject modelData, IView view)
+    protected void Init(IScriptableObject modelData, IView view)
     {
+        base.Init(view);
+
         _model = new EntryPointModel(modelData as EntryPointScriptableObject);
         _view = view as EntryPointView;
+
         InstantiateMainMenu();
         InstantiateSettingsMenu();
         InstantiateKeyBindSettingsMenu();

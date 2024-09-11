@@ -3,15 +3,16 @@ public class GameOverlayController : BaseGameObjectController
     private new GameOverlayView _view;
     private new GameOverlayModel _model;
 
-    public GameOverlayController(GameOverlayScriptableObject data, GameOverlayView view) : base(data, view)
+    public GameOverlayController(GameOverlayScriptableObject data, GameOverlayView view) : base(view)
     {
         Init(data, view);
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    protected void Init(GameOverlayScriptableObject data, IView view)
     {
+        base.Init(view);
+        _model = new(data);
         _view = view as GameOverlayView;
-        _model = new(data as GameOverlayScriptableObject);
     }
 
     public override void Dispose()

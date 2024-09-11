@@ -5,7 +5,7 @@ public class SettingsMenuView : BaseUIView, IView
 {
     [SerializeField] private SettingsMenuScriptableObject _settingsDefaults;
 
-    [Header("Objects")]
+    [Header("Buttons")]
     #region Buttons
     [SerializeField] private Button _saveSettingsButton;
     [SerializeField] private Button _backToMainMenuButton;
@@ -40,26 +40,20 @@ public class SettingsMenuView : BaseUIView, IView
     public Button KeyBindSettingsButton { get => _keyBindSettingsButton; }
     #endregion
 
-    public static SettingsMenuView Instance;
-
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
+        Init();
+    }
 
-            DontDestroyOnLoad(this);
+    protected override void Init()
+    {
+        _controller = new(_settingsDefaults, this);
 
-            _controller = new(_settingsDefaults, this);
-
-            CanvasSelector.AddCanvas(GameState.SettingsMenu, this);
-        }
+        CanvasSelector.AddCanvas(GameState.SettingsMenu, this);
     }
 
     private void OnDestroy()
     {
-        Instance = null;
-
         _controller = null;
     }
 }

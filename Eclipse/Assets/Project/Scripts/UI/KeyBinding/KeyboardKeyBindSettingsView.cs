@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindPanel> //отрефакторить на новый родительский класс
+public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindPanel>
 {
-    [SerializeField] private KeyboardKeyBindSettingsScriptableObject _keyBindSettingsDefaults;
-
     private KeyboardKeyBindSettingsController _controller;
 
     [Header("Switch screen buttons")]
@@ -14,26 +12,20 @@ public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindP
     public Button BackToMainMenuButton { get => _backToMainMenuButton; }
     public Button BackWithoutSavingButton { get => _backWithoutSavingButton; }
 
-    public static KeyboardKeyBindSettingsView Instance;
-
-    private void Start()
+    private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
+        Init();
+    }
 
-            DontDestroyOnLoad(this);
+    protected override void Init()
+    {
+        _controller = new(this);
 
-            _controller = new(_keyBindSettingsDefaults, this);
-
-            CanvasSelector.AddCanvas(GameState.KeyBindMenu, this);
-        }
+        CanvasSelector.AddCanvas(GameState.KeyBindMenu, this);
     }
 
     private void OnDestroy()
     {
-        Instance = null;
-
         _controller = null;
     }
 }

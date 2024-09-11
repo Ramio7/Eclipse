@@ -1,25 +1,25 @@
 using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// add this behaviour instantly to parent object of UnityEngine.UI.Button
+// add this behaviour instantly to parent object of UnityEngine.UI.Button in key settings menu
 public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 {
-    [SerializeField] private AbilityStruct _abilityStruct;
     private Button _abilityButton;
     private TMP_Text _abilityName;
+    private KeyCode[] _keys;
+    private IAbility _ability;
 
-    public Button AbilityButton { get => _abilityButton; private set => _abilityButton = value; }
-    public TMP_Text AbilityName { get => _abilityName; set => _abilityName = value; }
-    public KeyCode[] AbilityKeys { get => _abilityStruct.Keys; set => _abilityStruct.Keys = value; }
-    public IAbility Ability { get => _abilityStruct.Ability; set => _abilityStruct.Ability = (BaseAbility)value; }
+    public KeyCode[] AbilityKeys { get => _keys; set => _keys = value; }
+    public IAbility Ability { get => _ability; set => _ability = value; }
 
     public Action<KeyCode[], IAbility> OnAbilityBinded;
 
     private event Action<KeyCode> OnFirstKeyDown;
     private event Action<KeyCode> OnSecondKeyUp;
+
     private KeyCode _tempFirstKey;
     private KeyCode _tempSecondKey;
 
@@ -34,6 +34,11 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         OnSecondKeyUp += GetSecondKey;
     }
 
+    private void Start()
+    {
+        Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
+    }
+
     private void OnDestroy()
     {
         OnFirstKeyDown -= GetFirstKey;
@@ -41,15 +46,29 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 
         _abilityButton.onClick.RemoveAllListeners();
 
-        _abilityStruct.Dispose();
-
         _abilityName = null;
         _abilityButton = null;
     }
 
+    private Task AwaitKeyboardKeyBindSettingsModelAsync()
+    {
+        ModelList.FindModel(out KeyboardKeyBindSettingsModel keyBindSettingsModel);
+        if (keyBindSettingsModel == null)
+        {
+            ModelList.FindModel(out keyBindSettingsModel);
+            return Task.Delay(100);
+        }
+        else
+        {
+            if (_ability == null) Task.Delay(100);
+
+            OnAbilityBinded?.Invoke(_keys, _ability);
+            return Task.CompletedTask;
+        }
+    }
+
     private void InitKeyBindingAsync()
     {
-        List<KeyCode> abilityKeys = new();
         EntryPointView.OnGuiUpdate += AwaitKeyDown;
     }
 
@@ -72,7 +91,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 
     private void AwaitKeyUp()
     {
-        if (Ability.KeysNeeded == 1)
+        if (AbilityKeys.Length == 1)
         {
             EntryPointView.OnGuiUpdate -= AwaitKeyUp;
             SetAbilityKeys();
@@ -93,12 +112,12 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
 
     private void SetAbilityKeys()
     {
-        KeyCode[] abilityKeys = new KeyCode[Ability.KeysNeeded];
-        var abilityKeysText = AbilityButton.GetComponentInChildren<TMP_Text>();
+        KeyCode[] abilityKeys = new KeyCode[AbilityKeys.Length];
+        var abilityKeysText = _abilityButton.GetComponentInChildren<TMP_Text>();
         switch (abilityKeys.Length)
         {
             case 0:
-                throw new Exception("No buttons asinged to ability");
+                throw new ArgumentException("No buttons asinged to ability");
             case 1:
                 {
                     abilityKeys[0] = _tempFirstKey;
@@ -115,7 +134,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
                     break;
                 }
             default:
-                throw new ArgumentException("Wrong buttons massive length");
+                throw new ArgumentException("Wrong buttons array length");
         }
         OnAbilityBinded?.Invoke(AbilityKeys, Ability);
     }

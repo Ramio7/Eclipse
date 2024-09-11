@@ -1,32 +1,31 @@
 using System;
-using UnityEngine;
 
-public abstract class BaseAbility : MonoBehaviour, IAbility
+[Serializable]
+public abstract class BaseAbility : IAbility
 {
-    [SerializeField] protected Sprite[] animationSprites;
-    [SerializeField, Range(1,2)] protected int _keysNeeded;
     protected ICharacter _character;
 
     public Action Method { get; private set; }
-    public Sprite[] AnimationSprites { get => animationSprites; set => animationSprites = value; }
-    public int KeysNeeded { get => _keysNeeded; private set => _keysNeeded = value; }
 
-    protected virtual void InternalMethod() { }
+    protected abstract void InternalMethod();
 
     public BaseAbility(ICharacter character)
     {
-        Init(_character);
+        Init(character);
     }
 
-    public void Init(ICharacter character)
+    public virtual void Init(ICharacter character)
     {
         Method = InternalMethod;
         _character = character;
+
+        if (character is MainCharacterView) AbilitiesAllocator.MainCharacterAbilities.Add(this);
+        else AbilitiesAllocator.AddNewAbility(character, this);
     }
 
-    public void Dispose()
+    public virtual void Dispose()
     {
-        _character = null;
         Method = null;
+        _character = null;
     }
 }

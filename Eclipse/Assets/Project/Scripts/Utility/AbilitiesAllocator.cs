@@ -4,6 +4,10 @@ using System.Collections.Generic;
 public class AbilitiesAllocator : IDisposable
 {
     public static Dictionary<ICharacter, List<IAbility>> CharactersAbilitiesDictionary;
+
+    public static MainCharacterView MainCharacter;
+    public static List<IAbility> MainCharacterAbilities;
+
     public static AbilitiesAllocator Instance;
 
     public AbilitiesAllocator() 
@@ -13,6 +17,9 @@ public class AbilitiesAllocator : IDisposable
             Instance = this;
 
             CharactersAbilitiesDictionary = new();
+
+            MainCharacter = UnityEngine.Object.FindFirstObjectByType<MainCharacterView>();
+            MainCharacterAbilities = new List<IAbility>();
         }
     }
 
@@ -22,17 +29,19 @@ public class AbilitiesAllocator : IDisposable
         CharactersAbilitiesDictionary = null;
     }
 
-    public static void AddNewCharacter(ICharacter character)
+    /*public static void AddNewCharacter(ICharacter character)
     {
         if (!CharactersAbilitiesDictionary.ContainsKey(character))
         {
             var abilitiesList = character.Abilities;
             CharactersAbilitiesDictionary.Add(character, abilitiesList);
         }
-    }
+    }*/
 
     public static void RemoveCharacter(ICharacter character)
     {
         CharactersAbilitiesDictionary.Remove(character);
     }
+
+    public static void AddNewAbility(ICharacter character, IAbility ability) => CharactersAbilitiesDictionary[character].Add(ability);
 }

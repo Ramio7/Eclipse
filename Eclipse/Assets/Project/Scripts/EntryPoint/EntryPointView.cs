@@ -26,7 +26,7 @@ public class EntryPointView : BaseView, IView
 
     public static EntryPointView Instance;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -35,16 +35,18 @@ public class EntryPointView : BaseView, IView
             DontDestroyOnLoad(this);
 
             _abilitiesAllocator = new();
-            AbilitiesAllocator.AddNewCharacter(_mainScreenCharacter);
 
             _controller = new(_entryPointData, this);
             _inputSystemController = new();
 
             _gameStateMashine = new();
             _canvasSelector = new();
-
-            _canvasSelector.SwitchCanvas(GameState.MainMenu);
         }
+    }
+
+    private void Start()
+    {
+        _canvasSelector.SwitchCanvas(GameState.MainMenu);
     }
 
     private void Update()

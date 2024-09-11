@@ -12,7 +12,7 @@ public static class ModelList
         var modelType = typeof(T);
         model = (T)_models.Find(matchingModel => matchingModel.GetType() == modelType);
         if (model != null) return;
-        else throw new Exception("Controller type not found");
+        else throw new Exception("Model type not found");
     }
 
     public static void DisposeAllModels()

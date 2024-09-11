@@ -7,9 +7,8 @@ public class BaseInputSystemController : BaseController
         Init();
     }
 
-    protected override void Init()
+    protected new void Init()
     {
-        base.Init();
         _model = new BaseInputSystemModel();
 
         EntryPointView.OnUpdate += TrackUserBaseInput;

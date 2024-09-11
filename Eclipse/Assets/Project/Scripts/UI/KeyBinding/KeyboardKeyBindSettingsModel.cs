@@ -1,7 +1,8 @@
+using System;
 using System.IO;
 using UnityEngine;
 
-public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
+public class KeyboardKeyBindSettingsModel : BaseModel
 {
     private KeyBindSettings _savedSettings = new();
     private KeyBindSettings _tempSettings = new();
@@ -12,15 +13,15 @@ public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
     public KeyBindSettings KeyBindSettings { get => _savedSettings; private set => _savedSettings = value; }
     public KeyBindSettings TempSettings { get => _tempSettings; private set => _tempSettings = value; }
 
-    public KeyboardKeyBindSettingsModel(IScriptableObject defaultSettings) : base(defaultSettings)
+    public KeyboardKeyBindSettingsModel() : base()
     {
-        Init(defaultSettings);
+        Init();
     }
 
-    public override void Init(IScriptableObject modelData)
+    protected override void Init()
     {
-        var defaults = modelData as KeyboardKeyBindSettingsScriptableObject;
-        InitKeyBindSettings(defaults);
+        //base.Init();
+        InitKeyBindSettings();
     }
 
     public override void Dispose()
@@ -34,12 +35,10 @@ public class KeyboardKeyBindSettingsModel : BaseScriptableObjectOrientedModel
         SettingsIsSaved = null;
     }
 
-    private void InitKeyBindSettings(KeyboardKeyBindSettingsScriptableObject defaults)
+    private void InitKeyBindSettings()
     {
         _savedSettings.Init();
         _tempSettings.Init();
-
-        KeyBindSettings.SetFromScriptable(defaults);
 
         Debug.Log(KeyBindSettings.ToString());
         /*if (!CheckSettingsFile())

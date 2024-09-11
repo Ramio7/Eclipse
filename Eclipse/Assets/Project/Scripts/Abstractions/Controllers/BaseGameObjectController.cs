@@ -2,14 +2,14 @@ public abstract class BaseGameObjectController : BaseController, IGameObjectCont
 {
     protected IView _view;
 
-    public BaseGameObjectController(IScriptableObject data, IView view) : base()
+    public BaseGameObjectController(IView view) : base()
     {
-        _view = view;
+        Init(view);
     }
 
-    public virtual void Init(IScriptableObject data, IView view)
+    public virtual void Init(IView view)
     {
-        base.Init();
+        _view = view;
     }
 
     public override void Dispose()

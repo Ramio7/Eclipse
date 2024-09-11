@@ -5,5 +5,6 @@ public class MainCharacterView : BaseCharacter, IMortalCharacter
 
     private void Awake()
     {
+
     }
 }

@@ -8,14 +8,13 @@ public class BaseInputSystemModel : BaseModel
         Init();
     }
 
-    protected override void Init()
+    protected new void Init()
     {
-        base.Init();
     }
 
     public override void Dispose()
     {
-        base.Dispose();
+        
     }
 
     /*private void BindKeysAndAbilities(KeyBindSettings keyBindSettings)

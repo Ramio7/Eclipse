@@ -35,24 +35,6 @@ public struct KeyBindSettings : IStruct
 
     public void SetDictionary(Dictionary<IAbility, KeyCode[]> keyValuePairs) => AbilityKyes = keyValuePairs;
 
-    public void SetFromScriptable(KeyboardKeyBindSettingsScriptableObject scriptable)
-    {
-        var abilitiesInScriptable = scriptable.GetType().GetProperties();
-        foreach (var field in abilitiesInScriptable)
-        {
-            var abilityName = field.Name.Replace("Key", "Ability");
-            foreach (var ability in AbilityKyes.Keys)
-            {
-                if (abilityName != ability.GetType().Name) return;
-                else
-                {
-                    AbilityKyes[ability] = (KeyCode[])field.GetValue(scriptable);
-                    return;
-                }
-            }
-        }
-    }
-
     public void SetFromString(string str)
     {
         string[] strings = str.Split("\n");
@@ -64,5 +46,9 @@ public struct KeyBindSettings : IStruct
         }
     }
 
-    public void SetAbility(IAbility ability, KeyCode[] keys) => AbilityKyes[ability] = keys;
+    public void SetAbility(IAbility ability, KeyCode[] keys)
+    {
+        if (AbilityKyes.ContainsKey(ability)) AbilityKyes[ability] = keys;
+        else AbilityKyes.Add(ability, keys);
+    }
 }

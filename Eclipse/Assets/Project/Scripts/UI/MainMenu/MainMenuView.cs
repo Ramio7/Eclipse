@@ -23,28 +23,22 @@ public class MainMenuView : BaseUIView, IView
     public Button ExitGameButton { get => _exitGameButton; }
     #endregion
 
-    public static MainMenuView Instance;
-
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
+        Init();
+    }
 
-            DontDestroyOnLoad(this);
+    protected override void Init()
+    {
+        _controller = new(_mainMenuData, this);
 
-            _controller = new(_mainMenuData, this);
+        CanvasSelector.AddCanvas(GameState.MainMenu, this);
 
-            CanvasSelector.AddCanvas(GameState.MainMenu, this);
-
-            SceneManager.sceneLoaded += SetButtonInGame;
-        }
-    }    
+        SceneManager.sceneLoaded += SetButtonInGame;
+    }
 
     private void OnDestroy()
     {
-        Instance = null;
-
         _controller = null;
     }
 

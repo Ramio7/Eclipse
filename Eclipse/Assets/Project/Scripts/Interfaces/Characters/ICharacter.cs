@@ -8,5 +8,4 @@ public interface ICharacter
     Collider2D Collider { get; }
     CharacterState State { get; }
     List<IAbility> Abilities { get; }
-    SpriteResolver SpriteResolver { get; }
 }

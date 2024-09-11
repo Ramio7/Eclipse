@@ -1,14 +1,13 @@
 public class KeyboardKeyBindSettingsController : BaseGameObjectController
 {
-    public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsScriptableObject defaults, KeyboardKeyBindSettingsView view) : base(defaults, view)
+    public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view) : base(view)
     {
-        Init(defaults, view);
+        Init();
     }
 
-    public override void Init(IScriptableObject data, IView view)
+    private new void Init()
     {
-        _view = view as KeyboardKeyBindSettingsView;
-        _model = new KeyboardKeyBindSettingsModel(data as KeyboardKeyBindSettingsScriptableObject);
+        _model = new KeyboardKeyBindSettingsModel();
 
         SubscribeButtons();
     }

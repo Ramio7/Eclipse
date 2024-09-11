@@ -5,15 +5,17 @@ public class MainMenuController : BaseGameObjectController
     private new MainMenuModel _model;
     private new MainMenuView _view;
 
-    public MainMenuController(MainMenuScriptableObject modelData, MainMenuView view) : base(modelData, view)
+    public MainMenuController(MainMenuScriptableObject modelData, MainMenuView view) : base(view)
     {
         Init(modelData, view);
     }
 
-    public override void Init(IScriptableObject modelData, IView view)
+    protected void Init(MainMenuScriptableObject modelData, IView view)
     {
+        base.Init(view);
+
         _view = view as MainMenuView;
-        _model = new MainMenuModel(modelData as MainMenuScriptableObject);
+        _model = new MainMenuModel(modelData);
 
         SubscribeButtons();
     }
