@@ -25,23 +25,27 @@ public class AbilitiesAllocator : IDisposable
 
     public void Dispose()
     {
+        foreach (var abilityList in CharactersAbilitiesDictionary.Values)
+        {
+            foreach(var ability in abilityList) ability.Dispose();
+        }
         CharactersAbilitiesDictionary.Clear();
         CharactersAbilitiesDictionary = null;
     }
 
-    /*public static void AddNewCharacter(ICharacter character)
+    public static void AddNewAbility(ICharacter character, IAbility ability)
     {
-        if (!CharactersAbilitiesDictionary.ContainsKey(character))
+        if (character.GameObject.TryGetComponent<MainCharacterView>(out var mainCharacter))
         {
-            var abilitiesList = character.Abilities;
-            CharactersAbilitiesDictionary.Add(character, abilitiesList);
+            MainCharacterAbilities.Add(ability);
+            return;
         }
-    }*/
 
-    public static void RemoveCharacter(ICharacter character)
-    {
-        CharactersAbilitiesDictionary.Remove(character);
+        if (CharactersAbilitiesDictionary.ContainsKey(character)) CharactersAbilitiesDictionary[character].Add(ability);
+        else
+        {
+            CharactersAbilitiesDictionary.Add(character, new());
+            CharactersAbilitiesDictionary[character].Add(ability);
+        }
     }
-
-    public static void AddNewAbility(ICharacter character, IAbility ability) => CharactersAbilitiesDictionary[character].Add(ability);
 }

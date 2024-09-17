@@ -15,12 +15,12 @@ public class CanvasSelector: IDisposable
         {
             Instance = this;
 
-            InitCanvas(GameState.MainMenu);
-            InitCanvas(GameState.SettingsMenu);
-            InitCanvas(GameState.KeyBindMenu);
-            InitCanvas(GameState.Game);
-            InitCanvas(GameState.Pause);
-            InitCanvas(GameState.LoadingScreen);
+            //InitCanvas(GameState.MainMenu);
+            //InitCanvas(GameState.SettingsMenu);
+            //InitCanvas(GameState.KeyBindMenu);
+            //InitCanvas(GameState.Game);
+            //InitCanvas(GameState.Pause);
+            //InitCanvas(GameState.LoadingScreen);
             GameStateMashine.Instance.OnGameStateChanged += SwitchCanvas;
         }
     }
@@ -42,7 +42,8 @@ public class CanvasSelector: IDisposable
 
     public static void AddCanvas(GameState state, IUIView view)
     {
-        _canvasDictionary[state] = view;
+        if (_canvasDictionary.ContainsKey(state)) _canvasDictionary[state] = view;
+        else _canvasDictionary.Add(state, view);
     }
 
     public void SwitchCanvas(GameState state)
