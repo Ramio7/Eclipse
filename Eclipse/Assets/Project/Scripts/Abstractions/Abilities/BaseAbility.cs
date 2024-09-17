@@ -19,8 +19,7 @@ public abstract class BaseAbility : IAbility
         Method = InternalMethod;
         _character = character;
 
-        if (character is MainCharacterView) AbilitiesAllocator.MainCharacterAbilities.Add(this);
-        else AbilitiesAllocator.AddNewAbility(character, this);
+        AbilitiesAllocator.AddNewAbility(character, this);
     }
 
     public virtual void Dispose()
