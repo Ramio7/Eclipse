@@ -23,10 +23,27 @@ public struct KeyBindSettings : IStruct
         string tempString = string.Empty;
         foreach (var ability in AbilityKyes)
         {
-            var abilityKeysNames = ability.Value.ToString().Split(" ");
-            var firstKeyName = abilityKeysNames[0];
-            var secondKeyName = abilityKeysNames[1];
-            tempString += $"{ability.Key}: {abilityKeysNames}\n";
+            switch (ability.Value.Length)
+            {
+                case 0:
+                    {
+                        throw new System.ArgumentException($"No key assigned to {ability}");
+                    }
+                case 1:
+                    {
+                        tempString += $"{ability.Key}: {ability.Value.GetValue(0)}\n";
+                        break;
+                    }
+                case 2:
+                    {
+                        var firstKeyName = ability.Value.GetValue(0);
+                        var secondKeyName = ability.Value.GetValue(1);
+                        var abilityKeysNames = firstKeyName + " + " + secondKeyName;
+                        tempString += $"{ability.Key}: {abilityKeysNames}\n";
+                        break;
+                    }
+                default: throw new System.ArgumentException($"To much keys assigned to {ability}");
+            }
         }
         return tempString;
     }

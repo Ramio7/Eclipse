@@ -12,7 +12,7 @@ public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindP
     public Button BackToMainMenuButton { get => _backToMainMenuButton; }
     public Button BackWithoutSavingButton { get => _backWithoutSavingButton; }
 
-    private void Awake()
+    private void Start()
     {
         Init();
     }

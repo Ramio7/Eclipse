@@ -32,6 +32,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         foreach (var abilityPanel in view.Objects)
         {
             abilityPanel.OnAbilityBinded += model.SetKeyBind;
+            model.SetKeyBind(abilityPanel.AbilityKeys, abilityPanel.Ability);
         }
     }
 

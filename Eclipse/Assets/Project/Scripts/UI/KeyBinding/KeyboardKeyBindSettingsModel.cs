@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     private KeyBindSettings _savedSettings = new();
     private KeyBindSettings _tempSettings = new();
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.txt";
 
     public ReactiveProperty<bool> SettingsIsSaved = new(true);
     public KeyBindSettings KeyBindSettings { get => _savedSettings; private set => _savedSettings = value; }
@@ -18,9 +17,8 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         Init();
     }
 
-    protected override void Init()
+    protected new void Init()
     {
-        //base.Init();
         InitKeyBindSettings();
     }
 
@@ -40,7 +38,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         _savedSettings.Init();
         _tempSettings.Init();
 
-        Debug.Log(KeyBindSettings.ToString());
+        
         /*if (!CheckSettingsFile())
         {
             KeyBindSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
@@ -91,5 +89,10 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         SettingsIsSaved.SetValue(true);*/
     }
 
-    public void SetKeyBind(KeyCode[] keyCode, IAbility ability) => _tempSettings.SetAbility(ability, keyCode);
+    public void SetKeyBind(KeyCode[] keyCode, IAbility ability)
+    {
+        _tempSettings.SetAbility(ability, keyCode);
+        SettingsIsSaved.SetValue(false);
+        Debug.Log(TempSettings.ToString());
+    }
 }
