@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -5,10 +6,10 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 {
     private KeyBindSettings _savedSettings = new();
     private KeyBindSettings _tempSettings = new();
+    private ReactiveProperty<bool> _settingsIsSaved = new(true);
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.txt";
-
-    public ReactiveProperty<bool> SettingsIsSaved = new(true);
+    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
+    
     public KeyBindSettings KeyBindSettings { get => _savedSettings; private set => _savedSettings = value; }
     public KeyBindSettings TempSettings { get => _tempSettings; private set => _tempSettings = value; }
 
@@ -25,12 +26,13 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     public override void Dispose()
     {
         base.Dispose();
-        if (SettingsIsSaved.GetValue() != true) DiscardSettings();
-        SettingsIsSaved?.Dispose();
+
+        if (_settingsIsSaved.GetValue() != true) DiscardSettings();
+        _settingsIsSaved?.Dispose();
         _savedSettings.Dispose();
         _tempSettings.Dispose();
 
-        SettingsIsSaved = null;
+        _settingsIsSaved = null;
     }
 
     private void InitKeyBindSettings()
@@ -38,20 +40,11 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         _savedSettings.Init();
         _tempSettings.Init();
 
-        
-        /*if (!CheckSettingsFile())
+        if (!CheckSettingsFile())
         {
-            KeyBindSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
-                defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.MoveAbilityKey);
-            TempSettings.Set(defaults.JumpKey, defaults.ShiftKey, defaults.CrouchKey, defaults.SlideKey,
-                    defaults.FirstAbilityKey, defaults.SecondAbilityKey, defaults.ThirdAbilityKey, defaults.FourthAbilityKey, defaults.UseTalkKey, defaults.MoveAbilityKey);
             CreateSettingsFile();
-            SaveSettings();
         }
-        else
-        {
-            LoadSettings();
-        }*/
+        else LoadSettings();
     }
 
     private bool CheckSettingsFile() => File.Exists(_settingsFilePath);
@@ -65,34 +58,33 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public void SaveSettings()
     {
-        /*JsonData<KeyBindSettings>.Save(TempSettings, _settingsFilePath);
-        KeyBindSettings.Set(TempSettings);
-        SettingsIsSaved.SetValue(true);*/
+        JsonDictionaryData<Dictionary<IAbility, KeyCode[]>, IAbility, KeyCode[]>.Save(_tempSettings.AbilityKyes, _settingsFilePath);
+        _savedSettings.SetFromSettings(_tempSettings);
+        _settingsIsSaved.SetValue(true);
     }
 
     private bool LoadSettings()
     {
-        /*var tempKeyBindSettings = JsonData<KeyBindSettings>.Load(_settingsFilePath);
-        KeyBindSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
-            tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
-            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.MoveAbilityKey);
-        TempSettings.Set(tempKeyBindSettings.JumpKey, tempKeyBindSettings.ShiftKey, tempKeyBindSettings.CrouchKey, tempKeyBindSettings.SlideKey,
-            tempKeyBindSettings.FirstAbilityKey, tempKeyBindSettings.SecondAbilityKey, tempKeyBindSettings.ThirdAbilityKey, tempKeyBindSettings.FourthAbilityKey,
-            tempKeyBindSettings.UseTalkKey, tempKeyBindSettings.MoveAbilityKey);
-        return tempKeyBindSettings.IsEqual(_savedSettings);*/
-        return true;
+        var tempKeyBindSettings = JsonDictionaryData<Dictionary<IAbility, KeyCode[]>, IAbility, KeyCode[]>.Load(_settingsFilePath);
+
+        if (tempKeyBindSettings != null)
+        {
+            _savedSettings.SetDictionary(tempKeyBindSettings);
+            _tempSettings.SetDictionary(tempKeyBindSettings);
+            return tempKeyBindSettings == _savedSettings.AbilityKyes;
+        }
+        else throw new System.ArgumentNullException(nameof(tempKeyBindSettings));
     }
 
     public void DiscardSettings()
     {
-        /*TempSettings.Set(KeyBindSettings);
-        SettingsIsSaved.SetValue(true);*/
+        _tempSettings.SetFromSettings(_savedSettings);
+        _settingsIsSaved.SetValue(true);
     }
 
     public void SetKeyBind(KeyCode[] keyCode, IAbility ability)
     {
         _tempSettings.SetAbility(ability, keyCode);
-        SettingsIsSaved.SetValue(false);
-        Debug.Log(TempSettings.ToString());
+        _settingsIsSaved.SetValue(false);
     }
 }

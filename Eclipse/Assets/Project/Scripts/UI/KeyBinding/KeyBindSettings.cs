@@ -3,7 +3,7 @@ using UnityEngine;
 
 public struct KeyBindSettings : IStruct
 {
-    private Dictionary<IAbility, KeyCode[]> AbilityKyes;
+    public Dictionary<IAbility, KeyCode[]> AbilityKyes;
 
     public void Init()
     {
@@ -16,7 +16,25 @@ public struct KeyBindSettings : IStruct
         AbilityKyes = null;
     }
 
-    public KeyBindSettings Get() => this;
+    public Dictionary<IAbility, KeyCode[]> GetSettings() => AbilityKyes;
+
+    public KeyCode[] GetAbilityKeys(IAbility ability) => AbilityKyes[ability];
+
+    public void SetFromSettings(KeyBindSettings tempSettings) => AbilityKyes = tempSettings.GetSettings();
+
+    public void SetDictionary(Dictionary<IAbility, KeyCode[]> keyValuePairs) => AbilityKyes = keyValuePairs;
+
+    public void SetAbility(IAbility ability, KeyCode[] keys)
+    {
+        if (AbilityKyes.ContainsKey(ability)) AbilityKyes[ability] = keys;
+        else AbilityKyes.Add(ability, keys);
+    }
+
+    public bool IsEqual(KeyBindSettings other)
+    {
+        if (AbilityKyes == other.AbilityKyes) return true;
+        else return false;
+    }
 
     public override string ToString()
     {
@@ -48,24 +66,15 @@ public struct KeyBindSettings : IStruct
         return tempString;
     }
 
-    public KeyCode[] GetAbilityKeys(IAbility ability) => AbilityKyes[ability];
+    //public void SetFromString(string str)
+    //{
+    //    string[] strings = str.Split("\n");
+    //    foreach (var tempstring in strings)
+    //    {
+    //        var abilityKeyStrings = tempstring.Split(": ");
+    //        var abilityName = abilityKeyStrings[0];
+    //        var abilityKeys = abilityKeyStrings[1];
+    //    }
+    //}
 
-    public void SetDictionary(Dictionary<IAbility, KeyCode[]> keyValuePairs) => AbilityKyes = keyValuePairs;
-
-    public void SetFromString(string str)
-    {
-        string[] strings = str.Split("\n");
-        foreach (var tempstring in strings)
-        {
-            var abilityKeyStrings = tempstring.Split(": ");
-            var abilityName = abilityKeyStrings[0];
-            var abilityKeys = abilityKeyStrings[1];
-        }
-    }
-
-    public void SetAbility(IAbility ability, KeyCode[] keys)
-    {
-        if (AbilityKyes.ContainsKey(ability)) AbilityKyes[ability] = keys;
-        else AbilityKyes.Add(ability, keys);
-    }
 }
