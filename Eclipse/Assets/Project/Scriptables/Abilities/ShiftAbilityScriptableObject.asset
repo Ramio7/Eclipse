@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796dd68ba6e269743848feca48476ea5, type: 3}
   m_Name: ShiftAbilityScriptableObject
   m_EditorClassIdentifier: 
+  abilityId: 6
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 
+  keys: 30010000

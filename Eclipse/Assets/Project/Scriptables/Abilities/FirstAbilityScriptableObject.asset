@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e249e3f0b7e7d14fa964fa1edb47c20, type: 3}
   m_Name: FirstAbilityScriptableObject
   m_EditorClassIdentifier: 
+  abilityId: 7
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 
+  keys: 20000000

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae10eda2392c1d4ea7f6a292561b2a1, type: 3}
   m_Name: CrouchAbilityScriptableObject
   m_EditorClassIdentifier: 
-  keysNeeded: 1
+  abilityId: 2
+  idleAnimation: []
+  leftAnimation: []
+  rightAnimation: []
   keys: 63000000
-  _crouchLeftAnimation:
-  - {fileID: 0}
-  _crouchRightAnimation:
-  - {fileID: 0}

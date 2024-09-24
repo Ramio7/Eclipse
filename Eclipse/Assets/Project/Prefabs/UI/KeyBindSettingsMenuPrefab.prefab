@@ -939,6 +939,7 @@ GameObject:
   - component: {fileID: 6631477116342934749}
   - component: {fileID: 4603410397100082266}
   - component: {fileID: 8799375350173921652}
+  - component: {fileID: 236306929728931002}
   m_Layer: 5
   m_Name: FirstAbilityPanel
   m_TagString: Untagged
@@ -1057,6 +1058,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &236306929728931002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642236170365963331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc54dabf7a4ed64a85ddf9cb7a81239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: da54847e88b3dc7428ebc7ef33a4bb4d, type: 2}
 --- !u!1 &710487794845163878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1231,7 @@ GameObject:
   - component: {fileID: 5254926287145993070}
   - component: {fileID: 8785739691220062685}
   - component: {fileID: 5996969188176677125}
+  - component: {fileID: 6939830010273274861}
   m_Layer: 5
   m_Name: UseTalkPanel
   m_TagString: Untagged
@@ -1335,6 +1350,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6939830010273274861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144010304152349980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd9c4b2ad0d0c749ac50a5de6c70b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: 6c6801a30e85fe147808f31f92d186d2, type: 2}
 --- !u!1 &1404767447193814123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1377,7 @@ GameObject:
   - component: {fileID: 5205933568111520624}
   - component: {fileID: 5221299163433478196}
   - component: {fileID: 7691725663184963417}
+  - component: {fileID: 7041849720015973843}
   m_Layer: 5
   m_Name: FourthAbilityPanel
   m_TagString: Untagged
@@ -1467,6 +1496,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7041849720015973843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404767447193814123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d6be940243ed941b3d9d328d3ec38c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: ebac536e0f8d8274e8871a38eea21f2e, type: 2}
 --- !u!1 &1449187398042932085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1834,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2897,6 +2939,7 @@ GameObject:
   - component: {fileID: 8816327766794510078}
   - component: {fileID: 2939524891099164691}
   - component: {fileID: 4601322669729063748}
+  - component: {fileID: 4515602395497412443}
   m_Layer: 5
   m_Name: ShiftPanel
   m_TagString: Untagged
@@ -3015,6 +3058,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4515602395497412443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240649963451699294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607f5c093f201bf4f8cf3fd33764c99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: 8811b67011e53a643bcda1a9978dfc39, type: 2}
 --- !u!1 &4538929191270080273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3655,7 @@ GameObject:
   - component: {fileID: 1308294862452302292}
   - component: {fileID: 7699200417389466470}
   - component: {fileID: 580127599621253564}
+  - component: {fileID: 5452070996693813138}
   m_Layer: 5
   m_Name: SlidePanel
   m_TagString: Untagged
@@ -3717,6 +3774,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5452070996693813138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489693620667501858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b55bf8eb9998e4b861ed4935542023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: b985357212c5b3742b5e1d449c4021c2, type: 2}
 --- !u!1 &6059967624368040028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,6 +3935,7 @@ GameObject:
   - component: {fileID: 8915555093936772147}
   - component: {fileID: 3356366522300602111}
   - component: {fileID: 2912485168747429437}
+  - component: {fileID: 1276387192901579501}
   m_Layer: 5
   m_Name: MoveAbilityPanel
   m_TagString: Untagged
@@ -3938,7 +4009,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6449430428474441274}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -3983,6 +4054,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1276387192901579501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449430428474441274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95502e90da76af4da4d44d664d3356b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: f44162851605f054bbca7f4408fa9d24, type: 2}
 --- !u!1 &7022223362830422229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4507,6 +4591,7 @@ GameObject:
   - component: {fileID: 8265026795454408471}
   - component: {fileID: 6983331518885702300}
   - component: {fileID: 278121558657051979}
+  - component: {fileID: 789973020326171421}
   m_Layer: 5
   m_Name: SecondAbilityPanel
   m_TagString: Untagged
@@ -4625,6 +4710,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &789973020326171421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454971226615712071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d09786d15ae644f8835557a3979c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: 41b2e486f3ca8934a887a64282dfda4d, type: 2}
 --- !u!1 &7620107910928739401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,6 +4858,7 @@ GameObject:
   - component: {fileID: 8910667406445396247}
   - component: {fileID: 5223049461249011150}
   - component: {fileID: 8349211383734008641}
+  - component: {fileID: 8460228612775448090}
   m_Layer: 5
   m_Name: ThirdAbilityPanel
   m_TagString: Untagged
@@ -4878,6 +4977,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815396311976ae64cae749ccb51e2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8460228612775448090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748436834697625311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26cd204203baa894794ca52c5068102b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDefaults: {fileID: 11400000, guid: b518ef32b3a81bf41b7e4a6ddb5fd3c6, type: 2}
 --- !u!1 &8279377803680139329
 GameObject:
   m_ObjectHideFlags: 0

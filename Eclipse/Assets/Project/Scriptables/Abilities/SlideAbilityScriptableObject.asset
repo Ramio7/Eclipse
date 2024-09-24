@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2087100b1fd34ad41a55be6702b5e7e1, type: 3}
   m_Name: SlideAbilityScriptableObject
   m_EditorClassIdentifier: 
+  abilityId: 4
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 
+  keys: 63000000

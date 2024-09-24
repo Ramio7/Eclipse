@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7436b18ed7f39f4e809b61c78b8041d, type: 3}
   m_Name: UseTalkAbilityScriptableObject
   m_EditorClassIdentifier: 
+  abilityId: 5
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 
+  keys: 66000000

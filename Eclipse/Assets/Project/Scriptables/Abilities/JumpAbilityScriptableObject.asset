@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eeb5b9a92ee1c24a9dd7eeee22c9458, type: 3}
   m_Name: JumpAbilityScriptableObject
   m_EditorClassIdentifier: 
+  abilityId: 3
+  idleAnimation: []
+  leftAnimation: []
+  rightAnimation: []
   keys: 20000000
-  _jumpIdleAnimation:
-  - {fileID: 0}
-  _jumpLeftAnimation:
-  - {fileID: 0}
-  _jumpRightAnimation:
-  - {fileID: 0}
