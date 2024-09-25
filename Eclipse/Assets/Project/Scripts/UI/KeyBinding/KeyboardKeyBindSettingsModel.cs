@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -58,20 +57,21 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public void SaveSettings()
     {
-        JsonDictionaryData<Dictionary<IAbility, KeyCode[]>, IAbility, KeyCode[]>.Save(_tempSettings.AbilityKyes, _settingsFilePath);
+        JsonData<IAbility[]>.Save(_tempSettings.Abilities, _settingsFilePath);
+        JsonData<KeyCode[,]>.Save(_tempSettings.KeyCodes, _settingsFilePath);
         _savedSettings.SetFromSettings(_tempSettings);
         _settingsIsSaved.SetValue(true);
     }
 
-    private bool LoadSettings()
+    public bool LoadSettings()
     {
-        var tempKeyBindSettings = JsonDictionaryData<Dictionary<IAbility, KeyCode[]>, IAbility, KeyCode[]>.Load(_settingsFilePath);
+        var tempKeyBindSettings = JsonData<KeyBindSettings>.Load(_settingsFilePath);
 
-        if (tempKeyBindSettings != null)
+        if (tempKeyBindSettings.AbilityKyes != null)
         {
-            _savedSettings.SetDictionary(tempKeyBindSettings);
-            _tempSettings.SetDictionary(tempKeyBindSettings);
-            return tempKeyBindSettings == _savedSettings.AbilityKyes;
+            _savedSettings.SetDictionary(tempKeyBindSettings.AbilityKyes);
+            _tempSettings.SetDictionary(tempKeyBindSettings.AbilityKyes);
+            return tempKeyBindSettings.IsEqual(_savedSettings);
         }
         else throw new System.ArgumentNullException(nameof(tempKeyBindSettings));
     }

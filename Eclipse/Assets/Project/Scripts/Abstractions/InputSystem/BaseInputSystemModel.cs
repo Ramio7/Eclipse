@@ -20,13 +20,13 @@ public class BaseInputSystemModel : BaseModel
     /*private void BindKeysAndAbilities(KeyBindSettings keyBindSettings)
     {
         var abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
-        var keyKodesArrayCount = keyBindSettings.AbilityKyes.Count;
+        var keyKodesArrayCount = keyBindSettings._abilityKyes.Count;
 
         for (int i = 0; i < abilities.Count; i++)
         {
             var ability = abilities[i];
 
-            for (int j = 0; j < keyBindSettings.AbilityKyes.Count; j++)
+            for (int j = 0; j < keyBindSettings._abilityKyes.Count; j++)
             {
                 var abilityName = ability.GetType().Name;
                 var keyName = abilityName.Replace("Ability", "Key");
@@ -39,7 +39,7 @@ public class BaseInputSystemModel : BaseModel
     {
         var fields = keyBindSettings.GetType().GetFields();
 
-        for (int i = 0; i < keyBindSettings.AbilityKyes.Count; i++)
+        for (int i = 0; i < keyBindSettings._abilityKyes.Count; i++)
         {
             var keyName = fields[i].Name;
             var abilityName = keyName.Replace("Key", "Ability");

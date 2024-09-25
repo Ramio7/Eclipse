@@ -34,7 +34,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
             abilityPanel.OnAbilityBinded += model.SetKeyBind;
             model.SetKeyBind(abilityPanel.AbilityKeys, abilityPanel.Ability);
         }
-        model.SaveSettings();
+        if (!model.LoadSettings()) model.SaveSettings();
     }
 
     private void UnsubscribeButtons()
