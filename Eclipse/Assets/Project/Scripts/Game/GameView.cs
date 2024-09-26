@@ -1,17 +1,27 @@
 using UnityEngine;
 
-public class GameView : MonoBehaviour, IView
+public class GameView : BaseView
 {
     [SerializeField] private GameScriptableObject _gameScriptableObject;
 
     private GameController _controller;
 
-    public Canvas GameLoaderCanvas {  get; private set; }
+    public static GameView Instance;
 
     private void OnEnable()
     {
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
 
-        _controller = new(this, _gameScriptableObject);
+            DontDestroyOnLoad(this);
+
+            _controller = new(_gameScriptableObject, this);
+        }
+    }
+
+    public void OnDestroy()
+    {
+        _controller =null;
     }
 }

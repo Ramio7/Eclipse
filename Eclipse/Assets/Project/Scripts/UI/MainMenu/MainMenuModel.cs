@@ -1,29 +1,21 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-public class MainMenuModel : BaseModel, IUIModel
+public class MainMenuModel : BaseScriptableObjectOrientedModel
 {
-    private Canvas _menuCanvas;
-
-    public MainMenuModel(MainMenuScriptableObject data, Canvas menuCanvas) : base()
+    public MainMenuModel(MainMenuScriptableObject data) : base(data)
     {
-        _menuCanvas = menuCanvas;
+        
+    }
+
+    public override void Init(IScriptableObject modelData)
+    {
+        
     }
 
     public override void Dispose()
     {
-        _menuCanvas = null;
+        base.Dispose();
     }
 
-    public void ChangeCanvas(Canvas canvasToActivate)
-    {
-        _menuCanvas.enabled = false;
-        canvasToActivate.enabled = true;
-    }
-
-    public void SwitchActiveButton(Button buttonToActivate, Button buttonToDisable)
-    {
-        buttonToActivate.gameObject.SetActive(true);
-        buttonToDisable.gameObject.SetActive(false);
-    }
+    public void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    public void ActivateLoadingScreen() => GameStateMashine.Instance.ChangeGameState(GameState.LoadingScreen);
+    public void ReturnToGame() => GameStateMashine.Instance.ChangeGameState(GameState.Game);
 }

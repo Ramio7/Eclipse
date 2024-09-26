@@ -1,28 +1,24 @@
 using UnityEngine;
 
-public class BaseController : IController
+public abstract class BaseController : IController
 {
-    protected IView _view;
     protected IModel _model;
 
-    public BaseController(IView view)
+    public BaseController()
     {
-        _model = new BaseModel();
-        _view = view;
+        Init();
     }
 
-    public virtual void Init()
+    protected virtual void Init()
     {
-        _model.Init();
+        ControllerList.RegisterController(this);
     }
-
-    protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
 
     public virtual void Dispose()
     {
-        _model.Dispose();
-
         _model = null;
-        _view = null;
     }
+
+    protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);
+    protected void InstantiateChildObject(GameObject childObject, GameObject parent) => Object.Instantiate(childObject, parent.transform);
 }

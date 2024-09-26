@@ -1,18 +1,28 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class GameModel : BaseModel
+public class GameModel : BaseScriptableObjectOrientedModel
 {
-    private Canvas _activeCanvas;
+    private GameObject _girlPrefab;
+    private GameOverlayView _overlayView;
 
-    public GameModel() : base()
+    public GameObject GirlPrefab { get => _girlPrefab; }
+    public GameOverlayView OverlayView { get => _overlayView; }
+
+    public GameModel(IScriptableObject gameData) : base(gameData)
     {
+        Init(gameData);
     }
 
-    public void LoadGameScene() => SceneManager.LoadSceneAsync(1);
-    public void ChangeCanvas(Canvas canvasToActivate)
+    public override void Init(IScriptableObject modelData)
     {
-        if (_activeCanvas != null) _activeCanvas.enabled = false;
-        _activeCanvas = canvasToActivate;
+        base.Init(modelData);
+        var tempGameData = modelData as GameScriptableObject;
+        _girlPrefab = tempGameData.GirlPrefab;
+        _overlayView = tempGameData.OverlayView;
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
     }
 }

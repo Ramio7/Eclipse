@@ -1,19 +1,17 @@
-public class SettingsMenuController : BaseController
+public class SettingsMenuController : BaseGameObjectController
 {
     private new SettingsMenuView _view;
     private new SettingsMenuModel _model;
 
-    public SettingsMenuController(SettingsMenuView view, SettingsMenuScriptableObject settingsDefaults) : base(view)
+    public SettingsMenuController(SettingsMenuScriptableObject settingsDefaults, SettingsMenuView view) : base(view)
     {
-        _view = view;
-        _model = new(settingsDefaults, _view.SettingsCanvas);
-
-        Init();
+        Init(settingsDefaults, view);
     }
 
-    public override void Init()
+    protected void Init(IScriptableObject data, IView view)
     {
-        base.Init();
+        _view = view as SettingsMenuView;
+        _model = new(data as SettingsMenuScriptableObject);
 
         SetButtonsVolumes();
         InitButtons();
@@ -22,21 +20,15 @@ public class SettingsMenuController : BaseController
 
     public override void Dispose()
     {
-        base.Dispose();
-
         DeinitButtons();
         DeInitActions();
 
-        _model.Dispose();
-
-        _view = null;
-        _model = null;
+        base.Dispose();
     }
 
 
     private void SetButtonsVolumes()
     {
-        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
 
         _view.BrightnessVolumeSlider.SetValueWithoutNotify(_model.GameSettings.BrightnessVolume);
         _view.ContrastRatioSlider.SetValueWithoutNotify(_model.GameSettings.ContrastRatio);
@@ -61,25 +53,29 @@ public class SettingsMenuController : BaseController
         _view.VoiceVolumeSlider.onValueChanged.AddListener(_model.ChangeVoiceVolume);
         _view.SubtitlesToogle.onValueChanged.AddListener(_model.ChangeSubtitlesOnOff);
 
+        _view.BackToMainMenuButton.onClick.AddListener(ActivateMainMenu);
+        _view.KeyBindSettingsButton.onClick.AddListener(ActivateKeyBindSettingsMenu);
         _view.BackToMainMenuButton.onClick.AddListener(_model.DiscardSettings);
         _view.SaveSettingsButton.onClick.AddListener(_model.SaveSettings);
     }
 
     private void DeinitButtons()
     {
-        _model.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
+        _model?.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
 
-        _view.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
-        _view.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
-        _view.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
-        _view.MasterVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterVolume);
-        _view.MusicVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
-        _view.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
-        _view.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
-        _view.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
+        _view?.BrightnessVolumeSlider.onValueChanged.RemoveListener(_model.ChangeBrightnessVolume);
+        _view?.ContrastRatioSlider.onValueChanged.RemoveListener(_model.ChangeContrastRatio);
+        _view?.EffectVolumeSlider.onValueChanged.RemoveListener(_model.ChangeEffectVolume);
+        _view?.MasterVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMasterVolume);
+        _view?.MusicVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
+        _view?.SoundVolumeSlider.onValueChanged.RemoveListener(_model.ChangeMusicVolume);
+        _view?.VoiceVolumeSlider.onValueChanged.RemoveListener(_model.ChangeVoiceVolume);
+        _view?.SubtitlesToogle.onValueChanged.RemoveListener(_model.ChangeSubtitlesOnOff);
 
-        _view.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
-        _view.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(ActivateMainMenu);
+        _view?.KeyBindSettingsButton.onClick.RemoveListener(ActivateKeyBindSettingsMenu);
+        _view?.BackToMainMenuButton.onClick.RemoveListener(_model.DiscardSettings);
+        _view?.SaveSettingsButton.onClick.RemoveListener(_model.SaveSettings);
     }
 
     private void InitActions()
@@ -94,5 +90,6 @@ public class SettingsMenuController : BaseController
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved) => _view.SaveSettingsButton.interactable = !settingsIsSaved;
 
-    private void ActivateMainMenu() => _model.ChangeCanvas(MainMenuView.Instance.MainMenuCanvas);
+    private void ActivateMainMenu() => GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
+    private void ActivateKeyBindSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.KeyBindMenu);
 }

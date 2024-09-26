@@ -3,11 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/" + nameof(EntryPointScriptableObject), fileName = nameof(EntryPointScriptableObject))]
 public class EntryPointScriptableObject : BaseScriptableObject
 {
-    [SerializeField] private GameObject _mainMenuPrefab;
-    [SerializeField] private GameObject _settingsMenuPrefab;
-    [SerializeField] private GameObject _gamePrefab;
+    [SerializeField] private MainMenuView _mainMenuPrefab;
+    [SerializeField] private SettingsMenuView _settingsMenuPrefab;
+    [SerializeField] private KeyboardKeyBindSettingsView _keyBindSettingsMenuPrefab;
+    [SerializeField] private LoadingScreenView _loadingScreenPrefab;
 
-    public GameObject MainMenuPrefab { get => _mainMenuPrefab; }
-    public GameObject SettingsMenuPrefab { get => _settingsMenuPrefab; }
-    public GameObject GamePrefab { get => _gamePrefab; }
+    public MainMenuView MainMenuPrefab { get => _mainMenuPrefab; }
+    public SettingsMenuView SettingsMenuPrefab { get => _settingsMenuPrefab; }
+    public KeyboardKeyBindSettingsView KeyBindSettingsMenuPrefab { get => _keyBindSettingsMenuPrefab; }
+    public LoadingScreenView LoadingScreenPrefab { get => _loadingScreenPrefab; }
 }

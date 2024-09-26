@@ -1,42 +1,41 @@
 using UnityEngine;
 
-public class MainMenuController : BaseController
+public class MainMenuController : BaseGameObjectController
 {
     private new MainMenuModel _model;
     private new MainMenuView _view;
 
-    public MainMenuController(IView view, IScriptableObject modelData) : base(view)
+    public MainMenuController(MainMenuScriptableObject modelData, MainMenuView view) : base(view)
     {
-        var tempModelData = modelData as MainMenuScriptableObject; 
-        _view = view as MainMenuView;
-        _model = new MainMenuModel(tempModelData, _view.MainMenuCanvas);
-        Init();
+        Init(modelData, view);
     }
 
-    public override void Init()
+    protected void Init(MainMenuScriptableObject modelData, IView view)
     {
-        base.Init();
+        base.Init(view);
+
+        _view = view as MainMenuView;
+        _model = new MainMenuModel(modelData);
 
         SubscribeButtons();
     }
 
     public override void Dispose()
     {
+        UnsubscribeButtons();
+
         base.Dispose();
-
-        _model.Dispose();
-
-        _model = null;
-        _view = null;
     }
 
     private void SubscribeButtons()
     {
-        _view.ContinueGameButton.onClick.AddListener(GameController.Instance.ContinueGame);
+        _view.StartGameButton.onClick.AddListener(SceneSelector.SetGameScene);
 
-        _view.StartGameButton.onClick.AddListener(GameController.Instance.StartGame);
+        _view.StartGameButton.onClick.AddListener(_model.ActivateLoadingScreen);
 
-        _view.SettingsButton.onClick.AddListener(ActivateSettingsMenu);
+        _view.SettingsButton.onClick.AddListener(_model.ActivateSettingsMenu);
+
+        _view.ContinueGameButton.onClick.AddListener(_model.ReturnToGame);
 
 #if UNITY_EDITOR
         _view.ExitGameButton.onClick.AddListener(Debug.Break);
@@ -45,8 +44,20 @@ public class MainMenuController : BaseController
 #endif
     }
 
-    private void SetStartGameButtonActive() => _model.SwitchActiveButton(_view.StartGameButton, _view.ContinueGameButton);
-    private void SetContinueGameButtonActive() => _model.SwitchActiveButton(_view.ContinueGameButton, _view.StartGameButton);
+    private void UnsubscribeButtons()
+    {
+        _view?.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
 
-    private void ActivateSettingsMenu() => _model.ChangeCanvas(SettingsMenuView.Instance.SettingsCanvas);
+        _view?.StartGameButton.onClick.RemoveListener(_model.ActivateLoadingScreen);
+
+        _view?.SettingsButton.onClick.RemoveListener(_model.ActivateSettingsMenu);
+
+        _view?.ContinueGameButton.onClick.RemoveListener(_model.ReturnToGame);
+
+#if UNITY_EDITOR
+        _view?.ExitGameButton.onClick.RemoveListener(Debug.Break);
+#else
+        _view?.ExitGameButton.onClick.RemoveListener(Application.Quit);
+#endif
+    }
 }
