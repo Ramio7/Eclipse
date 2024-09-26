@@ -10,8 +10,6 @@ public class SettingsMenuController : BaseGameObjectController
 
     protected void Init(IScriptableObject data, IView view)
     {
-        base.Init(view);
-
         _view = view as SettingsMenuView;
         _model = new(data as SettingsMenuScriptableObject);
 

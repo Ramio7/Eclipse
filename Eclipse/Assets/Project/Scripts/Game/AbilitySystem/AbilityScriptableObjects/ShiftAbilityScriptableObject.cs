@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/" + nameof(ShiftAbilityScriptableObject), fileName = nameof(ShiftAbilityScriptableObject))]
+[CreateAssetMenu(menuName = "ScriptableObjects/_abilities/" + nameof(ShiftAbilityScriptableObject), fileName = nameof(ShiftAbilityScriptableObject))]
 public class ShiftAbilityScriptableObject : BaseAbilityScriptableObject
 {
 }

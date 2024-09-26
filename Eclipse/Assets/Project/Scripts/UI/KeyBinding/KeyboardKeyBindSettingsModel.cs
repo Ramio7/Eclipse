@@ -5,10 +5,11 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 {
     private KeyBindSettings _savedSettings = new();
     private KeyBindSettings _tempSettings = new();
-    private ReactiveProperty<bool> _settingsIsSaved = new(true);
 
     private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
-    
+
+    public ReactiveProperty<bool> settingsIsSaved = new(true);
+
     public KeyBindSettings KeyBindSettings { get => _savedSettings; private set => _savedSettings = value; }
     public KeyBindSettings TempSettings { get => _tempSettings; private set => _tempSettings = value; }
 
@@ -26,12 +27,12 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     {
         base.Dispose();
 
-        if (_settingsIsSaved.GetValue() != true) DiscardSettings();
-        _settingsIsSaved?.Dispose();
+        if (settingsIsSaved.GetValue() != true) DiscardSettings();
+        settingsIsSaved?.Dispose();
         _savedSettings.Dispose();
         _tempSettings.Dispose();
 
-        _settingsIsSaved = null;
+        settingsIsSaved = null;
     }
 
     private void InitKeyBindSettings()
@@ -43,7 +44,6 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         {
             CreateSettingsFile();
         }
-        else LoadSettings();
     }
 
     private bool CheckSettingsFile() => File.Exists(_settingsFilePath);
@@ -57,34 +57,39 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public void SaveSettings()
     {
-        JsonData<IAbility[]>.Save(_tempSettings.Abilities, _settingsFilePath);
-        JsonData<KeyCode[,]>.Save(_tempSettings.KeyCodes, _settingsFilePath);
+        settingsIsSaved.SetValue(false);
+
+        JsonData<KeyCode[][]>.Save(_tempSettings.keyCodes, _settingsFilePath);
         _savedSettings.SetFromSettings(_tempSettings);
-        _settingsIsSaved.SetValue(true);
+
+        settingsIsSaved.SetValue(_savedSettings.IsEqual(_tempSettings));
     }
 
     public bool LoadSettings()
     {
-        var tempKeyBindSettings = JsonData<KeyBindSettings>.Load(_settingsFilePath);
+        settingsIsSaved.SetValue(false);
 
-        if (tempKeyBindSettings.AbilityKyes != null)
+        var tempKeyBindSettings = JsonData<KeyCode[][]>.Load(_settingsFilePath);
+
+        if (tempKeyBindSettings != null)
         {
-            _savedSettings.SetDictionary(tempKeyBindSettings.AbilityKyes);
-            _tempSettings.SetDictionary(tempKeyBindSettings.AbilityKyes);
-            return tempKeyBindSettings.IsEqual(_savedSettings);
+            _savedSettings.keyCodes = tempKeyBindSettings;
+            _tempSettings.keyCodes = tempKeyBindSettings;
+            settingsIsSaved.SetValue(tempKeyBindSettings == _savedSettings.keyCodes);
         }
-        else throw new System.ArgumentNullException(nameof(tempKeyBindSettings));
+
+        return settingsIsSaved.GetValue();
     }
 
     public void DiscardSettings()
     {
         _tempSettings.SetFromSettings(_savedSettings);
-        _settingsIsSaved.SetValue(true);
+        settingsIsSaved.SetValue(true);
     }
 
     public void SetKeyBind(KeyCode[] keyCode, IAbility ability)
     {
         _tempSettings.SetAbility(ability, keyCode);
-        _settingsIsSaved.SetValue(false);
+        settingsIsSaved.SetValue(false);
     }
 }

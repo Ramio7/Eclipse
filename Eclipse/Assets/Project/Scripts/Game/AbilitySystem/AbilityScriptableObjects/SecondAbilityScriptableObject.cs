@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/" + nameof(SecondAbilityScriptableObject), fileName = nameof(SecondAbilityScriptableObject))]
+[CreateAssetMenu(menuName = "ScriptableObjects/_abilities/" + nameof(SecondAbilityScriptableObject), fileName = nameof(SecondAbilityScriptableObject))]
 public class SecondAbilityScriptableObject : BaseAbilityScriptableObject
 {
 }

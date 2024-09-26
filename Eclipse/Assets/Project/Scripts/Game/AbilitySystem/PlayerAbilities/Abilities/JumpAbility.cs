@@ -4,7 +4,7 @@ public class JumpAbility : BaseAbility
     {
     }
 
-    protected override void InternalMethod()
+    public override void Invoke()
     {
     }
 }

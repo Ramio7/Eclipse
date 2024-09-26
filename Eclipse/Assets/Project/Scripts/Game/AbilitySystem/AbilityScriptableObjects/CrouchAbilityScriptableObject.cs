@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/" + nameof(CrouchAbilityScriptableObject), fileName = nameof(CrouchAbilityScriptableObject))]
+[CreateAssetMenu(menuName = "ScriptableObjects/_abilities/" + nameof(CrouchAbilityScriptableObject), fileName = nameof(CrouchAbilityScriptableObject))]
 public class CrouchAbilityScriptableObject : BaseAbilityScriptableObject
 {
 }

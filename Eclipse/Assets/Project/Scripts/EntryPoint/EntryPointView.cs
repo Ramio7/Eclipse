@@ -66,9 +66,9 @@ public class EntryPointView : BaseView, IView
 
     private void OnDestroy()
     {
-        _abilitiesAllocator.Dispose();
-        _gameStateMashine.Dispose();
-        _canvasSelector.Dispose();
+        _abilitiesAllocator?.Dispose();
+        _gameStateMashine?.Dispose();
+        _canvasSelector?.Dispose();
 
         _abilitiesAllocator = null;
         _gameStateMashine = null;

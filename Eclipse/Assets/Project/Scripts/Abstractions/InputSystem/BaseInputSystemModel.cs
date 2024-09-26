@@ -19,12 +19,12 @@ public class BaseInputSystemModel : BaseModel
 
     /*private void BindKeysAndAbilities(KeyBindSettings keyBindSettings)
     {
-        var abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
+        var _abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
         var keyKodesArrayCount = keyBindSettings._abilityKyes.Count;
 
-        for (int i = 0; i < abilities.Count; i++)
+        for (int i = 0; i < _abilities.Count; i++)
         {
-            var ability = abilities[i];
+            var ability = _abilities[i];
 
             for (int j = 0; j < keyBindSettings._abilityKyes.Count; j++)
             {

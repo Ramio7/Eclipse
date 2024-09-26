@@ -1,18 +1,18 @@
-using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 
 public static class JsonData<T>
 {
     public static void Save(T data, string path = null)
     {
-        var str = JsonUtility.ToJson(data);
-        File.WriteAllText(path, str /*, Crypto.CryptoXOR(str)*/);
+        var str = JsonConvert.SerializeObject(data);
+        File.WriteAllText(path, Crypto.CryptoXOR(str));
     }
 
     public static T Load(string path = null)
     {
         var str = File.ReadAllText(path);
         if (str == string.Empty) return default;
-        return JsonUtility.FromJson<T>(str /*Crypto.CryptoXOR(str)*/);
+        return JsonConvert.DeserializeObject<T>(Crypto.CryptoXOR(str));
     }
 }

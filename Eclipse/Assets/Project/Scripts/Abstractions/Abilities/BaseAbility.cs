@@ -1,13 +1,8 @@
-using System;
-
-[Serializable]
 public abstract class BaseAbility : IAbility
 {
     protected ICharacter _character;
 
-    public Action Method { get; private set; }
-
-    protected abstract void InternalMethod();
+    public abstract void Invoke();
 
     public BaseAbility(ICharacter character)
     {
@@ -16,7 +11,6 @@ public abstract class BaseAbility : IAbility
 
     public virtual void Init(ICharacter character)
     {
-        Method = InternalMethod;
         _character = character;
 
         AbilitiesAllocator.AddNewAbility(character, this);
@@ -24,7 +18,6 @@ public abstract class BaseAbility : IAbility
 
     public virtual void Dispose()
     {
-        Method = null;
         _character = null;
     }
 }

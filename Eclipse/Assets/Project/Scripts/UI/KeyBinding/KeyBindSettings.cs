@@ -1,123 +1,93 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct KeyBindSettings : IStruct
 {
-    private Dictionary<IAbility, KeyCode[]> _abilityKyes;
+    private IAbility[] _abilities;
 
-    public IAbility[] Abilities;
-    public KeyCode[,] KeyCodes;
+    public KeyCode[][] keyCodes;
 
-    public Dictionary<IAbility, KeyCode[]> AbilityKyes { get => _abilityKyes; private set => _abilityKyes = value; }
+    public IAbility[] Abilities { get => _abilities; set => _abilities = value; }
 
     public void Init()
     {
-        _abilityKyes = new();
-
-        Abilities = new IAbility[10];
-        KeyCodes = new KeyCode[10, 2];
+        _abilities = new IAbility[10];
+        keyCodes = new KeyCode[10][];
     }
 
     public void Dispose()
     {
-        _abilityKyes.Clear();
-        _abilityKyes = null;
-
-        Abilities = null;
-        KeyCodes = null;
+        _abilities = null;
+        keyCodes = null;
     }
 
-    public Dictionary<IAbility, KeyCode[]> GetSettings() => _abilityKyes;
+    public void GetSettings(out IAbility[] i_abilities, out KeyCode[][] i_keyCodes)
+    {
+        if (_abilities != null) i_abilities = _abilities;
+        else i_abilities = new IAbility[10];
+        i_keyCodes = keyCodes;
+    }
 
-    public KeyCode[] GetAbilityKeys(IAbility ability) => _abilityKyes[ability];
+    public KeyCode[] GetAbilityKeys(IAbility ability)
+    {
+        ArrayUtility.FindArrayElement(_abilities, ability, out int abilityIndex);
+        return keyCodes[abilityIndex];
+    }
 
-    public void SetFromSettings(KeyBindSettings tempSettings) => _abilityKyes = tempSettings.GetSettings();
+    public IAbility GetAbility(int index) => _abilities[index];
 
-    public void SetDictionary(Dictionary<IAbility, KeyCode[]> keyValuePairs) => _abilityKyes = keyValuePairs;
+    public void SetFromSettings(KeyBindSettings tempSettings)
+    {
+        tempSettings.GetSettings(out _abilities, out keyCodes);
+    }
 
     public void SetAbility(IAbility ability, KeyCode[] keys)
     {
-        if (_abilityKyes.ContainsKey(ability)) _abilityKyes[ability] = keys;
-        else _abilityKyes.Add(ability, keys);
-
-        if (ArrayUtility.FindArrayElement(Abilities, ability, out int index))
+        if (ArrayUtility.FindArrayElement(_abilities, ability, out int index))
         {
-            KeyCodes[index, 0] = keys[0];
-            KeyCodes[index, 1] = keys[1];
+            switch (keys.Length)
+            {
+                case 0:
+                    throw new ArgumentException($"No key assigned to {ability}");
+                case 1:
+                    keyCodes[index] = new KeyCode[1];
+                    keyCodes[index][0] = keys[0];
+                    break;
+                case 2:
+                    keyCodes[index] = new KeyCode[2];
+                    keyCodes[index][0] = keys[0];
+                    keyCodes[index][1] = keys[1];
+                    break;
+                default:
+                    throw new ArgumentException($"To much keys assigned to {ability}");
+            }
         }
         else
         {
+            var freeIndex = ArrayUtility.GetFreeIndex(_abilities);
+            _abilities[freeIndex] = ability;
+            switch (keys.Length)
             {
-                var freeIndex = ArrayUtility.GetFreeIndex(Abilities);
-                Abilities[freeIndex] = ability;
-                switch (keys.Length)
-                {
-                    case 0:
-                        throw new ArgumentException($"No key assigned to {ability}");
-                    case 1:
-                        {
-                            KeyCodes[freeIndex, 0] = keys[0];
-                            break;
-                        }
-                    case 2:
-                        {
-                            KeyCodes[freeIndex, 0] = keys[0];
-                            KeyCodes[freeIndex, 1] = keys[1];
-                            break;
-                        }
-                    default: 
-                        throw new ArgumentException($"To much keys assigned to {ability}");
-                }
+                case 0:
+                    throw new ArgumentException($"No key assigned to {ability}");
+                case 1:
+                    keyCodes[freeIndex] = new KeyCode[1];
+                    keyCodes[freeIndex][0] = keys[0];
+                    break;
+                case 2:
+                    keyCodes[freeIndex] = new KeyCode[2];
+                    keyCodes[freeIndex][0] = keys[0];
+                    keyCodes[freeIndex][1] = keys[1];
+                    break;
+                default:
+                    throw new ArgumentException($"To much keys assigned to {ability}");
             }
         }
     }
 
     public bool IsEqual(KeyBindSettings other)
     {
-        if (_abilityKyes == other.AbilityKyes) return true;
+        if (_abilities == other._abilities && keyCodes == other.keyCodes) return true;
         return false;
     }
-
-    public override string ToString()
-    {
-        string tempString = string.Empty;
-        foreach (var ability in _abilityKyes)
-        {
-            switch (ability.Value.Length)
-            {
-                case 0:
-                    {
-                        throw new ArgumentException($"No key assigned to {ability}");
-                    }
-                case 1:
-                    {
-                        tempString += $"{ability.Key}: {ability.Value.GetValue(0)}\n";
-                        break;
-                    }
-                case 2:
-                    {
-                        var firstKeyName = ability.Value.GetValue(0);
-                        var secondKeyName = ability.Value.GetValue(1);
-                        var abilityKeysNames = firstKeyName + " + " + secondKeyName;
-                        tempString += $"{ability.Key}: {abilityKeysNames}\n";
-                        break;
-                    }
-                default: throw new ArgumentException($"To much keys assigned to {ability}");
-            }
-        }
-        return tempString;
-    }
-
-    public void SetFromString(string str)
-    {
-        string[] strings = str.Split("\n");
-        foreach (var tempstring in strings)
-        {
-            var abilityKeyStrings = tempstring.Split(": ");
-            var abilityName = abilityKeyStrings[0];
-            var abilityKeys = abilityKeyStrings[1];
-        }
-    }
-
 }

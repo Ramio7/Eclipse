@@ -4,7 +4,7 @@ public class SecondAbility : BaseAbility
     {
     }
 
-    protected override void InternalMethod()
+    public override void Invoke()
     {
         throw new System.NotImplementedException();
     }

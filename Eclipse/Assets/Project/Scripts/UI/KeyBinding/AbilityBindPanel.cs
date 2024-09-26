@@ -138,4 +138,29 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         }
         OnAbilityBinded?.Invoke(AbilityKeys, Ability);
     }
+
+    public void SetAbilityKeys(KeyCode[] keys)
+    {
+        var abilityKeysText = _abilityButton.GetComponentInChildren<TMP_Text>();
+        AbilityKeys = new KeyCode[keys.Length];
+        switch (keys.Length)
+        {
+            case 0:
+                throw new ArgumentException("No buttons asinged to ability");
+            case 1:
+                {
+                    AbilityKeys = keys;
+                    abilityKeysText.text = keys[0].ToString();
+                    break;
+                }
+            case 2:
+                {
+                    AbilityKeys = keys;
+                    abilityKeysText.text = $"{AbilityKeys[0]} + {AbilityKeys[1]}";
+                    break;
+                }
+            default:
+                throw new ArgumentException("Wrong buttons array length");
+        }
+    }
 }

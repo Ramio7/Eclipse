@@ -4,8 +4,7 @@ public class CrouchAbility : BaseAbility
     {
     }
 
-    protected override void InternalMethod()
+    public override void Invoke()
     {
-        //_character.State.SetCrouching(true);
     }
 }

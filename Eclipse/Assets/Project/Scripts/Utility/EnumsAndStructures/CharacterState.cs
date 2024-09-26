@@ -51,17 +51,17 @@ public struct CharacterState : IDisposable
 
     private void DeinitValues()
     {
-        IsIdle.Dispose();
-        IsMoving.Dispose();
-        IsRunning.Dispose();
-        IsInTheAir.Dispose();
-        IsCrouching.Dispose();
-        IsSliding.Dispose();
-        UsingFirstAbility.Dispose();
-        UsingSecondAbility.Dispose();
-        UsingThirdAbility.Dispose();
-        UsingFourthAbility.Dispose();
-        IsTalking.Dispose();
+        IsIdle?.Dispose();
+        IsMoving?.Dispose();
+        IsRunning?.Dispose();
+        IsInTheAir?.Dispose();
+        IsCrouching?.Dispose();
+        IsSliding?.Dispose();
+        UsingFirstAbility?.Dispose();
+        UsingSecondAbility?.Dispose();
+        UsingThirdAbility?.Dispose();
+        UsingFourthAbility?.Dispose();
+        IsTalking?.Dispose();
         UsingSomething?.Dispose();
 
         IsIdle = null;
