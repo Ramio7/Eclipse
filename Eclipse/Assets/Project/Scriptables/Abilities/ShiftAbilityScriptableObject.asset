@@ -17,3 +17,4 @@ MonoBehaviour:
   leftAnimation: []
   rightAnimation: []
   keys: 30010000
+  keysWorkType: 2

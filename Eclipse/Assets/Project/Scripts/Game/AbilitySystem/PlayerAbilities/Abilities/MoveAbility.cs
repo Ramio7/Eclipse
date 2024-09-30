@@ -1,6 +1,6 @@
 public class MoveAbility : BaseAbility
 {
-    public MoveAbility(ICharacter character) : base(character)
+    public MoveAbility(ICharacter character, AbilityKeysWorkType keysWorkType) : base(character, keysWorkType)
     {
     }
 

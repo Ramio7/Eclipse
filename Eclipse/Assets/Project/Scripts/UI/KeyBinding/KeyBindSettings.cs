@@ -30,7 +30,7 @@ public struct KeyBindSettings : IStruct
 
     public KeyCode[] GetAbilityKeys(IAbility ability)
     {
-        ArrayUtility.FindArrayElement(_abilities, ability, out int abilityIndex);
+        ArrayUtility<IAbility>.FindArrayElementIndex(_abilities, ability, out int abilityIndex);
         return keyCodes[abilityIndex];
     }
 
@@ -43,7 +43,7 @@ public struct KeyBindSettings : IStruct
 
     public void SetAbility(IAbility ability, KeyCode[] keys)
     {
-        if (ArrayUtility.FindArrayElement(_abilities, ability, out int index))
+        if (ArrayUtility<IAbility>.FindArrayElementIndex(_abilities, ability, out int index))
         {
             switch (keys.Length)
             {
@@ -64,7 +64,7 @@ public struct KeyBindSettings : IStruct
         }
         else
         {
-            var freeIndex = ArrayUtility.GetFreeIndex(_abilities);
+            var freeIndex = ArrayUtility<IAbility>.GetFreeIndex(_abilities);
             _abilities[freeIndex] = ability;
             switch (keys.Length)
             {

@@ -1,6 +1,6 @@
 public class FourthAbility : BaseAbility
 {
-    public FourthAbility(ICharacter character) : base(character)
+    public FourthAbility(ICharacter character, AbilityKeysWorkType keysWorkType) : base(character, keysWorkType)
     {
     }
 

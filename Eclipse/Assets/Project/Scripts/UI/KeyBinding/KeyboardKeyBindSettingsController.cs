@@ -103,7 +103,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
             for (int i = 0; i < keysettings.keyCodes.Length; i++)
             {
                 var tempAbility = keysettings.GetAbility(i);
-                ArrayUtility.FindArrayElement(abilitiesArray, tempAbility, out int index);
+                ArrayUtility<IAbility>.FindArrayElementIndex(abilitiesArray, tempAbility, out int index);
                 var panel = panelArray.GetValue(index) as IAbilityBindPanel;
                 panel.SetAbilityKeys(keysettings.GetAbilityKeys(tempAbility));
             }

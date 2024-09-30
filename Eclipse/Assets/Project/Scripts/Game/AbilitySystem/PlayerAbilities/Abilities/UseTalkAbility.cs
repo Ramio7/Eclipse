@@ -1,6 +1,6 @@
 public class UseTalkAbility : BaseAbility
 {
-    public UseTalkAbility(ICharacter character) : base(character)
+    public UseTalkAbility(ICharacter character, AbilityKeysWorkType keysWorkType) : base(character, keysWorkType)
     {
     }
 

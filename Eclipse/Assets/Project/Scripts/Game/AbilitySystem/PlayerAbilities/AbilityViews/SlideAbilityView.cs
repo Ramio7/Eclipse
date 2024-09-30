@@ -2,6 +2,6 @@ public class SlideAbilityView : BaseMainCharacterAbilityView
 {
     private void Start()
     {
-        abilityBindPanel.Ability = new SlideAbility(AbilitiesAllocator.MainCharacter);
+        abilityBindPanel.Ability = new SlideAbility(AbilitiesAllocator.MainCharacter, abilityDefaults.KeysWorkType);
     }
 }

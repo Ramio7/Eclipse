@@ -2,6 +2,6 @@ public class SecondAbilityView : BaseMainCharacterAbilityView
 {
     private void Start()
     {
-        abilityBindPanel.Ability = new SecondAbility(AbilitiesAllocator.MainCharacter);
+        abilityBindPanel.Ability = new SecondAbility(AbilitiesAllocator.MainCharacter, abilityDefaults.KeysWorkType);
     }
 }
