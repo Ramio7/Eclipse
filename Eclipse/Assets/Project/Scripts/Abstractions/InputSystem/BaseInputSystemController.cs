@@ -11,31 +11,49 @@ public class BaseInputSystemController : BaseController
     {
         _model = new BaseInputSystemModel();
 
-        EntryPointView.OnUpdate += TrackUserBaseInput;
-        EntryPointView.OnUpdate += TrackUserAxisInput;
+        EntryPointView.OnUpdate += TrackBaseInput;
+        EntryPointView.OnUpdate += TrackAxisInput;
     }
 
     public override void Dispose()
     {
         base.Dispose();
 
-        EntryPointView.OnUpdate -= TrackUserBaseInput;
-        EntryPointView.OnUpdate -= TrackUserAxisInput;
+        EntryPointView.OnUpdate -= TrackBaseInput;
+        EntryPointView.OnUpdate -= TrackAxisInput;
     }
 
-    private void TrackUserBaseInput()
+    private void TrackBaseInput()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && (GameStateMashine.Current == GameState.Game)
-            || Input.GetKeyUp(KeyCode.Menu)) GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
+        if ((Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Menu)) 
+            && (GameStateMashine.Current == GameState.Game))
+            GameStateMashine.Instance.ChangeGameState(GameState.MainMenu);
     }
 
-    private void TrackUserAxisInput()
+    private void TrackAxisInput()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        var horizontalAxisValue = Input.GetAxis("Horizontal");
+        var verticalAxisValue = Input.GetAxis("Vertical");
+
+        if (horizontalAxisValue != 0)
         {
             ArrayUtility<MoveAbility>.
                 FindArrayElementOfType(AbilitiesAllocator.MainCharacterAbilities.ToArray(), out MoveAbility moveAbility);
             if (!moveAbility.IsInvoking.GetValue()) moveAbility.Invoke();
+        }
+
+        if (verticalAxisValue != 0)
+        {
+            if (verticalAxisValue > 0)
+            {
+                ArrayUtility<JumpAbility>.FindArrayElementOfType(AbilitiesAllocator.MainCharacterAbilities.ToArray(), out JumpAbility jumpAbility);
+                if (!jumpAbility.IsInvoking.GetValue()) jumpAbility.Invoke();
+            }
+            else if (verticalAxisValue < 0)
+            {
+                ArrayUtility<CrouchAbility>.FindArrayElementOfType(AbilitiesAllocator.MainCharacterAbilities.ToArray(), out CrouchAbility crouchAbility);
+                if (!crouchAbility.IsInvoking.GetValue()) crouchAbility.Invoke();
+            }
         }
 
         if (GameStateMashine.Current != GameState.Game)

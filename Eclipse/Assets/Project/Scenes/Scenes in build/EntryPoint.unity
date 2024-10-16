@@ -3075,18 +3075,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2964551508237127135, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_SpriteHash
-      value: 888095966
-      objectReference: {fileID: 0}
-    - target: {fileID: 6535688184204858420, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_Mass
-      value: 5.4538555
-      objectReference: {fileID: 0}
-    - target: {fileID: 6535688184204858420, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8090455592095965474, guid: f8d64ec1e7d96ef4eb1ccd3ee29265e7, type: 3}
       propertyPath: m_Name
       value: devocka

@@ -15,7 +15,7 @@ public class MainMenuModel : BaseScriptableObjectOrientedModel
         base.Dispose();
     }
 
-    public void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    public void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameSubState(GameMenuSubState.SettingsMenu);
     public void ActivateLoadingScreen() => GameStateMashine.Instance.ChangeGameState(GameState.LoadingScreen);
     public void ReturnToGame() => GameStateMashine.Instance.ChangeGameState(GameState.Game);
 }

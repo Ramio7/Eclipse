@@ -1,6 +1,6 @@
 public enum AbilityKeysWorkType
 {
     None = 0,
-    Separate = 1,
-    Combo = 2,
+    KeyCodes = 1,
+    Axis = 2,
 }

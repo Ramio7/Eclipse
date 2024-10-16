@@ -5,6 +5,6 @@ public class MainCharacterView : BaseCharacterView, IMortalCharacter
 
     private void Awake()
     {
-
+        DontDestroyOnLoad(this);
     }
 }

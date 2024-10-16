@@ -1,12 +1,14 @@
 public class LoadingScreenView : BaseUIView
 {
-    private void Start()
+    private void Awake()
     {
-        DontDestroyOnLoad(this);
-        CanvasSelector.AddCanvas(GameState.LoadingScreen, this);
+        Init();
     }
 
-    private void OnDestroy()
+    protected override void Init()
     {
+        base.Init();
+
+        CanvasSelector.AddCanvas(GameState.LoadingScreen, this);
     }
 }

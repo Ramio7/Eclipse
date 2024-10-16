@@ -30,6 +30,8 @@ public class MainMenuView : BaseUIView, IView
 
     protected override void Init()
     {
+        base.Init();
+
         _controller = new(_mainMenuData, this);
 
         CanvasSelector.AddCanvas(GameState.MainMenu, this);

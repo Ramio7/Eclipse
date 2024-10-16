@@ -64,7 +64,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         }
     }
 
-    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameSubState(GameMenuSubState.SettingsMenu);
 
     private void ActivateReturnToMainMenuButton(bool isSaved)
     {

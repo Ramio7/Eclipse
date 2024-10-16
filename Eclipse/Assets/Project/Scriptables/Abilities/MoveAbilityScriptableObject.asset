@@ -16,5 +16,5 @@ MonoBehaviour:
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 14010000130100006100000064000000
-  keysWorkType: 1
+  keys: 1301000014010000
+  keysWorkType: 2

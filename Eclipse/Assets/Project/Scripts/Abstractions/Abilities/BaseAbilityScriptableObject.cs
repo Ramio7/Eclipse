@@ -9,6 +9,7 @@ public abstract class BaseAbilityScriptableObject : ScriptableObject, IAbilitySc
     [SerializeField] protected Sprite[] leftAnimation;
     [SerializeField] protected Sprite[] rightAnimation;
     [SerializeField] protected KeyCode[] keys;
+    
     [SerializeField] protected AbilityKeysWorkType keysWorkType;
 
     public int KeysNeeded { get => keys.Length; }

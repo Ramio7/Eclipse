@@ -1,18 +1,26 @@
 using System;
 
-
 //This utility created to work with arrays rank up to 3
 public static class ArrayUtility<T>
 {
-    public static bool FindArrayElementIndex(T[] array, T element, out int index)
+    public static bool FindArrayElementIndex(Array array, T element, out int index)
     {
-        for (int i = 0; i < array.Length; i++)
+        int tempIndex = 0;
+        foreach (var arrayElement in array)
         {
-            if (array[i].Equals(element))
+            if (arrayElement != null)
             {
-                index = i;
-                return true;
+                if (!arrayElement.Equals(element))
+                {
+                    tempIndex += 1;
+                }
+                else
+                {
+                    index = tempIndex;
+                    return true;
+                }
             }
+            else tempIndex += 1;
         }
         index = -1;
         return false;
@@ -30,6 +38,7 @@ public static class ArrayUtility<T>
                 return;
             }
         }
+        throw new ArgumentNullException(element.GetType().Name);
     }
 
     public static int GetFreeIndex(Array array)
@@ -60,7 +69,26 @@ public static class ArrayUtility<T>
             }
 
         }
-        return -1;
+        throw new ArgumentNullException(array.ToString());
+    }
+
+    public static bool ArrayIsNull(Array array, ref int index)
+    {
+        int arrayElementsIsNull = 0;
+        foreach (var arrayElement in array)
+        {
+            if (arrayElement == null)
+            {
+                arrayElementsIsNull += 1;
+                continue;
+            }
+        }
+        if (arrayElementsIsNull == array.Length)
+        {
+            index = -1;
+            return true;
+        }
+        else return false;
     }
 
     public static void ClearIndex(Array array, int index) => array.SetValue(default, index);

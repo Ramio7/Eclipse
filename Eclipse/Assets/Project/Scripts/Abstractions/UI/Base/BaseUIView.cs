@@ -18,7 +18,7 @@ public class BaseUIView : BaseView, IUIView
 
     public IUIView Instance { get => _instance; protected set => _instance = value; }
 
-    private void Awake()
+    protected virtual void Init() 
     {
         if (Instance == null)
         {
@@ -28,8 +28,6 @@ public class BaseUIView : BaseView, IUIView
         }
         else if (Instance.GameObject != this) Destroy(this);
     }
-
-    protected virtual void Init() { }
 
     private void OnDestroy()
     {

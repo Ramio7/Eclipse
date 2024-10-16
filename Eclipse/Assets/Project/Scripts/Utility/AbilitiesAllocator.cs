@@ -48,4 +48,9 @@ public class AbilitiesAllocator : IDisposable
             CharactersAbilitiesDictionary[character].Add(ability);
         }
     }
+
+    public static void ClearCharacterAbilities(ICharacter character)
+    {
+
+    }
 }
