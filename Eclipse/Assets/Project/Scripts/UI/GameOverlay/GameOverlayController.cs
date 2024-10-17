@@ -11,6 +11,7 @@ public class GameOverlayController : BaseGameObjectController
     protected void Init(GameOverlayScriptableObject data, IView view)
     {
         base.Init(view);
+
         _model = new(data);
         _view = view as GameOverlayView;
     }

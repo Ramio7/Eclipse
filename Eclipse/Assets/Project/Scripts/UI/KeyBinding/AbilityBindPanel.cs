@@ -15,7 +15,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     public KeyCode[] AbilityKeys { get => _keys; set => _keys = value; }
     public IAbility Ability { get => _ability; set => _ability = value; }
 
-    public Action<KeyCode[], IAbility> OnAbilityBinded;
+    public Action<ICharacter, KeyCode[], IAbility> OnAbilityBinded;
 
     private event Action<KeyCode> OnFirstKeyDown;
     private event Action<KeyCode> OnSecondKeyUp;
@@ -62,7 +62,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         {
             if (_ability == null) Task.Delay(100);
 
-            OnAbilityBinded?.Invoke(_keys, _ability);
+            OnAbilityBinded?.Invoke(AbilitiesAllocator.MainCharacter, _keys, _ability);
             return Task.CompletedTask;
         }
     }
@@ -136,7 +136,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
             default:
                 throw new ArgumentException("Wrong buttons array length");
         }
-        OnAbilityBinded?.Invoke(AbilityKeys, Ability);
+        OnAbilityBinded?.Invoke(AbilitiesAllocator.MainCharacter, _keys, _ability);
     }
 
     public void SetAbilityKeys(KeyCode[] keys)

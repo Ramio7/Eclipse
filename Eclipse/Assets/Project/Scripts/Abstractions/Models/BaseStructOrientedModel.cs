@@ -9,6 +9,8 @@ public abstract class BaseStructOrientedModel : BaseModel, IStructOrientedModel
 
     public virtual void Init(IStruct @struct)
     {
+        base.Init();
+
         m_struct = @struct;
     }
 }

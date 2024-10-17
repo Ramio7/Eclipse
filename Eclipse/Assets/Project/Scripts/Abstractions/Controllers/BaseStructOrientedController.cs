@@ -9,6 +9,8 @@ public class BaseStructOrientedController : BaseController, IStructOrientedContr
 
     public virtual void Init(IStruct @struct)
     {
+        base.Init();
+
         m_struct = @struct;
     }
 }

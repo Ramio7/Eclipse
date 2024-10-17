@@ -18,8 +18,10 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         Init();
     }
 
-    protected new void Init()
+    protected override void Init()
     {
+        base.Init();
+
         InitKeyBindSettings();
     }
 
@@ -87,8 +89,9 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         settingsIsSaved.SetValue(true);
     }
 
-    public void SetKeyBind(KeyCode[] keyCode, IAbility ability)
+    public void SetKeyBind(ICharacter character, KeyCode[] keyCode, IAbility ability)
     {
+        Debug.Log($"{character} ability set");
         _tempSettings.SetAbility(ability, keyCode);
         settingsIsSaved.SetValue(false);
     }

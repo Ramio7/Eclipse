@@ -6,7 +6,6 @@ public abstract class BaseController : IController
 
     public BaseController()
     {
-        Init();
     }
 
     protected virtual void Init()

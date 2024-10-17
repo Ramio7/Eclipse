@@ -1,14 +1,15 @@
-public abstract class BaseGameObjectController : BaseController, IGameObjectController
+public abstract class BaseGameObjectController : BaseController
 {
     protected IView _view;
 
     public BaseGameObjectController(IView view) : base()
     {
-        Init(view);
     }
 
-    public virtual void Init(IView view)
+    protected virtual void Init(IView view)
     {
+        base.Init();
+
         _view = view;
     }
 

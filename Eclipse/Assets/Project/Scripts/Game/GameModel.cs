@@ -16,6 +16,7 @@ public class GameModel : BaseScriptableObjectOrientedModel
     public override void Init(IScriptableObject modelData)
     {
         base.Init(modelData);
+
         var tempGameData = modelData as GameScriptableObject;
         _girlPrefab = tempGameData.GirlPrefab;
         _overlayView = tempGameData.OverlayView;

@@ -7,7 +7,7 @@ public class MainMenuModel : BaseScriptableObjectOrientedModel
 
     public override void Init(IScriptableObject modelData)
     {
-        
+        base.Init(modelData);
     }
 
     public override void Dispose()

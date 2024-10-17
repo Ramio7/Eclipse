@@ -1,14 +1,15 @@
-public class BaseScriptableObjectOrientedModel : BaseModel, IScriptableObjectOrientedModel
+public abstract class BaseScriptableObjectOrientedModel : BaseModel, IScriptableObjectOrientedModel
 {
     protected IScriptableObject _scriptableObject;
 
     public BaseScriptableObjectOrientedModel(IScriptableObject scriptableObject) : base()
     {
-        Init(scriptableObject);
     }
 
     public virtual void Init(IScriptableObject scriptableObject)
     {
+        base.Init();
+
         _scriptableObject = scriptableObject;
     }
 

@@ -7,6 +7,6 @@ public class GameOverlayModel : BaseScriptableObjectOrientedModel
 
     public override void Init(IScriptableObject modelData)
     {
-        
+        base.Init(modelData);
     }
 }
