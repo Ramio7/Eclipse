@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AbilitiesAllocator : IDisposable
 {
-    public static Dictionary<ICharacter, List<IAbility>> CharactersAbilitiesDictionary;
+    public static Dictionary<ICharacter, Dictionary<IAbility, KeyCode[]>> CharactersAbilitiesDictionary;
 
     public static MainCharacterView MainCharacter;
-    public static List<IAbility> MainCharacterAbilities;
 
     public static AbilitiesAllocator Instance;
 
@@ -19,38 +19,59 @@ public class AbilitiesAllocator : IDisposable
             CharactersAbilitiesDictionary = new();
 
             MainCharacter = UnityEngine.Object.FindFirstObjectByType<MainCharacterView>();
-            MainCharacterAbilities = new List<IAbility>();
         }
     }
 
     public void Dispose()
     {
-        foreach (var abilityList in CharactersAbilitiesDictionary.Values)
+        foreach (var characterAbilityList in CharactersAbilitiesDictionary.Values)
         {
-            foreach(var ability in abilityList) ability.Dispose();
+            foreach (var abilityKeyPair in characterAbilityList)
+            {
+                abilityKeyPair.Key.Dispose();
+                characterAbilityList.Remove(abilityKeyPair.Key);
+            }
         }
         CharactersAbilitiesDictionary.Clear();
         CharactersAbilitiesDictionary = null;
     }
 
-    public static void AddNewAbility(ICharacter character, IAbility ability)
+    public static void AddOrUpdateAbility(ICharacter character, KeyCode[] keys, IAbility ability)
     {
-        if (character.GameObject.TryGetComponent<MainCharacterView>(out var mainCharacter))
+        if (CharactersAbilitiesDictionary.ContainsKey(character) && CharactersAbilitiesDictionary[character].ContainsKey(ability))
         {
-            MainCharacterAbilities.Add(ability);
+            CharactersAbilitiesDictionary[character][ability] = keys;
             return;
         }
 
-        if (CharactersAbilitiesDictionary.ContainsKey(character)) CharactersAbilitiesDictionary[character].Add(ability);
+        if (CharactersAbilitiesDictionary.ContainsKey(character)) CharactersAbilitiesDictionary[character].Add(ability, keys);
         else
         {
             CharactersAbilitiesDictionary.Add(character, new());
-            CharactersAbilitiesDictionary[character].Add(ability);
+            CharactersAbilitiesDictionary[character].Add(ability, keys);
         }
     }
 
-    public static void ClearCharacterAbilities(ICharacter character)
+    public static List<IAbility> GetAbilitiesContainingKeys(ICharacter character, KeyCode key)
     {
+        List<IAbility> abilities = new();
 
+        foreach (var abilityKeyPair in CharactersAbilitiesDictionary[character])
+        {
+            foreach (var abilityKey in abilityKeyPair.Value)
+            {
+                if (abilityKey == key) abilities.Add(abilityKeyPair.Key);
+            }
+        }
+        return abilities;
     }
+
+    public static void DeleteCharacterFromAllocator(ICharacter character)
+    {
+        ClearCharacterAbilities(character);
+
+        CharactersAbilitiesDictionary[character] = null;
+    }
+
+    public static void ClearCharacterAbilities(ICharacter character) => CharactersAbilitiesDictionary[character].Clear();
 }

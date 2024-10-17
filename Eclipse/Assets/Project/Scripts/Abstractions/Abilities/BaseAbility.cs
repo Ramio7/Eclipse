@@ -18,8 +18,6 @@ public abstract class BaseAbility : IAbility
     public virtual void Init(ICharacter character)
     {
         _character = character;
-
-        AbilitiesAllocator.AddNewAbility(character, this);
     }
     public virtual void Invoke()
     {
