@@ -2,7 +2,8 @@ using System;
 
 public interface IAbility : IDisposable
 {
-    AbilityKeysWorkType HowKeysIsWorkingTogether {  get; }
-    void Init(ICharacter character);
+    void Init();
+    void SetAbilityInvokeParameters(float horizontalAxis, float verticalAxis);
     void Invoke();
+    void Cancel();
 }

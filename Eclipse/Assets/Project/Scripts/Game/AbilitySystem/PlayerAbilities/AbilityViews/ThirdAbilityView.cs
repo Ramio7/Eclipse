@@ -2,6 +2,6 @@ public class ThirdAbilityView : BaseMainCharacterAbilityView
 {
     private void Start()
     {
-        abilityBindPanel.Ability = new ThirdAbility(AbilitiesAllocator.MainCharacter, abilityDefaults.KeysWorkType);
+        abilityBindPanel.Ability = new ThirdAbility(AbilitiesAllocator.MainCharacter);
     }
 }

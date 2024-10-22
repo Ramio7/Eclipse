@@ -1,11 +1,16 @@
 public class SlideAbility : BaseAbility
 {
-    public SlideAbility(ICharacter character, AbilityKeysWorkType keysWorkType) : base(character, keysWorkType)
+    public SlideAbility(ICharacter character) : base(character)
     {
     }
 
     public override void Invoke()
     {
-        throw new System.NotImplementedException();
+        base.Invoke();
+    }
+
+    protected override void Method()
+    {
+        base.Method();
     }
 }

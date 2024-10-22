@@ -2,6 +2,6 @@ public class FourthAbilityView : BaseMainCharacterAbilityView
 {
     private void Start()
     {
-        abilityBindPanel.Ability = new FourthAbility(AbilitiesAllocator.MainCharacter, abilityDefaults.KeysWorkType);
+        abilityBindPanel.Ability = new FourthAbility(AbilitiesAllocator.MainCharacter);
     }
 }

@@ -72,7 +72,7 @@ public static class ArrayUtility<T>
         throw new ArgumentNullException(array.ToString());
     }
 
-    public static bool ArrayIsNull(Array array, ref int index)
+    public static bool ArrayIsNull(Array array)
     {
         int arrayElementsIsNull = 0;
         foreach (var arrayElement in array)
@@ -85,7 +85,6 @@ public static class ArrayUtility<T>
         }
         if (arrayElementsIsNull == array.Length)
         {
-            index = -1;
             return true;
         }
         else return false;

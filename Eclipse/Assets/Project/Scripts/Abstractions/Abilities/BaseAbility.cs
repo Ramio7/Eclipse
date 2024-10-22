@@ -1,31 +1,42 @@
+using System.Threading;
+
 public abstract class BaseAbility : IAbility
 {
-    protected ICharacter _character;
-    private AbilityKeysWorkType _howKeysIsWorkingTogether = AbilityKeysWorkType.None;
+    protected ICharacter character;
+    protected CancellationTokenSource cancellationTokenSource;
+    protected CancellationToken cancellationToken;
+    protected float horizontalAxis;
+    protected float verticalAxis;
 
+    public CancellationToken CancellationToken { get => cancellationToken; private set => cancellationToken = value; }
 
-    public ReactiveProperty<bool> IsInvoking;
-
-    public AbilityKeysWorkType HowKeysIsWorkingTogether { get => _howKeysIsWorkingTogether; protected set => _howKeysIsWorkingTogether = value; }
-
-    public BaseAbility(ICharacter character, AbilityKeysWorkType keysWorkType)
+    public BaseAbility(ICharacter character)
     {
-        IsInvoking = new(false);
-        _howKeysIsWorkingTogether = keysWorkType;
-        Init(character);
+        this.character = character;
     }
 
-    public virtual void Init(ICharacter character)
+    public virtual void Init()
     {
-        _character = character;
+        cancellationTokenSource = new CancellationTokenSource();
+        cancellationToken = cancellationTokenSource.Token;
     }
-    public virtual void Invoke()
+
+    public void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
     {
-        IsInvoking.SetValue(true);
+        horizontalAxis = horizontalAxisValue;
+        verticalAxis = verticalAxisValue;
+    }
+
+    public virtual void Invoke() => Method();
+
+    public virtual void Cancel() => cancellationTokenSource.Cancel();
+
+    protected virtual void Method()
+    {
+        if (cancellationToken.IsCancellationRequested) return;
     }
 
     public virtual void Dispose()
     {
-        _character = null;
     }
 }

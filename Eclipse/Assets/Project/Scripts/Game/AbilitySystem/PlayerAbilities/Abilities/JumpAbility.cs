@@ -1,10 +1,17 @@
 public class JumpAbility : BaseAbility
 {
-    public JumpAbility(ICharacter character, AbilityKeysWorkType keysWorkType) : base(character, keysWorkType)
+    public JumpAbility(ICharacter character) : base(character)
     {
+        
     }
 
     public override void Invoke()
     {
+        base.Invoke();
+    }
+
+    protected override void Method()
+    {
+        base.Method();
     }
 }

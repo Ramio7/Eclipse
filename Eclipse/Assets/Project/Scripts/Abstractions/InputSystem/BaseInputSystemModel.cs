@@ -2,15 +2,15 @@ using UnityEngine;
 
 public abstract class BaseInputSystemModel : BaseModel
 {
-    protected KeyCode lastKeyInput;
-    protected KeyCode currentKeyOutput;
-    protected float horizontalAxis;
-    protected float verticalAxis;
+    protected ReactiveProperty<KeyCode> lastKeyInput;
+    protected ReactiveProperty<KeyCode> currentKeyOutput;
+    protected ReactiveProperty<float> horizontalAxis;
+    protected ReactiveProperty<float> verticalAxis;
 
-    public KeyCode LastKeyInput { get => lastKeyInput; set => lastKeyInput = value; }
-    public KeyCode CurrentKeyOutput { get => currentKeyOutput; set => currentKeyOutput = value; }
-    public float HorizontalAxis { get => horizontalAxis; set => horizontalAxis = value; }
-    public float VerticalAxis { get => verticalAxis; set => verticalAxis = value; }
+    public KeyCode LastKeyInput { get => lastKeyInput.GetValue(); set => lastKeyInput.SetValue(value); }
+    public KeyCode CurrentKeyOutput { get => currentKeyOutput.GetValue(); set => currentKeyOutput.SetValue(value); }
+    public float HorizontalAxis { get => horizontalAxis.GetValue(); set => horizontalAxis.SetValue(value); }
+    public float VerticalAxis { get => verticalAxis.GetValue(); set => verticalAxis.SetValue(value); }
 
     public BaseInputSystemModel() : base()
     {
@@ -21,14 +21,31 @@ public abstract class BaseInputSystemModel : BaseModel
     {
         base.Init();
 
-        lastKeyInput = KeyCode.None;
-        currentKeyOutput = KeyCode.None;
-        horizontalAxis = 0;
-        verticalAxis = 0;
+        lastKeyInput = new(KeyCode.None);
+        currentKeyOutput = new(KeyCode.None);
+        horizontalAxis = new(0);
+        verticalAxis = new(0);
     }
 
     public override void Dispose()
     {
         base.Dispose();
+
+        lastKeyInput.Dispose();
+        currentKeyOutput.Dispose();
+        horizontalAxis.Dispose();
+        verticalAxis.Dispose();
+    }
+
+    public void GetKey(KeyCode keyCode)
+    {
+        lastKeyInput.SetValue(currentKeyOutput.GetValue());
+        currentKeyOutput.SetValue(keyCode);
+    }
+
+    public void GetAxis(float horizontalAxisValue, float verticalAxisValue)
+    {
+        horizontalAxis.SetValue(horizontalAxisValue);
+        verticalAxis.SetValue(verticalAxisValue);
     }
 }

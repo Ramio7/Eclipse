@@ -5,6 +5,6 @@ public class CrouchAbilityView : BaseMainCharacterAbilityView
 {
     private void Start()
     {
-        abilityBindPanel.Ability = new CrouchAbility(AbilitiesAllocator.MainCharacter, abilityDefaults.KeysWorkType);
+        abilityBindPanel.Ability = new CrouchAbility(AbilitiesAllocator.MainCharacter);
     }
 }
