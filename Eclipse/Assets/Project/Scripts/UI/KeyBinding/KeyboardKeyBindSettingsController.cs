@@ -11,7 +11,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
     {
         base.Init(view);
 
-        _model = new KeyboardKeyBindSettingsModel();
+        model = new KeyboardKeyBindSettingsModel();
 
         InitLinks();
     }
@@ -25,8 +25,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void InitLinks()
     {
-        var view = _view as KeyboardKeyBindSettingsView;
-        var model = _model as KeyboardKeyBindSettingsModel;
+        var view = base.view as KeyboardKeyBindSettingsView;
+        var model = base.model as KeyboardKeyBindSettingsModel;
 
         view.BackToMainMenuButton.onClick.AddListener(ActivateSettingsMenu);
         view.BackToMainMenuButton.onClick.AddListener(model.SaveSettings);
@@ -47,8 +47,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void DeinitLinks()
     {
-        var view = _view as KeyboardKeyBindSettingsView;
-        var model = _model as KeyboardKeyBindSettingsModel;
+        var view = base.view as KeyboardKeyBindSettingsView;
+        var model = base.model as KeyboardKeyBindSettingsModel;
 
         view.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
         view.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
@@ -72,7 +72,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void ActivateReturnToMainMenuButton(bool isSaved)
     {
-        var view = _view as KeyboardKeyBindSettingsView;
+        var view = base.view as KeyboardKeyBindSettingsView;
         view.BackToMainMenuButton.interactable = !isSaved;
     }
 
@@ -80,8 +80,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
     {
         if (isSaved)
         {
-            var view = _view as KeyboardKeyBindSettingsView;
-            var model = _model as KeyboardKeyBindSettingsModel;
+            var view = base.view as KeyboardKeyBindSettingsView;
+            var model = base.model as KeyboardKeyBindSettingsModel;
 
             FormTempArrays(view, out AbilityBindPanel[] panelArray, out IAbility[] abilitiesArray);
             UpdatePanelInfo(model, panelArray, abilitiesArray);

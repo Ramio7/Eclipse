@@ -11,7 +11,7 @@ public class MainMenuController : BaseGameObjectController
     {
         base.Init(view);
 
-        _model = new MainMenuModel(modelData);
+        model = new MainMenuModel(modelData);
 
         SubscribeButtons();
     }
@@ -25,8 +25,8 @@ public class MainMenuController : BaseGameObjectController
 
     private void SubscribeButtons()
     {
-        var view = _view as MainMenuView;
-        var model = _model as MainMenuModel;
+        var view = base.view as MainMenuView;
+        var model = base.model as MainMenuModel;
 
         view.StartGameButton.onClick.AddListener(SceneSelector.SetGameScene);
 
@@ -45,8 +45,8 @@ public class MainMenuController : BaseGameObjectController
 
     private void UnsubscribeButtons()
     {
-        var view = _view as MainMenuView;
-        var model = _model as MainMenuModel;
+        var view = base.view as MainMenuView;
+        var model = base.model as MainMenuModel;
 
         view?.StartGameButton.onClick.RemoveListener(SceneSelector.SetGameScene);
 

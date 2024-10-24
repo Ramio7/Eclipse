@@ -1,6 +1,6 @@
 public abstract class BaseGameObjectController : BaseController
 {
-    protected IView _view;
+    protected IView view;
 
     public BaseGameObjectController(IView view) : base()
     {
@@ -10,12 +10,12 @@ public abstract class BaseGameObjectController : BaseController
     {
         base.Init();
 
-        _view = view;
+        this.view = view;
     }
 
     public override void Dispose()
     {
-        _view = null;
+        view = null;
         base.Dispose();
     }
 }

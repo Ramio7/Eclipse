@@ -1,12 +1,14 @@
 public static class AbilityCash
 {
     private static IAbility[] _abilitiesCash = new IAbility[12];
+    private static IAbility _activeAbility;
 
     public static void AddAbilityToCash(IAbility ability)
     {
-        if (ArrayUtility<IAbility>.ArrayIsNull(_abilitiesCash))
+        if (ArrayUtility<IAbility>.ArrayIsFull(_abilitiesCash))
         {
             InvokeAbilities();
+            ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
             return;
         }
 
@@ -18,14 +20,23 @@ public static class AbilityCash
     {
         for (int i = 0; i < _abilitiesCash.Length; i++)
         {
-            if (i == 0) _abilitiesCash[i].Invoke();
+            if (i == 0 && _activeAbility != _abilitiesCash[i])
+            {
+                _activeAbility = _abilitiesCash[i];
+                _abilitiesCash[i].Invoke();
+                ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
+                return;
+            }
             else
             {
-                if (_abilitiesCash[i] == _abilitiesCash[i - 1]) continue;
+                if (_abilitiesCash[i] == _activeAbility) continue;
                 else
                 {
-                    _abilitiesCash[i - 1].Cancel();
+                    _activeAbility.Cancel();
+                    _activeAbility = _abilitiesCash[i];
                     _abilitiesCash[i].Invoke();
+                    ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
+                    return;
                 }
             }
         }

@@ -12,7 +12,7 @@ public static class ArrayUtility<T>
             {
                 if (!arrayElement.Equals(element))
                 {
-                    tempIndex += 1;
+                    tempIndex++;
                 }
                 else
                 {
@@ -20,7 +20,7 @@ public static class ArrayUtility<T>
                     return true;
                 }
             }
-            else tempIndex += 1;
+            else tempIndex++;
         }
         index = -1;
         return false;
@@ -79,7 +79,7 @@ public static class ArrayUtility<T>
         {
             if (arrayElement == null)
             {
-                arrayElementsIsNull += 1;
+                arrayElementsIsNull++;
                 continue;
             }
         }
@@ -90,7 +90,47 @@ public static class ArrayUtility<T>
         else return false;
     }
 
+    public static bool ArrayIsFull(Array array)
+    {
+        int arrayElementsNotNull = 0;
+        foreach (var arrayElement in array)
+        {
+            if (arrayElement == null) return false;
+            else arrayElementsNotNull++;
+        }
+
+        return arrayElementsNotNull == array.Length;
+    }
+
     public static void ClearIndex(Array array, int index) => array.SetValue(default, index);
     public static void ClearIndex(Array array, int index0, int index1) => array.SetValue(default, index0, index1);
     public static void ClearIndex(Array array, int index0, int index1, int index2) => array.SetValue(default, index0, index1, index2);
+
+    public static void ClearArray(Array array)
+    {
+        int arrayRank = array.Rank;
+        switch (arrayRank)
+        {
+            case 0:
+                
+                break;
+            case 1:
+                for (int i = 0; i < array.Length; i++)
+                {
+                    ClearIndex(array, i);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < array.Length; i++)
+                {
+                    for (int j = 0; j < array.Length; j++)
+                    {
+                        //complete this method
+                    }
+                }
+                break;
+            case 3: break;
+            default: break;
+        }
+    }
 }

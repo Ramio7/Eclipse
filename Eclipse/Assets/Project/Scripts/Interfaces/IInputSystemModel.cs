@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface IInputSystemModel : IModel
 {
-    Dictionary<KeyCode, IAbility> KeysMethodsPairs {  get; }
+    void GetKey(KeyCode keyCode);
+    void GetAxis(float horizontalAxisValue, float verticalAxisValue);
 }

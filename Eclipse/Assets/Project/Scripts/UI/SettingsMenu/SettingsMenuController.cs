@@ -9,7 +9,7 @@ public class SettingsMenuController : BaseGameObjectController
     {
         base.Init(view);
 
-        _model = new SettingsMenuModel(data as SettingsMenuScriptableObject);
+        model = new SettingsMenuModel(data as SettingsMenuScriptableObject);
 
         SetButtonsVolumes();
         InitButtons();
@@ -27,8 +27,8 @@ public class SettingsMenuController : BaseGameObjectController
 
     private void SetButtonsVolumes()
     {
-        var view = _view as SettingsMenuView;
-        var model = _model as SettingsMenuModel;
+        var view = base.view as SettingsMenuView;
+        var model = base.model as SettingsMenuModel;
 
         view.BrightnessVolumeSlider.SetValueWithoutNotify(model.GameSettings.BrightnessVolume);
         view.ContrastRatioSlider.SetValueWithoutNotify(model.GameSettings.ContrastRatio);
@@ -42,8 +42,8 @@ public class SettingsMenuController : BaseGameObjectController
 
     private void InitButtons()
     {
-        var view = _view as SettingsMenuView;
-        var model = _model as SettingsMenuModel;
+        var view = base.view as SettingsMenuView;
+        var model = base.model as SettingsMenuModel;
 
         model.SettingsIsSaved.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
 
@@ -64,8 +64,8 @@ public class SettingsMenuController : BaseGameObjectController
 
     private void DeinitButtons()
     {
-        var view = _view as SettingsMenuView;
-        var model = _model as SettingsMenuModel;
+        var view = base.view as SettingsMenuView;
+        var model = base.model as SettingsMenuModel;
 
         model?.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
 
@@ -86,19 +86,19 @@ public class SettingsMenuController : BaseGameObjectController
 
     private void InitActions()
     {
-        var model = _model as SettingsMenuModel;
+        var model = base.model as SettingsMenuModel;
         model.SettingsIsSaved.OnValueChanged.AddListener(ChangeSaveSettingsButtonInteractibilyty);
     }
 
     private void DeInitActions()
     {
-        var model = _model as SettingsMenuModel;
+        var model = base.model as SettingsMenuModel;
         model.SettingsIsSaved.OnValueChanged.RemoveListener(ChangeSaveSettingsButtonInteractibilyty);
     }
 
     private void ChangeSaveSettingsButtonInteractibilyty(bool settingsIsSaved)
     {
-        var view = _view as SettingsMenuView;
+        var view = base.view as SettingsMenuView;
         view.SaveSettingsButton.interactable = !settingsIsSaved;
     }
 

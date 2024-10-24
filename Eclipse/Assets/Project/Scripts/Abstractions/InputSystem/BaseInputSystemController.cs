@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BaseInputSystemController : BaseController
 {
-    protected BaseInputSystemModel model;
+    protected new IInputSystemModel model;
 
     public BaseInputSystemController() : base()
     {
@@ -27,7 +27,10 @@ public abstract class BaseInputSystemController : BaseController
 
     private void TrackKeyInput()
     {
-        if (Event.current.type == EventType.KeyDown) model.GetKey(Event.current.keyCode);
+        if (Event.current.type == EventType.KeyDown)
+        {
+            model.GetKey(Event.current.keyCode);
+        }
     }
 
     private void TrackAxisInput() => model.GetAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

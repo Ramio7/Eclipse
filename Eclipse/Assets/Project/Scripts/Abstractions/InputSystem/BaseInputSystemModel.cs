@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseInputSystemModel : BaseModel
+public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
 {
     protected ReactiveProperty<KeyCode> lastKeyInput;
     protected ReactiveProperty<KeyCode> currentKeyOutput;
