@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 //This utility created to work with arrays rank up to 3
 public static class ArrayUtility<T>
@@ -112,7 +113,7 @@ public static class ArrayUtility<T>
         switch (arrayRank)
         {
             case 0:
-                
+                Debug.LogError($"{array} is not initialized");
                 break;
             case 1:
                 for (int i = 0; i < array.Length; i++)
@@ -123,14 +124,33 @@ public static class ArrayUtility<T>
             case 2:
                 for (int i = 0; i < array.Length; i++)
                 {
+                    array.SetValue(default, i);
+
                     for (int j = 0; j < array.Length; j++)
                     {
-                        //complete this method
+                        array.SetValue(default, i, j);
                     }
                 }
                 break;
-            case 3: break;
-            default: break;
+            case 3:
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array.SetValue(default, i);
+
+                    for (int j = 0; j < array.Length; j++)
+                    {
+                        array.SetValue(default, i, j);
+
+                        for (int k = 0; k < array.Length; k++)
+                        {
+                            array.SetValue(default, i, j, k);
+                        }
+                    }
+                }
+                break;
+            default:
+                Debug.LogError($"Array rank is higher than 3");
+                break;
         }
     }
 }

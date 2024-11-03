@@ -6,7 +6,6 @@ public abstract class BaseInputSystemController : BaseController
 
     public BaseInputSystemController() : base()
     {
-        Init();
     }
 
     protected override void Init()

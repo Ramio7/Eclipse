@@ -7,14 +7,13 @@ public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
     protected ReactiveProperty<float> horizontalAxis;
     protected ReactiveProperty<float> verticalAxis;
 
-    public KeyCode LastKeyInput { get => lastKeyInput.GetValue(); set => lastKeyInput.SetValue(value); }
-    public KeyCode CurrentKeyOutput { get => currentKeyOutput.GetValue(); set => currentKeyOutput.SetValue(value); }
+    public ReactiveProperty<KeyCode> LastKeyInput { get => lastKeyInput; }
+    public ReactiveProperty<KeyCode> CurrentKeyOutput { get => currentKeyOutput; }
     public float HorizontalAxis { get => horizontalAxis.GetValue(); set => horizontalAxis.SetValue(value); }
     public float VerticalAxis { get => verticalAxis.GetValue(); set => verticalAxis.SetValue(value); }
 
     public BaseInputSystemModel() : base()
     {
-        Init();
     }
 
     protected override void Init()

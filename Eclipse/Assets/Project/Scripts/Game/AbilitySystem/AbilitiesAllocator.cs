@@ -52,18 +52,16 @@ public class AbilitiesAllocator : IDisposable
         }
     }
 
-    public static List<IAbility> GetAbilitiesContainingKeys(ICharacter character, KeyCode key)
+    public static IAbility GetAbilityContainingKey(ICharacter character, KeyCode previousKey, KeyCode currentKey)
     {
-        List<IAbility> abilities = new();
-
         foreach (var abilityKeyPair in CharactersAbilitiesDictionary[character])
         {
             foreach (var abilityKey in abilityKeyPair.Value)
             {
-                if (abilityKey == key) abilities.Add(abilityKeyPair.Key);
+                if (abilityKey == previousKey) ;
             }
         }
-        return abilities;
+        return default;
     }
 
     public static void DeleteCharacterFromAllocator(ICharacter character)
