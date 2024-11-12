@@ -1,6 +1,6 @@
-public class FirstAbility : BaseAbility
+public class DoubleJumpAbility : BaseComboAbility
 {
-    public FirstAbility(ICharacter character) : base(character)
+    public DoubleJumpAbility(ICharacter character, IAbility startAbility) : base(character, startAbility)
     {
     }
 

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UserKeyboardInputModel : BaseInputSystemModel
 {
-    public IAbility TakeAbilityFromAllocator(KeyCode previousKey, KeyCode currentKey)
-        => AbilitiesAllocator.GetAbilityContainingKey(AbilitiesAllocator.MainCharacter, previousKey, currentKey);
+    public IAbility TakeAbilityFromPull(KeyCode previousKey, KeyCode currentKey)
+        => AbilitiesPool.GetAbilityContainingKeys(AbilitiesPool.MainCharacter, previousKey, currentKey);
 
     public void PushAbilityToCash(IAbility ability)
     {

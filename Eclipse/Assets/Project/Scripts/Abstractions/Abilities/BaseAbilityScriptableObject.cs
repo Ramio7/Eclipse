@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public abstract class BaseAbilityScriptableObject : ScriptableObject, IAbilityScriptableObject
+public abstract class BaseAbilityScriptableObject : ScriptableObject, IKeyControlledAbilityScriptableObject
 {
     [SerializeField] protected int abilityId;
     [SerializeField] protected Sprite[] idleAnimation;

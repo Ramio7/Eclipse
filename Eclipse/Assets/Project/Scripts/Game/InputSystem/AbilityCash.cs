@@ -20,25 +20,26 @@ public static class AbilityCash
     {
         for (int i = 0; i < _abilitiesCash.Length; i++)
         {
-            if (i == 0 && _activeAbility != _abilitiesCash[i])
-            {
-                _activeAbility = _abilitiesCash[i];
-                _abilitiesCash[i].Invoke();
-                ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-                return;
-            }
-            else
-            {
-                if (_abilitiesCash[i] == _activeAbility) continue;
-                else
-                {
-                    _activeAbility.Cancel();
-                    _activeAbility = _abilitiesCash[i];
-                    _abilitiesCash[i].Invoke();
-                    ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-                    return;
-                }
-            }
+            
+            //if (i == 0 && _activeAbility != _abilitiesCash[i])
+            //{
+            //    _activeAbility = _abilitiesCash[i];
+            //    _abilitiesCash[i].Invoke();
+            //    ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
+            //    return;
+            //}
+            //else
+            //{
+            //    if (_abilitiesCash[i] == _activeAbility) continue;
+            //    else
+            //    {
+            //        _activeAbility.Cancel();
+            //        _activeAbility = _abilitiesCash[i];
+            //        _abilitiesCash[i].Invoke();
+            //        ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
+            //        return;
+            //    }
+            //}
         }
     }
 }

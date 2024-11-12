@@ -19,7 +19,7 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
 
     private Task AwaitCharacterInitializationAsync()
     {
-        if (AbilitiesAllocator.MainCharacter == null) Task.Delay(100);
+        if (AbilitiesPool.MainCharacter == null) Task.Delay(100);
         return Task.CompletedTask; 
     }
 }

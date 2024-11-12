@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IAbilityScriptableObject : IScriptableObject
+public interface IKeyControlledAbilityScriptableObject : IScriptableObject
 {
     int KeysNeeded { get; }
     KeyCode[] KeyCodes { get; }

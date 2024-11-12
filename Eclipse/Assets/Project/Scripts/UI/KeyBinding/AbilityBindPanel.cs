@@ -62,7 +62,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         {
             if (_ability == null) Task.Delay(100);
 
-            OnAbilityBinded?.Invoke(AbilitiesAllocator.MainCharacter, _keys, _ability);
+            OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _keys, _ability);
             return Task.CompletedTask;
         }
     }
@@ -136,7 +136,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
             default:
                 throw new ArgumentException("Wrong buttons array length");
         }
-        OnAbilityBinded?.Invoke(AbilitiesAllocator.MainCharacter, _keys, _ability);
+        OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _keys, _ability);
     }
 
     public void SetAbilityKeys(KeyCode[] keys)

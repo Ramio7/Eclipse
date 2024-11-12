@@ -13,7 +13,7 @@ public class EntryPointView : BaseView, IView
     private EntryPointController _controller;
     private CanvasSelector _canvasSelector;
     private GameStateMashine _gameStateMashine;
-    private AbilitiesAllocator _abilitiesAllocator;
+    private AbilitiesPool _abilitiesAllocator;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public VolumeProfile VolumeProfile { get => _volumeProfile; }

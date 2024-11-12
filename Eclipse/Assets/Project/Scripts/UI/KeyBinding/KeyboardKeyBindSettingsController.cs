@@ -38,8 +38,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         foreach (var abilityPanel in view.Objects)
         {
             abilityPanel.OnAbilityBinded += model.SetKeyBind;
-            abilityPanel.OnAbilityBinded += AbilitiesAllocator.AddOrUpdateAbility;
-            model.SetKeyBind(AbilitiesAllocator.MainCharacter, abilityPanel.AbilityKeys, abilityPanel.Ability);
+            abilityPanel.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
+            model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKeys, abilityPanel.Ability);
         }
         
         if (!model.LoadSettings()) model.SaveSettings();
@@ -63,7 +63,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
             foreach (var abilityPanel in view.Objects)
             {
                 abilityPanel.OnAbilityBinded -= model.SetKeyBind;
-                abilityPanel.OnAbilityBinded -= AbilitiesAllocator.AddOrUpdateAbility;
+                abilityPanel.OnAbilityBinded -= AbilitiesPool.AddOrUpdateAbility;
             }
         }
     }

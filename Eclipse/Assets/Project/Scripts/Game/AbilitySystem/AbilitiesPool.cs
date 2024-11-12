@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilitiesAllocator : IDisposable
+public class AbilitiesPool : IDisposable
 {
     public static Dictionary<ICharacter, Dictionary<IAbility, KeyCode[]>> CharactersAbilitiesDictionary;
 
     public static MainCharacterView MainCharacter;
 
-    public static AbilitiesAllocator Instance;
+    public static AbilitiesPool Instance;
 
-    public AbilitiesAllocator() 
+    public AbilitiesPool() 
     {
         if (Instance == null)
         {
@@ -52,13 +52,24 @@ public class AbilitiesAllocator : IDisposable
         }
     }
 
-    public static IAbility GetAbilityContainingKey(ICharacter character, KeyCode previousKey, KeyCode currentKey)
+    public static IAbility GetMainCharacterAbility<T>()
     {
+        Type type = typeof(T);
+        foreach (var abilityKeysPair in CharactersAbilitiesDictionary[MainCharacter])
+        {
+            if (abilityKeysPair.Key.GetType().Equals(type)) return abilityKeysPair.Key;
+        }
+        return default;
+    }
+
+    public static IAbility GetAbilityContainingKeys(ICharacter character, KeyCode previousKey, KeyCode currentKey)
+    {
+        List<IAbility> abilitiesToMatch = new();
         foreach (var abilityKeyPair in CharactersAbilitiesDictionary[character])
         {
             foreach (var abilityKey in abilityKeyPair.Value)
             {
-                if (abilityKey == previousKey) ;
+                if (abilityKey == previousKey) abilitiesToMatch.Add(abilityKeyPair.Key);
             }
         }
         return default;

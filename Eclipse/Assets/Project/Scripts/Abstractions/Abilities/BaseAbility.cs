@@ -1,7 +1,8 @@
 using System.Threading;
 
-public abstract class BaseAbility : IAbility
+public abstract class BaseAbility : IAbility, IAxesControlledAbility
 {
+    protected int abilityId;
     protected ICharacter character;
     protected CancellationTokenSource cancellationTokenSource;
     protected CancellationToken cancellationToken;
@@ -9,6 +10,9 @@ public abstract class BaseAbility : IAbility
     protected float verticalAxis;
 
     public CancellationToken CancellationToken { get => cancellationToken; private set => cancellationToken = value; }
+    public int AbilityId { get => abilityId; set => abilityId = value; }
+    public float HorizontalAxis { get => horizontalAxis; set => horizontalAxis = value; }
+    public float VerticalAxis { get => verticalAxis; set => verticalAxis = value; }
 
     public BaseAbility(ICharacter character)
     {
