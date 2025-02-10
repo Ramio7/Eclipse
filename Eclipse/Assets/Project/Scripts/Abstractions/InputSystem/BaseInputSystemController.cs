@@ -26,7 +26,8 @@ public abstract class BaseInputSystemController : BaseController
 
     private void TrackKeyInput()
     {
-        if (Event.current.type == EventType.KeyDown)
+        if (Event.current == null) return;
+        if (Event.current.type == EventType.KeyUp)
         {
             model.GetKey(Event.current.keyCode);
         }

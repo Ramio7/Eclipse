@@ -28,12 +28,12 @@ public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
 
     public override void Dispose()
     {
-        base.Dispose();
-
         lastKeyInput.Dispose();
         currentKeyOutput.Dispose();
         horizontalAxis.Dispose();
         verticalAxis.Dispose();
+
+        base.Dispose();
     }
 
     public void GetKey(KeyCode keyCode)

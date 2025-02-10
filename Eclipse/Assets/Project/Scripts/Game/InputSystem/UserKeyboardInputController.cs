@@ -1,6 +1,6 @@
 public class UserKeyboardInputController : BaseInputSystemController
 {
-    private new UserKeyboardInputModel model;
+    protected new UserKeyboardInputModel model;
 
     public UserKeyboardInputController() : base()
     {
@@ -9,9 +9,9 @@ public class UserKeyboardInputController : BaseInputSystemController
 
     protected override void Init()
     {
-        base.Init();
-
         model = new();
+
+        base.Init();
     }
 
     private void InitUserInputProcess()

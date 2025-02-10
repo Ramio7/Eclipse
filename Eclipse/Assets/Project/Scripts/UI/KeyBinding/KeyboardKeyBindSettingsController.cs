@@ -39,7 +39,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         {
             abilityPanel.OnAbilityBinded += model.SetKeyBind;
             abilityPanel.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
-            model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKeys, abilityPanel.Ability);
+            model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKey, abilityPanel.Ability);
         }
         
         if (!model.LoadSettings()) model.SaveSettings();
@@ -104,12 +104,12 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         var keysettings = model.TempSettings;
         if (keysettings.Abilities[0] != null)
         {
-            for (int i = 0; i < keysettings.keyCodes.Length; i++)
+            for (int i = 0; i < keysettings.Keys.Length; i++)
             {
-                var tempAbility = keysettings.GetAbility(i);
+                var tempAbility = keysettings.GetAbilityByArrayIndex(i);
                 ArrayUtility<IAbility>.FindArrayElementIndex(abilitiesArray, tempAbility, out int index);
                 var panel = panelArray.GetValue(index) as IAbilityBindPanel;
-                panel.SetAbilityKeys(keysettings.GetAbilityKeys(tempAbility));
+                panel.SetAbilityKey(keysettings.GetAbilityKey(tempAbility));
             }
         }
     }

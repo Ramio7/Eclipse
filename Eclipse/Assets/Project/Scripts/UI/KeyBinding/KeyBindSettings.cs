@@ -1,99 +1,88 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public struct KeyBindSettings : IStruct
 {
-    private IAbility[] _abilities;
+    private Dictionary<IAbility, KeyCode> _abilityKeyPairs;
 
-    public KeyCode[][] keyCodes;
-
-    public IAbility[] Abilities { get => _abilities; set => _abilities = value; }
+    public IAbility[] Abilities;
+    public KeyCode[] Keys;
 
     public void Init()
     {
-        _abilities = new IAbility[10];
-        keyCodes = new KeyCode[10][];
+        _abilityKeyPairs = new();
     }
 
     public void Dispose()
     {
-        _abilities = null;
-        keyCodes = null;
+        _abilityKeyPairs.Clear();
+        _abilityKeyPairs = null;
+
+        Abilities = null;
+        Keys = null;
     }
 
-    public void GetSettings(out IAbility[] i_abilities, out KeyCode[][] i_keyCodes)
+    public void GetSettings(out IAbility[] i_abilities, out KeyCode[] i_keyCodes)
     {
-        if (_abilities != null) i_abilities = _abilities;
-        else i_abilities = new IAbility[10];
-        i_keyCodes = keyCodes;
+        if (_abilityKeyPairs.Keys != null)
+        {
+            int i = 0;
+            i_abilities = new IAbility[_abilityKeyPairs.Count];
+            foreach (var key in _abilityKeyPairs.Keys)
+            {
+                i_abilities[i] = key;
+                i++;
+            }
+        }
+        else throw new Exception("No abilities found");
+
+        if (_abilityKeyPairs.Values != null) 
+        {
+            int i = 0;
+            i_keyCodes = new KeyCode[_abilityKeyPairs.Count];
+            foreach (var value in _abilityKeyPairs.Values)
+            {
+                i_keyCodes[i] = value;
+                i++;
+            }
+        }
+        else throw new Exception("No keys found");
     }
 
-    public KeyCode[] GetAbilityKeys(IAbility ability)
+    public KeyCode GetAbilityKey(IAbility ability)
     {
-        ArrayUtility<IAbility>.FindArrayElementIndex(_abilities, ability, out int abilityIndex);
-        return keyCodes[abilityIndex];
+        if (_abilityKeyPairs.ContainsKey(ability)) return _abilityKeyPairs[ability];
+        else throw new Exception($"{ability} not found in dictionary");
     }
 
-    public IAbility GetAbility(int index) => _abilities[index];
+    public IAbility GetAbilityByArrayIndex(int index) => Abilities[index];
 
     public void SetFromSettings(KeyBindSettings other)
     {
-        other.GetSettings(out _abilities, out keyCodes);
+        other.GetSettings(out Abilities, out Keys);
+        UpdateDictionary();
     }
 
-    public void SetAbility(IAbility ability, KeyCode[] keys)
+    public void SetAbility(IAbility ability, KeyCode key)
     {
-        if (ArrayUtility<IAbility>.FindArrayElementIndex(_abilities, ability, out int index))
-            RewriteAbilityBindings(ability, keys, index);
-        else
-            AddAbilityInList(ability, keys);
-    }
-
-    private void RewriteAbilityBindings(IAbility ability, KeyCode[] keys, int index)
-    {
-        switch (keys.Length)
-        {
-            case 0:
-                throw new ArgumentException($"No key assigned to {ability}");
-            case 1:
-                keyCodes[index] = new KeyCode[1];
-                keyCodes[index][0] = keys[0];
-                break;
-            case 2:
-                keyCodes[index] = new KeyCode[2];
-                keyCodes[index][0] = keys[0];
-                keyCodes[index][1] = keys[1];
-                break;
-            default:
-                throw new ArgumentException($"To much keys assigned to {ability}");
-        }
-    }
-
-    private void AddAbilityInList(IAbility ability, KeyCode[] keys)
-    {
-        var freeIndex = ArrayUtility<IAbility>.GetFreeIndex(_abilities);
-        _abilities[freeIndex] = ability;
-        switch (keys.Length)
-        {
-            case 0:
-                throw new ArgumentException($"No key assigned to {ability}");
-            case 1:
-                keyCodes[freeIndex] = new KeyCode[1];
-                keyCodes[freeIndex][0] = keys[0];
-                break;
-            case 2:
-                keyCodes[freeIndex] = new KeyCode[2];
-                keyCodes[freeIndex][0] = keys[0];
-                keyCodes[freeIndex][1] = keys[1];
-                break;
-            default:
-                throw new ArgumentException($"To much keys assigned to {ability}");
-        }
+        if (_abilityKeyPairs.ContainsKey(ability)) _abilityKeyPairs[ability] = key;
+        else _abilityKeyPairs.Add(ability, key);
     }
 
     public bool IsEqual(KeyBindSettings other)
     {
-        if (_abilities == other._abilities && keyCodes == other.keyCodes) return true;
+        if (Abilities == other.Abilities && Keys == other.Keys) return true;
         return false;
+    }
+
+    private readonly void UpdateDictionary()
+    {
+        _abilityKeyPairs.Clear();
+
+        for (int i = 0; i < Abilities.Length; i++)
+        {
+            _abilityKeyPairs.Add(Abilities[i], Keys[i]);
+        }
     }
 }

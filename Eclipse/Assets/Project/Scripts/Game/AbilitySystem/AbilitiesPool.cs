@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilitiesPool : IDisposable
 {
-    public static Dictionary<ICharacter, Dictionary<IAbility, KeyCode[]>> CharactersAbilitiesDictionary;
+    public static Dictionary<ICharacter, Dictionary<IAbility, KeyCode>> CharactersAbilitiesDictionary;
 
     public static MainCharacterView MainCharacter;
 
@@ -18,7 +18,8 @@ public class AbilitiesPool : IDisposable
 
             CharactersAbilitiesDictionary = new();
 
-            MainCharacter = UnityEngine.Object.FindFirstObjectByType<MainCharacterView>();
+            MainCharacter = EntryPointView.Instance.MainScreenCharacter;
+            CharactersAbilitiesDictionary.Add(MainCharacter, new());
         }
     }
 
@@ -36,25 +37,26 @@ public class AbilitiesPool : IDisposable
         CharactersAbilitiesDictionary = null;
     }
 
-    public static void AddOrUpdateAbility(ICharacter character, KeyCode[] keys, IAbility ability)
+    public static void AddOrUpdateAbility(ICharacter character, KeyCode key, IAbility ability)
     {
         if (CharactersAbilitiesDictionary.ContainsKey(character) && CharactersAbilitiesDictionary[character].ContainsKey(ability))
         {
-            CharactersAbilitiesDictionary[character][ability] = keys;
+            CharactersAbilitiesDictionary[character][ability] = key;
             return;
         }
 
-        if (CharactersAbilitiesDictionary.ContainsKey(character)) CharactersAbilitiesDictionary[character].Add(ability, keys);
+        if (CharactersAbilitiesDictionary.ContainsKey(character)) CharactersAbilitiesDictionary[character].Add(ability, key);
         else
         {
             CharactersAbilitiesDictionary.Add(character, new());
-            CharactersAbilitiesDictionary[character].Add(ability, keys);
+            CharactersAbilitiesDictionary[character].Add(ability, key);
         }
     }
 
     public static IAbility GetMainCharacterAbility<T>()
     {
         Type type = typeof(T);
+        if (CharactersAbilitiesDictionary.Count == 0) throw new Exception("Main character not added");
         foreach (var abilityKeysPair in CharactersAbilitiesDictionary[MainCharacter])
         {
             if (abilityKeysPair.Key.GetType().Equals(type)) return abilityKeysPair.Key;
@@ -62,20 +64,17 @@ public class AbilitiesPool : IDisposable
         return default;
     }
 
-    public static IAbility GetAbilityContainingKeys(ICharacter character, KeyCode previousKey, KeyCode currentKey)
+    public static IAbility GetAbilityByKey(ICharacter character, KeyCode key)
     {
         List<IAbility> abilitiesToMatch = new();
         foreach (var abilityKeyPair in CharactersAbilitiesDictionary[character])
         {
-            foreach (var abilityKey in abilityKeyPair.Value)
-            {
-                if (abilityKey == previousKey) abilitiesToMatch.Add(abilityKeyPair.Key);
-            }
+            if (abilityKeyPair.Value == key) return abilityKeyPair.Key;
         }
         return default;
     }
 
-    public static void DeleteCharacterFromAllocator(ICharacter character)
+    public static void DeleteCharacterFromPool(ICharacter character)
     {
         ClearCharacterAbilities(character);
 

@@ -1,6 +1,10 @@
+using UnityEngine;
+
 public static class AbilityCash
 {
-    private static IAbility[] _abilitiesCash = new IAbility[12];
+    public static int _cashCapacity = 12;
+
+    private static IAbility[] _abilitiesCash = new IAbility[_cashCapacity];
     private static IAbility _activeAbility;
 
     public static void AddAbilityToCash(IAbility ability)
@@ -20,26 +24,17 @@ public static class AbilityCash
     {
         for (int i = 0; i < _abilitiesCash.Length; i++)
         {
-            
-            //if (i == 0 && _activeAbility != _abilitiesCash[i])
-            //{
-            //    _activeAbility = _abilitiesCash[i];
-            //    _abilitiesCash[i].Invoke();
-            //    ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-            //    return;
-            //}
-            //else
-            //{
-            //    if (_abilitiesCash[i] == _activeAbility) continue;
-            //    else
-            //    {
-            //        _activeAbility.Cancel();
-            //        _activeAbility = _abilitiesCash[i];
-            //        _abilitiesCash[i].Invoke();
-            //        ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-            //        return;
-            //    }
-            //}
+
+            if (_abilitiesCash[i] == _activeAbility) continue;
+            else
+            {
+                _activeAbility.Cancel();
+                _activeAbility = _abilitiesCash[i];
+                _abilitiesCash[i].Invoke();
+                Debug.Log($"{_activeAbility} is invoked");
+                ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
+                return;
+            }
         }
     }
 }
