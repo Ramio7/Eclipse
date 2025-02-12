@@ -28,6 +28,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     private void Start()
     {
         Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
+        AbilitiesPool.AddOrUpdateAbility(AbilitiesPool.MainCharacter, _key, _ability);
     }
 
     private void OnDestroy()
@@ -46,13 +47,14 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
             ModelList.FindModel(out keyBindSettingsModel);
             return Task.Delay(100);
         }
-        else
-        {
-            if (_ability == null) Task.Delay(100);
+        else return Task.CompletedTask;
+        //else
+        //{
+        //    if (_ability == null) Task.Delay(100);
 
-            OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
-            return Task.CompletedTask;
-        }
+        //    OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
+        //    return Task.CompletedTask;
+        //}
     }
 
     private void InitKeyBinding()
@@ -63,14 +65,18 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     private void AwaitKeyUpAsync()
     {
         if (Event.current.type != EventType.KeyUp) return;
-        else SetAbilityKey(Event.current.keyCode);
+        else
+        {
+            SetAbilityKey(Event.current.keyCode);
+            EntryPointView.OnGuiUpdate -= AwaitKeyUpAsync;
+        }
     }
 
     public void SetAbilityKey(KeyCode key)
     {
-        var abilityKeysText = _abilityButton.GetComponentInChildren<TMP_Text>().text;
-        AbilityKey = key;
-        abilityKeysText = key.ToString();
+        _key = key;
+        _abilityButton.GetComponentInChildren<TMP_Text>().text = _key.ToString();
+        _abilityName = Ability.ToString().Replace("Ability", "");
         OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
     }
 }

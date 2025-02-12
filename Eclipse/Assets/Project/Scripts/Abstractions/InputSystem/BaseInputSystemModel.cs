@@ -36,15 +36,7 @@ public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
         base.Dispose();
     }
 
-    public void GetKey(KeyCode keyCode)
-    {
-        lastKeyInput.SetValue(currentKeyOutput.GetValue());
-        currentKeyOutput.SetValue(keyCode);
-    }
+    public abstract void SetKey(KeyCode keyCode);
 
-    public void GetAxis(float horizontalAxisValue, float verticalAxisValue)
-    {
-        horizontalAxis.SetValue(horizontalAxisValue);
-        verticalAxis.SetValue(verticalAxisValue);
-    }
+    public abstract void SetAxis(float horizontalAxisValue, float verticalAxisValue);
 }

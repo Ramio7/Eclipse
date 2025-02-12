@@ -31,13 +31,13 @@ public class EntryPointView : BaseView, IView
             Instance = this;
 
             DontDestroyOnLoad(this);
-            
-            UserKeyboardInputController userKeyboardInputController = new();
-            EntryPointController entryPointController = new(_entryPointData, this);
 
-            _abilitiesPool = new();
             _gameStateMashine = new();
+            _abilitiesPool = new();
             _canvasSelector = new();
+
+            EntryPointController entryPointController = new(_entryPointData, this);
+            UserKeyboardInputController userKeyboardInputController = new();
         }
         else Destroy(this);
     }

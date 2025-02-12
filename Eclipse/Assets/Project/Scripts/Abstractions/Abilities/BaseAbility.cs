@@ -19,28 +19,32 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
         this.character = character;
     }
 
-    public virtual void Init()
+    protected virtual void Init()
     {
         cancellationTokenSource = new CancellationTokenSource();
         cancellationToken = cancellationTokenSource.Token;
+
+        horizontalAxis = 0;
+        verticalAxis = 0;
     }
 
-    public void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
+    public virtual void Dispose()
+    {
+        cancellationTokenSource.Dispose();
+    }
+
+    public virtual void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
     {
         horizontalAxis = horizontalAxisValue;
         verticalAxis = verticalAxisValue;
     }
 
-    public virtual void Invoke() => Method();
+    public void Invoke() => Method();
 
     public virtual void Cancel() => cancellationTokenSource.Cancel();
 
     protected virtual void Method()
     {
         if (cancellationToken.IsCancellationRequested) return;
-    }
-
-    public virtual void Dispose()
-    {
     }
 }

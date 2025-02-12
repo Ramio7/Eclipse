@@ -2,15 +2,26 @@ public class FourthAbility : BaseAbility
 {
     public FourthAbility(ICharacter character) : base(character)
     {
+        Init();
     }
 
-    public override void Invoke()
+    protected override void Init()
     {
-        base.Invoke();
+        base.Init();
     }
 
     protected override void Method()
     {
         base.Method();
+    }
+
+    public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
+    {
+        base.SetAbilityInvokeParameters(horizontalAxisValue, verticalAxisValue);
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
     }
 }

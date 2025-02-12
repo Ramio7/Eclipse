@@ -17,6 +17,8 @@ public class GameView : BaseView
             DontDestroyOnLoad(this);
 
             _controller = new(_gameScriptableObject, this);
+
+            GameStateMashine.Instance.ChangeGameState(GameState.Game);
         }
         else if (Instance.GameObject != this) Destroy(this);
     }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class UserKeyboardInputController : BaseInputSystemController
 {
     protected new UserKeyboardInputModel model;
@@ -11,16 +13,58 @@ public class UserKeyboardInputController : BaseInputSystemController
     {
         model = new();
 
+        GameStateMashine.Instance.OnGameStateChanged += SwitchAbilitiesTracking;
+
         base.Init();
+    }
+
+    public override void Dispose()
+    {
+        if (GameStateMashine.Current == GameState.Game)
+        {
+            DeinitUserInputProcess();
+        }
+
+        GameStateMashine.Instance.OnGameStateChanged -= SwitchAbilitiesTracking;
+
+        base.Dispose();
     }
 
     private void InitUserInputProcess()
     {
-        
+        EntryPointView.OnUpdate += model.InvokeMoveAbility;
+        EntryPointView.OnFixedUpdate += AbilityCash.InvokeAbilities;
     }
     
     private void DeinitUserInputProcess()
     {
+        EntryPointView.OnUpdate -= model.InvokeMoveAbility;
+        EntryPointView.OnFixedUpdate -= AbilityCash.InvokeAbilities;
+    }
 
+    private void SwitchAbilitiesTracking(GameState gameState)
+    {
+        if (gameState == GameState.Game)
+        {
+            InitUserInputProcess();
+        }
+        else
+        {
+            DeinitUserInputProcess();
+        }
+    }
+
+    protected override void TrackKeyInput()
+    {
+        if (Event.current == null) return;
+        if (Event.current.type == EventType.KeyUp)
+        {
+            model.SetKey(Event.current.keyCode);
+        }
+    }
+
+    protected override void TrackAxisInput()
+    {
+        model.SetAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 }

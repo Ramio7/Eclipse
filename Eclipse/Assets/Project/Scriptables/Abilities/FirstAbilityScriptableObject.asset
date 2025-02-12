@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 0}
   rightAnimation:
   - {fileID: 0}
-  keys: 2000000077000000
+  key: 32

@@ -25,14 +25,6 @@ public class AbilitiesPool : IDisposable
 
     public void Dispose()
     {
-        foreach (var characterAbilityList in CharactersAbilitiesDictionary.Values)
-        {
-            foreach (var abilityKeyPair in characterAbilityList)
-            {
-                abilityKeyPair.Key.Dispose();
-                characterAbilityList.Remove(abilityKeyPair.Key);
-            }
-        }
         CharactersAbilitiesDictionary.Clear();
         CharactersAbilitiesDictionary = null;
     }

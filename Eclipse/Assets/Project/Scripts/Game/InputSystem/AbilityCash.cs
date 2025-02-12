@@ -22,14 +22,16 @@ public static class AbilityCash
 
     public static void InvokeAbilities()
     {
+        if (ArrayUtility<IAbility>.ArrayIsNull(_abilitiesCash)) return;
         for (int i = 0; i < _abilitiesCash.Length; i++)
         {
 
             if (_abilitiesCash[i] == _activeAbility) continue;
             else
             {
-                _activeAbility.Cancel();
+                _activeAbility?.Cancel();
                 _activeAbility = _abilitiesCash[i];
+                if (_activeAbility == null) return;
                 _abilitiesCash[i].Invoke();
                 Debug.Log($"{_activeAbility} is invoked");
                 ArrayUtility<IAbility>.ClearArray(_abilitiesCash);

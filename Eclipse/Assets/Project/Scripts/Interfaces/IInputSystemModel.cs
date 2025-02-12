@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IInputSystemModel : IModel
 {
-    void GetKey(KeyCode keyCode);
-    void GetAxis(float horizontalAxisValue, float verticalAxisValue);
+    void SetKey(KeyCode keyCode);
+    void SetAxis(float horizontalAxisValue, float verticalAxisValue);
 }

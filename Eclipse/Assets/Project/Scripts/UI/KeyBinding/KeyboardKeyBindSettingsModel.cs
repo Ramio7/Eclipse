@@ -91,7 +91,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public void SetKeyBind(ICharacter character, KeyCode keyCode, IAbility ability)
     {
-        Debug.Log($"{character} ability set");
+        Debug.Log($"{character} {ability} set to {keyCode}");
         _tempSettings.SetAbility(ability, keyCode);
         settingsIsSaved.SetValue(false);
     }

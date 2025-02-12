@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class BaseInputSystemController : BaseController
 {
     protected new IInputSystemModel model;
@@ -12,26 +10,51 @@ public abstract class BaseInputSystemController : BaseController
     {
         base.Init();
 
-        EntryPointView.OnUpdate += TrackKeyInput;
-        EntryPointView.OnUpdate += TrackAxisInput;
+        if (GameStateMashine.Current is GameState.Game)
+        {
+            InitInputTracking();
+        }
+
+        GameStateMashine.Instance.OnGameStateChanged += SwitchInputTracking;
     }
 
     public override void Dispose()
     {
         base.Dispose();
 
-        EntryPointView.OnUpdate -= TrackKeyInput;
-        EntryPointView.OnUpdate -= TrackAxisInput;
+        if (GameStateMashine.Current is GameState.Game)
+        {
+            DeinitInputTracking();
+        }
+
+        GameStateMashine.Instance.OnGameStateChanged -= SwitchInputTracking;
     }
 
-    private void TrackKeyInput()
+    private void SwitchInputTracking(GameState gameState)
     {
-        if (Event.current == null) return;
-        if (Event.current.type == EventType.KeyUp)
+        if (gameState == GameState.Game)
         {
-            model.GetKey(Event.current.keyCode);
+            InitInputTracking();
+        }
+        else
+        {
+            DeinitInputTracking();
         }
     }
 
-    private void TrackAxisInput() => model.GetAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    private void InitInputTracking()
+    {
+        EntryPointView.OnGuiUpdate += TrackKeyInput;
+        EntryPointView.OnGuiUpdate += TrackAxisInput;
+    }
+
+    private void DeinitInputTracking()
+    {
+        EntryPointView.OnGuiUpdate -= TrackKeyInput;
+        EntryPointView.OnGuiUpdate -= TrackAxisInput;
+    }
+
+    protected abstract void TrackKeyInput();
+
+    protected abstract void TrackAxisInput();
 }
