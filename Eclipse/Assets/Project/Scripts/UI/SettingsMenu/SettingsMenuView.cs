@@ -47,9 +47,11 @@ public class SettingsMenuView : BaseUIView, IView
 
     protected override void Init()
     {
+        base.Init();
+
         _controller = new(_settingsDefaults, this);
 
-        CanvasSelector.AddCanvas(GameState.SettingsMenu, this);
+        CanvasSelector.AddCanvas(GameMenuSubState.SettingsMenu, this);
     }
 
     private void OnDestroy()

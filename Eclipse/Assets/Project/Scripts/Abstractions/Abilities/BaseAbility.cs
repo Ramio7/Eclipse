@@ -1,23 +1,50 @@
-public abstract class BaseAbility : IAbility
-{
-    protected ICharacter _character;
+using System.Threading;
 
-    public abstract void Invoke();
+public abstract class BaseAbility : IAbility, IAxesControlledAbility
+{
+    protected int abilityId;
+    protected ICharacter character;
+    protected CancellationTokenSource cancellationTokenSource;
+    protected CancellationToken cancellationToken;
+    protected float horizontalAxis;
+    protected float verticalAxis;
+
+    public CancellationToken CancellationToken { get => cancellationToken; private set => cancellationToken = value; }
+    public int AbilityId { get => abilityId; set => abilityId = value; }
+    public float HorizontalAxis { get => horizontalAxis; set => horizontalAxis = value; }
+    public float VerticalAxis { get => verticalAxis; set => verticalAxis = value; }
 
     public BaseAbility(ICharacter character)
     {
-        Init(character);
+        this.character = character;
     }
 
-    public virtual void Init(ICharacter character)
+    protected virtual void Init()
     {
-        _character = character;
+        cancellationTokenSource = new CancellationTokenSource();
+        cancellationToken = cancellationTokenSource.Token;
 
-        AbilitiesAllocator.AddNewAbility(character, this);
+        horizontalAxis = 0;
+        verticalAxis = 0;
     }
 
     public virtual void Dispose()
     {
-        _character = null;
+        cancellationTokenSource.Dispose();
+    }
+
+    public virtual void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
+    {
+        horizontalAxis = horizontalAxisValue;
+        verticalAxis = verticalAxisValue;
+    }
+
+    public void Invoke() => Method();
+
+    public virtual void Cancel() => cancellationTokenSource.Cancel();
+
+    protected virtual void Method()
+    {
+        if (cancellationToken.IsCancellationRequested) return;
     }
 }

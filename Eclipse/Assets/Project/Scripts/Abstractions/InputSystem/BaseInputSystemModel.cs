@@ -1,50 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseInputSystemModel : BaseModel
+public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
 {
+    protected ReactiveProperty<KeyCode> lastKeyInput;
+    protected ReactiveProperty<KeyCode> currentKeyOutput;
+    protected ReactiveProperty<float> horizontalAxis;
+    protected ReactiveProperty<float> verticalAxis;
+
+    public ReactiveProperty<KeyCode> LastKeyInput { get => lastKeyInput; }
+    public ReactiveProperty<KeyCode> CurrentKeyOutput { get => currentKeyOutput; }
+    public float HorizontalAxis { get => horizontalAxis.GetValue(); set => horizontalAxis.SetValue(value); }
+    public float VerticalAxis { get => verticalAxis.GetValue(); set => verticalAxis.SetValue(value); }
+
     public BaseInputSystemModel() : base()
     {
-        Init();
     }
 
-    protected new void Init()
+    protected override void Init()
     {
+        base.Init();
+
+        lastKeyInput = new(KeyCode.None);
+        currentKeyOutput = new(KeyCode.None);
+        horizontalAxis = new(0);
+        verticalAxis = new(0);
     }
 
     public override void Dispose()
     {
-        
+        lastKeyInput.Dispose();
+        currentKeyOutput.Dispose();
+        horizontalAxis.Dispose();
+        verticalAxis.Dispose();
+
+        base.Dispose();
     }
 
-    /*private void BindKeysAndAbilities(KeyBindSettings keyBindSettings)
-    {
-        var _abilities = AbilitiesAllocator.CharactersAbilitiesDictionary[_character];
-        var keyKodesArrayCount = keyBindSettings._abilityKyes.Count;
+    public abstract void SetKey(KeyCode keyCode);
 
-        for (int i = 0; i < _abilities.Count; i++)
-        {
-            var ability = _abilities[i];
-
-            for (int j = 0; j < keyBindSettings._abilityKyes.Count; j++)
-            {
-                var abilityName = ability.GetType().Name;
-                var keyName = abilityName.Replace("Ability", "Key");
-                //дописать внесение способности в лист
-            }
-        }
-    }
-
-    public void RebindKeysAndAbilities(KeyBindSettings keyBindSettings)
-    {
-        var fields = keyBindSettings.GetType().GetFields();
-
-        for (int i = 0; i < keyBindSettings._abilityKyes.Count; i++)
-        {
-            var keyName = fields[i].Name;
-            var abilityName = keyName.Replace("Key", "Ability");
-        }
-    }
-
-    public void SwitchCharacter(ICharacter character) => _character = character;*/
+    public abstract void SetAxis(float horizontalAxisValue, float verticalAxisValue);
 }

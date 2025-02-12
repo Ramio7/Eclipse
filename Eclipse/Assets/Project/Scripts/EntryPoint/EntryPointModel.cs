@@ -12,6 +12,8 @@ public class EntryPointModel : BaseScriptableObjectOrientedModel
 
     public override void Init(IScriptableObject modelData)
     {
+        base.Init(modelData);
+
         var tempData = modelData as EntryPointScriptableObject;
         MainMenuView = tempData.MainMenuPrefab;
         SettingsMenuView = tempData.SettingsMenuPrefab;

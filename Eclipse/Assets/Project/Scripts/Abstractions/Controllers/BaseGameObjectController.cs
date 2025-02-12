@@ -1,20 +1,21 @@
-public abstract class BaseGameObjectController : BaseController, IGameObjectController
+public abstract class BaseGameObjectController : BaseController
 {
-    protected IView _view;
+    protected IView view;
 
     public BaseGameObjectController(IView view) : base()
     {
-        Init(view);
     }
 
-    public virtual void Init(IView view)
+    protected virtual void Init(IView view)
     {
-        _view = view;
+        base.Init();
+
+        this.view = view;
     }
 
     public override void Dispose()
     {
-        _view = null;
+        view = null;
         base.Dispose();
     }
 }

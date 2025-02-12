@@ -2,7 +2,7 @@ public abstract class BaseModel : IModel
 {
     public BaseModel()
     {
-        Init();
+        
     }
 
     protected virtual void Init()

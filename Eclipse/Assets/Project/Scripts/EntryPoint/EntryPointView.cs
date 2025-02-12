@@ -10,11 +10,9 @@ public class EntryPointView : BaseView, IView
     [SerializeField] private VolumeProfile _volumeProfile;
     [SerializeField] private MainCharacterView _mainScreenCharacter;
 
-    private EntryPointController _controller;
     private CanvasSelector _canvasSelector;
     private GameStateMashine _gameStateMashine;
-    private AbilitiesAllocator _abilitiesAllocator;
-    private BaseInputSystemController _inputSystemController;
+    private AbilitiesPool _abilitiesPool;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
     public VolumeProfile VolumeProfile { get => _volumeProfile; }
@@ -34,14 +32,14 @@ public class EntryPointView : BaseView, IView
 
             DontDestroyOnLoad(this);
 
-            _abilitiesAllocator = new();
-
-            _controller = new(_entryPointData, this);
-            _inputSystemController = new();
-
             _gameStateMashine = new();
+            _abilitiesPool = new();
             _canvasSelector = new();
+
+            EntryPointController entryPointController = new(_entryPointData, this);
+            UserKeyboardInputController userKeyboardInputController = new();
         }
+        else Destroy(this);
     }
 
     private void Start()
@@ -66,15 +64,13 @@ public class EntryPointView : BaseView, IView
 
     private void OnDestroy()
     {
-        _abilitiesAllocator?.Dispose();
+        _abilitiesPool?.Dispose();
         _gameStateMashine?.Dispose();
         _canvasSelector?.Dispose();
 
-        _abilitiesAllocator = null;
+        _abilitiesPool = null;
         _gameStateMashine = null;
         _canvasSelector = null;
-        _controller = null;
-        _inputSystemController = null;
 
         ControllerList.DisposeAllControllers();
         ModelList.DisposeAllModels();

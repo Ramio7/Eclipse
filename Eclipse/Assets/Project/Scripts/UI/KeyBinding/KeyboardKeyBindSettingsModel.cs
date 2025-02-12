@@ -18,8 +18,10 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         Init();
     }
 
-    protected new void Init()
+    protected override void Init()
     {
+        base.Init();
+
         InitKeyBindSettings();
     }
 
@@ -59,7 +61,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     {
         settingsIsSaved.SetValue(false);
 
-        JsonData<KeyCode[][]>.Save(_tempSettings.keyCodes, _settingsFilePath);
+        JsonData<KeyCode[]>.Save(_tempSettings.Keys, _settingsFilePath);
         _savedSettings.SetFromSettings(_tempSettings);
 
         settingsIsSaved.SetValue(_savedSettings.IsEqual(_tempSettings));
@@ -69,13 +71,13 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     {
         settingsIsSaved.SetValue(false);
 
-        var tempKeyBindSettings = JsonData<KeyCode[][]>.Load(_settingsFilePath);
+        var tempKeyBindSettings = JsonData<KeyCode[]>.Load(_settingsFilePath);
 
         if (tempKeyBindSettings != null)
         {
-            _savedSettings.keyCodes = tempKeyBindSettings;
-            _tempSettings.keyCodes = tempKeyBindSettings;
-            settingsIsSaved.SetValue(tempKeyBindSettings == _savedSettings.keyCodes);
+            _savedSettings.Keys = tempKeyBindSettings;
+            _tempSettings.Keys = tempKeyBindSettings;
+            settingsIsSaved.SetValue(tempKeyBindSettings == _savedSettings.Keys);
         }
 
         return settingsIsSaved.GetValue();
@@ -87,8 +89,9 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         settingsIsSaved.SetValue(true);
     }
 
-    public void SetKeyBind(KeyCode[] keyCode, IAbility ability)
+    public void SetKeyBind(ICharacter character, KeyCode keyCode, IAbility ability)
     {
+        Debug.Log($"{character} {ability} set to {keyCode}");
         _tempSettings.SetAbility(ability, keyCode);
         settingsIsSaved.SetValue(false);
     }

@@ -1,7 +1,9 @@
 using System;
 
-public interface IAbility : IDisposable
+public interface IAbility : IDisposable, IMultiTheadingObject
 {
-    void Init(ICharacter character);
+    int AbilityId { get; set; }
+    void SetAbilityInvokeParameters(float horizontalAxis, float verticalAxis);
     void Invoke();
+    void Cancel();
 }

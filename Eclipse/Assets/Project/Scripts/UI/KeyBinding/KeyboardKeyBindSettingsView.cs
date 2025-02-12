@@ -19,9 +19,11 @@ public class KeyboardKeyBindSettingsView : BaseMonoobjectsPanelView<AbilityBindP
 
     protected override void Init()
     {
+        base.Init();
+
         _controller = new(this);
 
-        CanvasSelector.AddCanvas(GameState.KeyBindMenu, this);
+        CanvasSelector.AddCanvas(GameMenuSubState.KeyBindMenu, this);
     }
 
     private void OnDestroy()

@@ -10,16 +10,16 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
     public BaseAbilityScriptableObject AbilityDefaults { get => abilityDefaults; set => abilityDefaults = value; }
     public IAbility Ability { get => ability; protected set => ability = value; }
 
-    private void Awake()
+    protected virtual void Init()
     {
         Task.Run(() => AwaitCharacterInitializationAsync());
         abilityBindPanel = GetComponent<IAbilityBindPanel>();
-        abilityBindPanel.AbilityKeys = abilityDefaults.KeyCodes;
+        abilityBindPanel.AbilityKey = abilityDefaults.KeyCode;
     }
 
     private Task AwaitCharacterInitializationAsync()
     {
-        if (AbilitiesAllocator.MainCharacter == null) Task.Delay(100);
+        if (AbilitiesPool.MainCharacter == null) Task.Delay(100);
         return Task.CompletedTask; 
     }
 }

@@ -2,11 +2,10 @@ using UnityEngine;
 
 public abstract class BaseController : IController
 {
-    protected IModel _model;
+    protected IModel model;
 
     public BaseController()
     {
-        Init();
     }
 
     protected virtual void Init()
@@ -16,7 +15,7 @@ public abstract class BaseController : IController
 
     public virtual void Dispose()
     {
-        _model = null;
+        model = null;
     }
 
     protected void InstantiateChildObject(GameObject childObject) => Object.Instantiate(childObject);

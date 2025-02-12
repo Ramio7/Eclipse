@@ -4,12 +4,14 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 {
     public KeyboardKeyBindSettingsController(KeyboardKeyBindSettingsView view) : base(view)
     {
-        Init();
+        Init(view);
     }
 
-    private new void Init()
+    protected override void Init(IView view)
     {
-        _model = new KeyboardKeyBindSettingsModel();
+        base.Init(view);
+
+        model = new KeyboardKeyBindSettingsModel();
 
         InitLinks();
     }
@@ -23,8 +25,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void InitLinks()
     {
-        var view = _view as KeyboardKeyBindSettingsView;
-        var model = _model as KeyboardKeyBindSettingsModel;
+        var view = base.view as KeyboardKeyBindSettingsView;
+        var model = base.model as KeyboardKeyBindSettingsModel;
 
         view.BackToMainMenuButton.onClick.AddListener(ActivateSettingsMenu);
         view.BackToMainMenuButton.onClick.AddListener(model.SaveSettings);
@@ -36,7 +38,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         foreach (var abilityPanel in view.Objects)
         {
             abilityPanel.OnAbilityBinded += model.SetKeyBind;
-            model.SetKeyBind(abilityPanel.AbilityKeys, abilityPanel.Ability);
+            abilityPanel.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
+            model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKey, abilityPanel.Ability);
         }
         
         if (!model.LoadSettings()) model.SaveSettings();
@@ -44,8 +47,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
     private void DeinitLinks()
     {
-        var view = _view as KeyboardKeyBindSettingsView;
-        var model = _model as KeyboardKeyBindSettingsModel;
+        var view = base.view as KeyboardKeyBindSettingsView;
+        var model = base.model as KeyboardKeyBindSettingsModel;
 
         view.BackToMainMenuButton.onClick.RemoveListener(ActivateSettingsMenu);
         view.BackWithoutSavingButton.onClick.RemoveListener(ActivateSettingsMenu);
@@ -60,15 +63,16 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
             foreach (var abilityPanel in view.Objects)
             {
                 abilityPanel.OnAbilityBinded -= model.SetKeyBind;
+                abilityPanel.OnAbilityBinded -= AbilitiesPool.AddOrUpdateAbility;
             }
         }
     }
 
-    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameState(GameState.SettingsMenu);
+    private void ActivateSettingsMenu() => GameStateMashine.Instance.ChangeGameSubState(GameMenuSubState.SettingsMenu);
 
     private void ActivateReturnToMainMenuButton(bool isSaved)
     {
-        var view = _view as KeyboardKeyBindSettingsView;
+        var view = base.view as KeyboardKeyBindSettingsView;
         view.BackToMainMenuButton.interactable = !isSaved;
     }
 
@@ -76,8 +80,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
     {
         if (isSaved)
         {
-            var view = _view as KeyboardKeyBindSettingsView;
-            var model = _model as KeyboardKeyBindSettingsModel;
+            var view = base.view as KeyboardKeyBindSettingsView;
+            var model = base.model as KeyboardKeyBindSettingsModel;
 
             FormTempArrays(view, out AbilityBindPanel[] panelArray, out IAbility[] abilitiesArray);
             UpdatePanelInfo(model, panelArray, abilitiesArray);
@@ -100,12 +104,12 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         var keysettings = model.TempSettings;
         if (keysettings.Abilities[0] != null)
         {
-            for (int i = 0; i < keysettings.keyCodes.Length; i++)
+            for (int i = 0; i < keysettings.Keys.Length; i++)
             {
-                var tempAbility = keysettings.GetAbility(i);
-                ArrayUtility.FindArrayElement(abilitiesArray, tempAbility, out int index);
+                var tempAbility = keysettings.GetAbilityByArrayIndex(i);
+                ArrayUtility<IAbility>.FindArrayElementIndex(abilitiesArray, tempAbility, out int index);
                 var panel = panelArray.GetValue(index) as IAbilityBindPanel;
-                panel.SetAbilityKeys(keysettings.GetAbilityKeys(tempAbility));
+                panel.SetAbilityKey(keysettings.GetAbilityKey(tempAbility));
             }
         }
     }

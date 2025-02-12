@@ -16,4 +16,4 @@ MonoBehaviour:
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  keys: 30010000
+  key: 304

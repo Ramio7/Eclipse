@@ -1,7 +1,14 @@
 public class MoveAbilityView : BaseMainCharacterAbilityView
 {
-    private void Start()
+    private void Awake()
     {
-        abilityBindPanel.Ability = new MoveAbility(AbilitiesAllocator.MainCharacter);
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        abilityBindPanel.Ability = new MoveAbility(AbilitiesPool.MainCharacter);
     }
 }

@@ -26,6 +26,7 @@ public class SettingsMenuModel : BaseScriptableObjectOrientedModel
     public override void Init(IScriptableObject modelData)
     {
         base.Init(modelData);
+
         GetGraphicsConponentAndAudioMixer();
         var defaults = modelData as SettingsMenuScriptableObject;
         InitGameSettings(defaults);

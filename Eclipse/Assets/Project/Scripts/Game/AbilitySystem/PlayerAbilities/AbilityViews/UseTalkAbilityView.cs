@@ -1,7 +1,14 @@
 public class UseTalkAbilityView : BaseMainCharacterAbilityView
 {
-    private void Start()
+    private void Awake()
     {
-        abilityBindPanel.Ability = new UseTalkAbility(AbilitiesAllocator.MainCharacter);
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        abilityBindPanel.Ability = new UseTalkAbility(AbilitiesPool.MainCharacter);
     }
 }

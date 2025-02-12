@@ -1,10 +1,27 @@
-public class CrouchAbility : BaseAbility
+public class CrouchAbility : BaseComboAbility
 {
-    public CrouchAbility(ICharacter character) : base(character)
+    public CrouchAbility(ICharacter character, IAbility startAbility) : base(character, startAbility)
     {
+        Init();
     }
 
-    public override void Invoke()
+    protected override void Init()
     {
+        base.Init();
+    }
+
+    protected override void Method()
+    {
+        base.Method();
+    }
+
+    public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
+    {
+        base.SetAbilityInvokeParameters(horizontalAxisValue, verticalAxisValue);
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
     }
 }

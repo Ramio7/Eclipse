@@ -1,7 +1,14 @@
 public class FourthAbilityView : BaseMainCharacterAbilityView
 {
-    private void Start()
+    private void Awake()
     {
-        abilityBindPanel.Ability = new FourthAbility(AbilitiesAllocator.MainCharacter);
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        abilityBindPanel.Ability = new FourthAbility(AbilitiesPool.MainCharacter);
     }
 }

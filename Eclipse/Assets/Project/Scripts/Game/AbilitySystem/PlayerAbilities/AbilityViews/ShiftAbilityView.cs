@@ -1,7 +1,14 @@
 public class ShiftAbilityView : BaseMainCharacterAbilityView
 {
-    private void Start()
+    private void Awake()
     {
-        abilityBindPanel.Ability = new ShiftAbility(AbilitiesAllocator.MainCharacter);
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        abilityBindPanel.Ability = new ShiftAbility(AbilitiesPool.MainCharacter);
     }
 }

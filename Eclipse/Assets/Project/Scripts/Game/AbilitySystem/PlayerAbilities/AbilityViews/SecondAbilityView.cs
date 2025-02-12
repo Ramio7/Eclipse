@@ -1,7 +1,14 @@
 public class SecondAbilityView : BaseMainCharacterAbilityView
 {
-    private void Start()
+    private void Awake()
     {
-        abilityBindPanel.Ability = new SecondAbility(AbilitiesAllocator.MainCharacter);
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        abilityBindPanel.Ability = new SecondAbility(AbilitiesPool.MainCharacter);
     }
 }

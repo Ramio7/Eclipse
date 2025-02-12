@@ -1,6 +1,6 @@
 public class EntryPointController : BaseGameObjectController
 {
-    private new EntryPointModel _model;
+    private new EntryPointModel model;
 
     public EntryPointController(EntryPointScriptableObject modelData, EntryPointView view) : base(view)
     {
@@ -11,8 +11,8 @@ public class EntryPointController : BaseGameObjectController
     {
         base.Init(view);
 
-        _model = new EntryPointModel(modelData as EntryPointScriptableObject);
-        _view = view as EntryPointView;
+        model = new EntryPointModel(modelData as EntryPointScriptableObject);
+        base.view = view as EntryPointView;
 
         InstantiateMainMenu();
         InstantiateSettingsMenu();
@@ -25,8 +25,8 @@ public class EntryPointController : BaseGameObjectController
         base.Dispose();
     }
 
-    private void InstantiateMainMenu() => InstantiateChildObject(_model.MainMenuView.gameObject);
-    private void InstantiateSettingsMenu() => InstantiateChildObject(_model.SettingsMenuView.gameObject);
-    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(_model.KeyBindSettingsMenuView.gameObject);
-    private void InstantiateLoadingScreen() => InstantiateChildObject(_model.LoadingScreenView.gameObject);
+    private void InstantiateMainMenu() => InstantiateChildObject(model.MainMenuView.gameObject);
+    private void InstantiateSettingsMenu() => InstantiateChildObject(model.SettingsMenuView.gameObject);
+    private void InstantiateKeyBindSettingsMenu() => InstantiateChildObject(model.KeyBindSettingsMenuView.gameObject);
+    private void InstantiateLoadingScreen() => InstantiateChildObject(model.LoadingScreenView.gameObject);
 }

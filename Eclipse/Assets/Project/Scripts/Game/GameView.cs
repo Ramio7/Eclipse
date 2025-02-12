@@ -8,7 +8,7 @@ public class GameView : BaseView
 
     public static GameView Instance;
 
-    private void OnEnable()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -17,7 +17,10 @@ public class GameView : BaseView
             DontDestroyOnLoad(this);
 
             _controller = new(_gameScriptableObject, this);
+
+            GameStateMashine.Instance.ChangeGameState(GameState.Game);
         }
+        else if (Instance.GameObject != this) Destroy(this);
     }
 
     public void OnDestroy()

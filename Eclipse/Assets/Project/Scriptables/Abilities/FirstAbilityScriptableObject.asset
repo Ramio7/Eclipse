@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: FirstAbilityScriptableObject
   m_EditorClassIdentifier: 
   abilityId: 7
-  idleAnimation: []
-  leftAnimation: []
-  rightAnimation: []
-  keys: 20000000
+  idleAnimation:
+  - {fileID: 0}
+  leftAnimation:
+  - {fileID: 0}
+  rightAnimation:
+  - {fileID: 0}
+  key: 32
