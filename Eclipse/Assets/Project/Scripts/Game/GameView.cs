@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameView : BaseView
 {
     [SerializeField] private GameScriptableObject _gameScriptableObject;
+    [SerializeField] private LevelView _levelView;
 
     private GameController _controller;
 
@@ -14,17 +15,20 @@ public class GameView : BaseView
         {
             Instance = this;
 
-            DontDestroyOnLoad(this);
-
             _controller = new(_gameScriptableObject, this);
 
             GameStateMashine.Instance.ChangeGameState(GameState.Game);
+
+            var character = EntryPointView.Instance.MainScreenCharacter;
+            var characterTransform = character.GameObject.transform;
+            characterTransform.SetPositionAndRotation(_levelView.StartingPoint.position, characterTransform.rotation);
         }
-        else if (Instance.GameObject != this) Destroy(this);
     }
 
     public void OnDestroy()
     {
         _controller =null;
+
+        Instance = null;
     }
 }

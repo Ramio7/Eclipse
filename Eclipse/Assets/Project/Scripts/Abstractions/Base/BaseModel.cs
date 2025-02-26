@@ -5,7 +5,7 @@ public abstract class BaseModel : IModel
         
     }
 
-    protected virtual void Init()
+    protected virtual void InitAsync()
     {
         ModelList.RegisterModel(this);
     }

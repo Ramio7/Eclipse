@@ -27,7 +27,7 @@ public abstract class BaseInputSystemController : BaseController
             DeinitInputTracking();
         }
 
-        GameStateMashine.Instance.OnGameStateChanged -= SwitchInputTracking;
+        if (GameStateMashine.Instance != null) GameStateMashine.Instance.OnGameStateChanged -= SwitchInputTracking;
     }
 
     private void SwitchInputTracking(GameState gameState)
@@ -44,14 +44,14 @@ public abstract class BaseInputSystemController : BaseController
 
     private void InitInputTracking()
     {
-        EntryPointView.OnGuiUpdate += TrackKeyInput;
-        EntryPointView.OnGuiUpdate += TrackAxisInput;
+        GameEvents.OnGuiUpdate += TrackAxisInput;
+        GameEvents.OnGuiUpdate += TrackKeyInput;
     }
 
     private void DeinitInputTracking()
     {
-        EntryPointView.OnGuiUpdate -= TrackKeyInput;
-        EntryPointView.OnGuiUpdate -= TrackAxisInput;
+        GameEvents.OnGuiUpdate -= TrackAxisInput;
+        GameEvents.OnGuiUpdate -= TrackKeyInput;
     }
 
     protected abstract void TrackKeyInput();

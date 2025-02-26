@@ -1,17 +1,18 @@
-using UnityEngine;
+using System.Threading.Tasks;
 
-[RequireComponent(typeof(IAbilityBindPanel))]
 public class CrouchAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override async void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new CrouchAbility(AbilitiesPool.MainCharacter, AbilitiesPool.GetMainCharacterAbility<JumpAbility>());
+        await Task.Run(() => AwaitAbilityInitiation<MoveAbility>());
+
+        abilityBindPanel.Ability = new CrouchAbility(AbilitiesPool.MainCharacter, (MoveAbility)AbilitiesPool.GetMainCharacterAbility<MoveAbility>());
     }
 }

@@ -10,7 +10,7 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
     public BaseAbilityScriptableObject AbilityDefaults { get => abilityDefaults; set => abilityDefaults = value; }
     public IAbility Ability { get => ability; protected set => ability = value; }
 
-    protected virtual void Init()
+    protected virtual void InitAsync()
     {
         Task.Run(() => AwaitCharacterInitializationAsync());
         abilityBindPanel = GetComponent<IAbilityBindPanel>();
@@ -21,5 +21,19 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
     {
         if (AbilitiesPool.MainCharacter == null) Task.Delay(100);
         return Task.CompletedTask; 
+    }
+
+    protected Task AwaitAbilityInitiation<IAbility>()
+    {
+        while (AbilitiesPool.GetMainCharacterAbility<IAbility>() == null)
+            return Task.Delay(100);
+        return Task.CompletedTask;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        abilityBindPanel = null;
+        ability = null;
+        abilityDefaults = null;
     }
 }

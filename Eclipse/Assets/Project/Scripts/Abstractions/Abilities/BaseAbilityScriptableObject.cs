@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class BaseAbilityScriptableObject : ScriptableObject, IKeyControlledAbilityScriptableObject
 {
     [SerializeField] protected int abilityId;
+    [SerializeField, Tooltip("In milliseconds")] protected int abilityCooldown;
     [SerializeField] protected Sprite[] idleAnimation;
     [SerializeField] protected Sprite[] leftAnimation;
     [SerializeField] protected Sprite[] rightAnimation;
@@ -16,4 +17,5 @@ public abstract class BaseAbilityScriptableObject : ScriptableObject, IKeyContro
     public Sprite[] LeftAnimation { get => leftAnimation; set => leftAnimation = value; }
     public Sprite[] RightAnimation { get => rightAnimation; set => rightAnimation = value; }
     public int AbilityId { get => abilityId; set => abilityId = value; }
+    public int AbilityCooldown { get => abilityCooldown; private set => abilityCooldown = value; }
 }

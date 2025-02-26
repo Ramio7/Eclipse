@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: JumpAbilityScriptableObject
   m_EditorClassIdentifier: 
   abilityId: 3
+  abilityCooldown: 0
   idleAnimation: []
   leftAnimation: []
   rightAnimation: []
-  key: 32
+  key: 0
+  _jumpForce: 20

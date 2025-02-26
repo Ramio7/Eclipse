@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -15,7 +14,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     public KeyCode AbilityKey { get => _key; set => _key = value; }
     public IAbility Ability { get => _ability; set => _ability = value; }
 
-    public Action<ICharacter, KeyCode, IAbility> OnAbilityBinded;
+    //public Action<ICharacter, KeyCode, IAbility> OnAbilityBinded;
 
     private void Awake()
     {
@@ -25,9 +24,10 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         _abilityButton.onClick.AddListener(InitKeyBinding);
     }
 
-    private void Start()
+    private async void Start()
     {
-        Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
+        await Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
+        await Task.Run(() => AwaitAbilityInitiation());
         AbilitiesPool.AddOrUpdateAbility(AbilitiesPool.MainCharacter, _key, _ability);
     }
 
@@ -48,18 +48,17 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
             return Task.Delay(100);
         }
         else return Task.CompletedTask;
-        //else
-        //{
-        //    if (_ability == null) Task.Delay(100);
+    }
 
-        //    OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
-        //    return Task.CompletedTask;
-        //}
+    private Task AwaitAbilityInitiation()
+    {
+        while (_ability == null) Task.Delay(100);
+        return Task.CompletedTask;
     }
 
     private void InitKeyBinding()
     {
-        EntryPointView.OnGuiUpdate += AwaitKeyUpAsync;
+        GameEvents.OnGuiUpdate += AwaitKeyUpAsync;
     }
 
     private void AwaitKeyUpAsync()
@@ -68,7 +67,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         else
         {
             SetAbilityKey(Event.current.keyCode);
-            EntryPointView.OnGuiUpdate -= AwaitKeyUpAsync;
+            GameEvents.OnGuiUpdate -= AwaitKeyUpAsync;
         }
     }
 
@@ -77,6 +76,6 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         _key = key;
         _abilityButton.GetComponentInChildren<TMP_Text>().text = _key.ToString();
         _abilityName = Ability.ToString().Replace("Ability", "");
-        OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
+        GameEvents.OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
     }
 }

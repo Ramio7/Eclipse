@@ -2,13 +2,15 @@ public class MoveAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new MoveAbility(AbilitiesPool.MainCharacter);
+        var defaults = abilityDefaults as MoveAbilityScriptableObject;
+
+        abilityBindPanel.Ability = new MoveAbility(AbilitiesPool.MainCharacter, defaults.MoveForce);
     }
 }

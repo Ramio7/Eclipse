@@ -1,14 +1,18 @@
+using System.Threading.Tasks;
+
 public class SlideAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override async void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new SlideAbility(AbilitiesPool.MainCharacter);
+        await Task.Run(() => AwaitAbilityInitiation<ShiftAbility>());
+
+        abilityBindPanel.Ability = new SlideAbility(AbilitiesPool.MainCharacter, (ShiftAbility)AbilitiesPool.GetMainCharacterAbility<ShiftAbility>());
     }
 }

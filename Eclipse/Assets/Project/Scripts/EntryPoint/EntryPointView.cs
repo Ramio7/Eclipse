@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -17,10 +16,6 @@ public class EntryPointView : BaseView, IView
     public AudioMixer AudioMixer { get => _audioMixer; }
     public VolumeProfile VolumeProfile { get => _volumeProfile; }
     public MainCharacterView MainScreenCharacter { get => _mainScreenCharacter; }
-
-    public static event Action OnUpdate;
-    public static event Action OnFixedUpdate;
-    public static event Action OnGuiUpdate;
 
     public static EntryPointView Instance;
 
@@ -49,17 +44,17 @@ public class EntryPointView : BaseView, IView
 
     private void Update()
     {
-        OnUpdate?.Invoke();
+        GameEvents.OnUpdate?.Invoke();
     }
 
     private void FixedUpdate() 
     {
-        OnFixedUpdate?.Invoke();
+        GameEvents.OnFixedUpdate?.Invoke();
     }
 
     private void OnGUI()
     {
-        OnGuiUpdate?.Invoke();
+        GameEvents.OnGuiUpdate?.Invoke();
     }
 
     private void OnDestroy()

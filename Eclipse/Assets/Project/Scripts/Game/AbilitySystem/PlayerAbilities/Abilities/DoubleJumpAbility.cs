@@ -1,8 +1,14 @@
+using UnityEngine;
+
 public class DoubleJumpAbility : BaseComboAbility
 {
-    public DoubleJumpAbility(ICharacter character, IAbility startAbility) : base(character, startAbility)
+    private float _doubleJumpForce;
+
+    public DoubleJumpAbility(ICharacter character, JumpAbility startAbility, float doubleJumpForce) : base(character, startAbility)
     {
         Init();
+
+        _doubleJumpForce = doubleJumpForce;
     }
 
     protected override void Init()
@@ -11,8 +17,11 @@ public class DoubleJumpAbility : BaseComboAbility
     }
 
     protected override void Method()
-    {
+     {
         base.Method();
+        if (isInvoking) return;
+        character.Rigidbody.AddForceY(_doubleJumpForce, ForceMode2D.Impulse);
+        character.AbilityState.SetValue(CharacterAbilitiesState.UsedSecondJump);
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

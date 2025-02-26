@@ -1,6 +1,6 @@
 public class CrouchAbility : BaseComboAbility
 {
-    public CrouchAbility(ICharacter character, IAbility startAbility) : base(character, startAbility)
+    public CrouchAbility(ICharacter character, MoveAbility startAbility) : base(character, startAbility)
     {
         Init();
     }
@@ -13,6 +13,7 @@ public class CrouchAbility : BaseComboAbility
     protected override void Method()
     {
         base.Method();
+        if (isInvoking) return;
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

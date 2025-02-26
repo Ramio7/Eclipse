@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class KeyboardKeyBindSettingsController : BaseGameObjectController
 {
@@ -23,7 +24,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
         base.Dispose();
     }
 
-    private void InitLinks()
+    private async void InitLinks()
     {
         var view = base.view as KeyboardKeyBindSettingsView;
         var model = base.model as KeyboardKeyBindSettingsModel;
@@ -37,8 +38,9 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
         foreach (var abilityPanel in view.Objects)
         {
-            abilityPanel.OnAbilityBinded += model.SetKeyBind;
-            abilityPanel.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
+            await Task.Run(() => AwaitAbilityBindPanelInitiation(abilityPanel));
+            GameEvents.OnAbilityBinded += model.SetKeyBind;
+            GameEvents.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
             model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKey, abilityPanel.Ability);
         }
         
@@ -62,8 +64,8 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
 
             foreach (var abilityPanel in view.Objects)
             {
-                abilityPanel.OnAbilityBinded -= model.SetKeyBind;
-                abilityPanel.OnAbilityBinded -= AbilitiesPool.AddOrUpdateAbility;
+                GameEvents.OnAbilityBinded -= model.SetKeyBind;
+                GameEvents.OnAbilityBinded -= AbilitiesPool.AddOrUpdateAbility;
             }
         }
     }
@@ -112,5 +114,11 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
                 panel.SetAbilityKey(keysettings.GetAbilityKey(tempAbility));
             }
         }
+    }
+
+    private Task AwaitAbilityBindPanelInitiation(AbilityBindPanel abilityBindPanel)
+    {
+        while (abilityBindPanel.Ability == null) Task.Delay(100);
+        return Task.CompletedTask;
     }
 }

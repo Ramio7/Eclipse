@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class MoveAbility : BaseAbility
 {
-    public MoveAbility(ICharacter character) : base(character)
+    private float _moveSpeed;
+
+    public MoveAbility(ICharacter character, float moveSpeed) : base(character)
     {
         Init();
+
+        _moveSpeed = moveSpeed;
     }
 
     protected override void Init()
@@ -15,8 +19,8 @@ public class MoveAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
-        character.Rigidbody.AddForceX(horizontalAxis, ForceMode2D.Impulse);
-        cancellationTokenSource.Cancel();
+        if (isInvoking) return;
+        character.Rigidbody.AddForceX(horizontalAxis * _moveSpeed, ForceMode2D.Impulse);
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
@@ -26,6 +30,8 @@ public class MoveAbility : BaseAbility
 
     public override void Dispose()
     {
+        _moveSpeed = 0;
+
         base.Dispose();
     }
 }

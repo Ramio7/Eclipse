@@ -1,6 +1,6 @@
-public class SlideAbility : BaseAbility
+public class SlideAbility : BaseComboAbility
 {
-    public SlideAbility(ICharacter character) : base(character)
+    public SlideAbility(ICharacter character, ShiftAbility startAbility) : base(character, startAbility)
     {
         Init();
     }
@@ -13,6 +13,7 @@ public class SlideAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
+        if (isInvoking) return;
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

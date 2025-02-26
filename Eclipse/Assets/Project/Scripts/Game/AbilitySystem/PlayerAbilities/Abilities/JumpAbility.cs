@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class JumpAbility : BaseAbility
 {
-    public JumpAbility(ICharacter character) : base(character)
+    private float _jumpForce;
+
+    public JumpAbility(ICharacter character, float jumpForce) : base(character)
     {
         Init();
+
+        _jumpForce = jumpForce;
     }
 
     protected override void Init()
@@ -15,8 +19,8 @@ public class JumpAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
-        character.Rigidbody.AddForceY(verticalAxis, ForceMode2D.Impulse);
-        cancellationTokenSource.Cancel();
+        if (isInvoking) return;
+        character.Rigidbody.AddForceY(_jumpForce, ForceMode2D.Impulse);
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

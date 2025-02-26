@@ -7,5 +7,7 @@ public class BaseComboAbility : BaseAbility, IComboAbility
     public BaseComboAbility(ICharacter character, IAbility startAbility) : base(character)
     {
         this.startAbility = startAbility;
+
+        base.Init();
     }
 }

@@ -1,40 +1,87 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 //[RequireComponent(typeof(SpriteLibrary), typeof(SpriteResolver))]
 public abstract class BaseCharacterView : MonoBehaviour, ICharacter, IView
 {
-    protected Rigidbody2D _rigidbody;
-    protected Collider2D _collider;
-    protected CharacterState _state = new();
-    protected List<IAbility> _abilities = new();
+    protected new Rigidbody2D rigidbody;
+    protected new Collider2D collider;
+    protected ReactiveProperty<CharacterEnviromentState> enviromentState;
+    protected ReactiveProperty<CharacterAbilitiesState> abilitiesState;
+    protected List<IAbility> abilities = new();
 
-    public Rigidbody2D Rigidbody { get => _rigidbody; private set => _rigidbody = value; }
-    public Collider2D Collider { get => _collider; private set => _collider = value; }
-    public CharacterState State { get => _state; private set => _state = value; }
-    public List<IAbility> Abilities { get => _abilities; private set => _abilities = value; }
+    [SerializeField] private CharacterEnviromentState _currentEnvState;
+    [SerializeField] private CharacterAbilitiesState _currentAbState;
+    private ContactsPoller _contactsPooler;
+
+    public Rigidbody2D Rigidbody { get => rigidbody; private set => rigidbody = value; }
+    public Collider2D Collider { get => collider; private set => collider = value; }
+    public ReactiveProperty<CharacterEnviromentState> EnviromentState { get => enviromentState; private set => enviromentState = value; }
+    public ReactiveProperty<CharacterAbilitiesState> AbilityState { get => abilitiesState; set => abilitiesState = value; }
+    public List<IAbility> Abilities { get => abilities; private set => abilities = value; }
     public GameObject GameObject { get => gameObject; }
+
+    public event Action<BaseCharacterView> BaseCharacterInitiated;
 
     private void Start()
     {
         GetComponentsFromMonoBehaviour();
+        InitStates();
+
+        _contactsPooler = new(collider, enviromentState);
+        BaseCharacterInitiated.Invoke(this);
+        
+        enviromentState.OnValueChanged.AddListener(ChangeEnvValue);
+        abilitiesState.OnValueChanged.AddListener(ChangeAbValue);
     }
 
-    private void GetComponentsFromMonoBehaviour()
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        _collider = GetComponent<Collider2D>();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _state = new(true);
-        var abilities = GetComponents<IAbilityView>();
-        foreach (var ability in abilities) _abilities.Add(ability.Ability);
+        if (collision.gameObject.layer == 7) enviromentState.SetValue(CharacterEnviromentState.CanUseEnviroment);
     }
 
     private void OnDestroy()
     {
-        _rigidbody = null;
-        _collider = null;
-        _state.Dispose();
-        _abilities.Clear();
-        _abilities = null;
+        enviromentState.OnValueChanged.RemoveListener(ChangeEnvValue);
+        abilitiesState.OnValueChanged.RemoveListener(ChangeAbValue);
+
+        enviromentState.Dispose();
+        abilitiesState.Dispose();
+        _contactsPooler.Dispose();
+        abilities.Clear();
+
+        _contactsPooler = null;
+        enviromentState = null;
+        abilitiesState = null;
+        rigidbody = null;
+        collider = null;
+        abilities = null;
+    }
+
+    private void ChangeEnvValue(CharacterEnviromentState enviromentState)
+    {
+        _currentEnvState = enviromentState;
+        if (_currentEnvState == CharacterEnviromentState.Grounded)
+        {
+            abilitiesState.SetValue(CharacterAbilitiesState.None);
+            AbilityCash.ActiveAbility = null;
+        }
+    }
+
+    private void ChangeAbValue(CharacterAbilitiesState abState) => _currentAbState = abState;
+
+    private void GetComponentsFromMonoBehaviour()
+    {
+        collider = GetComponent<Collider2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        var abilities = GetComponents<IAbilityView>();
+        foreach (var ability in abilities) this.abilities.Add(ability.Ability);
+    }
+
+    private void InitStates()
+    {
+        enviromentState = new(CharacterEnviromentState.Grounded);
+        abilitiesState = new(CharacterAbilitiesState.None);
     }
 }

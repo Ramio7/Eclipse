@@ -2,41 +2,33 @@ using UnityEngine;
 
 public static class AbilityCash
 {
-    public static int _cashCapacity = 12;
+    public static int CashCapacity = 12;
+    public static IAbility ActiveAbility;
 
-    private static IAbility[] _abilitiesCash = new IAbility[_cashCapacity];
-    private static IAbility _activeAbility;
+    private static IAbility[] AbilitiesCash = new IAbility[CashCapacity];
 
     public static void AddAbilityToCash(IAbility ability)
     {
-        if (ArrayUtility<IAbility>.ArrayIsFull(_abilitiesCash))
-        {
-            InvokeAbilities();
-            ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-            return;
-        }
-
-        var freeIndex = ArrayUtility<IAbility>.GetFreeIndex(_abilitiesCash);
-        _abilitiesCash[freeIndex] = ability;
+        var freeIndex = ArrayUtility<IAbility>.GetFreeIndex(AbilitiesCash);
+        AbilitiesCash[freeIndex] = ability;
     }
 
     public static void InvokeAbilities()
     {
-        if (ArrayUtility<IAbility>.ArrayIsNull(_abilitiesCash)) return;
-        for (int i = 0; i < _abilitiesCash.Length; i++)
-        {
+        if (ArrayUtility<IAbility>.ArrayIsNull(AbilitiesCash)) return;
 
-            if (_abilitiesCash[i] == _activeAbility) continue;
-            else
-            {
-                _activeAbility?.Cancel();
-                _activeAbility = _abilitiesCash[i];
-                if (_activeAbility == null) return;
-                _abilitiesCash[i].Invoke();
-                Debug.Log($"{_activeAbility} is invoked");
-                ArrayUtility<IAbility>.ClearArray(_abilitiesCash);
-                return;
-            }
+        for (int i = 0; i < AbilitiesCash.Length; i++) //Make abilities work well
+        {
+            if (AbilitiesCash[i] == null) continue;
+
+            ActiveAbility?.Cancel();
+            ActiveAbility = AbilitiesCash[i];
+            AbilitiesCash[i] = null;
+            ActiveAbility.Invoke();
+            Debug.Log($"{ActiveAbility} is invoked");
+            continue;
         }
+
+        ArrayUtility<IAbility>.ClearArray(AbilitiesCash);
     }
 }

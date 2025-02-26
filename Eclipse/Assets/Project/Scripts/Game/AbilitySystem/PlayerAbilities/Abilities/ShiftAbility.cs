@@ -1,6 +1,6 @@
-public class ShiftAbility : BaseAbility
+public class ShiftAbility : BaseComboAbility
 {
-    public ShiftAbility(ICharacter character) : base(character)
+    public ShiftAbility(ICharacter character, MoveAbility startAbility) : base(character, startAbility)
     {
         Init();
     }
@@ -13,6 +13,7 @@ public class ShiftAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
+        if (isInvoking) return;
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

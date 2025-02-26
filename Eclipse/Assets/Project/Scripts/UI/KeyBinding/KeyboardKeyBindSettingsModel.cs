@@ -15,12 +15,12 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public KeyboardKeyBindSettingsModel() : base()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
         InitKeyBindSettings();
     }

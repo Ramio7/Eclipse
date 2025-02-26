@@ -1,14 +1,20 @@
+using System.Threading.Tasks;
+
 public class DoubleJumpAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override async void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new DoubleJumpAbility(AbilitiesPool.MainCharacter, AbilitiesPool.GetMainCharacterAbility<JumpAbility>());
+        await Task.Run(() => AwaitAbilityInitiation<JumpAbility>());
+
+        var defaults = abilityDefaults as DoubleJumpAbilityScriptableObject;
+
+        abilityBindPanel.Ability = new DoubleJumpAbility(AbilitiesPool.MainCharacter, (JumpAbility)AbilitiesPool.GetMainCharacterAbility<JumpAbility>(), defaults.SecondJumpForce);
     }
 }

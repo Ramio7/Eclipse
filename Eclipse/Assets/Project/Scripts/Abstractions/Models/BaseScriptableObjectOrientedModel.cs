@@ -8,7 +8,7 @@ public abstract class BaseScriptableObjectOrientedModel : BaseModel, IScriptable
 
     public virtual void Init(IScriptableObject scriptableObject)
     {
-        base.Init();
+        base.InitAsync();
 
         _scriptableObject = scriptableObject;
     }

@@ -13,6 +13,7 @@ public class FourthAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
+        if (isInvoking) return;
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

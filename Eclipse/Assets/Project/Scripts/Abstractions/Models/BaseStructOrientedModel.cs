@@ -9,7 +9,7 @@ public abstract class BaseStructOrientedModel : BaseModel, IStructOrientedModel
 
     public virtual void Init(IStruct @struct)
     {
-        base.Init();
+        base.InitAsync();
 
         m_struct = @struct;
     }

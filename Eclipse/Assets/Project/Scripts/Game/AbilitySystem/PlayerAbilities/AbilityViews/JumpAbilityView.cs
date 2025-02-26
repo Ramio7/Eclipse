@@ -5,13 +5,15 @@ public class JumpAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new JumpAbility(AbilitiesPool.MainCharacter);
+        var defaults = abilityDefaults as JumpAbilityScriptableObject;
+
+        abilityBindPanel.Ability = new JumpAbility(AbilitiesPool.MainCharacter, defaults.JumpForce);
     }
 }

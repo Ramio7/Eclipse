@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 public static class ModelList
@@ -12,7 +11,7 @@ public static class ModelList
         var modelType = typeof(T);
         model = (T)_models.Find(matchingModel => matchingModel.GetType() == modelType);
         if (model != null) return;
-        else throw new Exception("Model type not found");
+        else model = default;
     }
 
     public static void DisposeAllModels()

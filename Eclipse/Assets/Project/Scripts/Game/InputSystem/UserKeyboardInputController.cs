@@ -25,21 +25,23 @@ public class UserKeyboardInputController : BaseInputSystemController
             DeinitUserInputProcess();
         }
 
-        GameStateMashine.Instance.OnGameStateChanged -= SwitchAbilitiesTracking;
+        if (GameStateMashine.Instance != null) GameStateMashine.Instance.OnGameStateChanged -= SwitchAbilitiesTracking;
 
         base.Dispose();
     }
 
     private void InitUserInputProcess()
     {
-        EntryPointView.OnUpdate += model.InvokeMoveAbility;
-        EntryPointView.OnFixedUpdate += AbilityCash.InvokeAbilities;
+        GameEvents.OnUpdate += model.InvokeMoveAbility;
+        GameEvents.OnFixedUpdate += model.InvokeJumpAbility;
+        GameEvents.OnFixedUpdate += AbilityCash.InvokeAbilities;
     }
     
     private void DeinitUserInputProcess()
     {
-        EntryPointView.OnUpdate -= model.InvokeMoveAbility;
-        EntryPointView.OnFixedUpdate -= AbilityCash.InvokeAbilities;
+        GameEvents.OnUpdate -= model.InvokeMoveAbility;
+        GameEvents.OnFixedUpdate -= model.InvokeJumpAbility;
+        GameEvents.OnFixedUpdate -= AbilityCash.InvokeAbilities;
     }
 
     private void SwitchAbilitiesTracking(GameState gameState)

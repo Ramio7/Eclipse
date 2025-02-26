@@ -1,14 +1,18 @@
+using System.Threading.Tasks;
+
 public class ShiftAbilityView : BaseMainCharacterAbilityView
 {
     private void Awake()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override void Init()
+    protected override async void InitAsync()
     {
-        base.Init();
+        base.InitAsync();
 
-        abilityBindPanel.Ability = new ShiftAbility(AbilitiesPool.MainCharacter);
+        await Task.Run(() => AwaitAbilityInitiation<MoveAbility>());
+
+        abilityBindPanel.Ability = new ShiftAbility(AbilitiesPool.MainCharacter, (MoveAbility)AbilitiesPool.GetMainCharacterAbility<MoveAbility>());
     }
 }

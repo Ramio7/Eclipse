@@ -48,7 +48,7 @@ public class AbilitiesPool : IDisposable
     public static IAbility GetMainCharacterAbility<T>()
     {
         Type type = typeof(T);
-        if (CharactersAbilitiesDictionary.Count == 0) throw new Exception("Main character not added");
+        if (CharactersAbilitiesDictionary[MainCharacter].Count == 0) return default;
         foreach (var abilityKeysPair in CharactersAbilitiesDictionary[MainCharacter])
         {
             if (abilityKeysPair.Key.GetType().Equals(type)) return abilityKeysPair.Key;
@@ -58,8 +58,19 @@ public class AbilitiesPool : IDisposable
 
     public static IAbility GetAbilityByKey(ICharacter character, KeyCode key)
     {
-        List<IAbility> abilitiesToMatch = new();
         foreach (var abilityKeyPair in CharactersAbilitiesDictionary[character])
+        {
+            if (abilityKeyPair.Value == key) return abilityKeyPair.Key;
+        }
+        return default;
+    }
+
+    public static IAbility GetMainCharacterAbilityByKey(KeyCode key, IAbility activeAbility)
+    {
+        var comboAbility = GetMainCharacterComboAbilityByKey(key, activeAbility);
+        if (comboAbility != null) return comboAbility;
+
+        foreach (var abilityKeyPair in CharactersAbilitiesDictionary[MainCharacter])
         {
             if (abilityKeyPair.Value == key) return abilityKeyPair.Key;
         }
@@ -74,4 +85,38 @@ public class AbilitiesPool : IDisposable
     }
 
     public static void ClearCharacterAbilities(ICharacter character) => CharactersAbilitiesDictionary[character].Clear();
+
+    private static IComboAbility GetMainCharacterComboAbilityByKey(KeyCode key, IAbility baseAbility)
+    {
+        if (baseAbility == null) return default;
+
+        var enumerator = CharactersAbilitiesDictionary[MainCharacter].GetEnumerator();
+        for (var i = 0; CharactersAbilitiesDictionary[MainCharacter].Count > i; i++)
+        {
+            if (enumerator.Current.Key is not IComboAbility) //check if ability is combo
+            {
+                enumerator.MoveNext();
+                continue;
+            }
+
+            var comboAbility = (IComboAbility)enumerator.Current.Key; //check combo start ability
+            if (comboAbility.StartAbility != baseAbility)
+            {
+                enumerator.MoveNext();
+                continue;
+            }
+
+            var comboAbilityKey = CharactersAbilitiesDictionary[MainCharacter][comboAbility]; //check combo ability key
+            if (comboAbilityKey != key)
+            {
+                enumerator.MoveNext();
+                continue;
+            }
+            else
+            {
+                return comboAbility;
+            }
+        }
+        return default;
+    }
 }

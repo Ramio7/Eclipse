@@ -3,16 +3,19 @@ using System.Threading;
 public abstract class BaseAbility : IAbility, IAxesControlledAbility
 {
     protected int abilityId;
+    protected bool isInvoking;
     protected ICharacter character;
     protected CancellationTokenSource cancellationTokenSource;
-    protected CancellationToken cancellationToken;
     protected float horizontalAxis;
     protected float verticalAxis;
+    protected int abilityCooldown;
 
-    public CancellationToken CancellationToken { get => cancellationToken; private set => cancellationToken = value; }
     public int AbilityId { get => abilityId; set => abilityId = value; }
+    public bool IsInvoking { get => isInvoking; set => isInvoking = value; }
     public float HorizontalAxis { get => horizontalAxis; set => horizontalAxis = value; }
     public float VerticalAxis { get => verticalAxis; set => verticalAxis = value; }
+    public CancellationTokenSource CancellationTokenSource { get => cancellationTokenSource; set => cancellationTokenSource = value; }
+    public int AbilityCooldown { get => abilityCooldown; private set => abilityCooldown = value; }
 
     public BaseAbility(ICharacter character)
     {
@@ -22,7 +25,6 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
     protected virtual void Init()
     {
         cancellationTokenSource = new CancellationTokenSource();
-        cancellationToken = cancellationTokenSource.Token;
 
         horizontalAxis = 0;
         verticalAxis = 0;
@@ -41,10 +43,21 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
 
     public void Invoke() => Method();
 
-    public virtual void Cancel() => cancellationTokenSource.Cancel();
+    public virtual void Cancel()
+    {
+        IsInvoking = false;
+        cancellationTokenSource.Cancel();
+        ReinitCancellationTokenSource();
+    }
+
+    public void ReinitCancellationTokenSource()
+    {
+        cancellationTokenSource.Dispose();
+        cancellationTokenSource = new();
+    }
 
     protected virtual void Method()
     {
-        if (cancellationToken.IsCancellationRequested) return;
     }
+
 }
