@@ -14,6 +14,6 @@ public class JumpAbilityView : BaseMainCharacterAbilityView
 
         var defaults = abilityDefaults as JumpAbilityScriptableObject;
 
-        abilityBindPanel.Ability = new JumpAbility(AbilitiesPool.MainCharacter, defaults.JumpForce);
+        abilityBindPanel.Ability = new JumpAbility(EntryPointView.MainScreenCharacter, defaults.JumpForce);
     }
 }

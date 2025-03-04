@@ -12,15 +12,8 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
 
     protected virtual void InitAsync()
     {
-        Task.Run(() => AwaitCharacterInitializationAsync());
         abilityBindPanel = GetComponent<IAbilityBindPanel>();
         abilityBindPanel.AbilityKey = abilityDefaults.KeyCode;
-    }
-
-    private Task AwaitCharacterInitializationAsync()
-    {
-        if (AbilitiesPool.MainCharacter == null) Task.Delay(100);
-        return Task.CompletedTask; 
     }
 
     protected Task AwaitAbilityInitiation<IAbility>()

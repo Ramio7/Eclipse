@@ -32,14 +32,14 @@ public class UserKeyboardInputController : BaseInputSystemController
 
     private void InitUserInputProcess()
     {
-        GameEvents.OnUpdate += model.InvokeMoveAbility;
+        GameEvents.OnFixedUpdate += model.InvokeMoveAbility;
         GameEvents.OnFixedUpdate += model.InvokeJumpAbility;
         GameEvents.OnFixedUpdate += AbilityCash.InvokeAbilities;
     }
     
     private void DeinitUserInputProcess()
     {
-        GameEvents.OnUpdate -= model.InvokeMoveAbility;
+        GameEvents.OnFixedUpdate -= model.InvokeMoveAbility;
         GameEvents.OnFixedUpdate -= model.InvokeJumpAbility;
         GameEvents.OnFixedUpdate -= AbilityCash.InvokeAbilities;
     }

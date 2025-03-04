@@ -11,6 +11,6 @@ public class MoveAbilityView : BaseMainCharacterAbilityView
 
         var defaults = abilityDefaults as MoveAbilityScriptableObject;
 
-        abilityBindPanel.Ability = new MoveAbility(AbilitiesPool.MainCharacter, defaults.MoveForce);
+        abilityBindPanel.Ability = new MoveAbility(EntryPointView.MainScreenCharacter, defaults.MoveForce);
     }
 }

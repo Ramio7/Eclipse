@@ -9,6 +9,6 @@ public class SecondAbilityView : BaseMainCharacterAbilityView
     {
         base.InitAsync();
 
-        abilityBindPanel.Ability = new SecondAbility(AbilitiesPool.MainCharacter);
+        abilityBindPanel.Ability = new SecondAbility(EntryPointView.MainScreenCharacter);
     }
 }

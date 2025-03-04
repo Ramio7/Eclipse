@@ -23,7 +23,7 @@ public struct KeyBindSettings : IStruct
         Keys = null;
     }
 
-    public void GetSettings(out IAbility[] i_abilities, out KeyCode[] i_keyCodes)
+    public readonly void GetSettings(out IAbility[] i_abilities, out KeyCode[] i_keyCodes)
     {
         if (_abilityKeyPairs.Keys != null)
         {
@@ -50,13 +50,13 @@ public struct KeyBindSettings : IStruct
         else throw new Exception("No keys found");
     }
 
-    public KeyCode GetAbilityKey(IAbility ability)
+    public readonly KeyCode GetAbilityKey(IAbility ability)
     {
         if (_abilityKeyPairs.ContainsKey(ability)) return _abilityKeyPairs[ability];
         else throw new Exception($"{ability} not found in dictionary");
     }
 
-    public IAbility GetAbilityByArrayIndex(int index) => Abilities[index];
+    public readonly IAbility GetAbilityByArrayIndex(int index) => Abilities[index];
 
     public void SetFromSettings(KeyBindSettings other)
     {
@@ -64,13 +64,13 @@ public struct KeyBindSettings : IStruct
         UpdateDictionary();
     }
 
-    public void SetAbility(IAbility ability, KeyCode key)
+    public readonly void SetAbility(IAbility ability, KeyCode key)
     {
         if (_abilityKeyPairs.ContainsKey(ability)) _abilityKeyPairs[ability] = key;
         else _abilityKeyPairs.Add(ability, key);
     }
 
-    public bool IsEqual(KeyBindSettings other)
+    public readonly bool IsEqual(KeyBindSettings other)
     {
         if (Abilities == other.Abilities && Keys == other.Keys) return true;
         return false;

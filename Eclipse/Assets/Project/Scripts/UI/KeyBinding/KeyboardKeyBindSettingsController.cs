@@ -41,7 +41,7 @@ public class KeyboardKeyBindSettingsController : BaseGameObjectController
             await Task.Run(() => AwaitAbilityBindPanelInitiation(abilityPanel));
             GameEvents.OnAbilityBinded += model.SetKeyBind;
             GameEvents.OnAbilityBinded += AbilitiesPool.AddOrUpdateAbility;
-            model.SetKeyBind(AbilitiesPool.MainCharacter, abilityPanel.AbilityKey, abilityPanel.Ability);
+            model.SetKeyBind(EntryPointView.MainScreenCharacter, abilityPanel.AbilityKey, abilityPanel.Ability);
         }
         
         if (!model.LoadSettings()) model.SaveSettings();

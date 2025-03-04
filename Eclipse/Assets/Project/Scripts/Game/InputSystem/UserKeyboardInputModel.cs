@@ -11,16 +11,16 @@ public class UserKeyboardInputModel : BaseInputSystemModel
 
     public UserKeyboardInputModel()
     {
-        InitAsync();
+        Init();
     }
 
-    protected override async void InitAsync()
+    protected override async void Init()
     {
-        base.InitAsync();
+        base.Init();
 
         CurrentKeyOutput.OnValueChanged.AddListener(TakeKeyFromInput);
 
-        var character = EntryPointView.Instance.MainScreenCharacter;
+        var character = EntryPointView.MainScreenCharacter;
         character.BaseCharacterInitiated += GetCharacterStates;
         
 

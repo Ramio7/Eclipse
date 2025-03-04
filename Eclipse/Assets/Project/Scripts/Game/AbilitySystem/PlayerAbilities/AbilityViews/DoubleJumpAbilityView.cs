@@ -15,6 +15,6 @@ public class DoubleJumpAbilityView : BaseMainCharacterAbilityView
 
         var defaults = abilityDefaults as DoubleJumpAbilityScriptableObject;
 
-        abilityBindPanel.Ability = new DoubleJumpAbility(AbilitiesPool.MainCharacter, (JumpAbility)AbilitiesPool.GetMainCharacterAbility<JumpAbility>(), defaults.SecondJumpForce);
+        abilityBindPanel.Ability = new DoubleJumpAbility(EntryPointView.MainScreenCharacter, (JumpAbility)AbilitiesPool.GetMainCharacterAbility<JumpAbility>(), defaults.SecondJumpForce);
     }
 }

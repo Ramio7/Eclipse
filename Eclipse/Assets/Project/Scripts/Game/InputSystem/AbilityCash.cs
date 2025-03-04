@@ -10,6 +10,7 @@ public static class AbilityCash
     public static void AddAbilityToCash(IAbility ability)
     {
         var freeIndex = ArrayUtility<IAbility>.GetFreeIndex(AbilitiesCash);
+        if (freeIndex == -1) InvokeAbilities();
         AbilitiesCash[freeIndex] = ability;
     }
 

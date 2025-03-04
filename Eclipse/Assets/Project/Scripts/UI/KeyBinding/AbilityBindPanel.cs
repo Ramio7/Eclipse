@@ -28,7 +28,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     {
         await Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
         await Task.Run(() => AwaitAbilityInitiation());
-        AbilitiesPool.AddOrUpdateAbility(AbilitiesPool.MainCharacter, _key, _ability);
+        AbilitiesPool.AddOrUpdateAbility(EntryPointView.MainScreenCharacter, _key, _ability);
     }
 
     private void OnDestroy()
@@ -76,6 +76,6 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         _key = key;
         _abilityButton.GetComponentInChildren<TMP_Text>().text = _key.ToString();
         _abilityName = Ability.ToString().Replace("Ability", "");
-        GameEvents.OnAbilityBinded?.Invoke(AbilitiesPool.MainCharacter, _key, _ability);
+        GameEvents.OnAbilityBinded?.Invoke(EntryPointView.MainScreenCharacter, _key, _ability);
     }
 }

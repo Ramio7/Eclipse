@@ -19,7 +19,7 @@ public class GameView : BaseView
 
             GameStateMashine.Instance.ChangeGameState(GameState.Game);
 
-            var character = EntryPointView.Instance.MainScreenCharacter;
+            var character = EntryPointView.MainScreenCharacter;
             var characterTransform = character.GameObject.transform;
             characterTransform.SetPositionAndRotation(_levelView.StartingPoint.position, characterTransform.rotation);
         }

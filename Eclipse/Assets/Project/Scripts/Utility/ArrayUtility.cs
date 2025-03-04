@@ -70,7 +70,7 @@ public static class ArrayUtility<T>
             }
 
         }
-        throw new ArgumentNullException(array.ToString());
+        return -1;
     }
 
     public static bool ArrayIsNull(Array array)

@@ -16,9 +16,9 @@ public abstract class BaseInputSystemModel : BaseModel, IInputSystemModel
     {
     }
 
-    protected override void InitAsync()
+    protected override void Init()
     {
-        base.InitAsync();
+        base.Init();
 
         lastKeyInput = new(KeyCode.None);
         currentKeyOutput = new(KeyCode.None);

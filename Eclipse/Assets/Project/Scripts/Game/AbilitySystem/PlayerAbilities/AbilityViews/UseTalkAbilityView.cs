@@ -9,6 +9,6 @@ public class UseTalkAbilityView : BaseMainCharacterAbilityView
     {
         base.InitAsync();
 
-        abilityBindPanel.Ability = new UseTalkAbility(AbilitiesPool.MainCharacter);
+        abilityBindPanel.Ability = new UseTalkAbility(EntryPointView.MainScreenCharacter);
     }
 }

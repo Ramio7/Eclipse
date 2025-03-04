@@ -9,6 +9,6 @@ public class FourthAbilityView : BaseMainCharacterAbilityView
     {
         base.InitAsync();
 
-        abilityBindPanel.Ability = new FourthAbility(AbilitiesPool.MainCharacter);
+        abilityBindPanel.Ability = new FourthAbility(EntryPointView.MainScreenCharacter);
     }
 }

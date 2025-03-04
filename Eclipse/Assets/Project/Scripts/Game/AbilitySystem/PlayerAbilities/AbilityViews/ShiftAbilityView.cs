@@ -13,6 +13,6 @@ public class ShiftAbilityView : BaseMainCharacterAbilityView
 
         await Task.Run(() => AwaitAbilityInitiation<MoveAbility>());
 
-        abilityBindPanel.Ability = new ShiftAbility(AbilitiesPool.MainCharacter, (MoveAbility)AbilitiesPool.GetMainCharacterAbility<MoveAbility>());
+        abilityBindPanel.Ability = new ShiftAbility(EntryPointView.MainScreenCharacter, (MoveAbility)AbilitiesPool.GetMainCharacterAbility<MoveAbility>());
     }
 }

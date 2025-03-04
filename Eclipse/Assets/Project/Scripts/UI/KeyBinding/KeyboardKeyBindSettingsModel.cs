@@ -6,7 +6,7 @@ public class KeyboardKeyBindSettingsModel : BaseModel
     private KeyBindSettings _savedSettings = new();
     private KeyBindSettings _tempSettings = new();
 
-    private string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
+    private readonly string _settingsFilePath = Application.dataPath + "/Project/Resources/KeyBindSettings.json";
 
     public ReactiveProperty<bool> settingsIsSaved = new(true);
 
@@ -15,12 +15,12 @@ public class KeyboardKeyBindSettingsModel : BaseModel
 
     public KeyboardKeyBindSettingsModel() : base()
     {
-        InitAsync();
+        Init();
     }
 
-    protected override void InitAsync()
+    protected override void Init()
     {
-        base.InitAsync();
+        base.Init();
 
         InitKeyBindSettings();
     }

@@ -9,6 +9,6 @@ public class ThirdAbilityView : BaseMainCharacterAbilityView
     {
         base.InitAsync();
 
-        abilityBindPanel.Ability = new ThirdAbility(AbilitiesPool.MainCharacter);
+        abilityBindPanel.Ability = new ThirdAbility(EntryPointView.MainScreenCharacter);
     }
 }
