@@ -5,13 +5,20 @@ public class MoveAbility : BaseAbility
     public MoveAbility(ICharacter character, float moveSpeed) : base(character)
     {
         _moveSpeed = moveSpeed;
+
+        Init();
+    }
+
+    protected override void Init()
+    {
+        base.Init();
     }
 
     protected override void Method()
     {
         base.Method();
-        if (isInvoking) return;
         character.Rigidbody.linearVelocityX = horizontalAxis * _moveSpeed;
+        GameEvents.OnAbilityStoped?.Invoke(this);
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

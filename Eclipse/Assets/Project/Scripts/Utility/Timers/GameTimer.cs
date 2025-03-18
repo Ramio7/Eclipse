@@ -51,6 +51,9 @@ public struct GameTimer : IJob, IDisposable
     {
         CurrentTime.Dispose();
         _isDisposed[0] = true;
+
+        _isExpired.Dispose();
+        _isDisposed.Dispose();
     }
 
     public void UpdateTimeAsync(DateTime curentTime)

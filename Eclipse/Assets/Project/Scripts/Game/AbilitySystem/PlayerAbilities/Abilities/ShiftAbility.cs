@@ -13,7 +13,7 @@ public class ShiftAbility : BaseComboAbility
     protected override void Method()
     {
         base.Method();
-        if (isInvoking) return;
+        //if (isInvoking) return;
     }
 
     public override void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)

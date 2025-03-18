@@ -19,7 +19,7 @@ public class DoubleJumpAbility : BaseComboAbility
     protected override void Method()
      {
         base.Method();
-        if (isInvoking) return;
+        //if (isInvoking) return;
         character.Rigidbody.AddForceY(_doubleJumpForce, ForceMode2D.Impulse);
         character.AbilityState.SetValue(CharacterAbilitiesState.UsedSecondJump);
     }

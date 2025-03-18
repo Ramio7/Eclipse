@@ -12,7 +12,7 @@ public class EntryPointView : BaseView, IView
 
     private CanvasSelector _canvasSelector;
     private GameStateMashine _gameStateMashine;
-    private AbilitiesPool _abilitiesPool;
+    private PlayerAbilitiesPool _abilitiesPool;
     private GameTimerFactory _gameTimerFactory;
 
     public AudioMixer AudioMixer { get => _audioMixer; }
@@ -41,9 +41,6 @@ public class EntryPointView : BaseView, IView
 
             GameEvents.OnFixedUpdate += GameTimersTick;
             GameEvents.OnFixedUpdate += CheckTimerStatus;
-            var newTimer = new GameTimer(30000);
-            GameTimerFactory.AddTimer(newTimer);
-
         }
         else Destroy(this);
     }

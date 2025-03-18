@@ -32,16 +32,16 @@ public class UserKeyboardInputController : BaseInputSystemController
 
     private void InitUserInputProcess()
     {
-        GameEvents.OnFixedUpdate += model.InvokeMoveAbility;
-        GameEvents.OnFixedUpdate += model.InvokeJumpAbility;
-        GameEvents.OnFixedUpdate += AbilityCash.InvokeAbilities;
+        GameEvents.OnUpdate += model.QueueMoveAbility;
+        GameEvents.OnUpdate += model.QueueJumpAbility;
+        GameEvents.OnFixedUpdate += PlayerAbilityQueue.InvokeAbility;
     }
     
     private void DeinitUserInputProcess()
     {
-        GameEvents.OnFixedUpdate -= model.InvokeMoveAbility;
-        GameEvents.OnFixedUpdate -= model.InvokeJumpAbility;
-        GameEvents.OnFixedUpdate -= AbilityCash.InvokeAbilities;
+        GameEvents.OnUpdate -= model.QueueMoveAbility;
+        GameEvents.OnUpdate -= model.QueueJumpAbility;
+        GameEvents.OnFixedUpdate -= PlayerAbilityQueue.InvokeAbility;
     }
 
     private void SwitchAbilitiesTracking(GameState gameState)
@@ -65,8 +65,5 @@ public class UserKeyboardInputController : BaseInputSystemController
         }
     }
 
-    protected override void TrackAxisInput()
-    {
-        model.SetAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-    }
+    protected override void TrackAxisInput() => model.SetAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 }

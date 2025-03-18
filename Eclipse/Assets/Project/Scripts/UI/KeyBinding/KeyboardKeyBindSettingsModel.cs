@@ -89,9 +89,9 @@ public class KeyboardKeyBindSettingsModel : BaseModel
         settingsIsSaved.SetValue(true);
     }
 
-    public void SetKeyBind(ICharacter character, KeyCode keyCode, IAbility ability)
+    public void SetKeyBind(KeyCode keyCode, IAbility ability)
     {
-        Debug.Log($"{character} {ability} set to {keyCode}");
+        Debug.Log($"Player {ability} set to {keyCode}");
         _tempSettings.SetAbility(ability, keyCode);
         settingsIsSaved.SetValue(false);
     }

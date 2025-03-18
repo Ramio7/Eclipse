@@ -20,6 +20,7 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
     public BaseAbility(ICharacter character)
     {
         this.character = character;
+        GameEvents.OnAbilityStoped += ReinitCancellationTokenSource;
     }
 
     protected virtual void Init()
@@ -33,6 +34,7 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
     public virtual void Dispose()
     {
         cancellationTokenSource.Dispose();
+        GameEvents.OnAbilityStoped -= ReinitCancellationTokenSource;
     }
 
     public virtual void SetAbilityInvokeParameters(float horizontalAxisValue, float verticalAxisValue)
@@ -45,19 +47,25 @@ public abstract class BaseAbility : IAbility, IAxesControlledAbility
 
     public virtual void Cancel()
     {
-        IsInvoking = false;
-        cancellationTokenSource.Cancel();
-        ReinitCancellationTokenSource();
+        ReinitCancellationTokenSource(this);
     }
 
-    public void ReinitCancellationTokenSource()
+    public void ReinitCancellationTokenSource(IAbility ability)
     {
+        if (ability != this) return;
         cancellationTokenSource.Dispose();
         cancellationTokenSource = new();
+        IsInvoking = false;
     }
 
     protected virtual void Method()
     {
+        if (cancellationTokenSource.IsCancellationRequested)
+        {
+            IsInvoking = false;
+            Cancel();
+            return;
+        }
+        isInvoking = true;
     }
-
 }

@@ -14,7 +14,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     public KeyCode AbilityKey { get => _key; set => _key = value; }
     public IAbility Ability { get => _ability; set => _ability = value; }
 
-    //public Action<ICharacter, KeyCode, IAbility> OnAbilityBinded;
+    //public Action<ICharacter, KeyCode, IAbility> OnPlayerAbilityBinded;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
     {
         await Task.Run(() => AwaitKeyboardKeyBindSettingsModelAsync());
         await Task.Run(() => AwaitAbilityInitiation());
-        AbilitiesPool.AddOrUpdateAbility(EntryPointView.MainScreenCharacter, _key, _ability);
+        PlayerAbilitiesPool.AddOrUpdateAbility(_key, _ability);
     }
 
     private void OnDestroy()
@@ -76,6 +76,6 @@ public class AbilityBindPanel : BaseUIView, IAbilityBindPanel
         _key = key;
         _abilityButton.GetComponentInChildren<TMP_Text>().text = _key.ToString();
         _abilityName = Ability.ToString().Replace("Ability", "");
-        GameEvents.OnAbilityBinded?.Invoke(EntryPointView.MainScreenCharacter, _key, _ability);
+        GameEvents.OnPlayerAbilityBinded?.Invoke(_key, _ability);
     }
 }

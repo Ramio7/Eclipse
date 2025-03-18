@@ -11,18 +11,16 @@ public class UserKeyboardInputModel : BaseInputSystemModel
 
     public UserKeyboardInputModel()
     {
-        Init();
+        InitAsync();
     }
 
-    protected override async void Init()
+    protected async void InitAsync()
     {
         base.Init();
 
         CurrentKeyOutput.OnValueChanged.AddListener(TakeKeyFromInput);
 
-        var character = EntryPointView.MainScreenCharacter;
-        character.BaseCharacterInitiated += GetCharacterStates;
-        
+        GameEvents.OnBaseCharacterInitiated += GetCharacterStates;
 
         await Task.Run(() => AwaitMoveAbilityInitialization());
         await Task.Run(() => AwaitJumpAbilityInitialization());
@@ -43,30 +41,30 @@ public class UserKeyboardInputModel : BaseInputSystemModel
     {
         _characterEnviromentState = character.EnviromentState;
         _abilitiesState = character.AbilityState;
-        character.BaseCharacterInitiated -= GetCharacterStates;
+        GameEvents.OnBaseCharacterInitiated -= GetCharacterStates;
     }
 
     private void TakeKeyFromInput(KeyCode key)
     {
-        var activeAbility = AbilityCash.ActiveAbility;
-        PushAbilityToCash(TakeAbilityFromPull(key, activeAbility));
+        var activeAbility = PlayerAbilityQueue.InvokedAbility;
+        PushAbilityToQueue(TakeAbilityFromPull(key, activeAbility));
     }
 
-    private void PushAbilityToCash(IAbility ability)
+    private void PushAbilityToQueue(IAbility ability)
     {
         if (ability == null) return;
         ability.SetAbilityInvokeParameters(HorizontalAxis, VerticalAxis);
-        AbilityCash.AddAbilityToCash(ability);
+        PlayerAbilityQueue.AddAbilityToQueue(ability);
     }
 
     private IAbility TakeAbilityFromPull(KeyCode currentKey, IAbility activeAbility)
-        => AbilitiesPool.GetMainCharacterAbilityByKey(currentKey, activeAbility);
+        => PlayerAbilitiesPool.GetMainCharacterAbilityByKey(currentKey, activeAbility);
 
     private Task AwaitMoveAbilityInitialization()
     {
         while (_moveAbility == null)
         {
-            _moveAbility = AbilitiesPool.GetMainCharacterAbility<MoveAbility>();
+            _moveAbility = PlayerAbilitiesPool.GetMainCharacterAbility<MoveAbility>();
             Task.Delay(100);
         }
         return Task.CompletedTask;
@@ -76,7 +74,7 @@ public class UserKeyboardInputModel : BaseInputSystemModel
     {
         while (_jumpAbility == null)
         {
-            _jumpAbility = AbilitiesPool.GetMainCharacterAbility<JumpAbility>();
+            _jumpAbility = PlayerAbilitiesPool.GetMainCharacterAbility<JumpAbility>();
             Task.Delay(100);
         }
         return Task.CompletedTask;
@@ -86,34 +84,37 @@ public class UserKeyboardInputModel : BaseInputSystemModel
     {
         while (_doubleJumpAbility == null)
         {
-            _doubleJumpAbility = AbilitiesPool.GetMainCharacterAbility<DoubleJumpAbility>();
+            _doubleJumpAbility = PlayerAbilitiesPool.GetMainCharacterAbility<DoubleJumpAbility>();
             Task.Delay(100);
         }
         return Task.CompletedTask;
     }
 
-    public void InvokeMoveAbility()
+    public void QueueMoveAbility()
     {
         if (HorizontalAxis != 0 && _characterEnviromentState.GetValue() == CharacterEnviromentState.Grounded)
         {
             if (HorizontalAxis > 0) HorizontalAxis = 1; else HorizontalAxis = -1;
             _moveAbility.SetAbilityInvokeParameters(HorizontalAxis, VerticalAxis);
-            AbilityCash.AddAbilityToCash(_moveAbility);
+            PlayerAbilityQueue.AddAbilityToQueue(_moveAbility);
+            Input.ResetInputAxes();
         }
     }
 
-    public void InvokeJumpAbility()
+    public void QueueJumpAbility()
     {
         if (Input.GetAxis("Jump") > 0)
         {
             switch (_characterEnviromentState.GetValue())
             {
                 case CharacterEnviromentState.Grounded:
-                    AbilityCash.AddAbilityToCash(_jumpAbility);
+                    PlayerAbilityQueue.AddAbilityToQueue(_jumpAbility);
+                    Input.ResetInputAxes();
                     break;
                 case CharacterEnviromentState.InAir:
                     if (_abilitiesState.GetValue() == CharacterAbilitiesState.UsedSecondJump) break;
-                    AbilityCash.AddAbilityToCash(_doubleJumpAbility);
+                    PlayerAbilityQueue.AddAbilityToQueue(_doubleJumpAbility);
+                    Input.ResetInputAxes();
                     break;
             }
         }

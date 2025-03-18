@@ -4,9 +4,8 @@ public interface IAbility : IDisposable, IMultiTheadingObject
 {
     int AbilityId { get; set; }
     int AbilityCooldown { get; }
-    bool IsInvoking { get; set; }
+    bool IsInvoking { get; }
     void SetAbilityInvokeParameters(float horizontalAxis, float verticalAxis);
     void Invoke();
-    void Cancel();
-    void ReinitCancellationTokenSource();
+    //void ReinitCancellationTokenSource();
 }

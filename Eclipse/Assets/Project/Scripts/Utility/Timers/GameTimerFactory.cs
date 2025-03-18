@@ -31,6 +31,11 @@ public struct GameTimerFactory : IJobParallelFor, IDisposable, IInitiable
         }
     }
 
+    private void Init()
+    {
+        Instance = this;
+        GameEvents.OnFixedUpdate += UpdateTime;
+    }
 
     public void Dispose()
     {
@@ -38,12 +43,6 @@ public struct GameTimerFactory : IJobParallelFor, IDisposable, IInitiable
 
         _currentTime.Dispose();
         _timersList.Dispose();
-    }
-
-    private void Init()
-    {
-        Instance = this;
-        GameEvents.OnFixedUpdate += UpdateTime;
     }
 
     public void AddTimer(int timerDurationMilliseconds)
@@ -63,11 +62,6 @@ public struct GameTimerFactory : IJobParallelFor, IDisposable, IInitiable
     {
         _timersList.RemoveAt(timerIndex);
         gameTimer.Dispose();
-    }
-
-    private void DeleteTimer(GameTimer gameTimer)
-    {
-        ;
     }
 
     private void UpdateTime()

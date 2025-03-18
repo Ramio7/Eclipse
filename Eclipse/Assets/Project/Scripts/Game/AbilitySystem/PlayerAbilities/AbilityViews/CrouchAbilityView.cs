@@ -13,6 +13,6 @@ public class CrouchAbilityView : BaseMainCharacterAbilityView
 
         await Task.Run(() => AwaitAbilityInitiation<MoveAbility>());
 
-        abilityBindPanel.Ability = new CrouchAbility(EntryPointView.MainScreenCharacter, (MoveAbility)AbilitiesPool.GetMainCharacterAbility<MoveAbility>());
+        abilityBindPanel.Ability = new CrouchAbility(EntryPointView.MainScreenCharacter, (MoveAbility)PlayerAbilitiesPool.GetMainCharacterAbility<MoveAbility>());
     }
 }

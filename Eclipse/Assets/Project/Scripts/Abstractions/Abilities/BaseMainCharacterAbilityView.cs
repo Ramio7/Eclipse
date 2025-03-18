@@ -18,7 +18,7 @@ public abstract class BaseMainCharacterAbilityView : MonoBehaviour, IAbilityView
 
     protected Task AwaitAbilityInitiation<IAbility>()
     {
-        while (AbilitiesPool.GetMainCharacterAbility<IAbility>() == null)
+        while (PlayerAbilitiesPool.GetMainCharacterAbility<IAbility>() == null)
             return Task.Delay(100);
         return Task.CompletedTask;
     }

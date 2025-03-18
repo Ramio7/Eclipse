@@ -19,7 +19,7 @@ public class JumpAbility : BaseAbility
     protected override void Method()
     {
         base.Method();
-        if (isInvoking) return;
+        //if (isInvoking) return;
         character.Rigidbody.AddForceY(_jumpForce, ForceMode2D.Impulse);
     }
 

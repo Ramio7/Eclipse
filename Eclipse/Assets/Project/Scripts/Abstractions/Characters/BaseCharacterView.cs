@@ -22,7 +22,7 @@ public abstract class BaseCharacterView : MonoBehaviour, ICharacter, IView
     public List<IAbility> Abilities { get => abilities; private set => abilities = value; }
     public GameObject GameObject { get => gameObject; }
 
-    public event Action<BaseCharacterView> BaseCharacterInitiated;
+    
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public abstract class BaseCharacterView : MonoBehaviour, ICharacter, IView
         InitStates();
 
         _contactsPooler = new(collider, enviromentState);
-        BaseCharacterInitiated.Invoke(this);
+        GameEvents.OnBaseCharacterInitiated.Invoke(this);
         
         enviromentState.OnValueChanged.AddListener(ChangeEnvValue);
         abilitiesState.OnValueChanged.AddListener(ChangeAbValue);
@@ -65,7 +65,6 @@ public abstract class BaseCharacterView : MonoBehaviour, ICharacter, IView
         if (_currentEnvState == CharacterEnviromentState.Grounded)
         {
             abilitiesState.SetValue(CharacterAbilitiesState.None);
-            AbilityCash.ActiveAbility = null;
         }
     }
 
